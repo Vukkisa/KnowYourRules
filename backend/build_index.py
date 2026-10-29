@@ -11,11 +11,15 @@ The live index is never touched until a complete replacement has been built and 
 every file is validated first, the new index is built in a separate "staging" collection,
 and only then is it swapped in. Any failure exits with code 1 and leaves the live index as it was.
 
+Chunking and embedding follow RAG_PROFILE (backend/rag_profiles.py; default "structured"); the profile is
+recorded on the collection so the server embeds queries to match. Roll back with RAG_PROFILE=baseline.
+
 Run with:
     .venv/Scripts/python.exe backend/build_index.py
 (from the project root, GenAI/)
 """
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -27,6 +31,11 @@ from langchain_chroma import Chroma
 from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+try:  # run as backend/build_index.py or imported as backend.build_index
+    import rag_profiles as rp
+except ImportError:
+    from backend import rag_profiles as rp
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env", override=True)
@@ -118,8 +127,10 @@ def recover(client):
         client.delete_collection(STAGING)
 
 
-def build_staging(client, splits, embeddings):
-    store = Chroma(client=client, collection_name=STAGING, embedding_function=embeddings)
+def build_staging(client, splits, embeddings, profile=None):
+    profile = profile or rp.PROFILES[rp.UNRECORDED_INDEX_PROFILE]
+    store = Chroma(client=client, collection_name=STAGING, embedding_function=rp.ProfileEmbeddings(embeddings, profile),
+                   collection_metadata={rp.PROFILE_METADATA_KEY: profile.name})
     uuids = [str(uuid4()) for _ in range(len(splits))]
     for i in range(0, len(splits), BATCH_SIZE):
         batch_docs = splits[i:i + BATCH_SIZE]
@@ -138,11 +149,15 @@ def build_staging(client, splits, embeddings):
             print(f"embedded {i}/{len(splits)}", flush=True)
 
 
-def verify_staging(client, splits):
-    """Staging must hold exactly the expected chunks, each with state and source metadata."""
+def verify_staging(client, splits, profile=None):
+    """Staging must hold exactly the expected chunks, each with state and source metadata, and record
+    the profile it was built with (the server embeds queries according to that record)."""
     if not splits:
         raise BuildError("no chunks to index - refusing to replace the live index with an empty one")
-    metadatas = client.get_collection(STAGING).get(include=["metadatas"])["metadatas"]
+    staging = client.get_collection(STAGING)
+    if profile and (staging.metadata or {}).get(rp.PROFILE_METADATA_KEY) != profile.name:
+        raise BuildError(f"staging does not record rag_profile={profile.name!r}")
+    metadatas = staging.get(include=["metadatas"])["metadatas"]
     if len(metadatas) != len(splits):
         raise BuildError(f"staging has {len(metadatas)} chunks, expected {len(splits)}")
     if any(not (m or {}).get("state") or not (m or {}).get("source_file") for m in metadatas):
@@ -165,7 +180,13 @@ def swap_in_staging(client):
         client.delete_collection(PREVIOUS)
 
 
-def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPDFLoader, embeddings=None):
+def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPDFLoader, embeddings=None, profile=None):
+    try:
+        profile = profile or rp.get_profile(os.environ.get("RAG_PROFILE"))
+    except ValueError as e:
+        print(f"\nBuild FAILED - the live index was not changed: {e}", flush=True)
+        return 1
+    print(f"Retrieval profile: {profile.name}", flush=True)
     check_haryana = files is None
     files = SCOPE_FILES_WITH_STATE if files is None else files
     print(f"{len(files)} files to index", flush=True)
@@ -182,8 +203,7 @@ def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPD
             print(f"  {e}", flush=True)
         return 1
 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, add_start_index=True)
-    all_splits = text_splitter.split_documents(docs)
+    all_splits = rp.split_documents(docs, profile, RecursiveCharacterTextSplitter)
     print(f"\nSplit {len(docs)} documents into {len(all_splits)} chunks.", flush=True)
     if not all_splits:
         print("\nBuild FAILED - the live index was not changed: splitting produced 0 chunks.", flush=True)
@@ -192,8 +212,8 @@ def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPD
     client = chromadb.PersistentClient(path=str(db_dir))
     recover(client)
     try:
-        build_staging(client, all_splits, embeddings or OllamaEmbeddings(model="nomic-embed-text"))
-        verify_staging(client, all_splits)
+        build_staging(client, all_splits, embeddings or OllamaEmbeddings(model="nomic-embed-text"), profile)
+        verify_staging(client, all_splits, profile)
     except Exception as e:
         if STAGING in {c.name for c in client.list_collections()}:
             client.delete_collection(STAGING)
@@ -202,7 +222,8 @@ def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPD
 
     swap_in_staging(client)
     states = sorted({d.metadata["state"] for d in all_splits})
-    print(f"\nDone. Indexed {len(all_splits)} chunks from {len(docs)} files; states: {', '.join(states)}.", flush=True)
+    print(f"\nDone. Indexed {len(all_splits)} chunks from {len(docs)} files with profile '{profile.name}'; "
+          f"states: {', '.join(states)}.", flush=True)
     return 0
 
 

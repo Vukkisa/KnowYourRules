@@ -24,19 +24,25 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaEmbeddings
 
+from backend import rag_profiles
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env", override=True)
 
 if not os.environ.get("GROQ_API_KEY") or "placeholder" in os.environ.get("GROQ_API_KEY", ""):
     raise RuntimeError("GROQ_API_KEY is missing or still a placeholder in .env")
 
-embeddings_model = OllamaEmbeddings(model="nomic-embed-text")
+# Queries must be embedded the way the index was built, so the profile is read from the index itself
+# (see backend/rag_profiles.py). An index built before profiles were recorded is "baseline".
+embeddings_model = rag_profiles.ProfileEmbeddings(OllamaEmbeddings(model="nomic-embed-text"))
 
 vector_store = Chroma(
     collection_name="india-traffic-rules",
     embedding_function=embeddings_model,
     persist_directory=str(BASE_DIR / "chroma_langchain_db"),
 )
+INDEX_PROFILE = rag_profiles.profile_of_index(vector_store)
+embeddings_model.profile = INDEX_PROFILE
 
 llm = init_chat_model("openai/gpt-oss-120b", model_provider="groq")
 
@@ -137,7 +143,9 @@ def with_penalty_note(answer: str) -> str:
 # recipe, gibberish, challan payment portal) were >= 0.915. It only screens out clearly unrelated
 # questions - near-topic questions still rely on the grounding prompt. Recalibrate if the embedding
 # model, distance space or corpus changes; override with RAG_MAX_DISTANCE.
-DEFAULT_MAX_DISTANCE = 0.88
+# The default now comes from the index's retrieval profile: 0.88 (above) for "baseline"; a provisional
+# 0.80 for "structured", whose task prefixes compress distances (see backend/rag_profiles.py).
+DEFAULT_MAX_DISTANCE = INDEX_PROFILE.default_max_distance
 
 
 def parse_max_distance(value) -> float:
