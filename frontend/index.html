@@ -259,7 +259,9 @@
     .chip{ padding:0 10px; }
   }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" integrity="sha512-xeUh+KxNyTufZOje++oQHstlMQ8/rpyzPuM+gjMFYK3z5ILJGE7l2NvYL+XfliKURMpBIKKp1XoPN/qswlSMFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.4.16/purify.min.js" integrity="sha512-flQmhkXNRQ3iUfvtdCobtpMjCb6kE+zLnTiAulAQJ3WykVfy84JvCMOo6vhwWXHTXjR25h9Zj+LyGFRWKjRoag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/static/render.js"></script>
 </head>
 <body>
 
@@ -303,8 +305,6 @@
   // bot silently still "remembers" an old location from before, and skips asking.
   const sessionId = crypto.randomUUID();
 
-  marked.setOptions({ breaks: true });
-
   voiceBtn.addEventListener('click', () => {
     voiceBtn.classList.add('listening');
     voiceBtn.querySelector('.chip-label').textContent = 'Listening…';
@@ -318,7 +318,10 @@
     const el = document.createElement('div');
     el.className = 'msg ' + role;
     if(role === 'assistant'){
-      el.innerHTML = marked.parse(text);
+      // null (or render.js missing) means "show as plain text" - never insert unsanitized HTML
+      const html = typeof renderAssistantMarkdown === 'function' ? renderAssistantMarkdown(text) : null;
+      if(html === null) el.textContent = text;
+      else el.innerHTML = html;
     } else {
       el.textContent = text;
     }

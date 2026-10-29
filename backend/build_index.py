@@ -7,15 +7,21 @@ Vehicles Act/Rules (applies nationwide, not state-specific). Without a correct
 "state" tag, retrieval had no way to filter by state and the LLM was citing the
 Central Act as if it were Madhya Pradesh state law.
 
+The live index is never touched until a complete replacement has been built and verified:
+every file is validated first, the new index is built in a separate "staging" collection,
+and only then is it swapped in. Any failure exits with code 1 and leaves the live index as it was.
+
 Run with:
     .venv/Scripts/python.exe backend/build_index.py
 (from the project root, GenAI/)
 """
 
+import sys
 import time
 from pathlib import Path
 from uuid import uuid4
 
+import chromadb
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import UnstructuredPDFLoader
@@ -26,6 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env", override=True)
 
 CORPUS = BASE_DIR / "data" / "raw" / "full_extraction"
+DB_DIR = BASE_DIR / "chroma_langchain_db"
 
 # (relative path, correct state) - the two "Central" entries are the files that were
 # discovered via Madhya Pradesh's and Andaman & Nicobar's pages but are actually the
@@ -51,57 +58,153 @@ SCOPE_FILES_WITH_STATE = [
     for p in (CORPUS / "state").glob("haryana-hartrans-gov-in-acts-rules__*.pdf")
 ]
 
-print(f"{len(SCOPE_FILES_WITH_STATE)} files to index", flush=True)
+COLLECTION = "india-traffic-rules"
+STAGING = COLLECTION + "-staging"
+PREVIOUS = COLLECTION + "-previous"  # the old live index, kept only while a swap is in progress
+BATCH_SIZE = 50
+RETRY_DELAY = 2
+# Diagnostic heuristic, not a quality bar: a real Act/Rules PDF has far more text than this, so a
+# file below it almost certainly "loaded" without extracting anything (scanned PDF, missing parser
+# model, empty download).
+MIN_CHARS = 200
 
-all_docs = []
-for rel_path, state in SCOPE_FILES_WITH_STATE:
-    f = CORPUS / rel_path
-    try:
-        loader = UnstructuredPDFLoader(str(f), strategy="fast", mode="single")
-        docs = loader.load()
-        for d in docs:
+
+class BuildError(Exception):
+    pass
+
+
+def load_documents(files, corpus_dir, loader_cls=UnstructuredPDFLoader):
+    """Load every file. Returns (docs, errors); errors name each file that failed validation."""
+    docs, errors = [], []
+    for rel_path, state in files:
+        f = corpus_dir / rel_path
+        if not f.is_file():
+            errors.append(f"[{state}] {rel_path}: file not found")
+            continue
+        try:
+            loaded = loader_cls(str(f), strategy="fast", mode="single").load()
+        except Exception as e:
+            errors.append(f"[{state}] {f.name}: failed to load ({e})")
+            continue
+        chars = sum(len(d.page_content.strip()) for d in loaded)
+        if chars < MIN_CHARS:
+            errors.append(f"[{state}] {f.name}: only {chars} characters extracted (under the {MIN_CHARS}-character "
+                          f"check - scanned PDF, missing parser model, or empty file?)")
+            continue
+        for d in loaded:
             d.metadata["source_file"] = f.name
             d.metadata["state"] = state
-        all_docs.extend(docs)
-        print(f"  [{state}] {f.name} ({len(docs[0].page_content)} chars)", flush=True)
+        docs.extend(loaded)
+        print(f"  [{state}] {f.name} ({chars} chars)", flush=True)
+    return docs, errors
+
+
+def recover(client):
+    """Finish or undo a swap that was interrupted, and drop any leftover staging collection."""
+    names = {c.name for c in client.list_collections()}
+    if PREVIOUS in names:
+        live_ok = COLLECTION in names and client.get_collection(COLLECTION).count() > 0
+        if live_ok:
+            # The new index was already in place; the old copy is no longer needed.
+            client.delete_collection(PREVIOUS)
+        else:
+            # Interrupted between the two renames (or the server created an empty live collection
+            # meanwhile): put the previous index back.
+            if COLLECTION in names:
+                client.delete_collection(COLLECTION)
+            client.get_collection(PREVIOUS).modify(name=COLLECTION)
+            print("Recovered the previous index from an interrupted rebuild.", flush=True)
+    if STAGING in names:
+        client.delete_collection(STAGING)
+
+
+def build_staging(client, splits, embeddings):
+    store = Chroma(client=client, collection_name=STAGING, embedding_function=embeddings)
+    uuids = [str(uuid4()) for _ in range(len(splits))]
+    for i in range(0, len(splits), BATCH_SIZE):
+        batch_docs = splits[i:i + BATCH_SIZE]
+        batch_ids = uuids[i:i + BATCH_SIZE]
+        for attempt in range(3):
+            try:
+                store.add_documents(documents=batch_docs, ids=batch_ids)
+                break
+            except Exception as e:
+                last_error = e
+                print(f"  batch {i}-{i+len(batch_docs)} attempt {attempt+1} failed: {e}", flush=True)
+                time.sleep(RETRY_DELAY)
+        else:
+            raise BuildError(f"batch {i}-{i+len(batch_docs)} failed after 3 attempts: {last_error}")
+        if i % 500 == 0:
+            print(f"embedded {i}/{len(splits)}", flush=True)
+
+
+def verify_staging(client, splits):
+    """Staging must hold exactly the expected chunks, each with state and source metadata."""
+    if not splits:
+        raise BuildError("no chunks to index - refusing to replace the live index with an empty one")
+    metadatas = client.get_collection(STAGING).get(include=["metadatas"])["metadatas"]
+    if len(metadatas) != len(splits):
+        raise BuildError(f"staging has {len(metadatas)} chunks, expected {len(splits)}")
+    if any(not (m or {}).get("state") or not (m or {}).get("source_file") for m in metadatas):
+        raise BuildError("some staged chunks are missing state/source_file metadata")
+    expected_states = {d.metadata["state"] for d in splits}
+    staged_states = {m["state"] for m in metadatas}
+    if staged_states != expected_states:
+        raise BuildError(f"staged states {sorted(staged_states)} != expected {sorted(expected_states)}")
+
+
+def swap_in_staging(client):
+    """Rename live -> previous, staging -> live, then drop previous. No data is deleted before the
+    new index is live; an interruption between the renames is undone by recover() on the next run."""
+    names = {c.name for c in client.list_collections()}
+    had_live = COLLECTION in names
+    if had_live:
+        client.get_collection(COLLECTION).modify(name=PREVIOUS)
+    client.get_collection(STAGING).modify(name=COLLECTION)
+    if had_live:
+        client.delete_collection(PREVIOUS)
+
+
+def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPDFLoader, embeddings=None):
+    check_haryana = files is None
+    files = SCOPE_FILES_WITH_STATE if files is None else files
+    print(f"{len(files)} files to index", flush=True)
+    if not files:
+        print("\nBuild FAILED - the live index was not changed: the file list is empty.", flush=True)
+        return 1
+
+    docs, errors = load_documents(files, corpus_dir, loader_cls)
+    if check_haryana and not any(state == "Haryana" for _, state in files):
+        errors.append(f"[Haryana] no files matched {corpus_dir / 'state'}/haryana-hartrans-gov-in-acts-rules__*.pdf")
+    if errors:
+        print("\nBuild FAILED - the live index was not changed. Files that failed validation:", flush=True)
+        for e in errors:
+            print(f"  {e}", flush=True)
+        return 1
+
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, add_start_index=True)
+    all_splits = text_splitter.split_documents(docs)
+    print(f"\nSplit {len(docs)} documents into {len(all_splits)} chunks.", flush=True)
+    if not all_splits:
+        print("\nBuild FAILED - the live index was not changed: splitting produced 0 chunks.", flush=True)
+        return 1
+
+    client = chromadb.PersistentClient(path=str(db_dir))
+    recover(client)
+    try:
+        build_staging(client, all_splits, embeddings or OllamaEmbeddings(model="nomic-embed-text"))
+        verify_staging(client, all_splits)
     except Exception as e:
-        print(f"  [{state}] {f.name} FAILED: {e}", flush=True)
-    except BaseException as e:
-        print(f"  [{state}] {f.name} FATAL: {e}", flush=True)
+        if STAGING in {c.name for c in client.list_collections()}:
+            client.delete_collection(STAGING)
+        print(f"\nBuild FAILED - the live index was not changed: {e}", flush=True)
+        return 1
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, add_start_index=True)
-all_splits = text_splitter.split_documents(all_docs)
-print(f"\nSplit {len(all_docs)} documents into {len(all_splits)} chunks.", flush=True)
+    swap_in_staging(client)
+    states = sorted({d.metadata["state"] for d in all_splits})
+    print(f"\nDone. Indexed {len(all_splits)} chunks from {len(docs)} files; states: {', '.join(states)}.", flush=True)
+    return 0
 
-embeddings_model = OllamaEmbeddings(model="nomic-embed-text")
 
-vector_store = Chroma(
-    collection_name="india-traffic-rules",
-    embedding_function=embeddings_model,
-    persist_directory=str(BASE_DIR / "chroma_langchain_db"),
-)
-
-# Clear out the old (mislabeled) collection contents before rebuilding
-existing = vector_store.get(include=[])
-if existing["ids"]:
-    print(f"Clearing {len(existing['ids'])} existing chunks...", flush=True)
-    vector_store.delete(ids=existing["ids"])
-
-BATCH_SIZE = 50
-uuids = [str(uuid4()) for _ in range(len(all_splits))]
-for i in range(0, len(all_splits), BATCH_SIZE):
-    batch_docs = all_splits[i:i + BATCH_SIZE]
-    batch_ids = uuids[i:i + BATCH_SIZE]
-    for attempt in range(3):
-        try:
-            vector_store.add_documents(documents=batch_docs, ids=batch_ids)
-            break
-        except Exception as e:
-            print(f"  batch {i}-{i+len(batch_docs)} attempt {attempt+1} failed: {e}", flush=True)
-            time.sleep(2)
-    else:
-        print(f"  batch {i}-{i+len(batch_docs)} FAILED after 3 attempts - skipped", flush=True)
-    if i % 500 == 0:
-        print(f"embedded {i}/{len(all_splits)}", flush=True)
-
-print(f"\nDone. Indexed {len(all_splits)} chunks with correct state metadata.", flush=True)
+if __name__ == "__main__":
+    sys.exit(main())
