@@ -33,8 +33,10 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 try:  # run as backend/build_index.py or imported as backend.build_index
+    import legal_approval
     import rag_profiles as rp
 except ImportError:
+    from backend import legal_approval
     from backend import rag_profiles as rp
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -100,9 +102,11 @@ def load_documents(files, corpus_dir, loader_cls=UnstructuredPDFLoader):
             errors.append(f"[{state}] {f.name}: only {chars} characters extracted (under the {MIN_CHARS}-character "
                           f"check - scanned PDF, missing parser model, or empty file?)")
             continue
+        digest = legal_approval.sha256_file(f)  # identity of the exact bytes indexed
         for d in loaded:
             d.metadata["source_file"] = f.name
             d.metadata["state"] = state
+            d.metadata["sha256"] = digest
         docs.extend(loaded)
         print(f"  [{state}] {f.name} ({chars} chars)", flush=True)
     return docs, errors
@@ -162,6 +166,8 @@ def verify_staging(client, splits, profile=None):
         raise BuildError(f"staging has {len(metadatas)} chunks, expected {len(splits)}")
     if any(not (m or {}).get("state") or not (m or {}).get("source_file") for m in metadatas):
         raise BuildError("some staged chunks are missing state/source_file metadata")
+    if any(not legal_approval.SHA256_RE.match(str((m or {}).get("sha256", ""))) for m in metadatas):
+        raise BuildError("some staged chunks are missing a valid sha256")
     expected_states = {d.metadata["state"] for d in splits}
     staged_states = {m["state"] for m in metadatas}
     if staged_states != expected_states:
@@ -180,7 +186,9 @@ def swap_in_staging(client):
         client.delete_collection(PREVIOUS)
 
 
-def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPDFLoader, embeddings=None, profile=None):
+def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPDFLoader, embeddings=None, profile=None,
+         approval_record=None):
+    """approval_record (optional): an ApprovalRecord the files must match exactly before anything is embedded."""
     try:
         profile = profile or rp.get_profile(os.environ.get("RAG_PROFILE"))
     except ValueError as e:
@@ -193,6 +201,17 @@ def main(corpus_dir=CORPUS, db_dir=DB_DIR, files=None, loader_cls=UnstructuredPD
     if not files:
         print("\nBuild FAILED - the live index was not changed: the file list is empty.", flush=True)
         return 1
+
+    if approval_record is not None:
+        problems = legal_approval.corpus_errors(
+            approval_record, [corpus_dir / rel for rel, _ in files if (corpus_dir / rel).is_file()])
+        problems += [f"file not found: {rel}" for rel, _ in files if not (corpus_dir / rel).is_file()]
+        if problems:
+            print("\nBuild FAILED - the live index was not changed. Corpus does not match the approval record:",
+                  flush=True)
+            for e in problems:
+                print(f"  {e}", flush=True)
+            return 1
 
     docs, errors = load_documents(files, corpus_dir, loader_cls)
     if check_haryana and not any(state == "Haryana" for _, state in files):
