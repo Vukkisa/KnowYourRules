@@ -36,7 +36,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaEmbeddings
 
-from backend import legal_approval, rag_profiles
+from backend import hybrid_retrieval, legal_approval, rag_profiles
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env", override=True)
@@ -258,14 +258,32 @@ RULE_REFERENCE_RE = re.compile(rf"\b(?:sub-)?rules?\s*(?:no\.?|number|nos\.?)?\s
 RULE_ITEM_RE = re.compile(
     r"(\d{1,3})(?:\s*-\s*([A-Za-z])(?![A-Za-z])|([A-Za-z])(?![A-Za-z])|\s+([A-Za-z])(?=\s*(?:[?.,;:)]|$)))?")
 TAXATION_RE = re.compile(r"\btmvtr\b|taxation\s+rules", re.IGNORECASE)
-MV_RULES_RE = re.compile(r"\btmvr\b|motor\s+vehicles\s+rules", re.IGNORECASE)
+MV_RULES_RE = re.compile(r"\btmvr\b|motor\s+vehicles?\s+rules", re.IGNORECASE)
+# The Central Motor Vehicles Rules, 1989 are NOT in the corpus. Checked before MV_RULES_RE, whose
+# "motor vehicles rules" would otherwise claim "Central Motor Vehicles Rules" for the TMVR.
+CENTRAL_RULES_RE = re.compile(
+    r"\bcentral\s+motor\s+vehicles?\s*(?:\([^)]{0,40}\)\s*)?rules\b|\bcmv\s*rules\b|\bcmvrs?\b", re.IGNORECASE)
+CENTRAL = "cmvr-1989"
+INSTRUMENT_NAMES = {"tmvr-1989": "Telangana Motor Vehicles Rules, 1989 (TMVR)",
+                    "tmvtr-1963": "Telangana Motor Vehicles Taxation Rules, 1963 (TMVTR)",
+                    CENTRAL: "Central Motor Vehicles Rules, 1989 (not in the Telangana sources)"}
+# A citation of a Central rule inside an indexed document: "Rule 167A(1) of the Central Motor Vehicles Rules".
+CENTRAL_CITATION_RE = re.compile(
+    r"\brules?\s+(\d{1,3})\s*-?\s*([A-Z])?(?![A-Za-z])(?:\s*\([^)]{0,6}\))*\s+of\s+(?:the\s+)?(?:said\s+)?"
+    r"(?:central\s+motor\s+vehicles?\s*(?:\([^)]{0,40}\)\s*)?rules|cmv\s*rules)", re.IGNORECASE)
+# Asking for the rule itself ("what does it say", "text of", "explain Rule N"), not a question that merely mentions it.
+RULE_TEXT_REQUEST_RE = re.compile(
+    r"\bwhat\s+(?:does|do)\b.*\b(?:say|says|state|states|provide|provides|require|requires|mandate|contain|mean)\b"
+    r"|\b(?:text|wording|contents?|provisions?)\s+of\b|\bfull\s+text\b|\bquote\b|\breproduce\b"
+    r"|^\s*(?:please\s+)?(?:explain|summari[sz]e|define|show|read|describe)\b"
+    r"|^\s*(?:what\s*(?:is|'s|are)|tell\s+me\s+about)\s+(?:the\s+)?(?:\w+\s+){0,2}rules?\s+\d", re.IGNORECASE)
 MAX_RANGE = 20
 
 
-def rule_references(message: str) -> list[str]:
-    """Explicit rule references in order, e.g. ["Rule 185", "Rule 186"]. "sub-rule (2)" and plain numbers
-    ("500 rupees", "2 wheeler") are not rule references. "rules 185 to 187" expands short ranges."""
-    refs = []
+def rule_reference_spans(message: str) -> list[tuple[str, int, int]]:
+    """(reference, start, end) for each explicit rule reference, in order; a list ("rules 185, 186") shares
+    one span. "sub-rule (2)" and plain numbers ("500 rupees", "2 wheeler") are not rule references."""
+    spans = []
     for m in RULE_REFERENCE_RE.finditer(message):
         if m.group(0).lower().startswith("sub-"):
             continue  # "sub-rule 2" is part of a rule, not a rule number
@@ -281,27 +299,172 @@ def rule_references(message: str) -> list[str]:
                     continue
             numbers.append((int(it.group(1)), suffix))
         for n, suffix in numbers:
-            ref = f"Rule {n}{suffix}"
-            if ref not in refs:
-                refs.append(ref)
+            spans.append((f"Rule {n}{suffix}", m.start(), m.end()))
+    return spans
+
+
+def rule_references(message: str) -> list[str]:
+    """Explicit rule references in order, e.g. ["Rule 185", "Rule 186"]. "rules 185 to 187" expands short ranges."""
+    refs = []
+    for ref, _s, _e in rule_reference_spans(message):
+        if ref not in refs:
+            refs.append(ref)
     return refs
 
 
-def missing_rule_references(message: str) -> tuple[list[str], list[str]]:
-    """(missing, present) explicit rule references, scoped to TMVR or TMVTR when the message names one."""
+def _instrument_in(text: str) -> str | None:
+    if CENTRAL_RULES_RE.search(text):
+        return CENTRAL
+    if TAXATION_RE.search(text):
+        return INSTRUMENT_PREFIXES["tmvtr"]
+    if MV_RULES_RE.search(text):
+        return INSTRUMENT_PREFIXES["tmvr"]
+    return None
+
+
+def instrument_scope(message: str) -> str | None:
+    """The one instrument the message names: "tmvtr-1963", "tmvr-1989" or CENTRAL; None if none or several."""
+    named = set()
+    if CENTRAL_RULES_RE.search(message):
+        named.add(CENTRAL)
+    rest = CENTRAL_RULES_RE.sub(" ", message)
+    if TAXATION_RE.search(rest):
+        named.add(INSTRUMENT_PREFIXES["tmvtr"])
+    if MV_RULES_RE.search(TAXATION_RE.sub(" ", rest)):
+        named.add(INSTRUMENT_PREFIXES["tmvr"])
+    return named.pop() if len(named) == 1 else None
+
+
+def reference_scope(message: str, start: int, end: int) -> str | None:
+    """Instrument named right at a reference ("CMVR Rule 167A", "Rule 167A of the Central Motor Vehicles
+    Rules"), else the single instrument the whole message names, else None (not established)."""
+    after = re.match(r"\s*(?:\([^)]{0,6}\)\s*)*,?\s*(?:of|under|in)\s+(?:the\s+)?(?:said\s+)?(.{0,70})",
+                     message[end:end + 90], re.IGNORECASE | re.DOTALL)
+    if after and (scope := _instrument_in(after.group(1)[:60])):
+        return scope
+    before = re.search(r"\b(cmvr|cmv|central|tmvtr|tmvr)\s*(?:sub-)?$", message[max(0, start - 12):start], re.IGNORECASE)
+    if before:
+        word = before.group(1).lower()
+        return CENTRAL if word in ("cmvr", "cmv", "central") else INSTRUMENT_PREFIXES[word]
+    return instrument_scope(message)
+
+
+def build_central_citations(docs) -> dict:
+    """"Rule 167A" -> sorted labels of answer-eligible indexed documents that cite it as a Central rule.
+    A citation shows the rule exists and what cites it; it is never treated as the rule's text."""
+    cited = {}
+    for d in docs or []:
+        m = d.metadata or {}
+        if m.get("answer_eligible") is False or m.get("state") not in (None, ASSISTANT_STATE):
+            continue
+        for c in CENTRAL_CITATION_RE.finditer(" ".join(d.page_content.split())):
+            ref = f"Rule {int(c.group(1))}{(c.group(2) or '').upper()}"
+            label = m.get("document_number") or m.get("title") or m.get("manifest_id")
+            cited.setdefault(ref, set()).add(label)
+    return {k: sorted(v) for k, v in cited.items()}
+
+
+class RuleCheck:
+    """Deterministic classification of every explicit rule reference in a message."""
+
+    def __init__(self):
+        self.missing, self.present = [], []     # Telangana rules not in / in the index
+        self.central_text = []                  # [(ref, citing docs)]: asks for a Central rule's text
+        self.central_cited = []                 # [(ref, citing docs)]: mentions a cited Central rule
+        self.unresolved = []                    # [(ref, [instrument names])]: instrument not established
+
+
+def classify_rule_references(message: str) -> RuleCheck:
+    out = RuleCheck()
     if not PROVISION_CATALOGUE:
-        return [], []
-    scope = None
-    if TAXATION_RE.search(message):
-        scope = INSTRUMENT_PREFIXES["tmvtr"]
-    elif MV_RULES_RE.search(message):
-        scope = INSTRUMENT_PREFIXES["tmvr"]
-    missing, present = [], []
-    for ref in rule_references(message):
+        return out
+    wants_text = bool(RULE_TEXT_REQUEST_RE.search(message))
+    seen = set()
+    for ref, start, end in rule_reference_spans(message):
+        scope = reference_scope(message, start, end)
+        if (ref, scope) in seen:
+            continue
+        seen.add((ref, scope))
         ids = PROVISION_CATALOGUE.get(ref, set())
-        found = any(i.startswith(scope) for i in ids) if scope else bool(ids)
-        (present if found else missing).append(ref)
-    return missing, present
+        cited = CENTRAL_CITATIONS.get(ref, [])
+        if scope in (INSTRUMENT_PREFIXES["tmvr"], INSTRUMENT_PREFIXES["tmvtr"]):
+            (out.present if any(i.startswith(scope) for i in ids) else out.missing).append(ref)
+        elif scope == CENTRAL:
+            if not cited:
+                out.missing.append(f"{ref} of the Central Motor Vehicles Rules")
+            else:
+                (out.central_text if wants_text else out.central_cited).append((ref, cited))
+        elif ids and cited:
+            # In the Telangana index AND cited as a Central rule: which one is meant is not established.
+            names = sorted({INSTRUMENT_NAMES[p] for p in INSTRUMENT_PREFIXES.values() if any(i.startswith(p) for i in ids)})
+            out.unresolved.append((ref, names + [INSTRUMENT_NAMES[CENTRAL]]))
+        elif ids:
+            out.present.append(ref)
+        elif cited:
+            # Not a Telangana rule; indexed documents cite it only as a Central rule.
+            (out.central_text if wants_text else out.central_cited).append((ref, cited))
+        else:
+            out.missing.append(ref)
+    return out
+
+
+def missing_rule_references(message: str) -> tuple[list[str], list[str]]:
+    """(missing, present) explicit rule references; each is scoped by the instrument named at it or in the
+    message. A rule number is never assumed to be a TMVR rule just because it is unqualified."""
+    check = classify_rule_references(message)
+    return check.missing, check.present
+
+
+def central_rule_message(central_text) -> str:
+    lines = [f"- **{ref}** is cited in {', '.join(docs)}" for ref, docs in central_text]
+    return ("**That is a rule of the Central Motor Vehicles Rules, 1989, which are not in the Telangana "
+            "sources.** The Telangana documents I have only cite it; they don't contain its text, so I won't "
+            "say what it provides:\n\n" + "\n".join(lines) + "\n\nYou can ask what those Telangana documents "
+            "say, or check the official Central text.")
+
+
+# ---------------------------------------------------------------------------------------------------
+# Hybrid retrieval (structured lookup + BM25 + vector, fused with RRF). RAG_RETRIEVAL_MODE=vector keeps the
+# original vector-only path. The lexical index is built in memory from the stored chunks; an index without
+# chunk text or provision metadata leaves it off, and retrieval falls back to vector-only.
+# ---------------------------------------------------------------------------------------------------
+RETRIEVAL_MODE = os.environ.get("RAG_RETRIEVAL_MODE", "hybrid").strip().lower()
+if RETRIEVAL_MODE not in ("hybrid", "vector"):
+    RETRIEVAL_MODE = "hybrid"
+LEXICAL_INDEX = hybrid_retrieval.LexicalIndex.from_store(vector_store) if PROVISION_CATALOGUE else None
+CENTRAL_CITATIONS = build_central_citations(LEXICAL_INDEX.docs) if LEXICAL_INDEX is not None else {}
+
+
+def provision_lookup(message: str):
+    if LEXICAL_INDEX is None:
+        return None
+    scope = instrument_scope(message)
+    refs = [ref for ref, s, e in rule_reference_spans(message) if reference_scope(message, s, e) != CENTRAL]
+    return LEXICAL_INDEX.lookup(message, list(dict.fromkeys(refs)), None if scope == CENTRAL else scope)
+
+
+def missing_references(message: str) -> tuple[list[str], list[str]]:
+    """Missing rule references plus G.O. numbers (or number/year) that are not in the index."""
+    missing, present = missing_rule_references(message)
+    lookup = provision_lookup(message)
+    return (missing + lookup.missing_gos if lookup else missing), present
+
+
+def ambiguous_references(message: str) -> list:
+    """[(reference, [candidates])] for references that match more than one instrument or G.O."""
+    lookup = provision_lookup(message)
+    found = list(lookup.ambiguous) if lookup else []
+    for ref, names in classify_rule_references(message).unresolved:
+        if ref not in {r for r, _ in found}:
+            found.append((ref, names))
+    return found
+
+
+def clarification_message(ambiguous) -> str:
+    lines = [f"- **{ref}** appears in: {'; '.join(options)}" for ref, options in ambiguous]
+    return ("Which instrument do you mean? I won't choose one for you:\n\n" + "\n".join(lines) +
+            "\n\nAsk again naming it, for example \"TMVR Rule 10\" or \"TMVTR Rule 10\", or a G.O. number with "
+            "its year.")
 
 
 def missing_provision_message(missing: list[str], present: list[str]) -> str:
@@ -659,6 +822,11 @@ def retrieve(question: str) -> list:
     docs = relevant_docs(
         vector_store.similarity_search_with_score(question, k=RETRIEVE_K, filter={"state": ASSISTANT_STATE})
     )
+    if RETRIEVAL_MODE == "hybrid" and LEXICAL_INDEX is not None:
+        lookup = provision_lookup(question)
+        # Every candidate, whichever list it came from, goes through the same filters below.
+        docs = hybrid_retrieval.reciprocal_rank_fusion(
+            [lookup.documents, LEXICAL_INDEX.search(question, RETRIEVE_K), docs])
     seen, unique = set(), []
     for d in docs:
         if d.metadata.get("state") != ASSISTANT_STATE:
@@ -671,7 +839,7 @@ def retrieve(question: str) -> list:
         if key not in seen:
             seen.add(key)
             unique.append(d)
-    return unique
+    return unique[:RETRIEVE_K]
 
 
 contextualize_template = """Given the recent conversation history and a new message, rewrite the
@@ -795,7 +963,7 @@ class Source(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
-    kind: str  # answer | no_support | restricted | out_of_scope | unavailable | missing_provision
+    kind: str  # answer | no_support | restricted | out_of_scope | unavailable | missing_provision | clarification
     sources: list[Source] = []
     kb_approved: bool
 
@@ -831,10 +999,18 @@ def chat(req: ChatRequest):
             return restricted("sticky_follow_up", "follows_locked_turn")
     if not index_ready():
         return reply("unavailable", UNAVAILABLE_MESSAGE)
-    missing, present = missing_rule_references(message)
+    missing, present = missing_references(message)
     if missing:
         # Deterministic: no retrieval, no rewrite, no model call, nothing substituted for the missing rule.
         return reply("missing_provision", missing_provision_message(missing, present))
+    central_text = classify_rule_references(message).central_text
+    if central_text:
+        # Asks what a Central rule says: only citations of it are indexed, never its text. No model call.
+        return reply("missing_provision", central_rule_message(central_text))
+    ambiguous = ambiguous_references(message)
+    if ambiguous:
+        # "Rule 10" exists in both the TMVR and the TMVTR: ask, never pick one silently. No model call.
+        return reply("clarification", clarification_message(ambiguous))
 
     try:
         result = answer_question(message, session["history"], req.session_id)

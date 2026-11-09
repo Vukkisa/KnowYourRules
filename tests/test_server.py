@@ -813,5 +813,175 @@ class PenaltyNoteTests(unittest.TestCase):
         self.assertNotIn(srv.PENALTY_NOTE, srv.sessions["t"]["history"][-1]["answer"])
 
 
+class HybridRetrievalServerTests(Base):
+    """Hybrid retrieval wired into the server: exact lookup, BM25 and vector fused, one eligibility filter,
+    deterministic clarification for TMVR/TMVTR ambiguity. Fixture text only - not legal text."""
+
+    CHUNKS = [
+        ("tmvr-1989-chap-2", "Rule 10", "Synthetic Motor Rules - Rule 10 - Appeal\n10. Appeal filler.", True),
+        ("tmvtr-1963", "Rule 10", "Synthetic Taxation Rules - Rule 10 - Seizure\n10. Seizure filler.", True),
+        ("tmvr-1989-chap-8", "Rule 437", "Synthetic Motor Rules - Rule 437 - Crash helmets\n437. Helmet filler.", True),
+        ("tmvr-1989-chap-5", "Rule 188", "Synthetic Motor Rules - Rule 188 - Reserve vehicles\n188. Filler.", True),
+        ("go-ms-16-2026-trb", "Preamble", "Synthetic amendment - Preamble\nG.O.Ms.No. 16 Dated: 20-03-2026", True),
+        ("go-ms-16-2026-trb", "SEVENTH SCHEDULE", "Synthetic amendment - SEVENTH SCHEDULE\nseventh schedule column deleted", False),
+        ("go-ms-24-2026-trb", "Order", "Synthetic challan redressal - Order\nredressal authority challan", False),
+    ]
+
+    def setUp(self):
+        super().setUp()
+        from backend import hybrid_retrieval
+        metas = [{"state": "Telangana", "manifest_id": m, "provision_id": p, "part": 1, "location": f"{m}#{i}",
+                  "sha256": "c" * 64, "source_file": f"{m}.pdf", "answer_eligible": e, "title": "Synthetic"}
+                 for i, (m, p, _t, e) in enumerate(self.CHUNKS)]
+        index = hybrid_retrieval.LexicalIndex([c[2] for c in self.CHUNKS], metas)
+        for name, value in (("LEXICAL_INDEX", index), ("RETRIEVAL_MODE", "hybrid")):
+            patcher = mock.patch.object(srv, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        patcher = mock.patch.dict(srv.PROVISION_CATALOGUE, srv.build_provision_catalogue(metas), clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.excluded_doc = index.docs[5]
+        self.vector_only = CORPUS[0]  # a semantic match that shares no terms with the question
+
+    def provisions(self, docs):
+        return [(d.metadata.get("manifest_id"), d.metadata.get("provision_id")) for d in docs]
+
+    def test_rule_number_only_lookup_ranks_the_exact_rule_first(self):
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
+        self.assertEqual(self.provisions(srv.retrieve("What does Rule 437 say?"))[0], ("tmvr-1989-chap-8", "Rule 437"))
+
+    def test_paraphrased_question_keeps_semantic_results(self):
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
+        self.assertIn(self.vector_only, srv.retrieve("how do beginners get permission to learn"))
+
+    def test_excluded_chunks_ranking_highly_never_reach_answer_context(self):
+        # The superseded schedule and the unresolved G.O. 24 top BM25, exact lookup AND the vector list.
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.excluded_doc, 0.1)]
+        for q in ("G.O. 16/2026 seventh schedule column deleted", "challan redressal authority G.O. 24/2026"):
+            docs = srv.retrieve(q)
+            self.assertTrue(all(d.metadata.get("answer_eligible") is not False for d in docs), q)
+            self.assertNotIn(("go-ms-24-2026-trb", "Order"), self.provisions(docs))
+
+    def test_unscoped_rule_in_both_instruments_asks_for_clarification(self):
+        r = self.post("What does Rule 10 say?").json()
+        self.assertEqual(r["kind"], "clarification")
+        self.assertIn("TMVR", r["response"])
+        self.assertIn("TMVTR", r["response"])
+        self.assertEqual(self.log, {})       # no model call
+        self.assertEqual(SEARCH_LOG, [])     # no retrieval
+
+    def test_scoped_rule_is_not_ambiguous_and_stays_in_its_instrument(self):
+        self.assertEqual(srv.ambiguous_references("TMVR Rule 10"), [])
+        FAKE_SEARCH["fn"] = lambda q, s, docs: []
+        got = self.provisions(srv.retrieve("TMVR Rule 10"))
+        self.assertIn(("tmvr-1989-chap-2", "Rule 10"), got)
+        self.assertEqual(got[0], ("tmvr-1989-chap-2", "Rule 10"))
+
+    def test_missing_rule_and_missing_go_stay_deterministic(self):
+        for q, ref in (("What does Rule 186 say?", "Rule 186"), ("What does G.O. 16/2025 say?", "G.O.Ms.No. 16/2025")):
+            r = self.post(q).json()
+            self.assertEqual(r["kind"], "missing_provision", q)
+            self.assertIn(ref, r["response"])
+            self.assertNotIn("Rule 188", r["response"])  # never substituted
+        self.assertEqual(self.log, {})
+        self.assertEqual(SEARCH_LOG, [])
+
+    def test_penalty_lock_still_runs_first(self):
+        self.assertEqual(self.post("What is the fine under Rule 10?").json()["kind"], "restricted")
+        self.assertEqual(self.log, {})
+
+    def test_vector_mode_is_unchanged(self):
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
+        with mock.patch.object(srv, "RETRIEVAL_MODE", "vector"):
+            self.assertEqual(srv.retrieve("What does Rule 437 say?"), [self.vector_only])
+
+
+class CentralRuleReferenceTests(Base):
+    """Instrument-aware rule validation: a rule number is not assumed to be a TMVR rule. Central (CMVR) rules
+    are recognised from the instrument named in the question or from citations in answer-eligible indexed
+    documents - which show only that the rule exists, never its text. Fixture text only - not legal text."""
+
+    CHUNKS = [
+        ("go-ms-32-2026-trb", "Order", "Synthetic EMES order - Order\nA Designated Authority is notified under "
+         "Rule 167A(1) of the Central Motor Vehicles Rules, 1989.", True, "G.O.Ms.No. 32"),
+        ("go-ms-24-2026-trb", "Order", "Synthetic unresolved order - Order\nunder Rule 168 of the Central Motor "
+         "Vehicles Rules.", False, "G.O.Ms.No. 24"),
+        ("tmvr-1989-chap-4", "Rule 115", "Synthetic Motor Rules - Rule 115 - Fitness\n115. As per Rule 115 of "
+         "Central Motor Vehicles Rules filler.", True, ""),
+        ("tmvr-1989-chap-5", "Rule 188", "Synthetic Motor Rules - Rule 188 - Reserve\n188. Filler.", True, ""),
+        ("tmvr-1989-chap-2", "Rule 10", "Synthetic Motor Rules - Rule 10 - Appeal\n10. Filler.", True, ""),
+        ("tmvtr-1963", "Rule 10", "Synthetic Taxation Rules - Rule 10 - Seizure\n10. Filler.", True, ""),
+    ]
+
+    def setUp(self):
+        super().setUp()
+        from backend import hybrid_retrieval
+        metas = [{"state": "Telangana", "manifest_id": m, "provision_id": p, "part": 1, "location": f"{m}#{i}",
+                  "sha256": "d" * 64, "source_file": f"{m}.pdf", "answer_eligible": e, "title": "Synthetic",
+                  "document_number": n} for i, (m, p, _t, e, n) in enumerate(self.CHUNKS)]
+        index = hybrid_retrieval.LexicalIndex([c[2] for c in self.CHUNKS], metas)
+        for name, value in (("LEXICAL_INDEX", index), ("RETRIEVAL_MODE", "hybrid"),
+                            ("CENTRAL_CITATIONS", srv.build_central_citations(index.docs))):
+            patcher = mock.patch.object(srv, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        patcher = mock.patch.dict(srv.PROVISION_CATALOGUE, srv.build_provision_catalogue(metas), clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_citations_come_only_from_answer_eligible_documents(self):
+        self.assertEqual(srv.CENTRAL_CITATIONS, {"Rule 167A": ["G.O.Ms.No. 32"], "Rule 115": ["Synthetic"]})
+
+    def test_question_about_a_go_citing_a_central_rule_reaches_retrieval(self):
+        # Modelled on benchmark case TG-GO-012.
+        q = "Why did Telangana notify a Designated Authority under Rule 167A?"
+        self.assertEqual(srv.missing_references(q), ([], []))
+        self.assertEqual(self.post(q).json()["kind"], "answer")
+        self.assertEqual(len(SEARCH_LOG), 1)
+        q = "Who is the authority under Rule 167A(1) of the Central Motor Vehicles Rules?"
+        self.assertEqual(self.post(q, sid="t").json()["kind"], "answer")
+
+    def test_explicit_tmvr_rule_167a_is_still_missing(self):
+        for q in ("TMVR Rule 167A", "What does Rule 167A of the Telangana Motor Vehicles Rules say?"):
+            r = self.post(q).json()
+            self.assertEqual(r["kind"], "missing_provision", q)
+            self.assertIn("Rule 167A", r["response"])
+        self.assertEqual(self.log, {})
+        self.assertEqual(SEARCH_LOG, [])
+
+    def test_text_of_a_central_rule_is_never_answered(self):
+        for q in ("What does Rule 167A say?", "What does CMVR Rule 167A say?", "Explain Rule 167A of the Central "
+                  "Motor Vehicles Rules", "Give me the text of rule 167A"):
+            r = self.post(q).json()
+            self.assertEqual(r["kind"], "missing_provision", q)
+            self.assertIn("Central Motor Vehicles Rules", r["response"])
+            self.assertIn("G.O.Ms.No. 32", r["response"])  # what cites it, not what it says
+        r = self.post("What does Rule 999 of the CMV Rules say?").json()
+        self.assertEqual(r["kind"], "missing_provision")
+        self.assertIn("Rule 999 of the Central Motor Vehicles Rules", r["response"])
+        # A Central rule cited only by an excluded (unresolved draft) document is not established.
+        self.assertEqual(self.post("Why was Rule 168 used?").json()["kind"], "missing_provision")
+        self.assertEqual(self.log, {})
+        self.assertEqual(SEARCH_LOG, [])
+
+    def test_rule_in_tmvr_and_cited_as_central_needs_clarification(self):
+        r = self.post("What does Rule 115 say?").json()
+        self.assertEqual(r["kind"], "clarification")
+        self.assertIn("Central Motor Vehicles Rules", r["response"])
+        self.assertEqual(self.post("What does TMVR Rule 115 say?", sid="t").json()["kind"], "answer")
+
+    def test_existing_protections_are_unchanged(self):
+        self.assertEqual(self.post("What does Rule 186 say?").json()["kind"], "missing_provision")
+        self.assertEqual(self.post("What does G.O. 99/2026 say?", sid="a").json()["kind"], "missing_provision")
+        self.assertEqual(self.post("What does Rule 10 say?", sid="b").json()["kind"], "clarification")
+        self.assertEqual(self.post("What is the fine under Rule 167A?", sid="c").json()["kind"], "restricted")
+        self.assertEqual(self.log, {})
+        self.assertEqual(SEARCH_LOG, [])
+        FAKE_SEARCH["fn"] = lambda q, s, docs: []
+        docs = srv.retrieve("Rule 168 of the Central Motor Vehicles Rules unresolved order")
+        self.assertTrue(all(d.metadata.get("answer_eligible") is not False for d in docs))
+
+
 if __name__ == "__main__":
     unittest.main()

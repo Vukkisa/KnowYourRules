@@ -346,6 +346,31 @@ class LegacyLayoutTests(Workspace):
         provisions = ti.segment(ti.load_pdf(pdf), "Regulations")
         self.assertEqual([p.identifier for p in provisions], ["Regulation 1", "Regulation 2", "Regulation 3"])
 
+    def test_go_reference_list_is_one_ordered_references_block(self):
+        # Regression: G.O.Ms.No. 77/2025 - each "Read the following" item became its own Paragraph, and in
+        # G.O.Ms.No. 32/2026 a cited "167A." and "Rule 167A(1) of ..." started spurious provisions.
+        pdf = self.corpus / "go.pdf"
+        pdf.write_bytes(make_pdf([["ABSTRACT", "Synthetic amendment - Orders - Issued.",
+                                   "Read the following:",
+                                   "1. G.O.Ms.No.216, Synthetic Dept.,", "Dated:07.08.1989.",
+                                   "2. G.O.Ms.No.02, Synthetic Dept.,", "Dated:17.06.2014.",
+                                   "3) Order dated 02.09.2024 of the Synthetic Court amending Rules 167 and",
+                                   "167A.",
+                                   "***", "ORDER:",
+                                   "Government vide G.O 1st read above issued a synthetic notification.",
+                                   "2. Whereas no synthetic objections were received.",
+                                   "Rule 167A(1) of the Synthetic Rules is cited here as text.",
+                                   "3. The synthetic amendment shall come into force on publication."]]))
+        provisions = ti.segment(ti.load_pdf(pdf), "G.O.")
+        self.assertEqual([p.identifier for p in provisions],
+                         ["Preamble", "References", "Order", "Paragraph 2", "Paragraph 3"])
+        refs = ti._text(provisions[1].blocks)
+        self.assertLess(refs.index("G.O.Ms.No.216"), refs.index("G.O.Ms.No.02"))
+        self.assertLess(refs.index("G.O.Ms.No.02"), refs.index("Synthetic Court"))
+        self.assertIn("Rule 167A(1)", ti._text(provisions[3].blocks))
+        # Other document types are unchanged: numbered lines still start provisions.
+        self.assertTrue(any(p.identifier.startswith("Rule 167") for p in ti.segment(ti.load_pdf(pdf), "Rules")))
+
     def test_no_chunk_exceeds_limit_even_with_a_huge_table_row(self):
         page = self.corpus / "huge.htm"
         page.write_text("<body><p>SECOND SCHEDULE</p><table><tr><td>Head</td><td>Value</td></tr><tr><td>"

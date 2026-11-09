@@ -71,6 +71,9 @@ CLAUSE_RE = re.compile(r"^\s*\(([a-z]{1,2}|[ivx]{1,5})\)")
 NUMBER_ONLY_RE = re.compile(r"^\s*(?:(?:Rule|Section)\s+)?\d{1,3}[A-Z]{0,2}\.\s*$", re.IGNORECASE)
 HEADING_MAX_CHARS = 160
 KIND_BY_TYPE = {"Act": "Section", "Rules": "Rule", "Regulations": "Regulation"}
+GO_REFERENCES_RE = re.compile(r"^\s*Read\s+(?:the\s+following|also)\b", re.IGNORECASE)
+# Upper-case ORDER heading ("ORDER:", "O R D E R:", "&&& ORDER:"); "Order dated ..." citations don't match.
+GO_ORDER_RE = re.compile(r"^\s*(?:[&*]+\s*)?(?:O\s+R\s+D\s+E\s+R|ORDER)\s*[:.-]")
 
 
 def _clean(text: str) -> str:
@@ -317,7 +320,7 @@ def load_blocks(path, fmt: str, rel_name: str | None = None) -> list[Block]:
 # ---------------------------------------------------------------------------------------------------
 @dataclass
 class Provision:
-    kind: str                     # Rule | Section | Regulation | Paragraph | Schedule | Form | Preamble
+    kind: str                     # Rule | Section | Regulation | Paragraph | Schedule | Form | Preamble | References | Order
     number: str                   # "5", "5A", "FIRST SCHEDULE", "" for the preamble
     heading: str
     chapter: str
@@ -325,8 +328,8 @@ class Provision:
 
     @property
     def identifier(self) -> str:
-        if self.kind == "Preamble":
-            return "Preamble"
+        if self.kind in ("Preamble", "References", "Order"):
+            return self.kind
         if self.kind in ("Schedule", "Form"):
             return self.number
         return f"{self.kind} {self.number}"
@@ -347,16 +350,35 @@ def _number_key(number: str):
 
 def segment(blocks, document_type: str) -> list[Provision]:
     """Group blocks into provisions. Numbered lines that go backwards (list items inside a rule) or appear
-    inside a schedule/form are kept as text, so they cannot start a spurious provision."""
+    inside a schedule/form are kept as text, so they cannot start a spurious provision.
+
+    In a G.O., the "Read the following" list is kept whole, in order, as one References provision up to
+    the ORDER heading: its numbered items are citations, not operative paragraphs."""
     default_kind = KIND_BY_TYPE.get(document_type, "Paragraph")
     chapter = ""
     current = Provision("Preamble", "", "", "")
     provisions = [current]
     last_key = None
     awaiting_chapter_title = False
+    in_references = False
     for b in blocks:
         first = b.text.splitlines()[0] if b.text else ""
         short = len(first) <= HEADING_MAX_CHARS
+        if document_type == "G.O." and b.kind == "text":
+            if not in_references and current.kind == "Preamble" and GO_REFERENCES_RE.match(first):
+                current = Provision("References", "", "", chapter, [b])
+                provisions.append(current)
+                in_references = True
+                continue
+            if in_references:
+                if GO_ORDER_RE.match(first):
+                    in_references = False
+                    current = Provision("Order", "", "", chapter, [])  # ORDER text before paragraph 2
+                    provisions.append(current)
+                    last_key = None
+                else:
+                    current.blocks.append(b)
+                    continue
         if b.kind == "text" and short and (m := CHAPTER_RE.match(first)):
             chapter = _clean(f"CHAPTER {m.group(1).upper()}{m.group(2)} {m.group(3)}")
             awaiting_chapter_title = not m.group(3).strip()
@@ -376,6 +398,8 @@ def segment(blocks, document_type: str) -> list[Provision]:
             provisions.append(current)
             continue
         found = match_provision(first) if b.kind == "text" else None
+        if found and document_type == "G.O." and found[0]:
+            found = None  # a G.O.'s own paragraphs are bare numbers; "Rule 167A(1) of ..." is a citation
         if found and current.kind not in ("Schedule", "Form"):
             prefix, number, heading = found
             key = _number_key(number)
