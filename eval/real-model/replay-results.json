@@ -1,0 +1,1770 @@
+{
+ "config": {
+  "mode": "replay",
+  "model": "recorded openai/gpt-oss-120b (not called)",
+  "cases_file": "eval/real-model/cases.json",
+  "run_at_utc": "2026-11-10 18:31",
+  "recording_file": "eval/real-model/recorded/2026-11-10-gpt-oss-120b.json",
+  "recording_sha256": "6830020652c1f2053a87008cf776f09f7a6f0a6fe1623801a3ec837864c4bedc",
+  "recording_model": "openai/gpt-oss-120b",
+  "recording_sources": [
+   {
+    "file": "eval/real-model/results.json",
+    "sha256": "f738d42f2a7b4355291f37c7f2bcbdbdf4626f61c8499a2b0444b8b7679cc75f",
+    "run_at_utc": "2026-11-10 17:45",
+    "model": "openai/gpt-oss-120b",
+    "json_mode": true,
+    "temperature": 0.0,
+    "seed": 7
+   },
+   {
+    "file": "eval/real-model/results-part2.json",
+    "sha256": "753b1925f2b48b6aba0f445230aa76fb7e1a861983254b21c88e4b451cb8f4d7",
+    "run_at_utc": "2026-11-10 17:50",
+    "model": "openai/gpt-oss-120b",
+    "json_mode": true,
+    "temperature": 0.0,
+    "seed": 7
+   }
+  ],
+  "recording_excluded": [
+   {
+    "case_id": "RG-08",
+    "source_file": "eval/real-model/results.json",
+    "status": "api_failed",
+    "reason": "no usable model response in this source"
+   },
+   {
+    "case_id": "RG-09",
+    "source_file": "eval/real-model/results.json",
+    "status": "api_failed",
+    "reason": "no usable model response in this source"
+   },
+   {
+    "case_id": "RG-10",
+    "source_file": "eval/real-model/results.json",
+    "status": "api_failed",
+    "reason": "no usable model response in this source"
+   }
+  ],
+  "recording_response_sha256": {
+   "RG-01": [
+    "d2762b325cfe944c55a994b10df8d6309f862d8da01a73b3ed5fdb78ebe9a483"
+   ],
+   "RG-02": [
+    "3c7fd1f1dd17c22170c14e5d451c98c123f2c94ad584bedfc9cc98e922161ed6"
+   ],
+   "RG-03": [
+    "c3443955572ec69b79306ddc880e4fc33904107b42715a96d14be6d7ad8a3d11"
+   ],
+   "RG-04": [
+    "fa0d3316c0a236797b47f902de1750cc99311d45e8ad16117f9282d28c483a5e"
+   ],
+   "RG-05": [
+    "4eb111412dd3405bf86273c70dbf769e4979df8be957a207bbfee0f5ec011bd2"
+   ],
+   "RG-06": [
+    "30e6ad1b682f42c9940dfbbe6fd710a2a39c2df3fca0f3b8e4b13a16c36c6898"
+   ],
+   "RG-07": [
+    "c2d6f97c2171ef68ed8670e3288759acecaebaf47133c918512f4741149ecf81"
+   ],
+   "RG-08": [
+    "7a610703884f4bb3691136c6ed07a7c6a0f1dae98dc70f00d9ce147a7bc397ec"
+   ],
+   "RG-09": [
+    "b6bd8ee7c9c591bbd1e7bcde91095cf2786c59b84a6c809827905c52baa876f1"
+   ],
+   "RG-10": [
+    "a49056b52b9c627c22e7789a09350f398cde444cde7fe841f543eb5993dc1973"
+   ],
+   "RG-11": [
+    "612fa42c348a6a04109e2922feacc575848d17ba145dd2e8b13d1629a4d22b75"
+   ],
+   "RG-12": [
+    "6c20dccecc91b0d7b9a425d22898225a8dcd98bf5c91a6bd5014c1088615f1bb"
+   ],
+   "RG-13": [
+    "36f1795011d0cadc7a24af4e31b3409917b0bbaa5d3bcaadc4b36d47973f221b"
+   ],
+   "RG-14": [
+    "b3e6364597803026180ec946bf6e9fca5f188c4be6e7cee0a598cf480503c01c"
+   ]
+  },
+  "responses_verified": 14,
+  "validator": {
+   "commit": "473b9cd49a6d81a99278458e1dfff345669f6e11",
+   "uncommitted_changes_anywhere": true,
+   "validator_files": {
+    "backend/real_groq_eval.py": {
+     "sha256": "8b8ae03920f8da664a1a1555ffc477c36dbd1886f91e6ff5913acea24122f2b4",
+     "state": "committed"
+    },
+    "backend/answer_quality_eval.py": {
+     "sha256": "11d5c87f79c185556c85e2b0ef4bc218e0ffe1d91afe3de774eb5651fb84fffb",
+     "state": "committed"
+    },
+    "backend/server.py": {
+     "sha256": "70e49ab629d65fe7d34d1265558e018b233a07a6a317624c8fc796d14349c7fa",
+     "state": "committed"
+    },
+    "backend/grounded_answer.py": {
+     "sha256": "d5f4965f47a9e7e1d4b7131d43e49845c9c2c755c4b758fd5edfbcd3629b084f",
+     "state": "committed"
+    },
+    "backend/meaning_checks.py": {
+     "sha256": "7c7467c1c5c254fbb3f2f05be9b2583e435f8b9aa5ebfd90fc13be74c8c59a96",
+     "state": "committed"
+    }
+   }
+  },
+  "label": "OFFLINE REPLAY of recorded responses, not a fresh model evaluation"
+ },
+ "summary": {
+  "cases_total": 16,
+  "model_cases": 14,
+  "guard_cases": 2,
+  "model_status": {
+   "completed": 14,
+   "provider_rejected_output": 0,
+   "truncated": 0,
+   "api_failed": 0,
+   "incomplete": 0,
+   "not_run": 0,
+   "not_recorded": 0
+  },
+  "conditional": {
+   "scorable_model_cases": 14,
+   "expected_agreement": {
+    "n": 13,
+    "of": 14,
+    "rate": 0.929
+   },
+   "first_pass_acceptance": {
+    "n": 13,
+    "of": 14,
+    "rate": 0.929
+   },
+   "final_acceptance": {
+    "n": 13,
+    "of": 14,
+    "rate": 0.929
+   },
+   "final_accepted_substantive": 11,
+   "final_accepted_refusal": 2,
+   "retry_frequency": {
+    "n": 0,
+    "of": 14,
+    "rate": 0.0
+   },
+   "retry_success": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_correctness": {
+    "n": 11,
+    "of": 11,
+    "rate": 1.0
+   },
+   "condition_words_preserved": {
+    "n": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "content_words_preserved": {
+    "n": 6,
+    "of": 6,
+    "rate": 1.0
+   }
+  },
+  "overall": {
+   "achievement": {
+    "n": 13,
+    "of": 14,
+    "rate": 0.929
+   },
+   "not_achieved": {
+    "expectation_failed": 1,
+    "truncated": 0,
+    "provider_rejected_output": 0
+   },
+   "not_scorable": {
+    "infrastructure_failure": 0,
+    "not_recorded": 0,
+    "incomplete": 0,
+    "not_run": 0
+   }
+  },
+  "guards": {
+   "checks": 2,
+   "passing": 2,
+   "unexpected_model_calls": 0,
+   "not_run": 0
+  },
+  "model_calls": 14,
+  "calls_by_status": {
+   "ok": 14
+  },
+  "latency_s": {
+   "mean": 0.0,
+   "median": 0.0,
+   "max": 0.0
+  },
+  "tokens": null,
+  "calls_with_usage": 0,
+  "estimated_cost_usd": null
+ },
+ "records": [
+  {
+   "id": "RG-01",
+   "purpose": "direct_conflict",
+   "question": "Must the keeper of a test registry stamp the test card in blue ink?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "fictional_stamp_must",
+     "provision": "Fictional Clause A",
+     "text": "Synthetic Clause A, fictional test text. The keeper of a test registry shall stamp the test card in blue ink."
+    },
+    {
+     "id": "E2",
+     "passage": "fictional_stamp_must_not",
+     "provision": "Fictional Clause B",
+     "text": "Synthetic Clause B, fictional test text. The keeper of a test registry shall not stamp the test card in blue ink."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3352,
+     "prompt_sha256": "42e0908b60b02dd1",
+     "estimated_tokens": 5214,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"The keeper of a test registry shall stamp the test card in blue ink. [E1] The keeper of a test registry shall not stamp the test card in blue ink. [E2]\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"The keeper of a test registry shall stamp the test card in blue ink.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"The keeper of a test registry shall not stamp the test card in blue ink.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"The keeper of a test registry shall stamp the test card in blue ink. [E1] The keeper of a test registry shall not stamp the test card in blue ink. [E2]\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"The keeper of a test registry shall stamp the test card in blue ink.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"The keeper of a test registry shall not stamp the test card in blue ink.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "The keeper of a test registry shall stamp the test card in blue ink.",
+    "The keeper of a test registry shall not stamp the test card in blue ink."
+   ],
+   "pipeline_errors": [],
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- The keeper of a test registry shall stamp the test card in blue ink. [1]\n- The keeper of a test registry shall not stamp the test card in blue ink. [2]\n\nCited:\n[1] Synthetic fixture document, Fictional Clause A (synthetic/synthetic-fictional-registry#Fictional Clause A)\n[2] Synthetic fixture document, Fictional Clause B (synthetic/synthetic-fictional-registry#Fictional Clause B)",
+   "final_citations": [
+    "E1",
+    "E2"
+   ],
+   "expected": {
+    "outcomes": [
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "blue ink",
+      "source": "E1",
+      "kind": "content"
+     },
+     {
+      "text": "shall not stamp",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "Fictional pair: E1 and E2 have the same actor (the keeper of a test registry), the same action and object (stamp the test card in blue ink) and no condition or scope limit; E1 requires it and E2 prohibits it, and neither says it prevails. The instructions (rule 9) require 'conflicting', one claim per side citing its own passage; an answer that picks one side is not acceptable."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": null,
+   "content": {
+    "required": [
+     "blue ink",
+     "shall not stamp"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-02",
+   "purpose": "rule_with_specific_exemption",
+   "question": "Must riders wear helmets on rural roads?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    },
+    {
+     "id": "E2",
+     "passage": "rural",
+     "provision": "Rule 437A",
+     "text": "Synthetic Rule 437A. Riders on rural roads are exempt from protective headgear."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3329,
+     "prompt_sha256": "574ae0513502b378",
+     "estimated_tokens": 5206,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban.",
+    "Riders on rural roads are exempt from protective headgear."
+   ],
+   "pipeline_errors": [],
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban. [1]\n- Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "final_citations": [
+    "E1",
+    "E2"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "rural roads",
+      "source": "E2",
+      "kind": "content"
+     },
+     {
+      "text": "exempt",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E2 is the passage on rural roads (an exemption); E1 is the general duty. An answer must state the E2 exemption; citing E1 as well is permitted, not required."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": null,
+   "content": {
+    "required": [
+     "rural roads",
+     "exempt"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-03",
+   "purpose": "one_sided_omits_qualifying_evidence",
+   "question": "Is protective headgear compulsory for every rider of a two-wheeler?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    },
+    {
+     "id": "E2",
+     "passage": "rural",
+     "provision": "Rule 437A",
+     "text": "Synthetic Rule 437A. Riders on rural roads are exempt from protective headgear."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3356,
+     "prompt_sha256": "f12e2d9eda931d18",
+     "estimated_tokens": 5215,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear. A Sikh wearing a turban is exempted. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A Sikh wearing a turban is exempted.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear. A Sikh wearing a turban is exempted. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A Sikh wearing a turban is exempted.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "Every rider of a two-wheeler shall wear protective headgear.",
+    "A Sikh wearing a turban is exempted.",
+    "Riders on rural roads are exempt from protective headgear."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear. [1] A Sikh wearing a turban is exempted. [1] Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "final_citations": [
+    "E1",
+    "E2"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "turban",
+      "source": "E1",
+      "kind": "condition"
+     },
+     {
+      "text": "rural roads",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 states the duty with its own exception (a Sikh wearing a turban); E2 exempts riders on rural roads, which qualifies 'every rider'. A complete answer keeps the E1 exception and cites the E2 exemption."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "turban"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": {
+    "required": [
+     "rural roads"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-04",
+   "purpose": "condition_must_be_kept",
+   "question": "Can a learner drive a motor car?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "learner",
+     "provision": "Rule 305",
+     "text": "Synthetic Rule 305. A learner may drive a motor car, provided that a licensed instructor sits beside the learner."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3011,
+     "prompt_sha256": "a8a873f24955f0e5",
+     "estimated_tokens": 5100,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "A learner may drive a motor car, provided that a licensed instructor sits beside the learner."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "A learner may drive a motor car, provided that a licensed instructor sits beside the learner. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 305 (synthetic/synthetic-tmvr#Rule 305)",
+   "final_citations": [
+    "E1"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "licensed instructor sits beside",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits it only with the proviso that a licensed instructor sits beside the learner (instructions rule 4)."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "licensed instructor sits beside"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-05",
+   "purpose": "general_rule_with_override",
+   "question": "Can a learner drive a motor car on a national highway?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "learner",
+     "provision": "Rule 305",
+     "text": "Synthetic Rule 305. A learner may drive a motor car, provided that a licensed instructor sits beside the learner."
+    },
+    {
+     "id": "E2",
+     "passage": "highway",
+     "provision": "Rule 306",
+     "text": "Synthetic Rule 306. Notwithstanding anything in rule 305, a learner shall not drive on a national highway."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3316,
+     "prompt_sha256": "719f32cfc43202e7",
+     "estimated_tokens": 5202,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner. A learner shall not drive on a national highway.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A learner shall not drive on a national highway.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner. A learner shall not drive on a national highway.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A learner shall not drive on a national highway.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": false,
+    "errors": [
+     "claim 2: claim omits the 'notwithstanding' qualifier of the sentence it restates"
+    ],
+    "checks": [
+     {
+      "layer": "heuristic",
+      "check": "qualifier_omitted"
+     }
+    ]
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: rejected for qualifier_omitted (retry is only for uncited-evidence findings)",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": false,
+    "errors": [
+     "claim 2: claim omits the 'notwithstanding' qualifier of the sentence it restates"
+    ],
+    "checks": [
+     {
+      "layer": "heuristic",
+      "check": "qualifier_omitted"
+     }
+    ]
+   },
+   "final_claims": [],
+   "pipeline_errors": [
+    "claim 2: claim omits the 'notwithstanding' qualifier of the sentence it restates"
+   ],
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "final_citations": [],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "not drive on a national highway",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E2 opens 'Notwithstanding anything in rule 305', so the synthetic text itself says E2 prevails over E1 for national highways: the passages do not conflict. Only an answer that states the E2 prohibition and cites E2 is acceptable; a 'conflicting' response, or one that omits the prohibition, ignores the override."
+   },
+   "citation": null,
+   "conditions": null,
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": false,
+   "expected_reasons": [
+    "outcome rejected not in expected ['answer']"
+   ]
+  },
+  {
+   "id": "RG-06",
+   "purpose": "condition_must_be_kept",
+   "question": "Can a school bus carry standing passengers?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "schoolbus",
+     "provision": "Rule 307",
+     "text": "Synthetic Rule 307. A school bus may carry standing passengers only when all seats are occupied."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3005,
+     "prompt_sha256": "61f81035fa25f0d7",
+     "estimated_tokens": 5098,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"A school bus may carry standing passengers only when all seats are occupied. [E1]\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A school bus may carry standing passengers only when all seats are occupied.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A school bus may carry standing passengers only when all seats are occupied. [E1]\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A school bus may carry standing passengers only when all seats are occupied.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "A school bus may carry standing passengers only when all seats are occupied."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "A school bus may carry standing passengers only when all seats are occupied. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 307 (synthetic/synthetic-tmvr#Rule 307)",
+   "final_citations": [
+    "E1"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "all seats are occupied",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits standing passengers only when all seats are occupied; dropping that condition changes the rule."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "all seats are occupied"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-07",
+   "purpose": "exception_must_be_kept",
+   "question": "Can a goods vehicle carry passengers?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "goods",
+     "provision": "Rule 245",
+     "text": "Synthetic Rule 245. A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3019,
+     "prompt_sha256": "0b6ef9117556f410",
+     "estimated_tokens": 5103,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. [E1]\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. [E1]\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 245 (synthetic/synthetic-tmvr#Rule 245)",
+   "final_citations": [
+    "E1"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "owner or hirer",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 prohibits passengers except the owner or hirer travelling with the goods."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "owner or hirer"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-08",
+   "purpose": "one_sided_omits_qualifying_evidence",
+   "question": "Can a goods vehicle carry people?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "goods",
+     "provision": "Rule 245",
+     "text": "Synthetic Rule 245. A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods."
+    },
+    {
+     "id": "E2",
+     "passage": "farm",
+     "provision": "Rule 314",
+     "text": "Synthetic Rule 314. A goods vehicle may carry farm labourers with the goods."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3268,
+     "prompt_sha256": "7569b53eb8b5fcaa",
+     "estimated_tokens": 5186,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. A goods vehicle may carry farm labourers with the goods.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A goods vehicle may carry farm labourers with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. A goods vehicle may carry farm labourers with the goods.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A goods vehicle may carry farm labourers with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.",
+    "A goods vehicle may carry farm labourers with the goods."
+   ],
+   "pipeline_errors": [],
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. [1]\n- A goods vehicle may carry farm labourers with the goods. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 245 (synthetic/synthetic-tmvr#Rule 245)\n[2] Synthetic fixture document, Rule 314 (synthetic/synthetic-tmvr#Rule 314)",
+   "final_citations": [
+    "E1",
+    "E2"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "owner or hirer",
+      "source": "E1",
+      "kind": "condition"
+     },
+     {
+      "text": "farm labourers",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 prohibits passengers except the owner or hirer; E2 permits farm labourers with the goods. Both bear on 'people', so both must be cited."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "owner or hirer"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": {
+    "required": [
+     "farm labourers"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-09",
+   "purpose": "condition_must_be_kept",
+   "question": "When may vehicles halt at a bus bay?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "park407",
+     "provision": "Rule 407",
+     "text": "Synthetic Rule 407. Vehicles may halt at a bus bay only to pick up or set down passengers."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 2992,
+     "prompt_sha256": "90eb9c1de78a920b",
+     "estimated_tokens": 5094,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"Vehicles may halt at a bus bay only to pick up or set down passengers.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Vehicles may halt at a bus bay only to pick up or set down passengers.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"Vehicles may halt at a bus bay only to pick up or set down passengers.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Vehicles may halt at a bus bay only to pick up or set down passengers.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "Vehicles may halt at a bus bay only to pick up or set down passengers."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "Vehicles may halt at a bus bay only to pick up or set down passengers. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 407 (synthetic/synthetic-tmvr#Rule 407)",
+   "final_citations": [
+    "E1"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "pick up or set down passengers",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits halting only to pick up or set down passengers."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "pick up or set down passengers"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-10",
+   "purpose": "control_no_retry",
+   "question": "Must every rider of a two-wheeler wear protective headgear?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    },
+    {
+     "id": "E2",
+     "passage": "fasten",
+     "provision": "Rule 439",
+     "text": "Synthetic Rule 439. Every rider of a two-wheeler shall fasten the protective headgear securely."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3363,
+     "prompt_sha256": "b6dce875c3938917",
+     "estimated_tokens": 5217,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "final_citations": [
+    "E1"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "turban",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": false,
+    "justification": "E1 answers the question (with its exception). E2 (fasten securely) is complementary, not contradicting, so a correct answer citing E1 should be accepted without a retry."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "turban"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-11",
+   "purpose": "control_no_retry",
+   "question": "I lost my driving licence. How do I get a duplicate?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "dup16",
+     "provision": "Rule 16",
+     "text": "Synthetic Rule 16. A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence."
+    },
+    {
+     "id": "E2",
+     "passage": "dup18",
+     "provision": "Rule 18",
+     "text": "Synthetic Rule 18. The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3342,
+     "prompt_sha256": "c03966dfd8e94d7e",
+     "estimated_tokens": 5210,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence. The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence. The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence.",
+    "The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence. [1] The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 16 (synthetic/synthetic-tmvr#Rule 16)\n[2] Synthetic fixture document, Rule 18 (synthetic/synthetic-tmvr#Rule 18)",
+   "final_citations": [
+    "E1",
+    "E2"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "Form 7",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": false,
+    "justification": "E1 says to apply to the licensing authority; E2 gives the form. Complementary steps, no conflict."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": null,
+   "content": {
+    "required": [
+     "Form 7"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-12",
+   "purpose": "insufficient_evidence",
+   "question": "Do car passengers have to wear seat belts?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3074,
+     "prompt_sha256": "8fe6652c43f8e9d6",
+     "estimated_tokens": 5121,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"\",\"evidence_sufficiency\":\"insufficient\",\"claims\":[],\"citations\":[],\"refusal_reason\":\"The evidence does not address car passenger seat belt requirements.\",\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"\",\"evidence_sufficiency\":\"insufficient\",\"claims\":[],\"citations\":[],\"refusal_reason\":\"The evidence does not address car passenger seat belt requirements.\",\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [],
+   "pipeline_errors": [],
+   "outcome": "no_support",
+   "server_kind": "no_support",
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "final_citations": [],
+   "expected": {
+    "outcomes": [
+     "no_support"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": [
+      "E1"
+     ]
+    },
+    "required_phrases": [],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 concerns headgear for two-wheeler riders and says nothing about seat belts."
+   },
+   "citation": null,
+   "conditions": null,
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-13",
+   "purpose": "insufficient_evidence",
+   "question": "How long is a permit valid?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "permit",
+     "provision": "Rule 191",
+     "text": "Synthetic Rule 191. The permit shall be carried in the vehicle at all times and produced on demand by an officer of the Transport Department."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3034,
+     "prompt_sha256": "e5c97bdbf41e3708",
+     "estimated_tokens": 5108,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"\",\"evidence_sufficiency\":\"insufficient\",\"claims\":[],\"citations\":[],\"refusal_reason\":\"The provided evidence does not contain any information about the duration of permit validity.\",\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"\",\"evidence_sufficiency\":\"insufficient\",\"claims\":[],\"citations\":[],\"refusal_reason\":\"The provided evidence does not contain any information about the duration of permit validity.\",\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [],
+   "pipeline_errors": [],
+   "outcome": "no_support",
+   "server_kind": "no_support",
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "final_citations": [],
+   "expected": {
+    "outcomes": [
+     "no_support"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": [
+      "E1"
+     ]
+    },
+    "required_phrases": [],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 says where the permit is carried and to whom it is produced; it states no validity period."
+   },
+   "citation": null,
+   "conditions": null,
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-14",
+   "purpose": "follow_up_restated",
+   "question": "Must riders wear helmets on rural roads as well?",
+   "history_turns": 1,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    },
+    {
+     "id": "E2",
+     "passage": "rural",
+     "provision": "Rule 437A",
+     "text": "Synthetic Rule 437A. Riders on rural roads are exempt from protective headgear."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3337,
+     "prompt_sha256": "4f0a9c75ff35f376",
+     "estimated_tokens": 5209,
+     "latency_s": 0.0,
+     "usage": null,
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "mock",
+     "response": "{\"answer\":\"Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban.",
+    "Riders on rural roads are exempt from protective headgear."
+   ],
+   "pipeline_errors": [],
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban. [1]\n- Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "final_citations": [
+    "E1",
+    "E2"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "rural roads",
+      "source": "E2",
+      "kind": "content"
+     },
+     {
+      "text": "exempt",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "Same passages and expectation as RG-02, asked as a self-contained follow-up with history. Grounded mode does not rewrite follow-ups; the restated question is answered on its own."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": null,
+   "content": {
+    "required": [
+     "rural roads",
+     "exempt"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-Z1",
+   "purpose": "vague_follow_up",
+   "question": "and for a bike?",
+   "history_turns": 1,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": null,
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    }
+   ],
+   "model_calls": 0,
+   "calls": [],
+   "first_response": null,
+   "first_validation": null,
+   "retry_triggered": false,
+   "retry_eligibility": "no first validation (no model response)",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": null,
+   "final_claims": [],
+   "pipeline_errors": [],
+   "outcome": "clarification",
+   "server_kind": "clarification",
+   "displayed": "Please ask your full question on its own (for example, name the rule, vehicle or document) - I don't rewrite follow-up questions in this mode.",
+   "final_citations": [],
+   "expected": {
+    "outcomes": [
+     "clarification"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": []
+    },
+    "required_phrases": [],
+    "model_calls": 0,
+    "retry": null,
+    "justification": "Grounded mode answers a context-dependent follow-up with a fixed request to restate it, before any model call."
+   },
+   "citation": null,
+   "conditions": null,
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  },
+  {
+   "id": "RG-Z2",
+   "purpose": "penalty_restriction",
+   "question": "and what is the fine?",
+   "history_turns": 1,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": null,
+     "passage": "helmet",
+     "provision": "Rule 437",
+     "text": "Synthetic Rule 437. Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted."
+    }
+   ],
+   "model_calls": 0,
+   "calls": [],
+   "first_response": null,
+   "first_validation": null,
+   "retry_triggered": false,
+   "retry_eligibility": "no first validation (no model response)",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": null,
+   "final_claims": [],
+   "pipeline_errors": [],
+   "outcome": "restricted",
+   "server_kind": "restricted",
+   "displayed": "**Penalties and compounding fees are not available yet.**\n\nThe official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.\n\nFor current amounts, check the official Telangana Transport Department or Hyderabad / Cyberabad / Rachakonda traffic police e-challan portals.",
+   "final_citations": [],
+   "expected": {
+    "outcomes": [
+     "restricted"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": []
+    },
+    "required_phrases": [],
+    "model_calls": 0,
+    "retry": null,
+    "justification": "Penalty questions are locked before generation in grounded mode."
+   },
+   "citation": null,
+   "conditions": null,
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  }
+ ]
+}
