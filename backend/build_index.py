@@ -26,7 +26,6 @@ from pathlib import Path
 from uuid import uuid4
 
 import chromadb
-from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain_ollama import OllamaEmbeddings
@@ -35,12 +34,14 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 try:  # run as backend/build_index.py or imported as backend.build_index
     import legal_approval
     import rag_profiles as rp
+    import runtime_config
 except ImportError:
-    from backend import legal_approval
+    from backend import legal_approval, runtime_config
     from backend import rag_profiles as rp
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env", override=True)
+# .env is read only when the process environment says TG_ENVIRONMENT=development, and never overrides it.
+runtime_config.load_local_env()
 
 CORPUS = BASE_DIR / "data" / "raw" / "full_extraction"
 DB_DIR = BASE_DIR / "chroma_langchain_db"

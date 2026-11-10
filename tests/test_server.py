@@ -5,6 +5,7 @@ tests need no API key, no network and no vector index. Run from the project root
     python -m unittest discover -s tests -v
 """
 
+import json
 import os
 import sys
 import types
@@ -71,7 +72,11 @@ class FakeStore:
 FAKE_LLM = {"fn": lambda prompt: "stub answer"}
 
 
-def _import_server_with_fakes(extra_env=None):
+# Most tests here exercise the legacy pipeline, which only runs in explicit development mode.
+DEFAULT_TEST_ENV = {"TG_LEGACY_DEV_ANSWERS": "1", "TG_ENVIRONMENT": "development"}
+
+
+def _import_server_with_fakes(extra_env=None, env_file=None):
     chat_models = types.ModuleType("langchain.chat_models")
     chat_models.init_chat_model = lambda *a, **k: RunnableLambda(lambda pv: FAKE_LLM["fn"](pv.to_string()))
     chroma = types.ModuleType("langchain_chroma")
@@ -81,15 +86,24 @@ def _import_server_with_fakes(extra_env=None):
     fakes = {"langchain.chat_models": chat_models, "langchain_chroma": chroma, "langchain_ollama": ollama}
     saved = {name: sys.modules.get(name) for name in fakes}
     sys.modules.update(fakes)
+    from backend import runtime_config
+    # Never read a developer's real .env in tests: only the file a test passes explicitly.
+    env_patch = mock.patch.object(runtime_config, "ENV_FILE", Path(env_file or Path(__file__).parent / "no-such.env"))
+    env_patch.start()
     try:
         # patch.dict restores os.environ afterwards, including anything the server's load_dotenv() set.
         with mock.patch.dict(os.environ, {"GROQ_API_KEY": "offline-test-not-a-real-key",
                                        "TG_DB_DIR": str(Path(__file__).resolve().parent),
                                        "TG_KB_APPROVED": "", "TG_PENALTY_ANSWERS": "",
                                        "TG_APPROVAL_FILE": str(Path(__file__).resolve().parent / "no-approval-record.json"),
-                                       **(extra_env or {})}):
+                                       "TG_GROUNDED_ANSWERS": "", "TG_LEGACY_DEV_ANSWERS": "", "TG_ENVIRONMENT": "",
+                                       **DEFAULT_TEST_ENV,
+                                       **{k: v for k, v in (extra_env or {}).items() if v is not None}}):
+            for key in [k for k, v in (extra_env or {}).items() if v is None]:
+                os.environ.pop(key, None)  # None = unset entirely (restored by patch.dict)
             import backend.server as server
     finally:
+        env_patch.stop()
         # Restore the real modules, and forget this fake-backed server, so other tests are unaffected.
         for name, module in saved.items():
             if module is None:
@@ -272,7 +286,7 @@ class PenaltyLockTests(Base):
         with mock.patch.object(srv, "PENALTY_ANSWERS_ENABLED", True):
             self.use(answer="grounded answer")
             r = self.post(self.QUESTIONS[0])
-        self.assertEqual(r.json()["kind"], "answer")
+        self.assertEqual(r.json()["kind"], "development")
 
     def test_penalty_flag_alone_does_not_enable_answers(self):
         with mock.patch.dict(os.environ, {"TG_PENALTY_ANSWERS": "1", "TG_KB_APPROVED": ""}):
@@ -374,13 +388,13 @@ class PenaltyLockFlowTests(Base):
     def test_self_contained_question_after_lock_is_answered_and_clears_lock(self):
         self.post("What is the fine for riding without a helmet?")
         r = self.post("How do I apply for a learner's licence in Hyderabad district?")
-        self.assertEqual(r.json()["kind"], "answer")
+        self.assertEqual(r.json()["kind"], "development")
         self.assertFalse(srv.sessions["s"]["last_locked"])
-        self.assertEqual(self.post("and for a bike?").json()["kind"], "answer")
+        self.assertEqual(self.post("and for a bike?").json()["kind"], "development")
 
     def test_sticky_lock_is_per_session(self):
         self.post("What is the fine for riding without a helmet?", sid="a")
-        self.assertEqual(self.post("and for a bike?", sid="b").json()["kind"], "answer")
+        self.assertEqual(self.post("and for a bike?", sid="b").json()["kind"], "development")
 
     def test_drift_lock_makes_next_vague_follow_up_sticky(self):
         self.use(answer="You must carry a licence; the penalty for not doing so is high.")
@@ -530,7 +544,7 @@ class AdversarialPenaltyLockTests(Base):
     def test_short_self_contained_question_after_lock_is_answered(self):
         for q in ("is a helmet required for pillion riders", "how do I renew my licence"):
             srv.sessions["s"] = {"history": [], "last_locked": True}
-            self.assertEqual(self.post(q).json()["kind"], "answer", q)
+            self.assertEqual(self.post(q).json()["kind"], "development", q)
 
     def test_vague_follow_ups_after_lock_stay_locked(self):
         for q in ("and for a bike?", "for cars?", "what about trucks", "how much for a scooter?", "aur car ke liye?",
@@ -598,7 +612,7 @@ class AcceptancePenaltyLockTests(Base):
     def test_short_procedural_questions_after_lock_reach_the_answer_path(self):
         for q in ("is it mandatory to carry RC?", "RC transfer process", "documents for learner licence"):
             srv.sessions["s"] = {"history": [], "last_locked": True}
-            self.assertEqual(self.post(q).json()["kind"], "answer", q)
+            self.assertEqual(self.post(q).json()["kind"], "development", q)
 
     def test_referential_and_one_word_follow_ups_stay_locked_without_groq(self):
         for q in ("is it valid in Hyderabad?", "can I pay road tax online there?", "licence?", "ok thanks", "inka car ki?"):
@@ -645,7 +659,7 @@ class MissingProvisionGuardTests(Base):
     def test_valid_references_are_not_blocked(self):
         for q in ("What does Rule 188 say?", "Explain rule 185", "rule 187 conditions", "Rule 80A", "rule 81(3)",
                   "TMVTR Rule 13-A", "Taxation Rules rule 13B"):
-            self.assertEqual(self.post(q).json()["kind"], "answer", q)
+            self.assertEqual(self.post(q).json()["kind"], "development", q)
 
     def test_multiple_references_never_drop_the_missing_one(self):
         r = self.assert_missing("Compare rules 185, 186 and 187", ["Rule 186"])
@@ -656,8 +670,8 @@ class MissingProvisionGuardTests(Base):
 
     def test_instrument_scope(self):
         self.assert_missing("TMVTR rule 185", ["Rule 185"])          # 185 exists only in the TMVR
-        self.assertEqual(self.post("TMVR rule 12").json()["kind"], "answer")
-        self.assertEqual(self.post("Taxation Rules rule 12").json()["kind"], "answer")
+        self.assertEqual(self.post("TMVR rule 12").json()["kind"], "development")
+        self.assertEqual(self.post("Taxation Rules rule 12").json()["kind"], "development")
         self.assert_missing("Motor Vehicles Rules rule 13A", ["Rule 13A"])
 
     def test_ordinary_numbers_and_sub_rules_are_not_provision_references(self):
@@ -665,7 +679,7 @@ class MissingProvisionGuardTests(Base):
                   "Is sub-rule 186 relevant?", "what are the rules of the road", "under the rules, how many days?",
                   "registration for vehicles over 186 kg"):
             self.assertEqual(srv.rule_references(q) if "sub-rule" not in q else [], [], q)
-            self.assertEqual(self.post(q).json()["kind"], "answer", q)
+            self.assertEqual(self.post(q).json()["kind"], "development", q)
 
     def test_reference_parsing(self):
         self.assertEqual(srv.rule_references("rules 185, 186 & 187"), ["Rule 185", "Rule 186", "Rule 187"])
@@ -680,7 +694,7 @@ class MissingProvisionGuardTests(Base):
 
     def test_guard_is_off_without_provision_metadata(self):
         with mock.patch.dict(srv.PROVISION_CATALOGUE, {}, clear=True):
-            self.assertEqual(self.post("What does Rule 186 say?").json()["kind"], "answer")
+            self.assertEqual(self.post("What does Rule 186 say?").json()["kind"], "development")
 
 
 class RelevanceGateTests(Base):
@@ -699,7 +713,7 @@ class RelevanceGateTests(Base):
 
     def test_relevant_chunks_allow_answer_generation(self):
         r = self.ask()
-        self.assertEqual(r.json()["response"], "grounded answer")
+        self.assertEqual(r.json()["response"], srv.DEV_OUTPUT_BANNER + "grounded answer")
         self.assertIn("Learner's licence application", self.log["answer"][-1])
 
     def test_irrelevant_chunks_trigger_fallback(self):
@@ -745,7 +759,7 @@ class ResponseShapeTests(Base):
     def test_answer_has_kind_sources_and_approval_flag(self):
         r = self.post("How do I apply for a learner's licence?").json()
         self.assertEqual(set(r), {"response", "kind", "sources", "kb_approved"})
-        self.assertEqual(r["kind"], "answer")
+        self.assertEqual(r["kind"], "development")
         self.assertFalse(r["kb_approved"])
         self.assertEqual([s["file"] for s in r["sources"]], [TG_RULES_FILE, TG_TAX_FILE])
 
@@ -851,6 +865,29 @@ class HybridRetrievalServerTests(Base):
         FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
         self.assertEqual(self.provisions(srv.retrieve("What does Rule 437 say?"))[0], ("tmvr-1989-chap-8", "Rule 437"))
 
+    def test_provisions_sharing_a_long_title_header_are_not_collapsed(self):
+        header = "Road Safety - Synthetic Electronic Enforcement System - Notification - Orders - Issued\n"
+        a = Document(page_content=header + "4. Members filler.", metadata={
+            "state": "Telangana", "manifest_id": "go-ms-32-2026-trb", "provision_id": "Paragraph 4", "part": 1})
+        b = Document(page_content=header + "5. Powers filler.", metadata={
+            "state": "Telangana", "manifest_id": "go-ms-32-2026-trb", "provision_id": "Paragraph 5", "part": 1})
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(a, 0.3), (b, 0.31)]
+        got = self.provisions(srv.retrieve("synthetic enforcement members powers"))
+        self.assertIn(("go-ms-32-2026-trb", "Paragraph 4"), got)
+        self.assertIn(("go-ms-32-2026-trb", "Paragraph 5"), got)
+
+    def test_server_dedup_keeps_distinct_and_drops_repeats(self):
+        meta = {"state": "Telangana", "answer_eligible": True}
+        same = "identical opening text that is long enough to exceed eighty characters in total length, yes."
+        docs = [Document(page_content=same, metadata={**meta, "manifest_id": "g", "provision_id": "Rule 1"}),
+                Document(page_content=same, metadata={**meta, "manifest_id": "h", "provision_id": "Rule 1"}),
+                Document(page_content=same + " a", metadata=dict(meta)),  # no identity metadata at all
+                Document(page_content=same + " b", metadata=dict(meta))]
+        repeat = Document(page_content=same, metadata=dict(docs[0].metadata))
+        FAKE_SEARCH["fn"] = lambda q, s, _d: [(d, 0.3) for d in docs + [repeat]]
+        got = srv.retrieve("qqqq unmatched")
+        self.assertEqual(len(got), 4)
+
     def test_paraphrased_question_keeps_semantic_results(self):
         FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
         self.assertIn(self.vector_only, srv.retrieve("how do beginners get permission to learn"))
@@ -937,10 +974,10 @@ class CentralRuleReferenceTests(Base):
         # Modelled on benchmark case TG-GO-012.
         q = "Why did Telangana notify a Designated Authority under Rule 167A?"
         self.assertEqual(srv.missing_references(q), ([], []))
-        self.assertEqual(self.post(q).json()["kind"], "answer")
+        self.assertEqual(self.post(q).json()["kind"], "development")
         self.assertEqual(len(SEARCH_LOG), 1)
         q = "Who is the authority under Rule 167A(1) of the Central Motor Vehicles Rules?"
-        self.assertEqual(self.post(q, sid="t").json()["kind"], "answer")
+        self.assertEqual(self.post(q, sid="t").json()["kind"], "development")
 
     def test_explicit_tmvr_rule_167a_is_still_missing(self):
         for q in ("TMVR Rule 167A", "What does Rule 167A of the Telangana Motor Vehicles Rules say?"):
@@ -969,7 +1006,7 @@ class CentralRuleReferenceTests(Base):
         r = self.post("What does Rule 115 say?").json()
         self.assertEqual(r["kind"], "clarification")
         self.assertIn("Central Motor Vehicles Rules", r["response"])
-        self.assertEqual(self.post("What does TMVR Rule 115 say?", sid="t").json()["kind"], "answer")
+        self.assertEqual(self.post("What does TMVR Rule 115 say?", sid="t").json()["kind"], "development")
 
     def test_existing_protections_are_unchanged(self):
         self.assertEqual(self.post("What does Rule 186 say?").json()["kind"], "missing_provision")
@@ -981,6 +1018,447 @@ class CentralRuleReferenceTests(Base):
         FAKE_SEARCH["fn"] = lambda q, s, docs: []
         docs = srv.retrieve("Rule 168 of the Central Motor Vehicles Rules unresolved order")
         self.assertTrue(all(d.metadata.get("answer_eligible") is not False for d in docs))
+
+
+class GroundedAnswerIntegrationTests(Base):
+    """Grounded mode: approval-gated, and no legacy model call (rewrite or free text) can happen in it.
+    The approval below is an in-memory test object only - no record file, key or signature is created."""
+
+    ELIGIBLE = Document(page_content="Rule 5. A learner's licence application is made in Form 2.", metadata={
+        "state": "Telangana", "manifest_id": "tmvr-1989-chap-2", "provision_id": "Rule 5", "part": 1, "parts": 1,
+        "title": "Synthetic Motor Rules", "location": "chap-2.htm#5", "answer_eligible": True,
+        "verification_status": "unverified", "source_file": TG_RULES_FILE, "sha256": TG_RULES_SHA})
+    CLAIM = "A learner's licence application is made in Form 2."
+    QUESTION = "How do I apply for a learner's licence?"
+
+    def setUp(self):
+        super().setUp()
+        from backend import grounded_answer, legal_approval
+        self.ga, self.la = grounded_answer, legal_approval
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.ELIGIBLE, 0.3)]
+        self.model_calls = []
+
+        def trap(prompt):  # any legacy model call (rewrite or answer) is recorded and fails
+            self.model_calls.append(prompt)
+            raise AssertionError("unexpected model call")
+        FAKE_LLM["fn"] = trap
+        self.mock = grounded_answer.MockGenerator(json.dumps({
+            "answer": self.CLAIM, "evidence_sufficiency": "sufficient",
+            "claims": [{"text": self.CLAIM, "kind": "direct", "evidence_ids": ["E1"]}],
+            "citations": ["E1"], "refusal_reason": None, "clarification_question": None}))
+
+    def patch(self, **values):
+        for name, value in values.items():
+            p = mock.patch.object(srv, name, value)
+            p.start()
+            self.addCleanup(p.stop)
+
+    def record(self, **overrides):
+        fields = dict(jurisdiction="Telangana", reviewer_name="Test Reviewer", reviewer_designation="Test",
+                      approval_date=__import__("datetime").date(2026, 1, 1), decision="approved", conditions=(),
+                      unresolved_conditions=0, corpus_version="test-v1", general_answers_approved=True,
+                      penalty_answers_approved=False,
+                      documents=(self.la.ApprovedDocument(TG_RULES_FILE, TG_RULES_SHA, "Synthetic Motor Rules",
+                                                          "Rules"),))
+        fields.update(overrides)
+        return self.la.ApprovalRecord(**fields)
+
+    def approve(self, state="valid", generator=None, **overrides):
+        rec = self.record(**overrides)
+        status = self.la.ApprovalStatus(state, [], rec)
+        self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded", APPROVAL=status, KB_APPROVED=status.general_answers,
+                   PENALTY_ANSWERS_ENABLED=status.penalty_answers, TRUSTED_KEYS_FILE=Path("trusted-keys.test"),
+                   CORPUS_DIR=Path("corpus.test"), EXPECTED_CORPUS_VERSION="test-v1",
+                   ANSWER_GENERATOR=generator or self.mock, ensure_approval_current=lambda: None)
+        p = mock.patch.dict(srv.SOURCES, {TG_RULES_SHA: ("Synthetic Motor Rules", "Rules")}, clear=True)
+        p.start()
+        self.addCleanup(p.stop)
+
+    def ask(self, message=None, sid="g"):
+        return self.post(message or self.QUESTION, sid).json()
+
+    # --- defaults and the legacy path ---
+    def test_disabled_by_default(self):
+        self.assertFalse(srv.GROUNDED_ANSWERS_ENABLED)
+        self.assertIsInstance(srv.ANSWER_GENERATOR, self.ga.DisabledGenerator)
+        self.assertTrue(srv.grounded_gate_errors())
+
+    def test_dev_mode_keeps_legacy_path_and_never_invokes_grounded_generator(self):
+        self.use()  # legacy fake model, not the trap
+        self.patch(ANSWER_GENERATOR=self.mock)
+        r = self.ask()
+        self.assertEqual((r["kind"], r["response"]), ("development", srv.DEV_OUTPUT_BANNER + "stub answer"))
+        self.assertEqual(self.mock.calls, [])
+        self.assertIn("answer", self.log)  # explicit dev mode only: the legacy path calls the (here fake) model
+
+    # --- approval gate ---
+    def test_flag_on_without_approval_refuses_without_any_call(self):
+        self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded", ANSWER_GENERATOR=self.mock)
+        r = self.ask()
+        self.assertEqual((r["kind"], r["response"]), ("unavailable", srv.GROUNDED_UNAVAILABLE_MESSAGE))
+        self.assertEqual((self.mock.calls, self.model_calls), ([], []))
+
+    def test_every_missing_prerequisite_blocks_generation(self):
+        cases = {
+            "invalid approval": dict(state="invalid"),
+            "stale approval": dict(state="stale"),
+            "unresolved conditions": dict(unresolved_conditions=1),
+            "general answers not approved": dict(general_answers_approved=False),
+            "penalty approval on": dict(penalty_answers_approved=True),
+            "corpus version mismatch": dict(corpus_version="other"),
+        }
+        for name, overrides in cases.items():
+            with self.subTest(name):
+                mock.patch.stopall()
+                self.approve(**overrides)
+                FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.ELIGIBLE, 0.3)]
+                r = self.ask(sid=name)
+                self.assertEqual(r["kind"], "unavailable", name)
+                self.assertEqual(self.mock.calls, [], name)
+        for attr, value in (("TRUSTED_KEYS_FILE", None), ("CORPUS_DIR", None), ("EXPECTED_CORPUS_VERSION", None),
+                            ("KB_APPROVED", False), ("PENALTY_ANSWERS_ENABLED", True)):
+            with self.subTest(attr):
+                mock.patch.stopall()
+                self.approve()
+                self.patch(**{attr: value})
+                self.assertTrue(srv.grounded_gate_errors(), attr)
+                self.assertEqual(self.ask(sid=attr)["kind"], "unavailable", attr)
+                self.assertEqual(self.mock.calls, [], attr)
+        self.assertEqual(self.model_calls, [])
+
+    def test_gate_reads_live_approval_state(self):
+        self.approve()
+        self.assertEqual(srv.grounded_gate_errors(), [])
+        self.patch(APPROVAL=self.la.ApprovalStatus("stale", ["changed"], self.record()), KB_APPROVED=False)
+        self.assertEqual(self.ask()["kind"], "unavailable")
+        self.assertEqual(self.mock.calls, [])
+
+    # --- approved grounded mode ---
+    def test_approved_mode_answers_from_claims_with_backend_citations(self):
+        self.approve()
+        r = self.ask()
+        self.assertEqual(r["kind"], "answer")
+        self.assertTrue(r["response"].startswith(self.CLAIM + " [1]"))
+        self.assertIn("[1] Synthetic Motor Rules, Rule 5 (chap-2.htm#5)", r["response"])
+        self.assertNotIn("E1", r["response"])
+        self.assertEqual(len(self.mock.calls), 1)
+        self.assertEqual(self.model_calls, [])
+
+    def test_follow_up_with_history_is_not_rewritten_by_a_model(self):
+        self.approve()
+        self.assertEqual(self.ask(sid="h")["kind"], "answer")
+        r = self.ask("and for a bike?", sid="h")
+        self.assertEqual((r["kind"], r["response"]), ("clarification", srv.GROUNDED_FOLLOW_UP_MESSAGE))
+        r = self.ask("What documents are needed for a learner's licence application?", sid="h")
+        self.assertEqual(r["kind"], "answer")
+        self.assertEqual(len(self.mock.calls), 2)
+        self.assertEqual(self.model_calls, [])  # contextualize_chain never ran
+
+    def test_guards_still_run_before_generation(self):
+        self.approve()
+        p = mock.patch.dict(srv.PROVISION_CATALOGUE, srv.build_provision_catalogue([self.ELIGIBLE.metadata]),
+                            clear=True)
+        p.start()
+        self.addCleanup(p.stop)
+        for message, kind in (("What is the fine for no helmet?", "restricted"),
+                              ("helmet rules in Karnataka", "out_of_scope"),
+                              ("What does Rule 186 say?", "missing_provision")):
+            self.assertEqual(self.ask(message, sid=message)["kind"], kind, message)
+        self.assertEqual((self.mock.calls, self.model_calls), ([], []))
+
+    def test_conflict_is_a_distinct_status(self):
+        other = Document(page_content="Rule 5A. A learner's licence application is made in Form 3.",
+                         metadata={**self.ELIGIBLE.metadata, "provision_id": "Rule 5A", "location": "chap-2.htm#5A"})
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.ELIGIBLE, 0.3), (other, 0.31)]
+        claims = [{"text": self.CLAIM, "kind": "direct", "evidence_ids": ["E1"]},
+                  {"text": "A learner's licence application is made in Form 3.", "kind": "direct",
+                   "evidence_ids": ["E2"]}]
+        gen = self.ga.MockGenerator(json.dumps({
+            "answer": " ".join(c["text"] for c in claims), "evidence_sufficiency": "conflicting", "claims": claims,
+            "citations": ["E1", "E2"], "refusal_reason": None, "clarification_question": None}))
+        self.approve(generator=gen)
+        r = self.ask()
+        self.assertEqual(r["kind"], "conflict")
+        self.assertIn("not a definitive answer", r["response"])
+        self.assertEqual(self.model_calls, [])
+
+    def test_rejected_or_failing_generator_fails_closed(self):
+        for gen in (self.ga.MockGenerator("not json"), self.ga.DisabledGenerator(),
+                    self.ga.MockGenerator(fn=lambda p, c: (_ for _ in ()).throw(TimeoutError()))):
+            mock.patch.stopall()
+            self.approve(generator=gen)
+            FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.ELIGIBLE, 0.3)]
+            r = self.ask(sid=repr(gen))
+            self.assertEqual((r["kind"], r["response"]), ("no_support", srv.NO_SUPPORT_MESSAGE))
+        self.assertEqual(self.model_calls, [])
+
+    def test_unapproved_document_never_reaches_the_generator(self):
+        stranger = Document(page_content="Rule 5. Unapproved text.", metadata={
+            **self.ELIGIBLE.metadata, "sha256": "f" * 64, "source_file": "other.pdf"})
+        self.approve()
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(stranger, 0.3)]
+        self.assertEqual(self.ask()["kind"], "no_support")
+        self.assertEqual(self.mock.calls, [])
+
+
+class AnswerModeTests(unittest.TestCase):
+    """Safe by default. Each case imports a fresh server with exactly the given environment; a trap records every
+    model call (rewrite or answer) so disabled modes are proven to make none."""
+
+    NONE = {"TG_LEGACY_DEV_ANSWERS": "", "TG_ENVIRONMENT": "", "TG_GROUNDED_ANSWERS": ""}
+    QUESTION = "How do I apply for a learner's licence?"
+
+    def setUp(self):
+        self.calls = []
+
+        def trap(prompt):
+            self.calls.append(prompt)
+            return "trapped model text"
+        FAKE_LLM["fn"] = trap
+        self.addCleanup(FAKE_LLM.update, {"fn": lambda prompt: "stub answer"})
+        self.addCleanup(FAKE_SEARCH.update, {"fn": None})
+
+    def server(self, **env):
+        s = _import_server_with_fakes({**self.NONE, **env})
+        s.sessions.clear()
+        return s, TestClient(s.app, raise_server_exceptions=False)
+
+    def ask(self, client, message=None, sid="m"):
+        return client.post("/chat", json={"message": message or self.QUESTION, "session_id": sid}).json()
+
+    def assert_safe_refusals(self, s, client):
+        """Guards keep their replies; everything else is a fixed refusal; no model call at all."""
+        self.assertEqual(self.ask(client, "What is the fine for no helmet?", "p")["kind"], "restricted")
+        self.assertEqual(self.ask(client, "and for a bike?", "p")["kind"], "restricted")  # sticky lock
+        self.assertEqual(self.ask(client, "helmet rules in Karnataka", "o")["kind"], "out_of_scope")
+        r = self.ask(client)
+        self.assertEqual((r["kind"], r["response"], r["sources"]), ("unavailable", s.GROUNDED_UNAVAILABLE_MESSAGE, []))
+        s.sessions["h"] = {"history": [{"question": "q", "answer": "a"}]}  # history must not trigger a rewrite
+        self.assertEqual(self.ask(client, "what about it for a car?", "h")["kind"], "unavailable")
+        self.assertEqual(self.calls, [])
+
+    def test_resolve_answer_mode_table(self):
+        resolve = srv.resolve_answer_mode
+        key = "offline-test-not-a-real-key"
+        self.assertEqual(resolve(False, False, "", ""), ("disabled", []))
+        self.assertEqual(resolve(False, False, "development", key), ("disabled", []))
+        self.assertEqual(resolve(True, False, "", ""), ("grounded", []))
+        self.assertEqual(resolve(False, True, "development", key), ("legacy_dev", []))
+        for args in ((True, True, "development", key), (False, True, "", key), (False, True, "production", key),
+                     (False, True, "Development ", ""), (False, True, "development", "placeholder-key"),
+                     (True, True, "production", "")):
+            mode, problems = resolve(*args)
+            self.assertEqual(mode, "misconfigured", args)
+            self.assertTrue(problems, args)
+
+    def test_no_environment_configured(self):
+        s, client = self.server(GROQ_API_KEY="")
+        self.assertEqual(s.ANSWER_MODE, "disabled")
+        self.assertIsNone(s.llm)
+        self.assertIsNone(s.contextualize_chain)
+        self.assertEqual(client.get("/status").json()["answer_mode"], "disabled")
+        self.assert_safe_refusals(s, client)
+
+    def test_groq_key_present_but_both_modes_disabled(self):
+        s, client = self.server(GROQ_API_KEY="offline-test-not-a-real-key")
+        self.assertEqual(s.ANSWER_MODE, "disabled")
+        self.assertIsNone(s.llm)  # a key alone never builds a model client
+        self.assert_safe_refusals(s, client)
+
+    def test_grounded_mode_without_approval(self):
+        s, client = self.server(TG_GROUNDED_ANSWERS="1")
+        gen = __import__("backend.grounded_answer", fromlist=["x"]).MockGenerator("{}")
+        s.ANSWER_GENERATOR = gen
+        self.assertEqual((s.ANSWER_MODE, s.APPROVAL.state), ("grounded", "absent"))
+        self.assertIsNone(s.llm)
+        self.assert_safe_refusals(s, client)
+        self.assertEqual(gen.calls, [])
+
+    def test_grounded_mode_with_invalid_approval(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = Path(tmp) / "approval.json"
+            bad.write_text("{not a record", encoding="utf-8")
+            s, client = self.server(TG_GROUNDED_ANSWERS="1", TG_APPROVAL_FILE=str(bad))
+        self.assertEqual(s.APPROVAL.state, "invalid")
+        self.assertTrue(s.grounded_gate_errors())
+        self.assert_safe_refusals(s, client)
+
+    def test_legacy_dev_mode_explicitly_enabled_is_labelled(self):
+        s, client = self.server(TG_LEGACY_DEV_ANSWERS="1", TG_ENVIRONMENT="development")
+        self.assertEqual(s.ANSWER_MODE, "legacy_dev")
+        r = self.ask(client)
+        self.assertEqual(r["kind"], "development")
+        self.assertTrue(r["response"].startswith(s.DEV_OUTPUT_BANNER))
+        self.assertIn("not a Telangana legal answer", r["response"])
+        self.assertEqual(len(self.calls), 1)  # the (fake) model is called only in this explicit mode
+        # guards still run first, with no model call
+        self.calls.clear()
+        self.assertEqual(self.ask(client, "What is the fine for no helmet?", "p")["kind"], "restricted")
+        self.assertEqual(self.ask(client, "helmet rules in Karnataka", "o")["kind"], "out_of_scope")
+        self.assertEqual(self.calls, [])
+
+    def test_dev_flag_outside_development_cannot_enable_groq(self):
+        for env in ({"TG_ENVIRONMENT": "production"}, {"TG_ENVIRONMENT": ""}, {"TG_ENVIRONMENT": "staging"},
+                    {"TG_ENVIRONMENT": "development", "GROQ_API_KEY": ""}):
+            with self.subTest(env):
+                s, client = self.server(TG_LEGACY_DEV_ANSWERS="1", **env)
+                self.assertEqual(s.ANSWER_MODE, "misconfigured")
+                self.assertIsNone(s.llm)
+                self.assert_safe_refusals(s, client)
+
+    def test_both_modes_enabled_never_falls_back(self):
+        s, client = self.server(TG_GROUNDED_ANSWERS="1", TG_LEGACY_DEV_ANSWERS="1", TG_ENVIRONMENT="development")
+        self.assertEqual(s.ANSWER_MODE, "misconfigured")
+        self.assertIsNone(s.llm)
+        self.assertTrue(s.grounded_gate_errors())
+        self.assert_safe_refusals(s, client)
+
+    def test_grounded_generator_failure_does_not_fall_back_to_legacy(self):
+        s, client = self.server(TG_GROUNDED_ANSWERS="1")
+        ga = __import__("backend.grounded_answer", fromlist=["x"])
+        s.ANSWER_GENERATOR = ga.MockGenerator(fn=lambda p, c: (_ for _ in ()).throw(RuntimeError("down")))
+        with mock.patch.object(s, "grounded_gate_errors", lambda: []), \
+                mock.patch.dict(s.SOURCES, {TG_RULES_SHA: ("Synthetic Motor Rules", "Rules")}):
+            FAKE_SEARCH["fn"] = lambda q, st, docs: [(Document(page_content="Rule 5. Filler.", metadata={
+                "state": "Telangana", "manifest_id": "m", "provision_id": "Rule 5", "answer_eligible": True,
+                "source_file": TG_RULES_FILE, "sha256": TG_RULES_SHA}), 0.3)]
+            r = self.ask(client)
+        self.assertEqual((r["kind"], r["response"]), ("no_support", s.NO_SUPPORT_MESSAGE))
+        self.assertEqual(self.calls, [])
+
+
+class DeploymentConfigTests(unittest.TestCase):
+    """Configuration precedence, .env handling and every HTTP entry point. Model calls are trapped throughout."""
+
+    NONE = AnswerModeTests.NONE
+    DEV_DOTENV = ("TG_ENVIRONMENT=development\nTG_LEGACY_DEV_ANSWERS=1\nGROQ_API_KEY=dotenv-test-not-a-real-key\n"
+                  "TG_GROUNDED_ANSWERS=1\n")
+
+    def setUp(self):
+        import tempfile
+        from backend import runtime_config
+        self.rc = runtime_config
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.calls = []
+        FAKE_LLM["fn"] = lambda prompt: self.calls.append(prompt) or "trapped model text"
+        self.addCleanup(FAKE_LLM.update, {"fn": lambda prompt: "stub answer"})
+
+    def dotenv(self, text):
+        path = Path(self.tmp.name) / ".env"
+        path.write_text(text, encoding="utf-8")
+        return path
+
+    def server(self, dotenv_text=None, **env):
+        env_file = self.dotenv(dotenv_text) if dotenv_text is not None else None
+        s = _import_server_with_fakes({**self.NONE, **env}, env_file=env_file)
+        return s, TestClient(s.app, raise_server_exceptions=False)
+
+    # --- runtime_config unit tests (a plain dict stands in for the process environment) ---
+    def test_process_environment_takes_precedence_over_dotenv(self):
+        path = self.dotenv("GROQ_API_KEY=from-file\nRAG_PROFILE=file-profile\n")
+        environ = {"TG_ENVIRONMENT": "development", "GROQ_API_KEY": "from-process"}
+        self.assertEqual(self.rc.load_local_env(path, environ), ["RAG_PROFILE"])
+        self.assertEqual(environ["GROQ_API_KEY"], "from-process")
+        environ = {"TG_ENVIRONMENT": "development", "TG_LEGACY_DEV_ANSWERS": ""}  # explicitly empty still wins
+        self.rc.load_local_env(self.dotenv(self.DEV_DOTENV), environ)
+        self.assertEqual(environ["TG_LEGACY_DEV_ANSWERS"], "")
+
+    def test_dotenv_is_not_read_outside_development(self):
+        path = self.dotenv(self.DEV_DOTENV)
+        for env in ({}, {"TG_ENVIRONMENT": ""}, {"TG_ENVIRONMENT": "production"}, {"TG_ENVIRONMENT": "staging"},
+                    {"TG_ENVIRONMENT": "dev"}):
+            environ = dict(env)
+            self.assertEqual(self.rc.load_local_env(path, environ), [], env)
+            self.assertEqual(environ, env, env)
+
+    def test_dotenv_can_never_set_the_environment(self):
+        environ = {"TG_ENVIRONMENT": "development"}
+        self.rc.load_local_env(self.dotenv("TG_ENVIRONMENT=production\n"), environ)
+        self.assertEqual(environ["TG_ENVIRONMENT"], "development")
+
+    # --- whole-server configuration ---
+    def test_no_configuration_defaults_to_disabled(self):
+        s, client = self.server(GROQ_API_KEY="")
+        self.assertEqual((s.ANSWER_MODE, s.llm), ("disabled", None))
+
+    def test_dotenv_cannot_turn_production_into_development(self):
+        for env in ({"TG_ENVIRONMENT": "production"}, {"TG_ENVIRONMENT": "staging"}, {}):
+            with self.subTest(env):
+                s, client = self.server(self.DEV_DOTENV, GROQ_API_KEY="", **env)
+                self.assertEqual(s.ANSWER_MODE, "disabled")  # the file was not read at all
+                self.assertIsNone(s.llm)
+                self.assertEqual(self.post(client)["kind"], "unavailable")
+        self.assertEqual(self.calls, [])
+
+    def test_dev_mode_rejected_in_production_and_staging_even_when_set_directly(self):
+        for environment in ("production", "staging", "Production ", "prod", "test"):
+            with self.subTest(environment):
+                s, client = self.server(TG_ENVIRONMENT=environment, TG_LEGACY_DEV_ANSWERS="1",
+                                        GROQ_API_KEY="offline-test-not-a-real-key")
+                self.assertEqual(s.ANSWER_MODE, "misconfigured")
+                self.assertIsNone(s.llm)
+                self.assertIsNone(s.contextualize_chain)
+                self.assertEqual(self.post(client)["kind"], "unavailable")
+        self.assertEqual(self.calls, [])
+
+    def test_unrecognised_environment_is_misconfigured(self):
+        s, _ = self.server(TG_ENVIRONMENT="qa", TG_GROUNDED_ANSWERS="1")
+        self.assertEqual(s.ANSWER_MODE, "misconfigured")
+        self.assertTrue(s.grounded_gate_errors())
+
+    def test_local_development_dotenv_works_but_cannot_override_process_values(self):
+        # Locally, with TG_ENVIRONMENT exported by the shell, .env may supply missing values ...
+        s, _ = self.server("TG_LEGACY_DEV_ANSWERS=1\nGROQ_API_KEY=dotenv-test-not-a-real-key\n",
+                           TG_ENVIRONMENT="development", GROQ_API_KEY=None, TG_LEGACY_DEV_ANSWERS=None)
+        self.assertEqual(s.ANSWER_MODE, "legacy_dev")
+        # ... but not values the process already sets (here: dev answers explicitly off).
+        s, _ = self.server(self.DEV_DOTENV, TG_ENVIRONMENT="development")
+        self.assertEqual((s.ANSWER_MODE, s.llm), ("disabled", None))
+
+    def test_grounded_mode_still_requires_approval(self):
+        s, client = self.server(TG_GROUNDED_ANSWERS="1", TG_ENVIRONMENT="production")
+        self.assertEqual(s.ANSWER_MODE, "grounded")
+        self.assertIn("legal approval is absent", s.grounded_gate_errors())
+        self.assertEqual(self.post(client)["kind"], "unavailable")
+        self.assertEqual(self.calls, [])
+
+    # --- entry points ---
+    EXPECTED_ROUTES = {("POST", "/chat"), ("POST", "/approval/refresh"), ("GET", "/status"), ("GET", "/health"),
+                       ("GET", "/"), ("MOUNT", "/static")}
+
+    def routes(self, app):
+        out = set()
+        for r in app.routes:
+            methods = getattr(r, "methods", None)
+            if methods is None:
+                out.add(("MOUNT", r.path))
+                continue
+            out |= {(m, r.path) for m in methods if m not in ("HEAD", "OPTIONS")}
+        return out - {("GET", "/openapi.json"), ("GET", "/docs"), ("GET", "/docs/oauth2-redirect"),
+                      ("GET", "/redoc")}
+
+    def test_no_endpoint_bypasses_answer_mode(self):
+        for env in ({}, {"TG_GROUNDED_ANSWERS": "1"},
+                    {"TG_LEGACY_DEV_ANSWERS": "1", "TG_ENVIRONMENT": "production",
+                     "GROQ_API_KEY": "offline-test-not-a-real-key"}):
+            with self.subTest(env):
+                s, client = self.server(**env)
+                # A new route must be reviewed and added here before this test passes.
+                self.assertEqual(self.routes(s.app), self.EXPECTED_ROUTES)
+                self.assertEqual(s.app.router.on_startup, [])
+                self.assertEqual(s.app.router.on_shutdown, [])
+                for path in ("/", "/status", "/health", "/static/index.html", "/docs", "/openapi.json"):
+                    self.assertLess(client.get(path).status_code, 500, path)
+                self.assertLess(client.post("/approval/refresh").status_code, 500)
+                for message in ("How do I apply for a learner's licence?", "What is the fine for no helmet?",
+                                "helmet rules in Karnataka", "What does Rule 186 say?", "and for a bike?"):
+                    self.assertNotIn(self.post(client, message)["kind"], ("answer", "development", "conflict"))
+        self.assertEqual(self.calls, [])
+
+    def post(self, client, message="How do I apply for a learner's licence?"):
+        return client.post("/chat", json={"message": message, "session_id": "cfg"}).json()
 
 
 if __name__ == "__main__":

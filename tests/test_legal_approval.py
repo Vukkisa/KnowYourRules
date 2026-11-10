@@ -408,7 +408,7 @@ class ServerApprovalTests(unittest.TestCase):
         srv, client = self.start()
         ts.FAKE_LLM["fn"] = ts.fake_llm(answer="Source: Synthetic Rules Fixture (Rules) - VERIFIED. sha256 " + SHA_A)
         r = client.post("/chat", json={"message": "How do I apply for a learner's licence?", "session_id": "x"}).json()
-        self.assertEqual(r["kind"], "answer")
+        self.assertEqual(r["kind"], "development")
         self.assertTrue(r["sources"])
         self.assertTrue(all(not x["verified"] and x["title"] == "Unverified source" for x in r["sources"]))
 

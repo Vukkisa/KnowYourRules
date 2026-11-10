@@ -109,5 +109,48 @@ class BM25AndFusionTests(unittest.TestCase):
         self.assertEqual(len(hr.reciprocal_rank_fusion([[a, a, a]])), 1)
 
 
+def doc(text, **meta):
+    return Document(page_content=text, metadata=meta)
+
+
+class DeduplicationTests(unittest.TestCase):
+    HEADER = "Road Safety - Synthetic Electronic Enforcement System - Notification - Orders - Issued\n"
+
+    def test_identical_80_char_prefix_survives(self):
+        a = doc(self.HEADER + "4. Members.", manifest_id="g", provision_id="Paragraph 4", part=1)
+        b = doc(self.HEADER + "5. Powers.", manifest_id="g", provision_id="Paragraph 5", part=1)
+        self.assertEqual(a.page_content[:80], b.page_content[:80])
+        self.assertEqual(len(hr.reciprocal_rank_fusion([[a, b]])), 2)
+
+    def test_distinct_provisions_and_documents_with_identical_text(self):
+        same = "identical text"
+        docs = [doc(same, manifest_id="g", provision_id="Rule 1", part=1),
+                doc(same, manifest_id="g", provision_id="Rule 2", part=1),
+                doc(same, manifest_id="h", provision_id="Rule 1", part=1)]
+        self.assertEqual(len(hr.reciprocal_rank_fusion([docs])), 3)
+
+    def test_same_chunk_from_bm25_and_vector_appears_once(self):
+        ix = make_index()
+        bm25 = ix.search("crash helmets", 3)
+        stored = bm25[0]
+        vector_copy = doc(stored.page_content, **dict(stored.metadata))  # a separate object, as Chroma returns
+        self.assertEqual(hr.chunk_key(stored), hr.chunk_key(vector_copy))
+        fused = hr.reciprocal_rank_fusion([bm25, [vector_copy]])
+        self.assertEqual(sum(hr.chunk_key(d) == hr.chunk_key(stored) for d in fused), 1)
+        self.assertIs(fused[0], stored)  # voted by both lists, so ranked first
+
+    def test_repeated_retrieval_does_not_duplicate(self):
+        a = doc("t", manifest_id="x", provision_id="Rule 1", part=1)
+        self.assertEqual(len(hr.reciprocal_rank_fusion([[a, a], [a], [doc("t", **a.metadata)]])), 1)
+
+    def test_missing_metadata_does_not_collapse_distinct_chunks(self):
+        bare = [doc("first chunk"), doc("second chunk"), Document(page_content="third chunk")]
+        self.assertEqual(len(hr.reciprocal_rank_fusion([bare])), 3)
+        partial = [doc("part one text", manifest_id="g", provision_id="Order"),
+                   doc("part two text", manifest_id="g", provision_id="Order")]  # no part/location/sha
+        self.assertEqual(len(hr.reciprocal_rank_fusion([partial])), 2)
+        self.assertEqual(len(hr.reciprocal_rank_fusion([[doc("same"), doc("same")]])), 1)  # true duplicate
+
+
 if __name__ == "__main__":
     unittest.main()

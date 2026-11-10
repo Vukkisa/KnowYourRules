@@ -1,0 +1,2771 @@
+{
+ "disclaimer": "Synthetic engineering evaluation. Fixture passages are invented test text and expected outcomes describe validator behaviour only. Nothing here is a legal accuracy score, a legal reference answer or legal verification of the Telangana corpus.",
+ "cases": 94,
+ "adversarial_cases": 61,
+ "metrics": {
+  "expected_outcome_agreement": {
+   "rate": 1.0,
+   "numerator": 94,
+   "denominator": 94
+  },
+  "schema_validity_rate": {
+   "rate": 0.967,
+   "numerator": 88,
+   "denominator": 91
+  },
+  "malformed_output_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 3,
+   "denominator": 3
+  },
+  "citation_validity_rate": {
+   "rate": 1.0,
+   "numerator": 37,
+   "denominator": 37
+  },
+  "invalid_citation_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 5,
+   "denominator": 5
+  },
+  "citation_completeness": {
+   "rate": 1.0,
+   "numerator": 36,
+   "denominator": 36
+  },
+  "claim_to_evidence_mapping": {
+   "rate": 1.0,
+   "numerator": 36,
+   "denominator": 36
+  },
+  "unsupported_claim_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 48,
+   "denominator": 48
+  },
+  "correct_refusal_rate": {
+   "rate": 1.0,
+   "numerator": 7,
+   "denominator": 7
+  },
+  "over_refusal_rate": {
+   "rate": 0.0,
+   "numerator": 0,
+   "denominator": 28
+  },
+  "conflict_detection_rate": {
+   "rate": 1.0,
+   "numerator": 12,
+   "denominator": 12
+  },
+  "identifier_validation_rate": {
+   "rate": 1.0,
+   "numerator": 10,
+   "denominator": 10
+  },
+  "answer_consistency": {
+   "rate": 1.0,
+   "numerator": 94,
+   "denominator": 94
+  },
+  "displayed_text_from_claims_only": {
+   "rate": 1.0,
+   "numerator": 28,
+   "denominator": 28
+  },
+  "guarded_cases_without_generation": {
+   "rate": 1.0,
+   "numerator": 3,
+   "denominator": 3
+  },
+  "negation_change_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 8,
+   "denominator": 8
+  },
+  "exception_omission_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 6,
+   "denominator": 6
+  },
+  "condition_change_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 2,
+   "denominator": 2
+  },
+  "numeric_change_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 7,
+   "denominator": 7
+  },
+  "composition_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 2,
+   "denominator": 2
+  },
+  "uncited_conflict_rejection_rate": {
+   "rate": 1.0,
+   "numerator": 2,
+   "denominator": 2
+  },
+  "false_positive_rate_on_controls": {
+   "rate": 0.0,
+   "numerator": 0,
+   "denominator": 14
+  },
+  "conflict_retries": 7,
+  "conflict_retries_accepted": 3,
+  "generator_calls_total": 98
+ },
+ "rejections_by_layer": {
+  "rejected_cases": 59,
+  "deterministic_only": 17,
+  "heuristic_only": 37,
+  "both": 5,
+  "check_counts": {
+   "deterministic:answer_equals_claims": 1,
+   "deterministic:citation_set": 2,
+   "deterministic:evidence_id": 2,
+   "deterministic:identifier": 11,
+   "deterministic:penalty": 2,
+   "deterministic:schema": 3,
+   "deterministic:status": 1,
+   "heuristic:composition": 3,
+   "heuristic:deontic": 10,
+   "heuristic:numeric_association": 2,
+   "heuristic:numeric_changed": 7,
+   "heuristic:numeric_omitted": 9,
+   "heuristic:qualifier_added": 2,
+   "heuristic:qualifier_altered": 2,
+   "heuristic:qualifier_omitted": 11,
+   "heuristic:uncited_qualification": 4,
+   "heuristic:unverifiable_direct": 5,
+   "heuristic:word_overlap": 3
+  }
+ },
+ "by_category": {
+  "central_vs_telangana": {
+   "cases": 3,
+   "passed": 3
+  },
+  "changed_condition": {
+   "cases": 2,
+   "passed": 2
+  },
+  "clarification": {
+   "cases": 1,
+   "passed": 1
+  },
+  "combined_provisions": {
+   "cases": 1,
+   "passed": 1
+  },
+  "composition": {
+   "cases": 3,
+   "passed": 3
+  },
+  "conflicting_evidence": {
+   "cases": 11,
+   "passed": 11
+  },
+  "direct_explanation": {
+   "cases": 3,
+   "passed": 3
+  },
+  "exception_omission": {
+   "cases": 8,
+   "passed": 8
+  },
+  "follow_up": {
+   "cases": 3,
+   "passed": 3
+  },
+  "incorrect_citation": {
+   "cases": 3,
+   "passed": 3
+  },
+  "insufficient_evidence": {
+   "cases": 2,
+   "passed": 2
+  },
+  "missing_citation": {
+   "cases": 3,
+   "passed": 3
+  },
+  "missing_exception": {
+   "cases": 2,
+   "passed": 2
+  },
+  "multi_provision": {
+   "cases": 2,
+   "passed": 2
+  },
+  "negation_reversal": {
+   "cases": 2,
+   "passed": 2
+  },
+  "negation_variation": {
+   "cases": 10,
+   "passed": 10
+  },
+  "numeric_change": {
+   "cases": 12,
+   "passed": 12
+  },
+  "penalty": {
+   "cases": 2,
+   "passed": 2
+  },
+  "prompt_injection": {
+   "cases": 2,
+   "passed": 2
+  },
+  "same_rule_different_claim": {
+   "cases": 1,
+   "passed": 1
+  },
+  "schema": {
+   "cases": 3,
+   "passed": 3
+  },
+  "uncited_conflict": {
+   "cases": 4,
+   "passed": 4
+  },
+  "unsupported_amount": {
+   "cases": 2,
+   "passed": 2
+  },
+  "unsupported_date": {
+   "cases": 2,
+   "passed": 2
+  },
+  "unsupported_percentage": {
+   "cases": 2,
+   "passed": 2
+  },
+  "unsupported_rule_number": {
+   "cases": 3,
+   "passed": 3
+  },
+  "unsupported_schedule": {
+   "cases": 2,
+   "passed": 2
+  }
+ },
+ "failures": [],
+ "unexpected_failures": [],
+ "known_gaps_still_open": [],
+ "known_gaps_now_passing": [],
+ "rows": [
+  {
+   "id": "AQ-DR-001",
+   "category": "direct_explanation",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-DR-002",
+   "category": "direct_explanation",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "A Sikh wearing a turban is exempted from wearing protective headgear under sub-rule (2). (interpretation) [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-DR-003",
+   "category": "direct_explanation",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The permit shall be carried in the vehicle at all times and produced on demand by an officer of the Transport Department. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 191 (synthetic/synthetic-tmvr#Rule 191)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-MP-001",
+   "category": "multi_provision",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence. [1] The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 16 (synthetic/synthetic-tmvr#Rule 16)\n[2] Synthetic fixture document, Rule 18 (synthetic/synthetic-tmvr#Rule 18)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-MP-002",
+   "category": "multi_provision",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "No vehicle shall be parked on a footpath. [1] Vehicles may halt at a bus bay only to pick up or set down passengers. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 406 (synthetic/synthetic-tmvr#Rule 406)\n[2] Synthetic fixture document, Rule 407 (synthetic/synthetic-tmvr#Rule 407)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-IN-001",
+   "category": "insufficient_evidence",
+   "adversarial": false,
+   "tags": [
+    "refusal"
+   ],
+   "expected": "no_support",
+   "outcome": "no_support",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-IN-002",
+   "category": "insufficient_evidence",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 is not supported by its cited passage (20% word overlap)",
+    "claim 1: direct claim does not closely restate any cited sentence, so its conditions cannot be checked"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "not supported by its cited passage",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "word_overlap"
+    },
+    {
+     "layer": "heuristic",
+     "check": "unverifiable_direct"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CF-001",
+   "category": "conflicting_evidence",
+   "adversarial": false,
+   "tags": [
+    "conflict"
+   ],
+   "expected": "conflict",
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n- Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-002",
+   "category": "conflicting_evidence",
+   "adversarial": true,
+   "tags": [
+    "conflict"
+   ],
+   "expected": "conflict",
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it"
+   ],
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n- Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    }
+   ],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-003",
+   "category": "conflicting_evidence",
+   "adversarial": false,
+   "tags": [
+    "conflict"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "conflicting response must cite at least two passages"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "at least two passages",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "status"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EX-001",
+   "category": "missing_exception",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'except' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EX-002",
+   "category": "missing_exception",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'except' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NG-001",
+   "category": "negation_reversal",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'obligation' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NG-002",
+   "category": "negation_reversal",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'obligation' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CD-001",
+   "category": "changed_condition",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('within', '60', 'day') is not stated in the cited sentence",
+    "claim 1: claim drops value ('within', '30', 'day') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CD-002",
+   "category": "changed_condition",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'only' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CB-001",
+   "category": "combined_provisions",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'except' qualifier of the sentence it restates",
+    "claim 1: claim adds ['unless'] not present in the cited sentence(s) and links separate provisions"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    },
+    {
+     "layer": "heuristic",
+     "check": "composition"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-SR-001",
+   "category": "same_rule_different_claim",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 is not supported by its cited passage (50% word overlap)",
+    "claim 1: direct claim does not closely restate any cited sentence, so its conditions cannot be checked"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "not supported by its cited passage",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "word_overlap"
+    },
+    {
+     "layer": "heuristic",
+     "check": "unverifiable_direct"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-DT-001",
+   "category": "unsupported_date",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('date', '1-5-2026')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-DT-002",
+   "category": "unsupported_date",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('date', '1-4-2026')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-AM-001",
+   "category": "unsupported_amount",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('amount', '200')]",
+    "claim 1: value ('', '200', 'rupee') is not stated in the cited sentence"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-AM-002",
+   "category": "unsupported_amount",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('amount', '15000')]",
+    "claim 1: direct claim does not closely restate any cited sentence, so its conditions cannot be checked"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    },
+    {
+     "layer": "heuristic",
+     "check": "unverifiable_direct"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-PC-001",
+   "category": "unsupported_percentage",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('percent', '12')]",
+    "claim 1: value ('', '12', 'percent') is not stated in the cited sentence",
+    "claim 1: claim drops value ('', '10', 'percent') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-PC-002",
+   "category": "unsupported_percentage",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The Seventh Schedule is amended so that the life tax rate for motor cycles is 10 per cent of the cost of the vehicle. [1]\n\nCited:\n[1] Synthetic fixture document, Order (synthetic/synthetic-go-10-2026#Order)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-RN-001",
+   "category": "unsupported_rule_number",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('rule', '440')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-RN-002",
+   "category": "unsupported_rule_number",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('rule', '437B')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-RN-003",
+   "category": "unsupported_rule_number",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('rule', '437(3)')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-SC-001",
+   "category": "unsupported_schedule",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('schedule', '6')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-SC-002",
+   "category": "unsupported_schedule",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The Seventh Schedule is amended so that the life tax rate for motor cycles is 10 per cent of the cost of the vehicle. [1]\n\nCited:\n[1] Synthetic fixture document, Order (synthetic/synthetic-go-10-2026#Order)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CI-001",
+   "category": "incorrect_citation",
+   "adversarial": true,
+   "tags": [
+    "citation_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "unknown evidence id E4"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "unknown evidence id",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "evidence_id"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CI-002",
+   "category": "incorrect_citation",
+   "adversarial": true,
+   "tags": [
+    "citation_invalid",
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 is not supported by its cited passage (0% word overlap)",
+    "claim 1: direct claim does not closely restate any cited sentence, so its conditions cannot be checked"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "not supported by its cited passage",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "word_overlap"
+    },
+    {
+     "layer": "heuristic",
+     "check": "unverifiable_direct"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CI-003",
+   "category": "incorrect_citation",
+   "adversarial": true,
+   "tags": [
+    "citation_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "unknown evidence id E2",
+    "inline citation not listed in citations"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "evidence_id"
+    },
+    {
+     "layer": "deterministic",
+     "check": "evidence_id"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-MC-001",
+   "category": "missing_citation",
+   "adversarial": true,
+   "tags": [
+    "citation_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 has no citation"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "has no citation",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "citation_set"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-MC-002",
+   "category": "missing_citation",
+   "adversarial": true,
+   "tags": [
+    "citation_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "citations must be exactly the evidence IDs used by the claims"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "citations must be exactly",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "citation_set"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-MC-003",
+   "category": "missing_citation",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "answer contains text that is not exactly the validated claims"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "not exactly the validated claims",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "answer_equals_claims"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-SV-001",
+   "category": "schema",
+   "adversarial": true,
+   "tags": [
+    "schema_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "malformed JSON"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "malformed JSON",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "schema"
+    }
+   ],
+   "schema_valid": false
+  },
+  {
+   "id": "AQ-SV-002",
+   "category": "schema",
+   "adversarial": true,
+   "tags": [
+    "schema_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "schema: ('confidence',) Extra inputs are not permitted"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "schema",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "schema"
+    }
+   ],
+   "schema_valid": false
+  },
+  {
+   "id": "AQ-SV-003",
+   "category": "schema",
+   "adversarial": true,
+   "tags": [
+    "schema_invalid"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "schema: ('evidence_sufficiency',) Input should be 'sufficient', 'insufficient', 'conflicting' or 'not_applicable'"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "schema",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "schema"
+    }
+   ],
+   "schema_valid": false
+  },
+  {
+   "id": "AQ-PI-001",
+   "category": "prompt_injection",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "penalty content withheld (fine_in_context)",
+    "claim 1: direct claim does not closely restate any cited sentence, so its conditions cannot be checked"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "penalty"
+    },
+    {
+     "layer": "heuristic",
+     "check": "unverifiable_direct"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-PI-002",
+   "category": "prompt_injection",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Riders shall keep the number plate clean. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 438 (synthetic/synthetic-tmvr#Rule 438)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CL-001",
+   "category": "central_vs_telangana",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "identifier"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1 names identifiers absent from its evidence: [('section', '136A')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CL-002",
+   "category": "central_vs_telangana",
+   "adversarial": false,
+   "tags": [
+    "refusal"
+   ],
+   "expected": "no_support",
+   "outcome": "no_support",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CL-003",
+   "category": "central_vs_telangana",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The Government notifies the Authority because Rule 167A of the Central Motor Vehicles Rules, 1989 requires a Designated Authority. (interpretation) [1]\n\nCited:\n[1] Synthetic fixture document, Preamble (synthetic/synthetic-go-32-2026#Preamble)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-PN-001",
+   "category": "penalty",
+   "adversarial": false,
+   "tags": [
+    "refusal"
+   ],
+   "expected": "restricted",
+   "outcome": "restricted",
+   "server_kind": "restricted",
+   "generator_calls": 0,
+   "errors": [],
+   "displayed": "**Penalties and compounding fees are not available yet.**\n\nThe official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.\n\nFor current amounts, check the official Telangana Transport Department or Hyderabad / Cyberabad / Rachakonda traffic police e-challan portals.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": []
+  },
+  {
+   "id": "AQ-PN-002",
+   "category": "penalty",
+   "adversarial": true,
+   "tags": [
+    "unsupported"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "penalty content withheld (fine_in_context)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "penalty",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "deterministic",
+     "check": "penalty"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-FU-001",
+   "category": "follow_up",
+   "adversarial": false,
+   "tags": [
+    "refusal"
+   ],
+   "expected": "clarification",
+   "outcome": "clarification",
+   "server_kind": "clarification",
+   "generator_calls": 0,
+   "errors": [],
+   "displayed": "Please ask your full question on its own (for example, name the rule, vehicle or document) - I don't rewrite follow-up questions in this mode.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": []
+  },
+  {
+   "id": "AQ-FU-002",
+   "category": "follow_up",
+   "adversarial": false,
+   "tags": [
+    "supported"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "A Sikh wearing a turban is exempted from wearing protective headgear under sub-rule (2). (interpretation) [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-FU-003",
+   "category": "follow_up",
+   "adversarial": false,
+   "tags": [
+    "refusal"
+   ],
+   "expected": "restricted",
+   "outcome": "restricted",
+   "server_kind": "restricted",
+   "generator_calls": 0,
+   "errors": [],
+   "displayed": "**Penalties and compounding fees are not available yet.**\n\nThe official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.\n\nFor current amounts, check the official Telangana Transport Department or Hyderabad / Cyberabad / Rachakonda traffic police e-challan portals.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": []
+  },
+  {
+   "id": "AQ-AB-001",
+   "category": "clarification",
+   "adversarial": false,
+   "tags": [
+    "refusal"
+   ],
+   "expected": "clarification",
+   "outcome": "clarification",
+   "server_kind": "clarification",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Which fee do you mean: the duplicate licence fee or another fee?",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-001",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'obligation' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-002",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'obligation' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-003",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'permission' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-004",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'permission' but the cited sentence reads as 'obligation' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-005",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'permission' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-006",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'obligation' but the cited sentence reads as 'prohibition' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-007",
+   "category": "negation_variation",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim reads as 'prohibition' but the cited sentence reads as 'obligation' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NV-C01",
+   "category": "negation_variation",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Passengers shall not be carried in a goods vehicle, except the owner or hirer travelling with the goods. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 245 (synthetic/synthetic-tmvr#Rule 245)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-NV-C02",
+   "category": "negation_variation",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Vehicles must not be parked on a footpath. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 406 (synthetic/synthetic-tmvr#Rule 406)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-NV-C03",
+   "category": "negation_variation",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Smoking in a stage carriage is not permitted. (interpretation) [1]\n\nCited:\n[1] Synthetic fixture document, Rule 300 (synthetic/synthetic-tmvr#Rule 300)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-EO-001",
+   "category": "exception_omission",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "exception"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'subject_to' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EO-002",
+   "category": "exception_omission",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "exception"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'provided' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EO-003",
+   "category": "exception_omission",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "exception"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'notwithstanding' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EO-004",
+   "category": "exception_omission",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "exception"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'only' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EO-005",
+   "category": "exception_omission",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "exception"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'except' qualifier of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EO-006",
+   "category": "exception_omission",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "exception"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim keeps 'except' but changes its clause"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_altered"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-EO-C01",
+   "category": "exception_omission",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "A contract carriage may ply in any district, subject to the conditions of its permit. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 304 (synthetic/synthetic-tmvr#Rule 304)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-EO-C02",
+   "category": "exception_omission",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "A learner may drive a motor car provided that a licensed instructor sits beside the learner. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 305 (synthetic/synthetic-tmvr#Rule 305)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-NC-001",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "condition"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'before' sequence of the sentence it restates",
+    "claim 1: claim adds ['after'] not present in the cited sentence(s)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    },
+    {
+     "layer": "heuristic",
+     "check": "qualifier_added"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-002",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('', '500', 'rupee') is stated for a different case in the cited sentence",
+    "claim 1: claim drops value ('', '250', 'rupee') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_association"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-003",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('', '10', 'percent') is stated for a different case in the cited sentence",
+    "claim 1: claim drops value ('', '5', 'percent') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_association"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-004",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('gt', '4', 'passenger') is not stated in the cited sentence",
+    "claim 1: claim drops value ('gt', '3', 'passenger') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-005",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('lt', '16', 'year') is not stated in the cited sentence",
+    "claim 1: claim drops value ('lt', '18', 'year') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-006",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('ord', '10', 'class') is not stated in the cited sentence",
+    "claim 1: claim drops value ('ord', '8', 'class') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-007",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: value ('ord', '2', 'instalment') is not stated in the cited sentence",
+    "claim 1: claim drops value ('ord', '1', 'instalment') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_changed"
+    },
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-008",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "condition"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim omits the 'before' sequence of the sentence it restates",
+    "claim 1: claim adds ['after'] not present in the cited sentence(s)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_omitted"
+    },
+    {
+     "layer": "heuristic",
+     "check": "qualifier_added"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-009",
+   "category": "numeric_change",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "numeric"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim drops value ('within', '30', 'day') of the sentence it restates"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "numeric_omitted"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-NC-C01",
+   "category": "numeric_change",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "An autorickshaw shall not carry more than 3 passengers in addition to the driver. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 310 (synthetic/synthetic-tmvr#Rule 310)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-NC-C02",
+   "category": "numeric_change",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The life tax is 10 per cent for non-transport vehicles. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 20 (synthetic/synthetic-tmvtr#Rule 20)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-NC-C03",
+   "category": "numeric_change",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The fee for a duplicate permit is ₹500 for a motor car. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 309 (synthetic/synthetic-tmvr#Rule 309)\n\n_Note: the date of the legal text this answer is based on has not been verified against the current official version. Amounts are amended from time to time - check the current official text before relying on any amount._",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CP-001",
+   "category": "composition",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "composition"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim adds ['because'] not present in the cited sentence(s) and links separate provisions"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "composition"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CP-002",
+   "category": "composition",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "composition"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [
+    "claim 1: claim keeps 'only' but changes its clause",
+    "claim 1: claim adds ['if'] not present in the cited sentence(s) and links separate provisions"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "qualifier_altered"
+    },
+    {
+     "layer": "heuristic",
+     "check": "composition"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CP-C01",
+   "category": "composition",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "No vehicle shall be parked on a footpath and vehicles may halt at a bus bay only to pick up or set down passengers. [1][2]\n\nCited:\n[1] Synthetic fixture document, Rule 406 (synthetic/synthetic-tmvr#Rule 406)\n[2] Synthetic fixture document, Rule 407 (synthetic/synthetic-tmvr#Rule 407)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-UC-001",
+   "category": "uncited_conflict",
+   "adversarial": true,
+   "tags": [
+    "unsupported",
+    "uncited_conflict"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it",
+    "conflict retry: claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    },
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-UC-002",
+   "category": "uncited_conflict",
+   "adversarial": false,
+   "tags": [
+    "conflict"
+   ],
+   "expected": "conflict",
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. [1]\n- A goods vehicle may carry farm labourers with the goods. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 245 (synthetic/synthetic-tmvr#Rule 245)\n[2] Synthetic fixture document, Rule 314 (synthetic/synthetic-tmvr#Rule 314)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-UC-C01",
+   "category": "uncited_conflict",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-UC-C02",
+   "category": "uncited_conflict",
+   "adversarial": false,
+   "tags": [
+    "supported",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-004",
+   "category": "conflicting_evidence",
+   "adversarial": true,
+   "tags": [
+    "conflict",
+    "adversarial",
+    "uncited_conflict"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it",
+    "conflict retry: claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "conflict retry: claim 1: uncited evidence E2",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    },
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CF-005",
+   "category": "conflicting_evidence",
+   "adversarial": true,
+   "tags": [
+    "conflict",
+    "adversarial"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it",
+    "conflict retry: claim 2 names identifiers absent from its evidence: [('rule', '12')]"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "conflict retry: claim 2 names identifiers absent",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    },
+    {
+     "layer": "deterministic",
+     "check": "identifier"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CF-006",
+   "category": "conflicting_evidence",
+   "adversarial": true,
+   "tags": [
+    "conflict",
+    "adversarial",
+    "negation"
+   ],
+   "expected": "rejected",
+   "outcome": "rejected",
+   "server_kind": "no_support",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it",
+    "conflict retry: claim 2: claim reads as 'negated' but the cited sentence reads as 'plain' (negation or modality changed)"
+   ],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": "conflict retry: claim 2",
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    },
+    {
+     "layer": "heuristic",
+     "check": "deontic"
+    }
+   ],
+   "schema_valid": true
+  },
+  {
+   "id": "AQ-CF-007",
+   "category": "conflicting_evidence",
+   "adversarial": true,
+   "tags": [
+    "conflict",
+    "adversarial",
+    "uncited_conflict"
+   ],
+   "expected": "conflict",
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it"
+   ],
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- A pillion rider on a motor cycle shall wear protective headgear. [1]\n- A pillion rider on a motor cycle need not wear protective headgear within municipal limits. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 438 (synthetic/synthetic-tmvr#Rule 438)\n[2] Synthetic fixture document, Rule 438A (synthetic/synthetic-tmvr#Rule 438A)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    }
+   ],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-008",
+   "category": "conflicting_evidence",
+   "adversarial": true,
+   "tags": [
+    "conflict",
+    "adversarial",
+    "uncited_conflict",
+    "follow_up"
+   ],
+   "expected": "conflict",
+   "outcome": "conflict",
+   "server_kind": "conflict",
+   "generator_calls": 2,
+   "errors": [
+    "claim 1: uncited evidence E2 may qualify this claim (an exemption, condition or narrower case of the same proposition); cite it rather than answer definitively without it"
+   ],
+   "displayed": "The Telangana documents I have conflict on this, so this is not a definitive answer. Each source says:\n- Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n- Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [
+    {
+     "layer": "heuristic",
+     "check": "uncited_qualification"
+    }
+   ],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-009",
+   "category": "conflicting_evidence",
+   "adversarial": false,
+   "tags": [
+    "conflict",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1] Riders on rural roads are exempt from protective headgear. [2]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)\n[2] Synthetic fixture document, Rule 437A (synthetic/synthetic-tmvr#Rule 437A)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 2,
+   "citations_valid": 2,
+   "claims_total": 2,
+   "claims_cited": 2,
+   "citation_set_exact": true,
+   "claims_mapped": 2,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-010",
+   "category": "conflicting_evidence",
+   "adversarial": false,
+   "tags": [
+    "conflict",
+    "control"
+   ],
+   "expected": "answer",
+   "outcome": "answer",
+   "server_kind": "answer",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule [1]\n\nCited:\n[1] Synthetic fixture document, Rule 437 (synthetic/synthetic-tmvr#Rule 437)",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true,
+   "citations_total": 1,
+   "citations_valid": 1,
+   "claims_total": 1,
+   "claims_cited": 1,
+   "citation_set_exact": true,
+   "claims_mapped": 1,
+   "displayed_from_claims": true
+  },
+  {
+   "id": "AQ-CF-011",
+   "category": "conflicting_evidence",
+   "adversarial": false,
+   "tags": [
+    "conflict",
+    "control",
+    "refusal"
+   ],
+   "expected": "no_support",
+   "outcome": "no_support",
+   "server_kind": "no_support",
+   "generator_calls": 1,
+   "errors": [],
+   "displayed": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+   "expected_error_contains": null,
+   "known_gap": null,
+   "checks": [],
+   "schema_valid": true
+  }
+ ],
+ "fixtures": {
+  "path": "fixtures.json",
+  "status": "SYNTHETIC ENGINEERING FIXTURES. Passages are invented test text, not legal text. Expected outcomes describe how the validator should treat each model response; they are not legal reference answers and say nothing about what Telangana law is."
+ },
+ "external_model_calls": {
+  "groq": 0
+ },
+ "server_answer_mode": "disabled",
+ "server_llm_client": false
+}

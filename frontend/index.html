@@ -85,6 +85,9 @@
 
   .card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 18px; }
   .card.restricted{ border-color:var(--lock); background:var(--lock-soft); }
+  .card.conflict{ border-color:var(--lock); }
+  .card.conflict .tag, .card.development .tag{ color:var(--lock); }
+  .card.development{ border-style:dashed; border-color:var(--lock); }
   .card.out_of_scope, .card.unavailable, .card.no_support, .card.error{ background:var(--panel-2); }
   .card .tag{ display:inline-block; font-size:11px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); margin-bottom:4px; }
   .card.restricted .tag{ color:var(--lock); }
@@ -214,7 +217,7 @@
   const KIND_LABELS = {
     answer: 'Answer', restricted: 'Restricted', out_of_scope: 'Outside Telangana',
     unavailable: 'Knowledge base unavailable', no_support: 'Not found',
-    missing_provision: 'Not in sources', clarification: 'Clarify', error: 'Error'
+    missing_provision: 'Not in sources', clarification: 'Clarify', conflict: 'Conflicting sources', development: 'Development output (unverified)', error: 'Error'
   };
 
   function scrollDown(){ messagesEl.scrollTop = messagesEl.scrollHeight; }

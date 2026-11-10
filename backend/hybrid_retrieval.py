@@ -84,10 +84,13 @@ class BM25:
         return out
 
 
-def chunk_key(metadata) -> tuple:
-    """Identity of one stored chunk. Distinct provisions never share a key, even with similar text."""
-    m = metadata or {}
-    return (m.get("manifest_id"), m.get("provision_id"), m.get("part"), m.get("location"), m.get("sha256"))
+def chunk_key(doc) -> tuple:
+    """Identity of one stored chunk: its metadata identity plus its full text. Distinct provisions never share a
+    key, even with similar text; chunks with missing or incomplete metadata are never merged unless their text
+    is identical too. Every retrieval path reads the same stored text, so the key is stable across them."""
+    m = getattr(doc, "metadata", None) or {}
+    return (m.get("manifest_id"), m.get("provision_id"), m.get("part"), m.get("location"), m.get("sha256"),
+            m.get("source_file"), getattr(doc, "page_content", None))
 
 
 def instrument_of(manifest_id: str) -> str | None:
@@ -190,7 +193,7 @@ def reciprocal_rank_fusion(ranked_lists, k=RRF_K) -> list:
     for ranked in ranked_lists:
         seen = set()
         for rank, doc in enumerate(ranked, 1):
-            key = chunk_key(doc.metadata)
+            key = chunk_key(doc)
             if key in seen:
                 continue
             seen.add(key)

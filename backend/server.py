@@ -24,7 +24,6 @@ import time
 import unicodedata
 from pathlib import Path
 
-from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -36,13 +35,11 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaEmbeddings
 
-from backend import hybrid_retrieval, legal_approval, rag_profiles
+from backend import grounded_answer, hybrid_retrieval, legal_approval, rag_profiles, runtime_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env", override=True)
-
-if not os.environ.get("GROQ_API_KEY") or "placeholder" in os.environ.get("GROQ_API_KEY", ""):
-    raise RuntimeError("GROQ_API_KEY is missing or still a placeholder in .env")
+# .env is read only when the process environment says TG_ENVIRONMENT=development, and never overrides it.
+runtime_config.load_local_env()
 
 ASSISTANT_STATE = "Telangana"
 # A separate directory and collection: the shared multi-state index is never read or modified here.
@@ -52,6 +49,47 @@ TG_DB_DIR = Path(os.environ.get("TG_DB_DIR", BASE_DIR / "chroma_telangana_db"))
 
 def env_flag(name: str) -> bool:
     return os.environ.get(name, "").strip().lower() in ("1", "true", "yes")
+
+
+# ---------------------------------------------------------------------------------------------------
+# Answer mode. Safe by default: with no configuration, no model is ever called and every question that passes
+# the deterministic guards gets a fixed "not available" reply.
+#   disabled      - default. No model client is even constructed.
+#   grounded      - TG_GROUNDED_ANSWERS=1. Validated, approval-gated answers (see grounded_gate_errors).
+#   legacy_dev    - TG_LEGACY_DEV_ANSWERS=1 AND TG_ENVIRONMENT=development AND a GROQ_API_KEY. Unvalidated
+#                   free text, labelled as development output. For local development only.
+#                   Rejected in staging and production. Not suitable for public legal-answer traffic: an operator
+#                   who sets these variables deliberately gets unvalidated output, labelled as such.
+#   misconfigured - an unsafe combination (both modes, dev mode outside development, dev mode without a key,
+#                   an unrecognised TG_ENVIRONMENT). Behaves like disabled; never falls back to another mode.
+# Configuration precedence and .env handling: see backend/runtime_config.py.
+# ---------------------------------------------------------------------------------------------------
+def resolve_answer_mode(grounded: bool, legacy_dev: bool, environment: str, groq_key: str) -> tuple[str, list]:
+    problems = []
+    environment = (environment or "").strip().lower()
+    if environment and environment not in runtime_config.KNOWN_ENVIRONMENTS:
+        problems.append("TG_ENVIRONMENT must be development, staging or production")
+    if grounded and legacy_dev:
+        problems.append("TG_GROUNDED_ANSWERS and TG_LEGACY_DEV_ANSWERS cannot both be enabled")
+    if legacy_dev and environment != "development":
+        problems.append("TG_LEGACY_DEV_ANSWERS requires TG_ENVIRONMENT=development")
+    if legacy_dev and (not groq_key or "placeholder" in groq_key):
+        problems.append("TG_LEGACY_DEV_ANSWERS requires a GROQ_API_KEY")
+    if problems:
+        return "misconfigured", problems
+    if grounded:
+        return "grounded", []
+    if legacy_dev:
+        return "legacy_dev", []
+    return "disabled", []
+
+
+GROUNDED_ANSWERS_ENABLED = env_flag("TG_GROUNDED_ANSWERS")
+ANSWER_MODE, ANSWER_MODE_PROBLEMS = resolve_answer_mode(
+    GROUNDED_ANSWERS_ENABLED, env_flag("TG_LEGACY_DEV_ANSWERS"), os.environ.get("TG_ENVIRONMENT", ""),
+    os.environ.get("GROQ_API_KEY", ""))
+if ANSWER_MODE_PROBLEMS:
+    logging.getLogger(__name__).error("answer mode misconfigured, all answers disabled: %s", ANSWER_MODE_PROBLEMS)
 
 
 # Legal approval comes only from a structured record transcribed from the signed approval block in
@@ -223,7 +261,8 @@ refresh_approval()
 INDEX_PROFILE = rag_profiles.profile_of_index(vector_store)
 embeddings_model.profile = INDEX_PROFILE
 
-llm = init_chat_model("openai/gpt-oss-120b", model_provider="groq")
+# The Groq client exists only in legacy development mode; in every other mode there is nothing to call.
+llm = init_chat_model("openai/gpt-oss-120b", model_provider="groq") if ANSWER_MODE == "legacy_dev" else None
 
 
 def index_ready() -> bool:
@@ -835,7 +874,9 @@ def retrieve(question: str) -> list:
             continue  # approved mode: never use a chunk whose document is not in the approval record
         if d.metadata.get("answer_eligible") is False:
             continue  # flagged at build time (e.g. unreliable table extraction): stored for review only
-        key = (d.metadata.get("source_file"), d.page_content[:80])
+        # Chunk identity, not a text prefix: chunks of one G.O. share a long title header, so a prefix key
+        # would collapse distinct paragraphs into one.
+        key = hybrid_retrieval.chunk_key(d)
         if key not in seen:
             seen.add(key)
             unique.append(d)
@@ -856,7 +897,7 @@ New message: "{message}"
 Respond with ONLY the rewritten, self-contained question - no commentary.
 """
 contextualize_prompt = ChatPromptTemplate.from_template(contextualize_template)
-contextualize_chain = contextualize_prompt | llm | StrOutputParser()
+contextualize_chain = (contextualize_prompt | llm | StrOutputParser()) if llm is not None else None
 
 
 def format_history(history: list[dict]) -> str:
@@ -870,7 +911,7 @@ def format_history(history: list[dict]) -> str:
 
 
 def contextualize_question(question: str, history: list[dict]) -> str:
-    if not history:
+    if not history or contextualize_chain is None:
         return question
     try:
         return contextualize_chain.invoke({"history": format_history(history), "message": question}).strip()
@@ -911,6 +952,90 @@ def other_places(message: str) -> list[str]:
     return found
 
 
+# ---------------------------------------------------------------------------------------------------
+# Grounded (evidence-contract) answering.
+#
+# Model-call paths in /chat (everything else - guards, retrieval, approval - is local):
+#   1. contextualize_chain (Groq): rewrites follow-ups when there is chat history.   Legacy mode only.
+#   2. strict_prompt | llm (Groq): free-text answer.                                    Legacy mode only.
+#   3. ANSWER_GENERATOR.generate: grounded answer. Defaults to DisabledGenerator (no model), and is reached only
+#      when grounded_gate_errors() is empty.
+# With TG_GROUNDED_ANSWERS on, paths 1 and 2 are unreachable: follow-ups are handled locally and deterministically.
+# With it off (the default), the legacy path is unchanged and CAN still call Groq when a key is configured.
+# ---------------------------------------------------------------------------------------------------
+EXPECTED_CORPUS_VERSION = os.environ.get("TG_EXPECTED_CORPUS_VERSION", "").strip() or None
+ANSWER_GENERATOR: grounded_answer.AnswerGenerator = grounded_answer.DisabledGenerator()
+
+GROUNDED_UNAVAILABLE_MESSAGE = (
+    "Answers from the Telangana documents aren't available yet: they need a completed legal review first. "
+    "Please check the official Telangana Transport Department sources."
+)
+DEV_OUTPUT_BANNER = ("DEVELOPMENT OUTPUT - unverified model text, not a Telangana legal answer and not legal "
+                     "advice. Do not rely on it.\n\n")
+GROUNDED_FOLLOW_UP_MESSAGE = (
+    "Please ask your full question on its own (for example, name the rule, vehicle or document) - I don't "
+    "rewrite follow-up questions in this mode."
+)
+
+
+def grounded_gate_errors() -> list[str]:
+    """Every prerequisite for grounded generation; any entry blocks it. Reads approval state, never changes it."""
+    errors = []
+    if not GROUNDED_ANSWERS_ENABLED or ANSWER_MODE != "grounded":
+        errors.append("grounded answers are not enabled")
+    if TRUSTED_KEYS_FILE is None:
+        errors.append("no trusted signing keys configured")
+    if CORPUS_DIR is None:
+        errors.append("no corpus directory configured, so source files are not hash-checked")
+    status = APPROVAL
+    record = status.record
+    if status.state != "valid" or record is None:
+        errors.append(f"legal approval is {status.state}")
+    else:
+        if record.unresolved_conditions:
+            errors.append("approval has unresolved conditions")
+        if not record.general_answers_approved:
+            errors.append("general answers are not approved")
+        if record.penalty_answers_approved:
+            errors.append("penalty approval must stay off while grounded answers are in use")
+        if EXPECTED_CORPUS_VERSION is None or record.corpus_version != EXPECTED_CORPUS_VERSION:
+            errors.append("approved corpus version does not match the expected corpus version")
+    if not KB_APPROVED:
+        errors.append("knowledge base is not approved")
+    if PENALTY_ANSWERS_ENABLED:
+        errors.append("penalty answers are enabled")
+    return errors
+
+
+def grounded_answer_question(question: str, history: list[dict], session_id: str = "") -> dict:
+    """Grounded mode. No legacy model call can happen here: the only model entry point is ANSWER_GENERATOR,
+    after every approval prerequisite has passed."""
+    gate = grounded_gate_errors()
+    if gate:
+        logging.getLogger(__name__).info("grounded answers blocked: %s", gate)
+        return {"kind": "unavailable", "answer": GROUNDED_UNAVAILABLE_MESSAGE, "sources": [], "question": question}
+    if history and is_vague_follow_up(question):
+        # Deterministic: a context-dependent follow-up is not rewritten by a model; the user restates it.
+        return {"kind": "clarification", "answer": GROUNDED_FOLLOW_UP_MESSAGE, "sources": [], "question": question}
+    reason = penalty_lock_reason(question)  # penalties stay locked in grounded mode, whatever the approval says
+    if reason:
+        log_lock("grounded_question", reason, session_id, question)
+        return {"kind": "restricted", "answer": PENALTY_LOCKED_MESSAGE, "sources": [], "question": question,
+                "lock_reason": reason}
+    docs = [d for d in retrieve(question) if chunk_hash(d.metadata) in SOURCES]  # approved documents only
+    result = grounded_answer.answer(question, docs, ANSWER_GENERATOR, penalty_reason=answer_drift_reason)
+    if result.errors:
+        logging.getLogger(__name__).warning("grounded answer %s: %s", result.contract.request_id, result.errors)
+    kind = {"answer": "answer", "conflict": "conflict", "clarification": "clarification"}.get(result.kind,
+                                                                                               "no_support")
+    text = result.text if kind != "no_support" else NO_SUPPORT_MESSAGE
+    if kind in ("answer", "conflict"):  # [n] markers refer to these backend-built labels, never model-written ones
+        text += "\n\nCited:\n" + "\n".join(f"[{n}] {grounded_answer.citation_label(e)}"
+                                         for n, e in enumerate(result.cited, 1))
+    sources = source_entries(result.cited_docs) if kind in ("answer", "conflict") else []
+    return {"kind": kind, "answer": text, "sources": sources, "question": question}
+
+
 def answer_question(question: str, history: list[dict], session_id: str = "") -> dict:
     """Returns {"kind", "answer", "sources", "question", "lock_reason"}; "question" is what was retrieved/answered.
 
@@ -922,6 +1047,11 @@ def answer_question(question: str, history: list[dict], session_id: str = "") ->
         return {"kind": "restricted", "answer": PENALTY_LOCKED_MESSAGE, "sources": [], "question": standalone_question,
                 "lock_reason": reason}
 
+    if ANSWER_MODE == "grounded":
+        return grounded_answer_question(question, history, session_id)  # never reaches the legacy model calls
+    if ANSWER_MODE != "legacy_dev":
+        # disabled or misconfigured: no model call, no fallback to another mode
+        return {"kind": "unavailable", "answer": GROUNDED_UNAVAILABLE_MESSAGE, "sources": [], "question": question}
     standalone_question = contextualize_question(question, history)
     if not PENALTY_ANSWERS_ENABLED:
         # A follow-up like "and for a bike?" can turn into a penalty question once rewritten.
@@ -939,7 +1069,9 @@ def answer_question(question: str, history: list[dict], session_id: str = "") ->
         reason = answer_drift_reason(answer)
         if reason:
             return locked("answer_drift", reason, answer)
-    return {"kind": "answer", "answer": answer, "sources": source_entries(docs), "question": standalone_question}
+    # Development output only: unvalidated model text, never presented as a Telangana legal answer.
+    return {"kind": "development", "answer": DEV_OUTPUT_BANNER + answer, "sources": source_entries(docs),
+            "question": standalone_question}
 
 
 # Session state is in-memory only (fine for a single local dev server).
@@ -963,7 +1095,7 @@ class Source(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
-    kind: str  # answer | no_support | restricted | out_of_scope | unavailable | missing_provision | clarification
+    kind: str  # answer | conflict | development | no_support | restricted | out_of_scope | unavailable | missing_provision | clarification
     sources: list[Source] = []
     kb_approved: bool
 
@@ -1017,10 +1149,10 @@ def chat(req: ChatRequest):
     except Exception:
         raise HTTPException(status_code=503, detail=PROVIDER_ERROR)
     session["last_locked"] = result["kind"] == "restricted"
-    if result["kind"] == "answer":
+    if result["kind"] in ("answer", "conflict", "development"):
         session["history"].append({"question": result["question"], "answer": result["answer"]})
         session["history"] = session["history"][-MAX_HISTORY_TURNS:]
-        return reply("answer", with_penalty_note(result["answer"]), result["sources"])
+        return reply(result["kind"], with_penalty_note(result["answer"]), result["sources"])
     return reply(result["kind"], result["answer"])
 
 
@@ -1044,6 +1176,7 @@ def status():
         "kb_approved": KB_APPROVED,
         "legal_review": "approved" if KB_APPROVED else "pending",
         "penalty_answers": PENALTY_ANSWERS_ENABLED,
+        "answer_mode": ANSWER_MODE,
         # No reviewer details here; problems are technical descriptions only.
         "approval": APPROVAL.state,
         "approval_errors": APPROVAL.errors,
