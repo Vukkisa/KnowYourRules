@@ -1,0 +1,947 @@
+{
+ "schema_version": 1,
+ "name": "KnowYourRules controlled real-model evaluation cases",
+ "status": "SYNTHETIC. Every passage is invented test text from eval/answer-quality/fixtures.json, not a Telangana legal provision. Expected behaviour is derived only from what each synthetic passage says. Results on these cases do not measure legal correctness on real Telangana provisions.",
+ "passages_file": "eval/answer-quality/fixtures.json",
+ "passages": {
+  "fictional_stamp_must": {
+   "manifest_id": "synthetic-fictional-registry",
+   "provision_id": "Fictional Clause A",
+   "text": "Synthetic Clause A, fictional test text. The keeper of a test registry shall stamp the test card in blue ink.",
+   "note": "Fictional test text written for this evaluation. Not legislation and not representative of any law."
+  },
+  "fictional_stamp_must_not": {
+   "manifest_id": "synthetic-fictional-registry",
+   "provision_id": "Fictional Clause B",
+   "text": "Synthetic Clause B, fictional test text. The keeper of a test registry shall not stamp the test card in blue ink.",
+   "note": "Fictional test text written for this evaluation. Not legislation and not representative of any law."
+  }
+ },
+ "sample_mock_responses_note": "Hand-written illustrative responses used only for the sample report and mocked tests. They are not model output.",
+ "cases": [
+  {
+   "id": "RG-01",
+   "purpose": "direct_conflict",
+   "question": "Must the keeper of a test registry stamp the test card in blue ink?",
+   "history": [],
+   "evidence": [
+    "fictional_stamp_must",
+    "fictional_stamp_must_not"
+   ],
+   "expected": {
+    "outcomes": [
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "blue ink",
+      "source": "E1",
+      "kind": "content"
+     },
+     {
+      "text": "shall not stamp",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "Fictional pair: E1 and E2 have the same actor (the keeper of a test registry), the same action and object (stamp the test card in blue ink) and no condition or scope limit; E1 requires it and E2 prohibits it, and neither says it prevails. The instructions (rule 9) require 'conflicting', one claim per side citing its own passage; an answer that picks one side is not acceptable."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "The keeper of a test registry shall stamp the test card in blue ink.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "The keeper of a test registry shall stamp the test card in blue ink.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    },
+    {
+     "answer": "The keeper of a test registry shall stamp the test card in blue ink. The keeper of a test registry shall not stamp the test card in blue ink.",
+     "evidence_sufficiency": "conflicting",
+     "claims": [
+      {
+       "text": "The keeper of a test registry shall stamp the test card in blue ink.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      },
+      {
+       "text": "The keeper of a test registry shall not stamp the test card in blue ink.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E2"
+       ]
+      }
+     ],
+     "citations": [
+      "E1",
+      "E2"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-02",
+   "purpose": "rule_with_specific_exemption",
+   "question": "Must riders wear helmets on rural roads?",
+   "history": [],
+   "evidence": [
+    "helmet",
+    "rural"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "rural roads",
+      "source": "E2",
+      "kind": "content"
+     },
+     {
+      "text": "exempt",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E2 is the passage on rural roads (an exemption); E1 is the general duty. An answer must state the E2 exemption; citing E1 as well is permitted, not required."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted. Riders on rural roads are exempt from protective headgear.",
+     "evidence_sufficiency": "conflicting",
+     "claims": [
+      {
+       "text": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      },
+      {
+       "text": "Riders on rural roads are exempt from protective headgear.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E2"
+       ]
+      }
+     ],
+     "citations": [
+      "E1",
+      "E2"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-03",
+   "purpose": "one_sided_omits_qualifying_evidence",
+   "question": "Is protective headgear compulsory for every rider of a two-wheeler?",
+   "history": [],
+   "evidence": [
+    "helmet",
+    "rural"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "turban",
+      "source": "E1",
+      "kind": "condition"
+     },
+     {
+      "text": "rural roads",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 states the duty with its own exception (a Sikh wearing a turban); E2 exempts riders on rural roads, which qualifies 'every rider'. A complete answer keeps the E1 exception and cites the E2 exemption."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    },
+    {
+     "answer": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-04",
+   "purpose": "condition_must_be_kept",
+   "question": "Can a learner drive a motor car?",
+   "history": [],
+   "evidence": [
+    "learner"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "licensed instructor sits beside",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits it only with the proviso that a licensed instructor sits beside the learner (instructions rule 4)."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "A learner may drive a motor car, provided that a licensed instructor sits beside the learner.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A learner may drive a motor car, provided that a licensed instructor sits beside the learner.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-05",
+   "purpose": "general_rule_with_override",
+   "question": "Can a learner drive a motor car on a national highway?",
+   "history": [],
+   "evidence": [
+    "learner",
+    "highway"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "not drive on a national highway",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E2 opens 'Notwithstanding anything in rule 305', so the synthetic text itself says E2 prevails over E1 for national highways: the passages do not conflict. Only an answer that states the E2 prohibition and cites E2 is acceptable; a 'conflicting' response, or one that omits the prohibition, ignores the override."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "A learner may drive a motor car, provided that a licensed instructor sits beside the learner. Notwithstanding anything in rule 305, a learner shall not drive on a national highway.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A learner may drive a motor car, provided that a licensed instructor sits beside the learner.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      },
+      {
+       "text": "Notwithstanding anything in rule 305, a learner shall not drive on a national highway.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E2"
+       ]
+      }
+     ],
+     "citations": [
+      "E1",
+      "E2"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-06",
+   "purpose": "condition_must_be_kept",
+   "question": "Can a school bus carry standing passengers?",
+   "history": [],
+   "evidence": [
+    "schoolbus"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "all seats are occupied",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits standing passengers only when all seats are occupied; dropping that condition changes the rule."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "A school bus may carry standing passengers.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A school bus may carry standing passengers.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-07",
+   "purpose": "exception_must_be_kept",
+   "question": "Can a goods vehicle carry passengers?",
+   "history": [],
+   "evidence": [
+    "goods"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "owner or hirer",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 prohibits passengers except the owner or hirer travelling with the goods."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-08",
+   "purpose": "one_sided_omits_qualifying_evidence",
+   "question": "Can a goods vehicle carry people?",
+   "history": [],
+   "evidence": [
+    "goods",
+    "farm"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "owner or hirer",
+      "source": "E1",
+      "kind": "condition"
+     },
+     {
+      "text": "farm labourers",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 prohibits passengers except the owner or hirer; E2 permits farm labourers with the goods. Both bear on 'people', so both must be cited."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    },
+    {
+     "answer": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. A goods vehicle may carry farm labourers with the goods.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      },
+      {
+       "text": "A goods vehicle may carry farm labourers with the goods.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E2"
+       ]
+      }
+     ],
+     "citations": [
+      "E1",
+      "E2"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-09",
+   "purpose": "condition_must_be_kept",
+   "question": "When may vehicles halt at a bus bay?",
+   "history": [],
+   "evidence": [
+    "park407"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "pick up or set down passengers",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits halting only to pick up or set down passengers."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "Vehicles may halt at a bus bay only to pick up or set down passengers.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "Vehicles may halt at a bus bay only to pick up or set down passengers.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-10",
+   "purpose": "control_no_retry",
+   "question": "Must every rider of a two-wheeler wear protective headgear?",
+   "history": [],
+   "evidence": [
+    "helmet",
+    "fasten"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "turban",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": false,
+    "justification": "E1 answers the question (with its exception). E2 (fasten securely) is complementary, not contradicting, so a correct answer citing E1 should be accepted without a retry."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      }
+     ],
+     "citations": [
+      "E1"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-11",
+   "purpose": "control_no_retry",
+   "question": "I lost my driving licence. How do I get a duplicate?",
+   "history": [],
+   "evidence": [
+    "dup16",
+    "dup18"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1",
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "Form 7",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": false,
+    "justification": "E1 says to apply to the licensing authority; E2 gives the form. Complementary steps, no conflict."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence. The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.",
+     "evidence_sufficiency": "sufficient",
+     "claims": [
+      {
+       "text": "A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      },
+      {
+       "text": "The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E2"
+       ]
+      }
+     ],
+     "citations": [
+      "E1",
+      "E2"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-12",
+   "purpose": "insufficient_evidence",
+   "question": "Do car passengers have to wear seat belts?",
+   "history": [],
+   "evidence": [
+    "helmet"
+   ],
+   "expected": {
+    "outcomes": [
+     "no_support"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": [
+      "E1"
+     ]
+    },
+    "required_phrases": [],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 concerns headgear for two-wheeler riders and says nothing about seat belts."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "",
+     "evidence_sufficiency": "insufficient",
+     "claims": [],
+     "citations": [],
+     "refusal_reason": "The passages do not mention seat belts.",
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-13",
+   "purpose": "insufficient_evidence",
+   "question": "How long is a permit valid?",
+   "history": [],
+   "evidence": [
+    "permit"
+   ],
+   "expected": {
+    "outcomes": [
+     "no_support"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": [
+      "E1"
+     ]
+    },
+    "required_phrases": [],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 says where the permit is carried and to whom it is produced; it states no validity period."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "",
+     "evidence_sufficiency": "insufficient",
+     "claims": [],
+     "citations": [],
+     "refusal_reason": "The passages do not state how long a permit is valid.",
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-14",
+   "purpose": "follow_up_restated",
+   "question": "Must riders wear helmets on rural roads as well?",
+   "history": [
+    {
+     "question": "Is a helmet compulsory on a two-wheeler?",
+     "answer": "(previous synthetic answer)"
+    }
+   ],
+   "evidence": [
+    "helmet",
+    "rural"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer",
+     "conflict"
+    ],
+    "citations": {
+     "required": [
+      "E2"
+     ],
+     "permitted": [
+      "E1",
+      "E2"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "rural roads",
+      "source": "E2",
+      "kind": "content"
+     },
+     {
+      "text": "exempt",
+      "source": "E2",
+      "kind": "content"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "Same passages and expectation as RG-02, asked as a self-contained follow-up with history. Grounded mode does not rewrite follow-ups; the restated question is answered on its own."
+   },
+   "sample_mock_responses": [
+    {
+     "answer": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted. Riders on rural roads are exempt from protective headgear.",
+     "evidence_sufficiency": "conflicting",
+     "claims": [
+      {
+       "text": "Every rider of a two-wheeler shall wear protective headgear, except a person exempted under sub-rule (2). (2) A Sikh wearing a turban is exempted.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E1"
+       ]
+      },
+      {
+       "text": "Riders on rural roads are exempt from protective headgear.",
+       "kind": "direct",
+       "evidence_ids": [
+        "E2"
+       ]
+      }
+     ],
+     "citations": [
+      "E1",
+      "E2"
+     ],
+     "refusal_reason": null,
+     "clarification_question": null
+    }
+   ]
+  },
+  {
+   "id": "RG-Z1",
+   "purpose": "vague_follow_up",
+   "question": "and for a bike?",
+   "history": [
+    {
+     "question": "Is a helmet compulsory on a two-wheeler?",
+     "answer": "(previous synthetic answer)"
+    }
+   ],
+   "evidence": [
+    "helmet"
+   ],
+   "expected": {
+    "outcomes": [
+     "clarification"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": []
+    },
+    "required_phrases": [],
+    "model_calls": 0,
+    "retry": null,
+    "justification": "Grounded mode answers a context-dependent follow-up with a fixed request to restate it, before any model call."
+   },
+   "sample_mock_responses": []
+  },
+  {
+   "id": "RG-Z2",
+   "purpose": "penalty_restriction",
+   "question": "and what is the fine?",
+   "history": [
+    {
+     "question": "Is a helmet compulsory on a two-wheeler?",
+     "answer": "(previous synthetic answer)"
+    }
+   ],
+   "evidence": [
+    "helmet"
+   ],
+   "expected": {
+    "outcomes": [
+     "restricted"
+    ],
+    "citations": {
+     "required": [],
+     "permitted": [],
+     "excluded": []
+    },
+    "required_phrases": [],
+    "model_calls": 0,
+    "retry": null,
+    "justification": "Penalty questions are locked before generation in grounded mode."
+   },
+   "sample_mock_responses": []
+  }
+ ],
+ "phrase_kinds": {
+  "condition": "an exception, proviso, condition or restriction that the source passage attaches to its statement (\"except ...\", \"provided that ...\", \"only when / only to ...\"); dropping it changes the rule",
+  "content": "the position a passage states (who, what action, what object, which modality or scope); it must appear for the answer to state that passage's position at all"
+ }
+}

@@ -1,0 +1,218 @@
+{
+ "config": {
+  "mode": "real",
+  "model": "openai/gpt-oss-120b",
+  "temperature": 0.0,
+  "seed": 7,
+  "json_mode": true,
+  "max_completion_tokens": 4096,
+  "max_calls": 1,
+  "max_total_tokens": 10000,
+  "timeout_s": 60.0,
+  "price_in_per_mtok": null,
+  "price_out_per_mtok": null,
+  "cases_file": "eval/real-model/cases.json",
+  "run_at_utc": "2026-11-10 17:40"
+ },
+ "summary": {
+  "cases_total": 1,
+  "model_cases": 1,
+  "guard_cases": 0,
+  "model_status": {
+   "completed": 1,
+   "provider_rejected_output": 0,
+   "truncated": 0,
+   "api_failed": 0,
+   "incomplete": 0,
+   "not_run": 0
+  },
+  "conditional": {
+   "scorable_model_cases": 1,
+   "expected_agreement": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "first_pass_acceptance": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "final_acceptance": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "final_accepted_substantive": 1,
+   "final_accepted_refusal": 0,
+   "retry_frequency": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "retry_success": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_correctness": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "condition_words_preserved": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "content_words_preserved": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   }
+  },
+  "overall": {
+   "achievement": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "not_achieved": {
+    "expectation_failed": 0,
+    "truncated": 0,
+    "provider_rejected_output": 0
+   },
+   "not_scorable": {
+    "infrastructure_failure": 0,
+    "incomplete": 0,
+    "not_run": 0
+   }
+  },
+  "guards": {
+   "checks": 0,
+   "passing": 0,
+   "unexpected_model_calls": 0,
+   "not_run": 0
+  },
+  "model_calls": 1,
+  "calls_by_status": {
+   "ok": 1
+  },
+  "latency_s": {
+   "mean": 1.378,
+   "median": 1.378,
+   "max": 1.378
+  },
+  "tokens": {
+   "prompt_tokens": 801,
+   "completion_tokens": 390,
+   "total_tokens": 1191
+  },
+  "calls_with_usage": 1,
+  "estimated_cost_usd": null
+ },
+ "records": [
+  {
+   "id": "RG-04",
+   "purpose": "condition_must_be_kept",
+   "question": "Can a learner drive a motor car?",
+   "history_turns": 0,
+   "status": "completed",
+   "stop_reason": null,
+   "retrieved": [
+    {
+     "id": "E1",
+     "passage": "learner",
+     "provision": "Rule 305",
+     "text": "Synthetic Rule 305. A learner may drive a motor car, provided that a licensed instructor sits beside the learner."
+    }
+   ],
+   "model_calls": 1,
+   "calls": [
+    {
+     "n": 1,
+     "prompt_chars": 3011,
+     "prompt_sha256": "a8a873f24955f0e5",
+     "estimated_tokens": 5100,
+     "latency_s": 1.378,
+     "usage": {
+      "prompt_tokens": 801,
+      "completion_tokens": 390,
+      "total_tokens": 1191
+     },
+     "status": "ok",
+     "finish_reason": "stop",
+     "model": "openai/gpt-oss-120b",
+     "response": "{\"answer\":\"A learner may drive a motor car provided that a licensed instructor sits beside the learner.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}"
+    }
+   ],
+   "first_response": "{\"answer\":\"A learner may drive a motor car provided that a licensed instructor sits beside the learner.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+   "first_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "retry_triggered": false,
+   "retry_eligibility": "not eligible: first response accepted",
+   "retry_instruction": null,
+   "second_response": null,
+   "final_validation": {
+    "accepted": true,
+    "errors": [],
+    "checks": []
+   },
+   "final_claims": [
+    "A learner may drive a motor car provided that a licensed instructor sits beside the learner."
+   ],
+   "pipeline_errors": [],
+   "outcome": "answer",
+   "server_kind": "answer",
+   "displayed": "A learner may drive a motor car provided that a licensed instructor sits beside the learner. [1]\n\nCited:\n[1] Synthetic fixture document, Rule 305 (synthetic/synthetic-tmvr#Rule 305)",
+   "final_citations": [
+    "E1"
+   ],
+   "expected": {
+    "outcomes": [
+     "answer"
+    ],
+    "citations": {
+     "required": [
+      "E1"
+     ],
+     "permitted": [
+      "E1"
+     ],
+     "excluded": []
+    },
+    "required_phrases": [
+     {
+      "text": "licensed instructor sits beside",
+      "source": "E1",
+      "kind": "condition"
+     }
+    ],
+    "model_calls": null,
+    "retry": null,
+    "justification": "E1 permits it only with the proviso that a licensed instructor sits beside the learner (instructions rule 4)."
+   },
+   "citation": {
+    "missing_required": [],
+    "outside_permitted": [],
+    "excluded_cited": [],
+    "correct": true
+   },
+   "conditions": {
+    "required": [
+     "licensed instructor sits beside"
+    ],
+    "missing": [],
+    "preserved": true
+   },
+   "content": null,
+   "legal_meaning": "not assessed (synthetic passages; manual review required for any real-text claim)",
+   "manual_review": "pending",
+   "expected_achieved": true,
+   "expected_reasons": []
+  }
+ ]
+}

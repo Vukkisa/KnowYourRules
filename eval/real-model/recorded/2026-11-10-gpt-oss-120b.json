@@ -1,0 +1,243 @@
+{
+ "schema": "kyr-recorded-responses/1",
+ "model": "openai/gpt-oss-120b",
+ "note": "Responses copied from the real-run results files listed in sources, as the runner stored them (after its key/org redaction pass; no redaction marker is present in any response marked verbatim). Not regenerated, edited or repaired.",
+ "sources": [
+  {
+   "file": "eval/real-model/results.json",
+   "sha256": "f738d42f2a7b4355291f37c7f2bcbdbdf4626f61c8499a2b0444b8b7679cc75f",
+   "run_at_utc": "2026-11-10 17:45",
+   "model": "openai/gpt-oss-120b",
+   "json_mode": true,
+   "temperature": 0.0,
+   "seed": 7
+  },
+  {
+   "file": "eval/real-model/results-part2.json",
+   "sha256": "753b1925f2b48b6aba0f445230aa76fb7e1a861983254b21c88e4b451cb8f4d7",
+   "run_at_utc": "2026-11-10 17:50",
+   "model": "openai/gpt-oss-120b",
+   "json_mode": true,
+   "temperature": 0.0,
+   "seed": 7
+  }
+ ],
+ "excluded": [
+  {
+   "case_id": "RG-08",
+   "source_file": "eval/real-model/results.json",
+   "status": "api_failed",
+   "reason": "no usable model response in this source"
+  },
+  {
+   "case_id": "RG-09",
+   "source_file": "eval/real-model/results.json",
+   "status": "api_failed",
+   "reason": "no usable model response in this source"
+  },
+  {
+   "case_id": "RG-10",
+   "source_file": "eval/real-model/results.json",
+   "status": "api_failed",
+   "reason": "no usable model response in this source"
+  }
+ ],
+ "cases": {
+  "RG-01": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"The keeper of a test registry shall stamp the test card in blue ink. [E1] The keeper of a test registry shall not stamp the test card in blue ink. [E2]\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"The keeper of a test registry shall stamp the test card in blue ink.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"The keeper of a test registry shall not stamp the test card in blue ink.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "d2762b325cfe944c55a994b10df8d6309f862d8da01a73b3ed5fdb78ebe9a483"
+    }
+   ]
+  },
+  "RG-02": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "3c7fd1f1dd17c22170c14e5d451c98c123f2c94ad584bedfc9cc98e922161ed6"
+    }
+   ]
+  },
+  "RG-03": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear. A Sikh wearing a turban is exempted. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A Sikh wearing a turban is exempted.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "c3443955572ec69b79306ddc880e4fc33904107b42715a96d14be6d7ad8a3d11"
+    }
+   ]
+  },
+  "RG-04": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "fa0d3316c0a236797b47f902de1750cc99311d45e8ad16117f9282d28c483a5e"
+    }
+   ]
+  },
+  "RG-05": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner. A learner shall not drive on a national highway.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A learner may drive a motor car, provided that a licensed instructor sits beside the learner.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A learner shall not drive on a national highway.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "4eb111412dd3405bf86273c70dbf769e4979df8be957a207bbfee0f5ec011bd2"
+    }
+   ]
+  },
+  "RG-06": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"A school bus may carry standing passengers only when all seats are occupied. [E1]\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A school bus may carry standing passengers only when all seats are occupied.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "30e6ad1b682f42c9940dfbbe6fd710a2a39c2df3fca0f3b8e4b13a16c36c6898"
+    }
+   ]
+  },
+  "RG-07": {
+   "source_file": "eval/real-model/results.json",
+   "run_at_utc": "2026-11-10 17:45",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. [E1]\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "c2d6f97c2171ef68ed8670e3288759acecaebaf47133c918512f4741149ecf81"
+    }
+   ]
+  },
+  "RG-08": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods. A goods vehicle may carry farm labourers with the goods.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"A goods vehicle shall not carry passengers, except the owner or hirer travelling with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"A goods vehicle may carry farm labourers with the goods.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "7a610703884f4bb3691136c6ed07a7c6a0f1dae98dc70f00d9ce147a7bc397ec"
+    }
+   ]
+  },
+  "RG-09": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"Vehicles may halt at a bus bay only to pick up or set down passengers.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Vehicles may halt at a bus bay only to pick up or set down passengers.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "b6bd8ee7c9c591bbd1e7bcde91095cf2786c59b84a6c809827905c52baa876f1"
+    }
+   ]
+  },
+  "RG-10": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"Every rider of a two-wheeler shall wear protective headgear, except a Sikh wearing a turban is exempted.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]}],\"citations\":[\"E1\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "a49056b52b9c627c22e7789a09350f398cde444cde7fe841f543eb5993dc1973"
+    }
+   ]
+  },
+  "RG-11": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence. The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.\",\"evidence_sufficiency\":\"sufficient\",\"claims\":[{\"text\":\"A holder who loses a driving licence shall apply to the licensing authority for a duplicate licence.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"The application for a duplicate driving licence shall be made in Form 7 with the fee specified in the Schedule.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "612fa42c348a6a04109e2922feacc575848d17ba145dd2e8b13d1629a4d22b75"
+    }
+   ]
+  },
+  "RG-12": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"\",\"evidence_sufficiency\":\"insufficient\",\"claims\":[],\"citations\":[],\"refusal_reason\":\"The evidence does not address car passenger seat belt requirements.\",\"clarification_question\":null}",
+     "sha256": "6c20dccecc91b0d7b9a425d22898225a8dcd98bf5c91a6bd5014c1088615f1bb"
+    }
+   ]
+  },
+  "RG-13": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"\",\"evidence_sufficiency\":\"insufficient\",\"claims\":[],\"citations\":[],\"refusal_reason\":\"The provided evidence does not contain any information about the duration of permit validity.\",\"clarification_question\":null}",
+     "sha256": "36f1795011d0cadc7a24af4e31b3409917b0bbaa5d3bcaadc4b36d47973f221b"
+    }
+   ]
+  },
+  "RG-14": {
+   "source_file": "eval/real-model/results-part2.json",
+   "run_at_utc": "2026-11-10 17:50",
+   "calls": [
+    {
+     "call_index": 1,
+     "status": "ok",
+     "finish_reason": "stop",
+     "verbatim": true,
+     "response": "{\"answer\":\"Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban. Riders on rural roads are exempt from protective headgear.\",\"evidence_sufficiency\":\"conflicting\",\"claims\":[{\"text\":\"Riders of a two-wheeler must wear protective headgear, except a Sikh wearing a turban.\",\"kind\":\"direct\",\"evidence_ids\":[\"E1\"]},{\"text\":\"Riders on rural roads are exempt from protective headgear.\",\"kind\":\"direct\",\"evidence_ids\":[\"E2\"]}],\"citations\":[\"E1\",\"E2\"],\"refusal_reason\":null,\"clarification_question\":null}",
+     "sha256": "b3e6364597803026180ec946bf6e9fca5f188c4be6e7cee0a598cf480503c01c"
+    }
+   ]
+  }
+ }
+}
