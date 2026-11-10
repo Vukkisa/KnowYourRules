@@ -447,7 +447,9 @@ def validate(raw, contract: EvidenceContract, *, penalty_reason: Callable[[str],
             uncited = {e.evidence_id: e.passage for e in contract.evidence if e.evidence_id not in cited_by_claims}
             for check, message in meaning_checks.check_claim(
                     _plain(c.text), c.kind, {e.evidence_id: e.passage for e in cited}, uncited,
-                    strip=strip_identifiers, definitive=s == "sufficient"):
+                    strip=strip_identifiers, definitive=s == "sufficient",
+                    siblings=tuple((_plain(o.text), tuple(o.evidence_ids)) for m, o in enumerate(a.claims, 1)
+                                   if m != n and set(o.evidence_ids) & set(c.evidence_ids))):
                 heuristic.append((check, f"claim {n}: {message}"))
         # Refusal and clarification text may repeat identifiers from the question, but nothing new.
         free_text = " ".join(x for x in (a.refusal_reason or "", a.clarification_question or ""))

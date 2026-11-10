@@ -35,7 +35,7 @@ from dataclasses import dataclass, field
 
 _I = re.IGNORECASE
 RESTATE_COVERAGE = 0.75
-QUALIFIER_CLAUSE_COVERAGE = 0.75
+QUALIFIER_CLAUSE_COVERAGE = 1.0  # a claim's own qualifier clause keeps every content word (was 0.75)
 CLAIM_SHARE = 0.25
 CONFLICT_MIN_SHARED = 3
 CONFLICT_SHARED_RATIO = 0.5
@@ -530,11 +530,135 @@ _OPPOSED = {frozenset({"prohibition", "obligation"}), frozenset({"prohibition", 
             frozenset({"obligation", "negated"})}  # "shall wear" vs "need not wear"
 
 
-def check_claim(claim_text: str, kind: str, cited: dict, uncited: dict, *, strip, definitive: bool) -> list:
+# A qualifier clause that names a sub-rule, clause or sub-section ("except a person exempted under sub-rule (2)"),
+# and the sentence of the SAME passage that opens with that number ("(2) A Sikh wearing a turban is exempted.").
+_XREF_RE = re.compile(r"\b(?:sub-?\s*rules?|sub-?\s*sections?|clauses?|items?)\s*\(\s*([0-9a-z]{1,4})\s*\)", _I)
+
+
+def _inside_quotes(text: str, pos: int) -> bool:
+    before = text[:pos]
+    return before.count("\u201c") > before.count("\u201d") or before.count('"') % 2 == 1
+
+
+def _safe_referent(text: str) -> bool:
+    """A referent that can stand in for its reference only when it states a plain, unconditional position: no
+    negation or modal (a negated or discretionary exemption is a different rule), no condition or exception of
+    its own, and no value (a value omitted from the claim would not be detected)."""
+    main = re.sub(r"^\s*\(\s*[0-9a-z]{1,4}\s*\)", " ", text, flags=_I)
+    return deontic(main) == "plain" and not (_markers(main) & set(CLAUSE_MARKERS)) and not quantities(main)
+
+
+def _cross_references(raw: str, passage_sentences: list, strip) -> tuple:
+    """({marker: [referent text (identifier-stripped)]}, {markers whose clause holds a reference}).
+
+    Read from the raw sentence: identifier stripping removes "sub-rule (2)". A reference counts only inside its
+    qualifier clause (from the marker to the clause end) and outside quotation marks. A marker is resolved only if
+    EVERY reference in its clause resolves to exactly one sentence of the same passage that opens with that number
+    and states a safe referent; otherwise it stays unresolved (the original checks apply unchanged)."""
+    resolved, pointers = {}, set()
+    for m in _CLAUSE_START.finditer(raw):
+        marker = next((k for k in CLAUSE_MARKERS if _MARKER_RES[k].match(m.group(0))), None)
+        end = _CLAUSE_END.search(raw, m.end())
+        refs = [x for x in _XREF_RE.finditer(raw, m.end(), end.start() if end else len(raw))
+                if not _inside_quotes(raw, x.start())]
+        if not refs or marker is None:
+            continue
+        pointers.add(marker)
+        texts = []
+        for x in refs:
+            num = re.escape(x.group(1))
+            hits = [t for t in passage_sentences if t is not raw and re.match(rf"\s*\(\s*{num}\s*\)", t, _I)]
+            if len(hits) != 1 or not _safe_referent(hits[0]):
+                texts = None  # missing, duplicated or conditional referent: do not resolve this clause
+                break
+            texts.append(strip(hits[0]))
+        if texts:
+            resolved.setdefault(marker, []).extend(texts)
+    return resolved, pointers
+
+
+def _referent_words(text: str) -> set:
+    """What a referent sentence says, without its exemption predicate ("... is exempted"): an "except" clause
+    already expresses the exemption."""
+    return words(text) - words(" ".join(_EXEMPT_RE.findall(text)))
+
+
+def _covers_all(have: set, need: set) -> bool:
+    """Every content word: a stated exception or condition stands in for another only when nothing is left out
+    (no 75% allowance here; it would let a place, actor or object of the exception drop)."""
+    return bool(need) and need <= have
+
+
+def _negations(text: str) -> int:
+    return len(_NEG_RE.findall(_BOUND_RE.sub(" ", text or ""))) % 2
+
+
+_DOUBLED_END = re.compile(r"([b-df-hj-np-tv-z])\1$")
+
+
+def _inflection_free(ws: set) -> set:
+    """Stems with a doubled final consonant collapsed ("travell" from "travelling" -> "travel", as from "travels"),
+    used only where a qualifier clause must be kept word for word: an inflection is not an omission."""
+    return {_DOUBLED_END.sub(r"\1", w) for w in ws}
+
+
+_PRONOUN_RE = re.compile(r"\b(?:he|him|his|she|her|it|its|they|them|their)\b", _I)
+_PLURAL_PRONOUNS = frozenset({"they", "them", "their"})
+
+
+def _rule_subject_head(text: str) -> "tuple | None":
+    """(stem, plural) of the head word of a sentence's rule-subject: the last content word before the first
+    preposition, in the text before the main clause's modal or verb anchor ("Every learner shall" -> learner;
+    "A goods vehicle shall" -> vehicle; "Every rider of a two-wheeler shall" -> rider). None when there is no
+    subject before the anchor (a sentence that opens with its qualifier, a heading)."""
+    main = _split_qualifiers(text)[0]
+    if _CLAUSE_START.match(text.strip()):
+        return None
+    m = _ANCHOR_RE.search(main)
+    if not m:
+        return None
+    head = None
+    for t in re.findall(r"[A-Za-z][A-Za-z'-]*", main[:m.start()]):
+        low = t.lower()
+        if low in _PREPOSITIONS:
+            break
+        if low not in _FUNCTION and len(low) > 1:
+            head = low
+    if head is None:
+        return None
+    return stem(head), head.endswith("s") and not head.endswith("ss")
+
+
+def _subject_pronoun_accounts_for(missing: set, source_text: str, claim_clause: str) -> bool:
+    """The only allowance to full coverage of a claim's own qualifier clause: the single missing word is the head
+    of the source's rule-subject and the claim's clause refers to it with exactly one pronoun that agrees in
+    number ("... sits beside the learner" -> "... sits beside them"). Nothing else (objects, eligibility, actor
+    characteristics, time, place, values) can be excused."""
+    head = _rule_subject_head(source_text)
+    pronouns = [x.lower() for x in _PRONOUN_RE.findall(claim_clause or "")]
+    if head is None or missing != {head[0]} or len(pronouns) != 1 or pronouns[0] in ("it", "its"):
+        return False  # "it"/"its" may name a thing in the clause (the vehicle), not the rule-subject
+    return pronouns[0] in _PLURAL_PRONOUNS if head[1] else True
+
+
+def check_claim(claim_text: str, kind: str, cited: dict, uncited: dict, *, strip, definitive: bool,
+                siblings: tuple = ()) -> list:
     """cited/uncited: {evidence_id: passage text}. strip: removes legal identifiers (rule numbers, dates ...) so
-    their digits are not read as quantities. definitive: the response claims sufficiency (not a conflict)."""
+    their digits are not read as quantities. definitive: the response claims sufficiency (not a conflict).
+    siblings: ((text, evidence IDs), ...) - the other claims of the same answer. A qualifier is not omitted when a
+    sibling that cites the qualifier's own passage states all of it with the same negation (the user sees every
+    claim); a clause that only points to a sub-rule must be stated by its referent."""
     findings = []
-    ev = [analyse(i, strip(s)) for i, p in cited.items() for s in sentences(p)]
+    ev, xrefs, pointer_markers = [], {}, {}
+    for i, p in cited.items():
+        raw_sentences = sentences(p)
+        for raw in raw_sentences:
+            a = analyse(i, strip(raw))
+            ev.append(a)
+            refs, pointers = _cross_references(raw, raw_sentences, strip)
+            xrefs[id(a)] = {k: [(_referent_words(t), t) for t in v] for k, v in refs.items()}
+            pointer_markers[id(a)] = pointers
+    sibs = [(strip(t), frozenset(ids)) for t, ids in siblings]
     for cs in sentences(claim_text) or [claim_text]:
         c = analyse("claim", strip(cs))
         cw = words(c.text)
@@ -558,15 +682,43 @@ def check_claim(claim_text: str, kind: str, cited: dict, uncited: dict, *, strip
                              f"'{'/'.join(sorted({s.deontic for s in anchors}))}' (negation or modality changed)"))
         if c.exempt and not any(s.exempt for s in anchors):
             findings.append(("exemption", "claim adds an exemption the cited sentence does not state"))
-        if restated and not c.exempt and any(s.main_exempt for s in restated):
+        # a restated exemption sentence is not dropped when it is the referent of a kept qualifier whose referents
+        # the claim states in full
+        covered_texts = {t for s in restated for k, refs in xrefs.get(id(s), {}).items()
+                         if k in c.markers and all(_covers_all(c.qualifier_words.get(k, set()), rw) for rw, _t in refs)
+                         for _rw, t in refs}
+        if restated and not c.exempt and any(s.main_exempt and s.text not in covered_texts for s in restated):
             findings.append(("exemption", "claim drops an exemption stated by the cited sentence"))
-        # qualifiers
+        # qualifiers. A kept qualifier is compared with the claim's OWN clause for that marker: words elsewhere in
+        # the claim (its main clause) never fill in a word dropped from the clause.
+        claim_clauses = _split_qualifiers(c.text)[1]
         for s in restated:
             for marker, qwords in s.qualifier_words.items():
+                clause_have = _inflection_free(c.qualifier_words.get(marker, set()))
+                missing = _inflection_free(qwords) - clause_have
+                clause_text = _split_qualifiers(s.text)[1].get(marker, "")
+                referents = xrefs.get(id(s), {}).get(marker, [])
                 if marker not in c.markers:
-                    findings.append(("qualifier_omitted", f"claim omits the '{marker}' qualifier of the sentence it "
-                                     "restates"))
-                elif qwords and len(cw & qwords) < QUALIFIER_CLAUSE_COVERAGE * len(qwords):
+                    # stated by another claim citing this passage: the whole clause, or (for a clause that only
+                    # points to a sub-rule) every referent in full, with the same negation as its source
+                    if marker in pointer_markers.get(id(s), set()):
+                        stated = bool(referents) and any(
+                            s.evidence_id in ids and all(_covers_all(words(t), rw) and _negations(t) == _negations(rt)
+                                                         for rw, rt in referents)
+                            for t, ids in sibs)
+                    else:
+                        stated = any(s.evidence_id in ids and _covers_all(words(t), qwords)
+                                     and _negations(t) == _negations(clause_text) for t, ids in sibs)
+                    if not stated:
+                        findings.append(("qualifier_omitted", f"claim omits the '{marker}' qualifier of the sentence "
+                                         "it restates"))
+                elif qwords and len(clause_have & _inflection_free(qwords)) < \
+                        QUALIFIER_CLAUSE_COVERAGE * len(_inflection_free(qwords)) \
+                        and not _subject_pronoun_accounts_for(missing, s.text, claim_clauses.get(marker, "")) \
+                        and not (referents and all(_covers_all(c.qualifier_words.get(marker, set()), rw)
+                                                   for rw, _t in referents)
+                                 and all(_negations(_split_qualifiers(c.text)[1].get(marker, "")) == _negations(rt)
+                                         for _rw, rt in referents)):
                     findings.append(("qualifier_altered", f"claim keeps '{marker}' but changes its clause"))
             for marker in ("before", "after"):
                 if marker in s.markers and marker not in c.markers:
