@@ -56,6 +56,22 @@ PROVISION_PATTERNS = [
 ]
 
 
+# A heading written without the full stop after its number ("186 (1) Title :-", "295-A . Title:-", "12-B : -",
+# "13 Title : -"). Accepted only when the line also carries the ":-" heading terminator and the number is the
+# next one in sequence (see segment), so measurements ("408 Cms. to 432 Cms") and list items cannot match.
+UNPUNCTUATED_HEADING_RE = re.compile(
+    r"^\s*(?P<num>\d{1,3})(?:\s*-\s*(?P<suffix>[A-Z]))?\s*\.?\s*(?:\(1\)\s*)?"
+    r"(?P<title>(?:[A-Z][^:]{0,150}?)?)\s*:\s*[-\u2013\u2014]")
+
+
+def _next_in_sequence(key, last_key) -> bool:
+    """186 after 185, 295A after 295, 12B after 12A, 13 after 12B."""
+    if last_key is None:
+        return False
+    (n, s), (ln, ls) = key, last_key
+    return (n == ln + 1 and s == "") or (n == ln and len(s) == 1 and s == (chr(ord(ls) + 1) if ls else "A"))
+
+
 def match_provision(line: str):
     """(prefix, number, title) if the line opens a numbered provision, else None."""
     for pattern in PROVISION_PATTERNS:
@@ -398,6 +414,10 @@ def segment(blocks, document_type: str) -> list[Provision]:
             provisions.append(current)
             continue
         found = match_provision(first) if b.kind == "text" else None
+        if (not found and b.kind == "text" and document_type != "G.O." and current.kind not in ("Schedule", "Form")
+                and (u := UNPUNCTUATED_HEADING_RE.match(first))
+                and _next_in_sequence(_number_key(u["num"] + (u["suffix"] or "")), last_key)):
+            found = (None, u["num"] + (u["suffix"] or ""), u["title"] or "")
         if found and document_type == "G.O." and found[0]:
             found = None  # a G.O.'s own paragraphs are bare numbers; "Rule 167A(1) of ..." is a citation
         if found and current.kind not in ("Schedule", "Form"):
