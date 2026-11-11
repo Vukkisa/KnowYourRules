@@ -35,7 +35,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaEmbeddings
 
-from backend import grounded_answer, hybrid_retrieval, legal_approval, rag_profiles, runtime_config
+from backend import exact_vector, grounded_answer, hybrid_retrieval, legal_approval, rag_profiles, runtime_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # .env is read only when the process environment says TG_ENVIRONMENT=development, and never overrides it.
@@ -854,13 +854,43 @@ def relevant_docs(results) -> list:
     return kept
 
 
+# Vector search: "exact" ranks every stored chunk by the collection's own squared-L2 distance, with chunk id as
+# tie-breaker, so identical stored data always gives identical results. "hnsw" keeps Chroma's approximate
+# index, shown in Stage 15 to miss true nearest neighbours and to vary between opens of identical copies.
+# RAG_VECTOR_SEARCH=hnsw is the explicit fallback; exact also falls back if its snapshot cannot be built.
+VECTOR_SEARCH = os.environ.get("RAG_VECTOR_SEARCH", "exact").strip().lower()
+if VECTOR_SEARCH not in ("exact", "hnsw"):
+    VECTOR_SEARCH = "exact"
+
+
+def _build_exact_index():
+    if VECTOR_SEARCH != "exact" or vector_store is None:
+        return None
+    try:
+        return exact_vector.ExactVectorIndex.from_store(vector_store)
+    except Exception:
+        return None
+
+
+EXACT_INDEX = _build_exact_index()
+
+
+def vector_search(question: str) -> list:
+    """(Document, squared-L2 distance) pairs, Telangana only; exact when available, otherwise Chroma's HNSW."""
+    where = {"state": ASSISTANT_STATE}
+    if EXACT_INDEX is not None:
+        try:
+            return EXACT_INDEX.similarity_search_with_score(question, k=RETRIEVE_K, filter=where)
+        except ValueError:
+            pass
+    return vector_store.similarity_search_with_score(question, k=RETRIEVE_K, filter=where)
+
+
 def retrieve(question: str) -> list:
     """Telangana-only retrieval: always filtered to state=Telangana, never Central or other states."""
     if vector_store is None:
         return []
-    docs = relevant_docs(
-        vector_store.similarity_search_with_score(question, k=RETRIEVE_K, filter={"state": ASSISTANT_STATE})
-    )
+    docs = relevant_docs(vector_search(question))
     if RETRIEVAL_MODE == "hybrid" and LEXICAL_INDEX is not None:
         lookup = provision_lookup(question)
         # Every candidate, whichever list it came from, goes through the same filters below.
