@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "jurisdiction": "Telangana",
+  "note": "Text status of each source, bound to its SHA-256. Independent of legal approval. Only a human reviewer may set verified_current, with a complete review block.",
+  "entries": [
+    {
+      "manifest_id": "tmvr-1989-chap-1",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-1.htm",
+      "sha256": "977a89529881d166fc391ba37a3aeda6845bb7e3ff190e4f15caf4ad3fd98108",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-1.htm",
+          "sha256": "977a89529881d166fc391ba37a3aeda6845bb7e3ff190e4f15caf4ad3fd98108",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-2",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-2.htm",
+      "sha256": "08e13e074d928a5fc86f63e02a8984382d770a25ecea82579c631694b5503149",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-2.htm",
+          "sha256": "08e13e074d928a5fc86f63e02a8984382d770a25ecea82579c631694b5503149",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-3",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-3.htm",
+      "sha256": "968e1b246ea425f830c218c4ece6601ebcfc1f889c0d036d40112fd81e1be24c",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-3.htm",
+          "sha256": "968e1b246ea425f830c218c4ece6601ebcfc1f889c0d036d40112fd81e1be24c",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-4",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+      "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+          "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": [
+        {
+          "provision_id": "Rule 81",
+          "status": "known_amendments_unresolved",
+          "related_instruments": [
+            "G.O.Ms.No. 77, TR&B, 15-11-2025"
+          ],
+          "decision_refs": [
+            "LD-001",
+            "LD-002"
+          ],
+          "evidence": [
+            {
+              "file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+              "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba",
+              "note": "Rule 81 web snapshot, as-amended date unknown"
+            },
+            {
+              "file": "goir/2025TRB_Ms77.pdf",
+              "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71",
+              "note": "omits Rule 81(1),(2),(4) and substitutes (3),(5),(6); no commencement clause; Gazette copy not held"
+            }
+          ],
+          "assigned_by": "assistant, Stage 25: recorded fact from Stages 19-22 (G.O. 77 held; commencement and consolidated text unverified); not a legal decision",
+          "review": {
+            "reviewer": null,
+            "review_date": null,
+            "decision": null,
+            "rationale": null
+          }
+        }
+      ]
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-5",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-5.htm",
+      "sha256": "61f019808cb69abb6bb4b1c17b91a5687e2d2f323d15af1c4d5e9beb3d502a52",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-5.htm",
+          "sha256": "61f019808cb69abb6bb4b1c17b91a5687e2d2f323d15af1c4d5e9beb3d502a52",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-6",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-6.htm",
+      "sha256": "53d1f93beb379d501a76aec101108f4c396b505dac6826a03a52a2ade66f7bb4",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-6.htm",
+          "sha256": "53d1f93beb379d501a76aec101108f4c396b505dac6826a03a52a2ade66f7bb4",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-7",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-7.htm",
+      "sha256": "a29464d004db4cc84d2aad756268640b636c5fbcf116f263f6548e86b3d61139",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-7.htm",
+          "sha256": "a29464d004db4cc84d2aad756268640b636c5fbcf116f263f6548e86b3d61139",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-8",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-8.htm",
+      "sha256": "f86f82fd3f240aa4895674d79428578baf093facd6e58f5d20b43deddfd0c201",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-8.htm",
+          "sha256": "f86f82fd3f240aa4895674d79428578baf093facd6e58f5d20b43deddfd0c201",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-9",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-9.htm",
+      "sha256": "bb99e00241e40bfa7f642535c48373421e56d9fec9092f23a299a184c675dfc4",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-9.htm",
+          "sha256": "bb99e00241e40bfa7f642535c48373421e56d9fec9092f23a299a184c675dfc4",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-10",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-10.htm",
+      "sha256": "3ec9f467e0ea62af6520de3ee26ad4f32c53722c2ff2ba67c46a79ee3d091925",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-10.htm",
+          "sha256": "3ec9f467e0ea62af6520de3ee26ad4f32c53722c2ff2ba67c46a79ee3d091925",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-11",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-11.htm",
+      "sha256": "168867c0093a17ba8117283e512fd20ce6b57104f3722d4ea163a54b21ed91ec",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-11.htm",
+          "sha256": "168867c0093a17ba8117283e512fd20ce6b57104f3722d4ea163a54b21ed91ec",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvr-1989-chap-12",
+      "file": "html-snapshots/tmvr-1989/middle-main-chap-12.htm",
+      "sha256": "9fa4fcb57db09b2705a7283678a7708a26e1b6639e6268a058d87998adbf1b91",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Rules, 1989",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvr-1989/middle-main-chap-12.htm",
+          "sha256": "9fa4fcb57db09b2705a7283678a7708a26e1b6639e6268a058d87998adbf1b91",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "tmvtr-1963",
+      "file": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm",
+      "sha256": "d7f805041083683044d203a942d3223894f51526389ecd5b4d67e76344e5d291",
+      "status": "unverified_snapshot",
+      "label": "Telangana Motor Vehicles Taxation Rules, 1963",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm",
+          "sha256": "d7f805041083683044d203a942d3223894f51526389ecd5b4d67e76344e5d291",
+          "note": "DRAFT-telangana-manifest.json source_class=unverified_snapshot; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-53-2025-trb",
+      "file": "goir/13082025TRB_MS53.PDF",
+      "sha256": "a93f8daa6865eccd2ee646494c10883d98fb0e7c99d3a0f4c64dffe803c15c18",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification, G.O.Ms.No. 53",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/13082025TRB_MS53.PDF",
+          "sha256": "a93f8daa6865eccd2ee646494c10883d98fb0e7c99d3a0f4c64dffe803c15c18",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-77-2025-trb",
+      "file": "goir/2025TRB_Ms77.pdf",
+      "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/2025TRB_Ms77.pdf",
+          "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-10-2026-trb",
+      "file": "goir/2026TRB_Ms10.pdf",
+      "sha256": "df0ee9357b05ca4db9a187481ff2c8ac50c4a9d2ca05f91800e9bc4161f8c5fd",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Act No.8 of 2026 (the Telangana Motor Vehicles Taxation (Amendment) Act, 2026) - Date of commencement of the Act - Notification, G.O.Ms.No. 10",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/2026TRB_Ms10.pdf",
+          "sha256": "df0ee9357b05ca4db9a187481ff2c8ac50c4a9d2ca05f91800e9bc4161f8c5fd",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-16-2026-trb",
+      "file": "goir/2026TRB_Ms16.pdf",
+      "sha256": "139f96454954a4b77b3f07a796946827c29a81754f9a782e3e25dd5dfc76e0d5",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Amendment to the Seventh Schedule under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) - Notification, G.O.Ms.No. 16",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/2026TRB_Ms16.pdf",
+          "sha256": "139f96454954a4b77b3f07a796946827c29a81754f9a782e3e25dd5dfc76e0d5",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-24-2026-trb",
+      "file": "goir/2026TRB_Ms24.pdf",
+      "sha256": "ba0c9516575ed081181da4288c1395a19ad416bc9e9981c56f65b522b7007905",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Challans under Rule 167 of the Central Motor Vehicles Rules, 1989, as amended vide G.S.R. 48(E) dated 20-01-2026 - Authorities for disposal of Challans - Notification, G.O.Ms.No. 24",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/2026TRB_Ms24.pdf",
+          "sha256": "ba0c9516575ed081181da4288c1395a19ad416bc9e9981c56f65b522b7007905",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-25-2026-trb",
+      "file": "goir/2026TRB_Ms25.pdf",
+      "sha256": "c9bd1ff3a7e02a3c5324965835dd81ddea9f30df831adf0cb4387f8d3f374872",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification, G.O.Ms.No. 25",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/2026TRB_Ms25.pdf",
+          "sha256": "c9bd1ff3a7e02a3c5324965835dd81ddea9f30df831adf0cb4387f8d3f374872",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "go-ms-32-2026-trb",
+      "file": "goir/2026TRB_Ms32.pdf",
+      "sha256": "4bb6273f8c13c08d7e15a64ad063c4ad868beaf527c469c6f1975b71a57f8629",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989, G.O.Ms.No. 32",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "goir/2026TRB_Ms32.pdf",
+          "sha256": "4bb6273f8c13c08d7e15a64ad063c4ad868beaf527c469c6f1975b71a57f8629",
+          "note": "DRAFT-telangana-manifest.json source_class=official; SHA256SUMS"
+        }
+      ],
+      "assigned_by": "assistant, Stage 25: conservative default derived from the draft manifest source_class; not a legal decision",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    }
+  ]
+}

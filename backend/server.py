@@ -33,9 +33,11 @@ from langchain.chat_models import init_chat_model
 from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.documents import Document
 from langchain_ollama import OllamaEmbeddings
 
-from backend import exact_vector, grounded_answer, hybrid_retrieval, legal_approval, rag_profiles, runtime_config
+from backend import (exact_vector, grounded_answer, hybrid_retrieval, legal_approval, rag_profiles, runtime_config,
+                     source_status)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # .env is read only when the process environment says TG_ENVIRONMENT=development, and never overrides it.
@@ -165,6 +167,10 @@ PENALTY_ANSWERS_ENABLED = False
 # Filled only from a valid approval record; empty otherwise, so every source is labelled unverified.
 # VERIFIED status comes only from chunk metadata matched here; nothing the model writes can set it.
 SOURCES: dict[str, tuple[str, str]] = {}
+# Stage 25: text status of each source (legal-status/source-status.json), independent of approval. Reloaded with
+# the approval; a signed record must name this file's SHA-256 (source_status_sha256) or the approval is invalid.
+SOURCE_STATUS_FILE = Path(os.environ.get("TG_SOURCE_STATUS_FILE", BASE_DIR / "legal-status" / "source-status.json"))
+SOURCE_STATUS = source_status.Registry("absent", ["not loaded"])
 _FINGERPRINT = None
 _LAST_FULL_CHECK = 0.0
 
@@ -204,6 +210,7 @@ def approval_fingerprint():
         _small_file_digest(APPROVAL_FILE),
         _small_file_digest(legal_approval.signature_path(APPROVAL_FILE)),
         _small_file_digest(TRUSTED_KEYS_FILE),
+        _small_file_digest(SOURCE_STATUS_FILE),
         _index_fingerprint(),
         _corpus_fingerprint(),
     )
@@ -225,7 +232,26 @@ def _full_validation():
             return legal_approval.ApprovalStatus("invalid", ["the Telangana index is not ready"])
         return legal_approval.ApprovalStatus("absent")
     return legal_approval.evaluate(APPROVAL_FILE, index_metadatas(vector_store),
-                                   trusted_keys=TRUSTED_KEYS_FILE, corpus_dir=CORPUS_DIR)
+                                   trusted_keys=TRUSTED_KEYS_FILE, corpus_dir=CORPUS_DIR,
+                                   source_status_file=SOURCE_STATUS_FILE)
+
+
+def load_source_status():
+    """Registry validated against the index (and corpus, if configured). Invalid -> every source warns."""
+    global SOURCE_STATUS
+    metadatas = index_metadatas(vector_store) if INDEX_INFO["index"] == "ready" else None
+    SOURCE_STATUS = source_status.load(SOURCE_STATUS_FILE, metadatas, corpus_dir=CORPUS_DIR)
+    if not SOURCE_STATUS.valid:
+        logging.getLogger(__name__).warning("source-status registry %s: %s", SOURCE_STATUS.state,
+                                            SOURCE_STATUS.errors[:5])
+    return SOURCE_STATUS
+
+
+def registry_bound() -> bool:
+    """True only when a valid approval names the exact, valid registry in use."""
+    record = APPROVAL.record
+    return (APPROVAL.state == "valid" and record is not None and SOURCE_STATUS.valid
+            and record.source_status_sha256 == SOURCE_STATUS.sha256)
 
 
 def refresh_approval():
@@ -233,6 +259,7 @@ def refresh_approval():
     global _FINGERPRINT, _LAST_FULL_CHECK
     with _approval_lock:
         _FINGERPRINT = approval_fingerprint()
+        load_source_status()
         _apply_approval(_full_validation())
         _LAST_FULL_CHECK = time.monotonic()
         return APPROVAL
@@ -566,7 +593,36 @@ def source_entries(docs) -> list[dict]:
         title, instrument = SOURCES.get(h, (None, None))
         entries.append({"title": title or "Unverified source", "instrument": instrument,
                         "verified": h in SOURCES, "file": source_file, "sha256": h})
+    for e in entries:  # text status is separate from "verified" (approval) and never derived from it
+        e["text_status"] = source_text_status(e["sha256"], docs)
     return entries
+
+
+# Most cautious first: a source shows the strongest status of any of its chunks in this answer.
+STATUS_SEVERITY = ("known_amendments_unresolved", source_status.UNRECORDED, source_status.UNCONFIRMED_CURRENT,
+                   "unverified_snapshot", "official_text_commencement_unconfirmed", "verified_current")
+
+
+def source_text_status(sha256, docs) -> str:
+    statuses = set()
+    for d in docs:
+        if chunk_hash(d.metadata) == sha256:
+            s = SOURCE_STATUS.lookup(sha256, d.metadata.get("provision_id")).status
+            statuses.add(source_status.UNCONFIRMED_CURRENT if s == "verified_current" and not registry_bound() else s)
+    return next((s for s in STATUS_SEVERITY if s in statuses), source_status.UNRECORDED)
+
+
+def source_warnings(docs, citation_numbers=None) -> list[dict]:
+    return source_status.collect_warnings(SOURCE_STATUS, docs, citation_numbers, trust_verified=registry_bound())
+
+
+def with_status_block(text: str, warnings: list[dict]) -> str:
+    """Fixed-template warnings appended to the answer text, so every client (old or new) shows them."""
+    if not warnings:
+        return text
+    lines = [f"- {w['text']}" + ("".join(f" [{n}]" for n in w["citations"]) if w.get("numbered") else "")
+             for w in warnings]
+    return text + "\n\nSource status:\n" + "\n".join(lines)
 
 
 def format_docs(docs):
@@ -910,7 +966,14 @@ def retrieve(question: str) -> list:
         if key not in seen:
             seen.add(key)
             unique.append(d)
-    return unique[:RETRIEVE_K]
+    return [with_text_status(d) for d in unique[:RETRIEVE_K]]
+
+
+def with_text_status(doc):
+    """A copy of the document whose metadata carries its registry text status (the stored chunk is not changed)."""
+    m = dict(getattr(doc, "metadata", None) or {})
+    m["text_status"] = SOURCE_STATUS.lookup(m.get("sha256"), m.get("provision_id")).status
+    return Document(page_content=doc.page_content, metadata=m, id=getattr(doc, "id", None))
 
 
 contextualize_template = """Given the recent conversation history and a new message, rewrite the
@@ -1030,6 +1093,10 @@ def grounded_gate_errors() -> list[str]:
             errors.append("penalty approval must stay off while grounded answers are in use")
         if EXPECTED_CORPUS_VERSION is None or record.corpus_version != EXPECTED_CORPUS_VERSION:
             errors.append("approved corpus version does not match the expected corpus version")
+    if not SOURCE_STATUS.valid:
+        errors.append(f"source-status registry is {SOURCE_STATUS.state}")
+    elif record is not None and record.source_status_sha256 != SOURCE_STATUS.sha256:
+        errors.append("approval does not bind the source-status registry in use")
     if not KB_APPROVED:
         errors.append("knowledge base is not approved")
     if PENALTY_ANSWERS_ENABLED:
@@ -1063,7 +1130,13 @@ def grounded_answer_question(question: str, history: list[dict], session_id: str
         text += "\n\nCited:\n" + "\n".join(f"[{n}] {grounded_answer.citation_label(e)}"
                                          for n, e in enumerate(result.cited, 1))
     sources = source_entries(result.cited_docs) if kind in ("answer", "conflict") else []
-    return {"kind": kind, "answer": text, "sources": sources, "question": question}
+    warnings = []
+    if kind in ("answer", "conflict"):
+        warnings = [dict(w, numbered=True) for w in
+                    source_warnings(result.cited_docs, list(range(1, len(result.cited_docs) + 1)))]
+        text = with_status_block(text, warnings)
+    return {"kind": kind, "answer": text, "sources": sources, "question": question,
+            "source_warnings": [{k: v for k, v in w.items() if k != "numbered"} for w in warnings]}
 
 
 def answer_question(question: str, history: list[dict], session_id: str = "") -> dict:
@@ -1100,8 +1173,9 @@ def answer_question(question: str, history: list[dict], session_id: str = "") ->
         if reason:
             return locked("answer_drift", reason, answer)
     # Development output only: unvalidated model text, never presented as a Telangana legal answer.
-    return {"kind": "development", "answer": DEV_OUTPUT_BANNER + answer, "sources": source_entries(docs),
-            "question": standalone_question}
+    warnings = source_warnings(docs)
+    return {"kind": "development", "answer": with_status_block(DEV_OUTPUT_BANNER + answer, warnings),
+            "sources": source_entries(docs), "question": standalone_question, "source_warnings": warnings}
 
 
 # Session state is in-memory only (fine for a single local dev server).
@@ -1121,6 +1195,19 @@ class Source(BaseModel):
     verified: bool
     file: str
     sha256: str | None = None
+    text_status: str | None = None  # Stage 25: registry text status; independent of "verified" (approval)
+
+
+class SourceWarning(BaseModel):
+    warning_id: str
+    status: str
+    text: str  # fixed backend template, never model-written
+    source_file: str | None = None
+    sha256: str | None = None
+    provision_id: str | None = None
+    related_instruments: list[str] = []
+    decision_refs: list[str] = []
+    citations: list[int] = []
 
 
 class ChatResponse(BaseModel):
@@ -1128,14 +1215,16 @@ class ChatResponse(BaseModel):
     kind: str  # answer | conflict | development | no_support | restricted | out_of_scope | unavailable | missing_provision | clarification
     sources: list[Source] = []
     kb_approved: bool
+    source_warnings: list[SourceWarning] = []
 
 
 MAX_HISTORY_TURNS = 4
 PROVIDER_ERROR = "The answering service is temporarily unavailable. Please try again in a minute."
 
 
-def reply(kind: str, text: str, sources=()) -> ChatResponse:
-    return ChatResponse(response=text, kind=kind, sources=list(sources), kb_approved=KB_APPROVED)
+def reply(kind: str, text: str, sources=(), warnings=()) -> ChatResponse:
+    return ChatResponse(response=text, kind=kind, sources=list(sources), kb_approved=KB_APPROVED,
+                        source_warnings=list(warnings))
 
 
 @app.post("/chat", response_model=ChatResponse)
@@ -1182,7 +1271,8 @@ def chat(req: ChatRequest):
     if result["kind"] in ("answer", "conflict", "development"):
         session["history"].append({"question": result["question"], "answer": result["answer"]})
         session["history"] = session["history"][-MAX_HISTORY_TURNS:]
-        return reply(result["kind"], with_penalty_note(result["answer"]), result["sources"])
+        return reply(result["kind"], with_penalty_note(result["answer"]), result["sources"],
+                     result.get("source_warnings", ()))
     return reply(result["kind"], result["answer"])
 
 

@@ -19,7 +19,11 @@ Record format (schema_version 1):
   "corpus_version": "...",
   "general_answers_approved": true,
   "penalty_answers_approved": false,          # separate, explicit; needs general_answers_approved
-  "documents": [{"file": "...", "sha256": "<64 hex>", "title": "...", "instrument": "..."}]
+  "documents": [{"file": "...", "sha256": "<64 hex>", "title": "...", "instrument": "..."}],
+  "source_status_sha256": "<64 hex>"         # Stage 25: SHA-256 of legal-status/source-status.json. Optional
+                                              # in the format, but evaluate(source_status_file=...) - which the
+                                              # server always uses - rejects a record without it or with a
+                                              # different hash, so editing the registry invalidates the signature.
 }
 
 The record must carry a detached Ed25519 signature (<record>.sig) from a key in the trusted-keys file;
@@ -49,6 +53,7 @@ TOP_LEVEL_KEYS = {
     "schema_version", "jurisdiction", "reviewer", "approval_date", "decision", "conditions", "corpus_version",
     "general_answers_approved", "penalty_answers_approved", "documents",
 }
+OPTIONAL_KEYS = {"source_status_sha256"}
 
 
 KEY_STATUSES = {"active", "retired", "revoked"}
@@ -82,6 +87,7 @@ class ApprovalRecord:
     general_answers_approved: bool
     penalty_answers_approved: bool
     documents: tuple
+    source_status_sha256: str | None = None   # registry binding; None = a record that predates Stage 25
 
     @property
     def hashes(self) -> set:
@@ -126,7 +132,7 @@ def parse_record(data, today: dt.date | None = None) -> ApprovalRecord:
     if not isinstance(data, dict):
         raise ApprovalError("approval record must be a JSON object")
     missing = TOP_LEVEL_KEYS - data.keys()
-    unknown = data.keys() - TOP_LEVEL_KEYS
+    unknown = data.keys() - TOP_LEVEL_KEYS - OPTIONAL_KEYS
     if missing:
         errors.append(f"missing fields: {sorted(missing)}")
     if unknown:
@@ -222,6 +228,9 @@ def parse_record(data, today: dt.date | None = None) -> ApprovalRecord:
         seen_files.add(d["file"])
         documents.append(ApprovedDocument(d["file"], d["sha256"], d["title"].strip(), d["instrument"]))
 
+    binding = data.get("source_status_sha256")
+    if "source_status_sha256" in data and (not isinstance(binding, str) or not SHA256_RE.match(binding)):
+        errors.append("source_status_sha256 must be 64 lowercase hex characters")
     if errors:
         raise ApprovalError("; ".join(errors))
     return ApprovalRecord(
@@ -231,6 +240,7 @@ def parse_record(data, today: dt.date | None = None) -> ApprovalRecord:
         corpus_version=data["corpus_version"].strip(),
         general_answers_approved=data["general_answers_approved"],
         penalty_answers_approved=data["penalty_answers_approved"], documents=tuple(documents),
+        source_status_sha256=binding,
     )
 
 
@@ -402,11 +412,26 @@ def index_errors(record: ApprovalRecord, metadatas) -> list:
     return sorted(set(errors), key=errors.index)
 
 
-def evaluate(path, metadatas, today: dt.date | None = None, trusted_keys=None, corpus_dir=None) -> ApprovalStatus:
+def source_status_errors(record: ApprovalRecord, registry_sha256) -> list:
+    """The signed record must name the exact registry in use. No backward-compatible pass: a record without the
+    binding (written before Stage 25) is rejected, so it must be re-approved and re-signed."""
+    if registry_sha256 is None:
+        return ["source-status registry is missing or unreadable"]
+    if record.source_status_sha256 is None:
+        return ["approval record does not bind the source-status registry (source_status_sha256 missing); "
+                "re-approval required"]
+    if record.source_status_sha256 != registry_sha256:
+        return ["source-status registry has changed since approval"]
+    return []
+
+
+def evaluate(path, metadatas, today: dt.date | None = None, trusted_keys=None, corpus_dir=None,
+             source_status_file=None) -> ApprovalStatus:
     """Load, verify and check the record at path. Never raises.
 
     trusted_keys: path of the trusted-keys file (required for any approval), or UNSIGNED_TEST_ONLY in
     isolated parser tests. corpus_dir: if given, every file under it is compared with the record too.
+    source_status_file: if given, the record's source_status_sha256 must equal this file's SHA-256.
     """
     path = Path(path) if path else None
     if path is None or not path.exists():
@@ -425,6 +450,9 @@ def evaluate(path, metadatas, today: dt.date | None = None, trusted_keys=None, c
         # Never ignored: conditions the software cannot check keep the approval inactive.
         problems.append(f"{record.unresolved_conditions} approval condition(s) unresolved")
     problems += index_errors(record, metadatas)
+    if source_status_file is not None:
+        problems += source_status_errors(record, sha256_file(source_status_file)
+                                         if Path(source_status_file).is_file() else None)
     if corpus_dir is not None:
         problems += corpus_errors(record, sorted(p for p in Path(corpus_dir).rglob("*") if p.is_file()))
     if problems:

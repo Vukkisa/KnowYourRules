@@ -105,6 +105,7 @@
   .badge{ font-size:11px; padding:1px 7px; border-radius:999px; border:1px solid var(--line); color:var(--muted); flex:none; }
   .badge.unverified{ border-color:var(--warn-line); color:var(--warn); background:var(--warn-soft); }
   .badge.verified{ color:var(--accent); background:var(--accent-soft); }
+  .badge.status{ border-color:var(--warn-line); color:var(--warn); background:var(--warn-soft); }
 
   .typing{ display:flex; gap:5px; padding:4px 0; }
   .typing span{ width:7px; height:7px; border-radius:50%; background:var(--faint); animation:blink 1.2s infinite ease-in-out; }
@@ -220,6 +221,14 @@
     missing_provision: 'Not in sources', clarification: 'Clarify', conflict: 'Conflicting sources', development: 'Development output (unverified)', error: 'Error'
   };
 
+  // Stage 25: text status of a source, shown beside the approval badge. Independent of approval: an approved
+  // ("verified") source still shows its status. Labels are fixed here; the warning text itself is in the answer.
+  const TEXT_STATUS_LABELS = {
+    unverified_snapshot: 'Unofficial web copy', official_text_commencement_unconfirmed: 'Commencement unconfirmed',
+    known_amendments_unresolved: 'Amended, current text unresolved', status_not_recorded: 'Status not recorded',
+    verified_current_not_approved: 'Currency unconfirmed'
+  };
+
   function scrollDown(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
 
   function addUser(text){
@@ -255,7 +264,14 @@
       badge.textContent = s.verified ? (s.instrument || 'Verified') : 'Unverified';
       const label = document.createElement('span');
       label.textContent = s.verified ? s.title : s.title + ' (' + s.file + ')';
-      li.append(badge, label);
+      li.append(badge);
+      if(s.text_status && s.text_status !== 'verified_current'){
+        const status = document.createElement('span');
+        status.className = 'badge status';
+        status.textContent = TEXT_STATUS_LABELS[s.text_status] || 'Status not recorded';
+        li.append(status);
+      }
+      li.append(label);
       list.appendChild(li);
     }
     box.append(h, list);

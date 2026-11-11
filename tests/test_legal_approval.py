@@ -344,12 +344,23 @@ class ServerApprovalTests(unittest.TestCase):
         self.tmpdir = Path(tmp.name)
         self.key = new_key()
         self.keys_path = write_keys(self.tmpdir, key_entry(self.key, "test-key-1"))
+        # Stage 25: a synthetic source-status registry; the signed record binds its SHA-256 unless the test
+        # sets source_status_sha256 itself (None = leave the binding out, as a pre-Stage-25 record would).
+        self.registry_path = self.tmpdir / "source-status.json"
+        self.registry_path.write_text(json.dumps(ts.fixture_registry_data(
+            [(SHA_A, ts.TG_RULES_FILE), (SHA_B, ts.TG_TAX_FILE)])))
+        if isinstance(record, dict):
+            record = dict(record)
+            if "source_status_sha256" not in record:
+                record["source_status_sha256"] = la.sha256_file(self.registry_path)
+            elif record["source_status_sha256"] is None:
+                del record["source_status_sha256"]
         path = self.tmpdir / "approval.json"
         if record is not None or raw is not None:
             path = write_signed(self.tmpdir, record, self.key, "test-key-1", raw=raw)
         self.record_path = path
         srv = ts._import_server_with_fakes({"TG_APPROVAL_FILE": str(path), "TG_TRUSTED_KEYS_FILE": str(self.keys_path),
-                                            **(extra_env or {})})
+                                            "TG_SOURCE_STATUS_FILE": str(self.registry_path), **(extra_env or {})})
         self.addCleanup(ts.FAKE_SEARCH.update, {"fn": None})
         ts.FAKE_LLM["fn"] = ts.fake_llm(answer="grounded answer")
         return srv, TestClient(srv.app)
@@ -606,7 +617,10 @@ class LifecycleTests(ServerApprovalTests):
 
     def test_corpus_version_change_resigned_needs_explicit_revalidation(self):
         srv, client = self.start(synthetic_record())
-        write_signed(self.tmpdir, synthetic_record(corpus_version="synthetic-corpus-2"), self.key, "test-key-1")
+        # Changed in Stage 25: a re-signed record must also bind the source-status registry.
+        write_signed(self.tmpdir, synthetic_record(corpus_version="synthetic-corpus-2",
+                                                   source_status_sha256=la.sha256_file(self.registry_path)),
+                     self.key, "test-key-1")
         self.assertEqual(self.status(client)["approval"], "stale")
         self.assertEqual(self.status(client)["approval"], "stale")  # stays stale: no silent re-approval
         client.post("/approval/refresh")

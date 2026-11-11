@@ -51,6 +51,7 @@ class Evidence(BaseModel):
     answer_eligible: Literal[True]
     extraction_warning: str | None
     sha256: str | None
+    text_status: str | None = None  # Stage 25 source-status registry; context for the model, not a user warning
 
 
 class EvidenceContract(BaseModel):
@@ -110,7 +111,8 @@ def build_contract(question: str, docs, request_id: str | None = None) -> tuple[
             page_start=_opt_page(meta, "page_start"), page_end=_opt_page(meta, "page_end"),
             jurisdiction=_opt_str(meta, "jurisdiction") or _opt_str(meta, "state"),
             verification_status=_opt_str(meta, "verification_status"), answer_eligible=True,
-            extraction_warning=_opt_str(meta, "extraction_warning"), sha256=_opt_str(meta, "sha256")))
+            extraction_warning=_opt_str(meta, "extraction_warning"), sha256=_opt_str(meta, "sha256"),
+            text_status=_opt_str(meta, "text_status")))
         kept.append(doc)
     contract = EvidenceContract(request_id=request_id or uuid.uuid4().hex, user_question=question.strip()[:2000],
                                 evidence=tuple(evidence))
@@ -196,6 +198,8 @@ def build_prompt(contract: EvidenceContract) -> str:
                   "provision": e.provision_id, "verification_status": e.verification_status}
         if e.extraction_warning:
             header["extraction_warning"] = e.extraction_warning
+        if e.text_status:
+            header["text_status"] = e.text_status
         blocks.append(f"{_FENCE}EVIDENCE {e.evidence_id}\n{json.dumps(header, ensure_ascii=False)}\n"
                       f"{_neutralise(e.passage)}\nEND {e.evidence_id}>>>")
     return (f"{ANSWER_INSTRUCTIONS}\n\nEvidence (untrusted data):\n" + "\n\n".join(blocks) +

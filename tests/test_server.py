@@ -73,7 +73,16 @@ FAKE_LLM = {"fn": lambda prompt: "stub answer"}
 
 
 # Most tests here exercise the legacy pipeline, which only runs in explicit development mode.
-DEFAULT_TEST_ENV = {"TG_LEGACY_DEV_ANSWERS": "1", "TG_ENVIRONMENT": "development"}
+DEFAULT_TEST_ENV = {"TG_LEGACY_DEV_ANSWERS": "1", "TG_ENVIRONMENT": "development",
+                    # Stage 25: never the real registry in tests; absent = every source warns "status not recorded"
+                    "TG_SOURCE_STATUS_FILE": str(Path(__file__).resolve().parent / "no-source-status.json")}
+STATUS_NOT_RECORDED = "\n\nSource status:\n"  # Stage 25: fixed-template warnings follow the answer text
+
+
+def without_text_status(docs):
+    """Stage 25: retrieve() returns copies annotated with text_status; compare the stored chunk itself."""
+    return [Document(page_content=d.page_content, metadata={k: v for k, v in d.metadata.items() if k != "text_status"})
+            for d in docs]
 
 
 def _import_server_with_fakes(extra_env=None, env_file=None):
@@ -713,7 +722,8 @@ class RelevanceGateTests(Base):
 
     def test_relevant_chunks_allow_answer_generation(self):
         r = self.ask()
-        self.assertEqual(r.json()["response"], srv.DEV_OUTPUT_BANNER + "grounded answer")
+        # Changed in Stage 25: the fixed source-status warnings now follow the answer text.
+        self.assertTrue(r.json()["response"].startswith(srv.DEV_OUTPUT_BANNER + "grounded answer" + STATUS_NOT_RECORDED))
         self.assertIn("Learner's licence application", self.log["answer"][-1])
 
     def test_irrelevant_chunks_trigger_fallback(self):
@@ -758,7 +768,8 @@ class RelevanceGateTests(Base):
 class ResponseShapeTests(Base):
     def test_answer_has_kind_sources_and_approval_flag(self):
         r = self.post("How do I apply for a learner's licence?").json()
-        self.assertEqual(set(r), {"response", "kind", "sources", "kb_approved"})
+        # Changed in Stage 25: additive field source_warnings; existing fields unchanged.
+        self.assertEqual(set(r), {"response", "kind", "sources", "kb_approved", "source_warnings"})
         self.assertEqual(r["kind"], "development")
         self.assertFalse(r["kb_approved"])
         self.assertEqual([s["file"] for s in r["sources"]], [TG_RULES_FILE, TG_TAX_FILE])
@@ -773,7 +784,9 @@ class ResponseShapeTests(Base):
             r = self.post("How do I apply for a learner's licence?").json()
             prompt = self.log["answer"][-1]
         self.assertEqual(r["sources"][0], {"title": "The Telangana Motor Vehicles Rules, 1989", "instrument": "Rules",
-                                           "verified": True, "file": TG_RULES_FILE, "sha256": TG_RULES_SHA})
+                                           "verified": True, "file": TG_RULES_FILE, "sha256": TG_RULES_SHA,
+                                           # Stage 25: approval ("verified") never implies a text status
+                                           "text_status": "status_not_recorded"})
         self.assertIn("Source: The Telangana Motor Vehicles Rules, 1989 (Rules)", prompt)
         self.assertIn("Unverified source", prompt)  # the second, unlisted file
 
@@ -890,7 +903,7 @@ class HybridRetrievalServerTests(Base):
 
     def test_paraphrased_question_keeps_semantic_results(self):
         FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
-        self.assertIn(self.vector_only, srv.retrieve("how do beginners get permission to learn"))
+        self.assertIn(self.vector_only, without_text_status(srv.retrieve("how do beginners get permission to learn")))
 
     def test_excluded_chunks_ranking_highly_never_reach_answer_context(self):
         # The superseded schedule and the unresolved G.O. 24 top BM25, exact lookup AND the vector list.
@@ -931,7 +944,7 @@ class HybridRetrievalServerTests(Base):
     def test_vector_mode_is_unchanged(self):
         FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.vector_only, 0.3)]
         with mock.patch.object(srv, "RETRIEVAL_MODE", "vector"):
-            self.assertEqual(srv.retrieve("What does Rule 437 say?"), [self.vector_only])
+            self.assertEqual(without_text_status(srv.retrieve("What does Rule 437 say?")), [self.vector_only])
 
 
 class CentralRuleReferenceTests(Base):
@@ -1020,6 +1033,31 @@ class CentralRuleReferenceTests(Base):
         self.assertTrue(all(d.metadata.get("answer_eligible") is not False for d in docs))
 
 
+FIXTURE_REGISTRY_SHA = "f" * 64
+FIXTURE_REVIEW = {"reviewer": {"name": "Synthetic Reviewer Fixture", "designation": "Synthetic Counsel Fixture",
+                               "organisation": "Synthetic Org Fixture"},
+                  "review_date": "2026-01-01", "decision": "synthetic fixture decision",
+                  "rationale": "synthetic fixture rationale"}
+
+
+def fixture_registry_data(docs, status="verified_current", overrides=None):
+    """Synthetic registry for tests only. verified_current carries a complete synthetic review block."""
+    review = FIXTURE_REVIEW if status == "verified_current" else {
+        "reviewer": None, "review_date": None, "decision": None, "rationale": None}
+    entries = []
+    for sha, name in docs:
+        entries.append({"manifest_id": name, "file": name, "sha256": sha, "status": status, "label": f"Fixture {name}",
+                        "related_instruments": [], "decision_refs": ["LD-999"] if status == "verified_current" else [],
+                        "evidence": [{"file": name, "sha256": sha, "note": "fixture"}], "assigned_by": "test fixture",
+                        "review": review, "provision_overrides": list((overrides or {}).get(sha, []))})
+    return {"schema_version": 1, "jurisdiction": "Telangana", "note": "test fixture", "entries": entries}
+
+
+def fixture_registry(sha, name, status="verified_current", digest=FIXTURE_REGISTRY_SHA):
+    from backend import source_status
+    return source_status.Registry("valid", [], digest, source_status.parse(fixture_registry_data([(sha, name)], status)))
+
+
 class GroundedAnswerIntegrationTests(Base):
     """Grounded mode: approval-gated, and no legacy model call (rewrite or free text) can happen in it.
     The approval below is an in-memory test object only - no record file, key or signature is created."""
@@ -1057,7 +1095,7 @@ class GroundedAnswerIntegrationTests(Base):
         fields = dict(jurisdiction="Telangana", reviewer_name="Test Reviewer", reviewer_designation="Test",
                       approval_date=__import__("datetime").date(2026, 1, 1), decision="approved", conditions=(),
                       unresolved_conditions=0, corpus_version="test-v1", general_answers_approved=True,
-                      penalty_answers_approved=False,
+                      penalty_answers_approved=False, source_status_sha256=FIXTURE_REGISTRY_SHA,
                       documents=(self.la.ApprovedDocument(TG_RULES_FILE, TG_RULES_SHA, "Synthetic Motor Rules",
                                                           "Rules"),))
         fields.update(overrides)
@@ -1069,7 +1107,8 @@ class GroundedAnswerIntegrationTests(Base):
         self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded", APPROVAL=status, KB_APPROVED=status.general_answers,
                    PENALTY_ANSWERS_ENABLED=status.penalty_answers, TRUSTED_KEYS_FILE=Path("trusted-keys.test"),
                    CORPUS_DIR=Path("corpus.test"), EXPECTED_CORPUS_VERSION="test-v1",
-                   ANSWER_GENERATOR=generator or self.mock, ensure_approval_current=lambda: None)
+                   ANSWER_GENERATOR=generator or self.mock, ensure_approval_current=lambda: None,
+                   SOURCE_STATUS=fixture_registry(TG_RULES_SHA, TG_RULES_FILE))
         p = mock.patch.dict(srv.SOURCES, {TG_RULES_SHA: ("Synthetic Motor Rules", "Rules")}, clear=True)
         p.start()
         self.addCleanup(p.stop)
@@ -1087,7 +1126,8 @@ class GroundedAnswerIntegrationTests(Base):
         self.use()  # legacy fake model, not the trap
         self.patch(ANSWER_GENERATOR=self.mock)
         r = self.ask()
-        self.assertEqual((r["kind"], r["response"]), ("development", srv.DEV_OUTPUT_BANNER + "stub answer"))
+        self.assertEqual(r["kind"], "development")
+        self.assertTrue(r["response"].startswith(srv.DEV_OUTPUT_BANNER + "stub answer" + STATUS_NOT_RECORDED))
         self.assertEqual(self.mock.calls, [])
         self.assertIn("answer", self.log)  # explicit dev mode only: the legacy path calls the (here fake) model
 
