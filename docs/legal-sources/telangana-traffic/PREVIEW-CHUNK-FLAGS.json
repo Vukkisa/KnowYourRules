@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "flags": [
+    {
+      "match": {
+        "manifest_id": "go-ms-53-2025-trb",
+        "provision_kind": "Schedule"
+      },
+      "warning": "G.O.Ms.No. 53/2025 rate-table extraction is unreliable (column headers split across lines; two unexplained SCHEDULE sections). Read rates from the PDF. Not used for answers.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "tmvr-1989-chap-7",
+        "provision_id": "Rule 375"
+      },
+      "warning": "Contents/body discrepancy: the chapter contents list rule 375 as 'For Hire' to be painted, but the body text of rule 375 is 'Means of communication between passengers and driver'. Not reconciled with an official print.",
+      "answer_eligible": true
+    },
+    {
+      "match": {
+        "manifest_id": "tmvr-1989-chap-5",
+        "provision_id": "Rule 186"
+      },
+      "warning": "Identity note: the heading of rule 186 is printed without a full stop after the number ('186 (1) Conditions of permit in respect of a luxury tourist cab :-', anchor #58), so before the Stage 9 parser fix its text was indexed as part of rule 185. Earlier flags on rules 185 and 187 said rule 186 was absent from this snapshot; that was wrong and they were withdrawn on 11-11-2026 (Stage 10). The text matches the snapshot verbatim; rule numbering and legal currency are not verified against an official print.",
+      "answer_eligible": true
+    },
+    {
+      "match": {
+        "manifest_id": "go-ms-53-2025-trb",
+        "provision_id": "SEVENTH SCHEDULE"
+      },
+      "warning": "Superseded in part by G.O.Ms.No. 16/2026 (in force 23-03-2026 per its text): column 8 of the Seventh Schedule (additional 2% on second or more personalized vehicles, at registration of new vehicles only) is deleted. Other columns are not stated to be affected. Not used for answers until independently reviewed.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "go-ms-53-2025-trb",
+        "provision_id": "SCHEDULE"
+      },
+      "warning": "Pages 4-5 of G.O.Ms.No. 53/2025 continue the Seventh Schedule table (column 8 visible on page 4). Superseded in part by G.O.Ms.No. 16/2026 (in force 23-03-2026 per its text): column 8 of the Seventh Schedule (additional 2% on second or more personalized vehicles, at registration of new vehicles only) is deleted. Other columns are not stated to be affected. Not used for answers until independently reviewed.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "go-ms-16-2026-trb",
+        "provision_id": "SEVENTH SCHEDULE"
+      },
+      "warning": "Amends G.O.Ms.No. 53/2025's Seventh Schedule (deletes column 8). Effective date and scope taken from the G.O. text only; gazette print not held. Not used for answers until independently reviewed.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "go-ms-24-2026-trb"
+      },
+      "warning": "Draft or final status unresolved: the ORDER says the Government decided to publish the 'draft Notification', while the NOTIFICATION uses operative wording and commences on gazette publication; the gazette date in the endorsement is blank. Not used for answers until reviewed.",
+      "answer_eligible": false
+    }
+  ]
+}
