@@ -22,7 +22,9 @@ Runtime should use a READ-ONLY R2 token; only the operator's machine needs write
 """
 from __future__ import annotations
 
+import contextlib
 import datetime as _dt
+import errno
 import gzip
 import hashlib
 import hmac
@@ -41,6 +43,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Iterator
 from urllib.parse import quote, urlparse
+
+try:                                   # POSIX only; the restore lock below is skipped where it is missing (Windows dev machines)
+    import fcntl
+except ImportError:                    # pragma: no cover
+    fcntl = None
 
 log = logging.getLogger("kyr.snapshot")
 # Extraction directories this interpreter created. A directory under <work>/run that is not in this set was left by an earlier
@@ -433,7 +440,12 @@ def safe_extract(archive, dest_dir, max_unpacked: int) -> int:
                 with open(target, "wb") as out:
                     shutil.copyfileobj(src, out, CHUNK)
                 os.chmod(target, 0o644)
-    except (tarfile.TarError, EOFError, OSError, gzip.BadGzipFile) as exc:
+    except OSError as exc:
+        if exc.errno == errno.ENOSPC:
+            # Not a bad archive: the disk is full. Say so, and let the bounded startup retry wait for space to be freed.
+            raise SnapshotError("storage_full", "no space left on the work disk while unpacking the snapshot", transient=True) from None
+        raise SnapshotError("archive_invalid", f"archive could not be read ({type(exc).__name__})") from None
+    except (tarfile.TarError, EOFError, gzip.BadGzipFile) as exc:
         raise SnapshotError("archive_invalid", f"archive could not be read ({type(exc).__name__})") from None
     return total
 
@@ -787,11 +799,144 @@ class SnapshotStatus:
                 "retryable_failure": (not self.ready) and self.transient, "pinned": self.pinned}
 
 
+RESTORE_LOCK_WAIT = 45.0
+
+
+@contextlib.contextmanager
+def _restore_lock(seconds=None, wait: float = None):
+    """Exclusive, cross-process lock for a restore (flock on a file in the temp directory; the system releases it if the process dies).
+    Waiting is bounded: past the limit the restore fails as a transient error and the startup retry decides what happens next."""
+    if fcntl is None:
+        yield
+        return
+    wait = RESTORE_LOCK_WAIT if wait is None else wait
+    path = Path(tempfile.gettempdir()) / "kyr-snapshot-restore.lock"
+    try:
+        fd = os.open(path, os.O_RDWR | os.O_CREAT, 0o600)
+    except OSError:
+        yield                                  # cannot create the lock file: restore unlocked rather than not at all
+        return
+    t0 = time.monotonic()
+    try:
+        while True:
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except OSError:
+                if time.monotonic() - t0 > wait:
+                    raise SnapshotError("restore_busy", "another process on this host is still restoring the snapshot", transient=True) from None
+                time.sleep(0.2)
+        if seconds is not None and time.monotonic() - t0 > 0.5:
+            seconds["lock_wait"] = round(time.monotonic() - t0, 3)
+        yield
+    finally:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+        finally:
+            os.close(fd)
+
+
+_RUN_LOCKS: dict = {}      # extraction directory -> open file whose lock marks its owner as alive
+RECENT_RUN_SECONDS = 1800.0   # without a working cross-process lock, an extraction this recent is assumed to belong to a live process
+_FLOCK_SHARED = None
+
+
+def _flock_is_shared() -> bool:
+    """Whether a lock taken by one process is seen by another on this host (checked once, with a child process). Some sandboxes
+    isolate file locks per process; there a lock cannot tell a live owner from a dead one, and recency is used instead."""
+    global _FLOCK_SHARED
+    if _FLOCK_SHARED is not None:
+        return _FLOCK_SHARED
+    if fcntl is None:
+        _FLOCK_SHARED = False
+        return False
+    import subprocess
+    import sys
+    path = Path(tempfile.gettempdir()) / f"kyr-flock-check-{uuid.uuid4().hex[:8]}"
+    fd = None
+    try:
+        fd = os.open(path, os.O_RDWR | os.O_CREAT, 0o600)
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        code = ("import fcntl,os,sys\nfd=os.open(sys.argv[1],os.O_RDWR)\n"
+                "try:\n fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB);print('free')\nexcept OSError:\n print('held')")
+        out = subprocess.run([sys.executable, "-c", code, str(path)], capture_output=True, text=True, timeout=20).stdout.strip()
+        _FLOCK_SHARED = (out == "held")
+    except Exception:  # noqa: BLE001 - cannot test: assume the weaker case
+        _FLOCK_SHARED = False
+    finally:
+        if fd is not None:
+            try:
+                os.close(fd)
+            except OSError:
+                pass
+        try:
+            path.unlink()
+        except OSError:
+            pass
+    log.info("restore ownership locks are shared between processes on this host: %s", _FLOCK_SHARED)
+    return _FLOCK_SHARED
+
+
+def _hold_run(run: Path):
+    """Mark an extraction directory as in use by THIS process for as long as the process lives (a lock the system drops when the
+    process ends). Process ids are not usable for this: on Vercel several processes of one container each see the same pid."""
+    if fcntl is None:
+        return
+    run.parent.mkdir(parents=True, exist_ok=True)
+    fd = os.open(run.parent / (run.name + ".alive"), os.O_RDWR | os.O_CREAT, 0o600)
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        os.close(fd)
+        raise
+    _RUN_LOCKS[str(run)] = fd
+
+
+def _release_run(run: Path):
+    fd = _RUN_LOCKS.pop(str(run), None)
+    if fd is not None:
+        try:
+            os.close(fd)
+        except OSError:
+            pass
+    try:
+        (run.parent / (run.name + ".alive")).unlink()
+    except OSError:
+        pass
+
+
+def _run_in_use(run: Path) -> bool:
+    """True when some live process owns this extraction directory. One with no lock file, or whose lock is free, has no owner."""
+    if str(run) in _RUN_LOCKS:
+        return True
+    if not _flock_is_shared():
+        try:
+            return time.time() - run.stat().st_mtime < RECENT_RUN_SECONDS
+        except OSError:
+            return False
+    try:
+        fd = os.open(run.parent / (run.name + ".alive"), os.O_RDWR)
+    except FileNotFoundError:
+        return False
+    except OSError:
+        return True                            # cannot tell: leave it alone
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        return False
+    except OSError:
+        return True
+    finally:
+        os.close(fd)
+
+
 class SnapshotManager:
     def __init__(self, store: ObjectStore, work_dir, *, pin_sha256: str | None = None, allow_stale: bool = False,
-                 expected_family: str | None = None):
+                 expected_family: str | None = None, discard_archives: bool = False):
         self.store, self.work, self.pin, self.allow_stale = store, Path(work_dir), (pin_sha256 or "").lower() or None, allow_stale
         self.expected_family = expected_family
+        # On a host whose work disk is small (Vercel /tmp) the downloaded archives are dropped once they are unpacked and verified.
+        self.discard_archives = discard_archives
 
     # -- remote ---------------------------------------------------------------------------------------------------------------
     def fetch_manifest(self):
@@ -843,6 +988,11 @@ class SnapshotManager:
         except ObjectMissing:
             part.unlink(missing_ok=True)
             raise SnapshotError("snapshot_missing", "a snapshot archive named in the manifest is missing") from None
+        except OSError as exc:
+            part.unlink(missing_ok=True)
+            if exc.errno == errno.ENOSPC:
+                raise SnapshotError("storage_full", "no space left on the work disk while staging a snapshot archive", transient=True) from None
+            raise
         except BaseException:
             part.unlink(missing_ok=True)
             raise
@@ -858,19 +1008,23 @@ class SnapshotManager:
         seconds = {}
         manifest = None
         try:
-            try:
-                manifest, mdigest = self.fetch_manifest()
-                archives = self._stage_archives(manifest, seconds)
-            except StoreError as exc:
-                cached = self._cached() if self.allow_stale else None
-                if cached is None:
-                    raise SnapshotError("store_unavailable", str(exc), transient=exc.transient) from None
-                manifest, archives = cached
-                log.warning("snapshot store unreachable; serving the cached verified snapshot %s (TG_SNAPSHOT_ALLOW_STALE)", manifest["version"])
-                status = self._load(manifest, archives, seconds)
-                status.stale = True
-                return status
-            return self._load(manifest, archives, seconds)
+            # One restore at a time per host: processes of one container share /tmp, and two restores at once need more space than it
+            # has (this was the cold-start failure: archives + unpacked copy + the private check copy, per process).
+            with _restore_lock(seconds):
+                self._reclaim_abandoned()
+                try:
+                    manifest, mdigest = self.fetch_manifest()
+                    archives = self._stage_archives(manifest, seconds)
+                except StoreError as exc:
+                    cached = self._cached() if self.allow_stale else None
+                    if cached is None:
+                        raise SnapshotError("store_unavailable", str(exc), transient=exc.transient) from None
+                    manifest, archives = cached
+                    log.warning("snapshot store unreachable; serving the cached verified snapshot %s (TG_SNAPSHOT_ALLOW_STALE)", manifest["version"])
+                    status = self._load(manifest, archives, seconds)
+                    status.stale = True
+                    return status
+                return self._load(manifest, archives, seconds)
         except SnapshotError as err:
             log.error("snapshot not loaded: %s", err.state)
             return SnapshotStatus(state=err.state, problems=[err.detail or err.state], manifest=manifest, seconds=seconds,
@@ -929,11 +1083,39 @@ class SnapshotManager:
         for p in others[1:]:
             shutil.rmtree(p, ignore_errors=True)
 
-    def _remove_stale_runs(self):
-        """Free the space held by extraction directories of earlier processes. /tmp on Vercel is small (about 525 MB, 405 MB of it
-        dependencies), and each leftover run holds ~27 MB, so a few of them make the next restore fail with ENOSPC."""
-        # A private index copy (kyr-snap-peek-*, ~13 MB) that an earlier process left behind when it was stopped mid-read.
-        # One that is more than two minutes old cannot belong to a read in progress.
+    def _work_dirs(self):
+        """This manager's work directory and, when it is one of the per-process "snapshots-<n>" directories, its siblings."""
+        out = [self.work]
+        if re.fullmatch(r"snapshots-\d+", self.work.name):
+            try:
+                out += [p for p in self.work.parent.glob("snapshots-*") if p.is_dir() and p != self.work and re.fullmatch(r"snapshots-\d+", p.name)]
+            except OSError:
+                pass
+        return out
+
+    def _reclaim_abandoned(self):
+        """Free the space held by extractions that no live process owns, in this and the sibling work directories (/tmp on Vercel is
+        small and shared by every process of the container; each leftover holds ~27 MB and a few make the next restore fail). Called
+        with the restore lock held, so no restore is mid-way and a staged archive in a sibling directory is a leftover. An extraction
+        a live process is serving from is never touched: ownership is a lock, not a process id."""
+        for d in self._work_dirs():
+            root = d / "run"
+            if root.is_dir():
+                for p in root.iterdir():
+                    if p.suffix == ".alive" or not p.is_dir() or _run_in_use(p):
+                        continue
+                    shutil.rmtree(p, ignore_errors=True)
+                    (root / (p.name + ".alive")).unlink(missing_ok=True)
+                    log.info("removed an abandoned snapshot extraction: %s", p.name)
+            if d != self.work:
+                shutil.rmtree(d / "archives", ignore_errors=True)
+                for leftover in (root, d):
+                    try:
+                        leftover.rmdir()       # only succeeds when nothing is left in it
+                    except OSError:
+                        pass
+        # A private index copy (kyr-snap-peek-*, ~13 MB) left behind by a process that was stopped mid-read; one that is more than
+        # two minutes old cannot belong to a read in progress.
         try:
             for p in Path(tempfile.gettempdir()).glob("kyr-snap-peek-*"):
                 if p.is_dir() and time.time() - p.stat().st_mtime > 120:
@@ -941,19 +1123,26 @@ class SnapshotManager:
                     log.info("removed a stale snapshot index copy left by an earlier process: %s", p.name)
         except OSError:
             pass
-        root = self.work / "run"
-        if not root.is_dir():
+
+    def _ensure_space(self, manifest):
+        """Fail early, and say why, when the work disk cannot hold the unpacked snapshot plus the private copy used to check the index."""
+        need = manifest["index"]["unpacked_bytes"] * 2 + manifest["lifecycle"]["unpacked_bytes"]
+        try:
+            self.work.mkdir(parents=True, exist_ok=True)
+            free = shutil.disk_usage(self.work).free
+        except OSError:
             return
-        for p in root.iterdir():
-            if str(p) not in _RUNS_THIS_PROCESS:
-                shutil.rmtree(p, ignore_errors=True)
-                log.info("removed a stale snapshot extraction left by an earlier process: %s", p.name)
+        if free < need:
+            raise SnapshotError("storage_full", f"the work disk has {free // 1048576} MB free and the restore needs {need // 1048576} MB",
+                                transient=True)
 
     def _load(self, manifest, archives, seconds) -> SnapshotStatus:
         t = time.perf_counter()
-        self._remove_stale_runs()
+        self._reclaim_abandoned()
+        self._ensure_space(manifest)
         run = self.work / "run" / f"{manifest['version']}-{os.getpid()}-{uuid.uuid4().hex[:6]}"
         _RUNS_THIS_PROCESS.add(str(run))
+        _hold_run(run)
         try:
             dirs = {}
             for name in ("index", "lifecycle"):
@@ -962,6 +1151,9 @@ class SnapshotManager:
                 skip = LOCK_FILES if name == "lifecycle" else frozenset()
                 if files_digest(dirs[name], skip) != manifest[name]["tree_digest"]:
                     raise SnapshotError("checksum_mismatch", f"extracted {name} does not match the manifest tree digest")
+            if self.discard_archives:
+                # Both unpacked trees are verified; the archives are not needed again and the index check below needs the room.
+                shutil.rmtree(self._archive_dir(manifest["version"]), ignore_errors=True)
             seconds["extract_and_verify"] = round(time.perf_counter() - t, 3)
             t = time.perf_counter()
             counts = self._check_index(dirs["index"], manifest)
@@ -969,6 +1161,7 @@ class SnapshotManager:
             seconds["validate"] = round(time.perf_counter() - t, 3)
         except BaseException:
             shutil.rmtree(run, ignore_errors=True)
+            _release_run(run)
             raise
         return SnapshotStatus(state="ready", version=manifest["version"], db_dir=dirs["index"], lifecycle_dir=dirs["lifecycle"],
                               manifest=manifest, seconds=seconds, pinned=bool(self.pin))
@@ -1082,9 +1275,10 @@ def activate_from_env(env=None, http=None, manager_factory=None, sleep=time.slee
                                                 "manifest (python -m backend.index_snapshot pin)")
         store = store_from_env(env, http=http, sleep=sleep)
         work = Path((env.get("TG_SNAPSHOT_WORK_DIR") or "").strip() or Path(tempfile.gettempdir()) / "kyr-snapshots")
+        extra = {"discard_archives": True} if (env.get("TG_SNAPSHOT_DISCARD_ARCHIVES") or "").strip().lower() in ("1", "true", "yes") else {}
         mgr = (manager_factory or SnapshotManager)(
             store, work, pin_sha256=pin or None, expected_family=(env.get("TG_SNAPSHOT_EXPECT_FAMILY") or "").strip() or None,
-            allow_stale=(env.get("TG_SNAPSHOT_ALLOW_STALE") or "").strip().lower() in ("1", "true", "yes"))
+            allow_stale=(env.get("TG_SNAPSHOT_ALLOW_STALE") or "").strip().lower() in ("1", "true", "yes"), **extra)
         return activate_with_retry(mgr, settings, sleep=sleep, clock=clock)
     except SnapshotError as err:
         return SnapshotStatus(state=err.state, problems=[err.detail or err.state])

@@ -83,6 +83,7 @@ def apply_defaults(env, *, pid: int | None = None, tmp_root: Path | None = None,
         "EMBEDDING_MODEL_SHA256": MODEL_SHA256,
         "EMBEDDING_MODEL_SOURCE": "memory",    # the model is downloaded into RAM: /tmp has no room for it next to the bundle
         "TG_SNAPSHOT_STORE": "local",
+        "TG_SNAPSHOT_DISCARD_ARCHIVES": "1",   # /tmp is small and shared by every process of the container: keep only the unpacked index
         "TG_SNAPSHOT_LOCAL_DIR": str(Path(project_root) / "snapshot-store"),
         "TG_SNAPSHOT_WORK_DIR": str(root / f"snapshots-{os.getpid() if pid is None else pid}"),
         "TG_SNAPSHOT_EXPECT_FAMILY": EXPECT_FAMILY,
