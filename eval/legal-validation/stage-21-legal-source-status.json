@@ -1,0 +1,404 @@
+{
+ "stage": 21,
+ "purpose": "what the repository can prove about its legal sources; no provision is declared current",
+ "convention": "'verified' = established from held source text/checksums; 'unresolved' = needs human legal review. No 'current' field is used anywhere.",
+ "historical_g_os": [
+  {
+   "instrument": "G.O.Ms.No.02, Transport, Roads and Buildings (Transport-I) Department",
+   "dated": "17-06-2014",
+   "subject": {
+    "verified": null,
+    "unknown": "the subject is not stated in any held document"
+   },
+   "cited_in": [
+    "goir/2025TRB_Ms54.pdf 'Read the following' item",
+    "goir/2025TRB_Ms77.pdf 'Read the following' item",
+    "SOURCE-MANIFEST.md TG-GO54-2025 row (as 'earlier rule 81 orders')"
+   ],
+   "potentially_affects": "Rule 81 TMVR, INFERRED ONLY from being listed in the Read lists of two Rule 81 amendment orders. Neither G.O. 54 nor G.O. 77 states what each order did. Not verified individually.",
+   "copy_in_repository": false,
+   "alternative_copy": "none (both checkouts, all inventories, supplied summary searched)",
+   "missing_evidence": [
+    "the order itself",
+    "its Gazette notification",
+    "whether it amended Rule 81, another rule, or was procedural"
+   ]
+  },
+  {
+   "instrument": "G.O.Ms.No.41, Transport, Roads and Buildings (Transport-I) Department",
+   "dated": "29-09-2015",
+   "subject": {
+    "verified": null,
+    "unknown": "the subject is not stated in any held document"
+   },
+   "cited_in": [
+    "goir/2025TRB_Ms54.pdf 'Read the following' item",
+    "goir/2025TRB_Ms77.pdf 'Read the following' item",
+    "SOURCE-MANIFEST.md TG-GO54-2025 row (as 'earlier rule 81 orders')"
+   ],
+   "potentially_affects": "Rule 81 TMVR, INFERRED ONLY from being listed in the Read lists of two Rule 81 amendment orders. Neither G.O. 54 nor G.O. 77 states what each order did. Not verified individually.",
+   "copy_in_repository": false,
+   "alternative_copy": "none (both checkouts, all inventories, supplied summary searched)",
+   "missing_evidence": [
+    "the order itself",
+    "its Gazette notification",
+    "whether it amended Rule 81, another rule, or was procedural"
+   ]
+  },
+  {
+   "instrument": "G.O.Ms.No.44, Transport, Roads and Buildings (Transport-I) Department",
+   "dated": "15-10-2015",
+   "subject": {
+    "verified": null,
+    "unknown": "the subject is not stated in any held document"
+   },
+   "cited_in": [
+    "goir/2025TRB_Ms54.pdf 'Read the following' item",
+    "goir/2025TRB_Ms77.pdf 'Read the following' item",
+    "SOURCE-MANIFEST.md TG-GO54-2025 row (as 'earlier rule 81 orders')"
+   ],
+   "potentially_affects": "Rule 81 TMVR, INFERRED ONLY from being listed in the Read lists of two Rule 81 amendment orders. Neither G.O. 54 nor G.O. 77 states what each order did. Not verified individually.",
+   "copy_in_repository": false,
+   "alternative_copy": "none (both checkouts, all inventories, supplied summary searched)",
+   "missing_evidence": [
+    "the order itself",
+    "its Gazette notification",
+    "whether it amended Rule 81, another rule, or was procedural"
+   ]
+  },
+  {
+   "instrument": "G.O.Ms.No.95, Transport, Roads and Buildings (Transport-I) Department",
+   "dated": "08-12-2016",
+   "subject": {
+    "verified": null,
+    "unknown": "the subject is not stated in any held document"
+   },
+   "cited_in": [
+    "goir/2025TRB_Ms54.pdf 'Read the following' item",
+    "goir/2025TRB_Ms77.pdf 'Read the following' item",
+    "SOURCE-MANIFEST.md TG-GO54-2025 row (as 'earlier rule 81 orders')"
+   ],
+   "potentially_affects": "Rule 81 TMVR, INFERRED ONLY from being listed in the Read lists of two Rule 81 amendment orders. Neither G.O. 54 nor G.O. 77 states what each order did. Not verified individually.",
+   "copy_in_repository": false,
+   "alternative_copy": "none (both checkouts, all inventories, supplied summary searched)",
+   "missing_evidence": [
+    "the order itself",
+    "its Gazette notification",
+    "whether it amended Rule 81, another rule, or was procedural"
+   ]
+  },
+  {
+   "instrument": "G.O.Ms.No.26, Transport, Roads and Buildings (Transport-I) Department",
+   "dated": "24-04-2017",
+   "subject": {
+    "verified": null,
+    "unknown": "the subject is not stated in any held document"
+   },
+   "cited_in": [
+    "goir/2025TRB_Ms54.pdf 'Read the following' item",
+    "goir/2025TRB_Ms77.pdf 'Read the following' item",
+    "SOURCE-MANIFEST.md TG-GO54-2025 row (as 'earlier rule 81 orders')"
+   ],
+   "potentially_affects": "Rule 81 TMVR, INFERRED ONLY from being listed in the Read lists of two Rule 81 amendment orders. Neither G.O. 54 nor G.O. 77 states what each order did. Not verified individually.",
+   "copy_in_repository": false,
+   "alternative_copy": "none (both checkouts, all inventories, supplied summary searched)",
+   "missing_evidence": [
+    "the order itself",
+    "its Gazette notification",
+    "whether it amended Rule 81, another rule, or was procedural"
+   ]
+  },
+  {
+   "instrument": "G.O.Ms.No.52, Transport, Roads and Buildings (Transport-I) Department",
+   "dated": "11-04-2018",
+   "subject": {
+    "verified": null,
+    "unknown": "the subject is not stated in any held document"
+   },
+   "cited_in": [
+    "goir/2025TRB_Ms54.pdf 'Read the following' item",
+    "goir/2025TRB_Ms77.pdf 'Read the following' item",
+    "SOURCE-MANIFEST.md TG-GO54-2025 row (as 'earlier rule 81 orders')"
+   ],
+   "potentially_affects": "Rule 81 TMVR, INFERRED ONLY from being listed in the Read lists of two Rule 81 amendment orders. Neither G.O. 54 nor G.O. 77 states what each order did. Not verified individually.",
+   "copy_in_repository": false,
+   "alternative_copy": "none (both checkouts, all inventories, supplied summary searched)",
+   "missing_evidence": [
+    "the order itself",
+    "its Gazette notification",
+    "whether it amended Rule 81, another rule, or was procedural"
+   ]
+  }
+ ],
+ "historical_note": "G.O.Ms.No.216, TR&B (Tr-II), 07-08-1989 is also cited (base rules, AP Gazette 25-08-1989 pp.1-135); not held. The supplied summary's 'TMVTA-1963-GOMS10-2014' is G.O.Ms.No.10 of 2014, a different instrument from G.O.Ms.No.02 of 2014.",
+ "rule_81": {
+  "corpus_records": {
+   "chunks": [
+    "tmvr-1989-chap-4::Rule 81::part1of2",
+    "tmvr-1989-chap-4::Rule 81::part2of2"
+   ],
+   "answer_eligible": true,
+   "verification_status": "unverified",
+   "source_class": "unverified_snapshot",
+   "amendment_metadata": "none",
+   "retrieval": "structured lookup returns both parts for 'Rule 81' queries (TG-GO-007: ranks 1 and 3)"
+  },
+  "chronology": [
+   {
+    "instrument": "G.O.Ms.No.216 (AP), TR&B (Tr-II)",
+    "date": "07-08-1989",
+    "clauses": "Rules made (base text)",
+    "confirmed_changes": "none held; cited only",
+    "publication_evidence": "cited: AP Gazette Rules Supplement Part-I Extra-Ordinary 25-08-1989 pp.1-135 (in G.O. 54/77 text); no Gazette held",
+    "commencement_evidence": "none",
+    "status": "cited, not held",
+    "missing": [
+     "original text",
+     "Gazette"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.02, TR&B (Tr-I)",
+    "date": "17-06-2014",
+    "clauses": "unknown",
+    "confirmed_changes": "none established",
+    "publication_evidence": "none",
+    "commencement_evidence": "none",
+    "status": "cited only; relationship to Rule 81 unverified",
+    "missing": [
+     "order",
+     "Gazette",
+     "subject"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.41, TR&B (Tr-I)",
+    "date": "29-09-2015",
+    "clauses": "unknown",
+    "confirmed_changes": "none established",
+    "publication_evidence": "none",
+    "commencement_evidence": "none",
+    "status": "cited only; relationship to Rule 81 unverified",
+    "missing": [
+     "order",
+     "Gazette",
+     "subject"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.44, TR&B (Tr-I)",
+    "date": "15-10-2015",
+    "clauses": "unknown",
+    "confirmed_changes": "none established",
+    "publication_evidence": "none",
+    "commencement_evidence": "none",
+    "status": "cited only; relationship to Rule 81 unverified",
+    "missing": [
+     "order",
+     "Gazette",
+     "subject"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.95, TR&B (Tr-I)",
+    "date": "08-12-2016",
+    "clauses": "unknown",
+    "confirmed_changes": "none established",
+    "publication_evidence": "none",
+    "commencement_evidence": "none",
+    "status": "cited only; relationship to Rule 81 unverified",
+    "missing": [
+     "order",
+     "Gazette",
+     "subject"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.26, TR&B (Tr-I)",
+    "date": "24-04-2017",
+    "clauses": "unknown",
+    "confirmed_changes": "none established",
+    "publication_evidence": "none",
+    "commencement_evidence": "none",
+    "status": "cited only; relationship to Rule 81 unverified",
+    "missing": [
+     "order",
+     "Gazette",
+     "subject"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.52, TR&B (Tr-I)",
+    "date": "11-04-2018",
+    "clauses": "unknown",
+    "confirmed_changes": "none established",
+    "publication_evidence": "none",
+    "commencement_evidence": "none",
+    "status": "cited only; relationship to Rule 81 unverified",
+    "missing": [
+     "order",
+     "Gazette",
+     "subject"
+    ]
+   },
+   {
+    "instrument": "Rule 81 HTML snapshot (transport.telangana.gov.in)",
+    "date": "retrieved 29-10-2026; text date unknown",
+    "clauses": "(1)-(6)",
+    "confirmed_changes": "n/a: shows Form RRMA, fees Rs.50,000/30,000/20,000/10,000/5,000",
+    "publication_evidence": "none (web consolidation, no amendment citations)",
+    "commencement_evidence": "none",
+    "status": "unverified; which amendments it reflects is unknown; differs from G.O. 77 text",
+    "missing": [
+     "as-amended date",
+     "amendment citations"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.54, TR&B (Tr.I)",
+    "date": "13-08-2025",
+    "clauses": "proposed: omit (1),(2),(4); substitute (3),(5),(6)",
+    "confirmed_changes": "none: preliminary draft under s.212(1), 30-day objections",
+    "publication_evidence": "G.O. 77 states it was published in Telangana Gazette No.G-575 Part-I Extraordinary 13.08.2025; Gazette not held",
+    "commencement_evidence": "n/a (draft)",
+    "status": "draft, superseded by final G.O. 77 per G.O. 77's own text; excluded from draft manifest",
+    "missing": [
+     "Gazette G-575"
+    ]
+   },
+   {
+    "instrument": "G.O.Ms.No.77, TR&B (Tr.I)",
+    "date": "15-11-2025",
+    "clauses": "omit (1),(2),(4); substitute (3),(5),(6)",
+    "confirmed_changes": "text of the omissions and substitutions as printed in the order (online-only applications; fees Rs.1,50,000 to Rs.6,000/Rs.3,000 two-wheelers, current number Rs.2,000; online bidding; 15-day production)",
+    "publication_evidence": "order directs publication in an extraordinary Telangana Gazette dated 15.11.2025; Gazette not held",
+    "commencement_evidence": "none: no commencement clause in the text",
+    "status": "held (GOIR PDF, checksummed); legal effect assumed to follow Gazette publication, NOT established",
+    "missing": [
+     "Gazette print",
+     "commencement",
+     "conflicting summary file 74a6839d..."
+    ]
+   },
+   {
+    "instrument": "any later instrument",
+    "date": "after 15-11-2025",
+    "clauses": "unknown",
+    "confirmed_changes": "none",
+    "publication_evidence": "none checked",
+    "commencement_evidence": "none",
+    "status": "unknown",
+    "missing": [
+     "search of Gazette/GOIR after 15-11-2025"
+    ]
+   }
+  ],
+  "distinctions": {
+   "confirmed_text_changes": "only G.O. 77's printed amendment text",
+   "assumed_legal_effect": "that G.O. 77 took effect on Gazette publication 15.11.2025 (assumption, not evidence)",
+   "unknown_commencement": true,
+   "unknown_subsequent_amendments": true
+  },
+  "consolidated_text": "not produced"
+ },
+ "g_o_24_2026": {
+  "verified": {
+   "identity": "G.O.Ms.No.24, TR&B (TR-I), dated 01-06-2026; goir/2026TRB_Ms24.pdf, sha256 ba0c9516...",
+   "order_wording": "'the Government ... hereby decided to publish the draft Notification, as required under Rule 167 of the Central Motor Vehicles Rules, 1989, as amended vide G.S.R. 48(E)'",
+   "body_heading": "'NOTIFICATION' (not 'draft')",
+   "publication_direction": "'shall be published in the Telangana Gazette dated:02-06-2026'; the covering note to the printer leaves the date blank ('dated and send 100 Copies')",
+   "commencement": "para 5: 'This Notification shall come into force from the date of its publication in the Telangana Gazette.'",
+   "no_objection_invitation": true,
+   "no_s212_reference": true,
+   "other_draft_labels": "ingestion report section 7 records the ambiguity; no other document labels it",
+   "gazette_evidence": "none held",
+   "other_final_notification_referenced": "none; companion G.O. 25 (same date, same Read letter) says 'publish Notification' without 'draft'"
+  },
+  "unresolved": [
+   "Is 'draft' a drafting slip or does a final notification exist?",
+   "Was it published in the Gazette, and on which date?",
+   "Does Rule 167(5) CMVR (as amended by G.S.R. 48(E)) require prior publication of a draft?"
+  ],
+  "classification": "unresolved (not classified as final)"
+ },
+ "g_os_2026": [
+  {
+   "go": "G.O.Ms.No.10/2026",
+   "dated": "25-02-2026",
+   "changes": "appoints 01-03-2026 as commencement of Act No.8 of 2026 (TMVT (Amendment) Act, 2026) under ss.3 and 17 TMVT Act",
+   "stated_effective_date": "Act No.8/2026 in force 01-03-2026 (appointed date)",
+   "underlying_available": false,
+   "may_supersede_corpus": "unknown: the Act's content is not held, so affected TMVT provisions cannot be identified",
+   "required": [
+    "Act No.8 of 2026",
+    "Gazette dated 01.03.2026"
+   ]
+  },
+  {
+   "go": "G.O.Ms.No.16/2026",
+   "dated": "20-03-2026",
+   "changes": "deletes column No.8 and its entries of the Seventh Schedule (s.3 TMVT Act): 'Second or more personalized vehicles upto a seating capacity of ten (10) in all owned by an individual (Additional 2% of tax ...)'",
+   "stated_effective_date": "para 4: 'come into force with effect from 23.03.2026'",
+   "underlying_available": "partly: the Seventh Schedule as substituted by G.O. 53 (13-08-2025) is held; G.O.Ms.No.22/2022 (also cited) is not",
+   "relationship_to_go_53": {
+    "verified": [
+     "G.O. 16 cites G.O. 53 in its Read list",
+     "G.O. 53 para 3 substitutes the whole Seventh Schedule, whose column (8) is headed 'Second or more personalized vehicles upto a seating capacity of ten (10) in all owned by an individual'",
+     "G.O. 16 deletes column No.8 with that same description"
+    ],
+    "affected_corpus_chunk": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1 (pages 3-4), already answer_eligible=False (table extraction)",
+    "unresolved": [
+     "Gazette publication of G.O. 16 on 23.03.2026",
+     "whether any later instrument restored or altered the column"
+    ],
+    "flag_applied": false,
+    "recommendation": "reviewer to confirm, then mark the chunk 'superseded in part (column 8) by G.O.Ms.No.16/2026 w.e.f. 23.03.2026' at the next approved rebuild"
+   },
+   "required": [
+    "Gazette dated 23.03.2026",
+    "G.O.Ms.No.22/2022"
+   ]
+  },
+  {
+   "go": "G.O.Ms.No.25/2026",
+   "dated": "01-06-2026",
+   "changes": "authorises SMS, WhatsApp and e-mail as electronic means to serve challans under CMVR Rule 167(1)/(2); owners to update mobile/e-mail on Vahan within one month of publication",
+   "stated_effective_date": "'with immediate effect'; Gazette publication directed for 02.06.2026 (printer note leaves date blank)",
+   "underlying_available": false,
+   "may_supersede_corpus": "no Telangana corpus content on challan service identified; CMVR not in corpus (Central, out of scope)",
+   "required": [
+    "Gazette",
+    "CMVR Rule 167 as amended by G.S.R. 48(E)"
+   ]
+  },
+  {
+   "go": "G.O.Ms.No.32/2026",
+   "dated": "30-06-2026",
+   "changes": "constitutes a six-member Designated Authority (Transport Commissioner chairing) under CMVR Rule 167A(1) to certify, approve and renew yearly electronic enforcement devices",
+   "stated_effective_date": "none stated",
+   "underlying_available": false,
+   "may_supersede_corpus": "none identified",
+   "required": [
+    "CMVR Rule 167A, G.S.R. 575(E) 2021 and G.S.R. 48(E) 2026",
+    "Supreme Court orders 02.09.2024 and 07.10.2025 (W.P.(C) 295/2012)",
+    "any Gazette publication"
+   ]
+  }
+ ],
+ "inventory_anomalies": {
+  "transport_dept_pdfs": {
+   "2008trb_ms332_compounding.pdf": "G.O.Ms.No.332/2008, Government of Andhra Pradesh, permit compounding under s.86(5), amends rule 217 AP MV Rules; excluded from draft manifest because 'Andhra Pradesh instrument, applicability unestablished' (INGESTION-VALIDATION-REPORT section 3)",
+   "rules_of_the_road_regulations_1989.pdf": "S.O. 439(E), 12-06-1989, Central; excluded as 'Central, out of scope' (user scope decision 08-11-2026, LEGAL-REVIEW-HANDOFF)",
+   "status": "exclusions are documented and deliberate; files kept and checksummed"
+  },
+  "alternative_go_77_hash": {
+   "verified": "the supplied summary lists 'rules-1989/2025/TMVR-1989-GO77-2025.pdf' with SHA-256 beginning 74a6839d33b82a394bcff753ef0b68631ff98f1fbdcf5 (truncated in the PDF); the held GOIR file is 3de90735...",
+   "unresolved": "the archive file is absent, so it cannot be determined whether it is a different download, a Gazette print, an altered copy or a transcription error",
+   "action": "none; nothing deleted or replaced"
+  },
+  "go_54": {
+   "verified": "preliminary draft (s.212(1)); G.O. 77 recites that it was published in Gazette G-575 on 13.08.2025, no objections were received, and G.O. 77 is the final notification",
+   "status": "superseded by G.O. 77 per G.O. 77's text; excluded from the draft manifest; file kept and checksummed"
+  }
+ }
+}

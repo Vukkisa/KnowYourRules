@@ -1,0 +1,58 @@
+{
+ "stage": 17,
+ "change": "BM25 tokenisation: plural-only folding (Harman S-stemmer) via hybrid_retrieval.fold_plural",
+ "index": "copies of chroma_telangana_preview_s11 (live index untouched)",
+ "vector_search": "exact (default)",
+ "retrieval": {
+  "scored_cases": 79,
+  "recall@1": 0.7046413502109705,
+  "recall@3": 0.9040084388185654,
+  "recall@5": 0.9725738396624471,
+  "hit@5": 1.0,
+  "precision@5": 0.2607594936708859,
+  "mrr": 0.8907172995780591,
+  "failure_rate": 0.0
+ },
+ "guard": {
+  "cases": 12,
+  "correct": 12,
+  "accuracy": 1.0
+ },
+ "leakage": {
+  "retrieved_chunks": 623,
+  "excluded_chunks_retrieved": 0,
+  "rate": 0.0,
+  "cases_with_leak": []
+ },
+ "model_calls": {},
+ "tests": {
+  "default": "672 OK",
+  "RAG_VECTOR_SEARCH=hnsw": "672 OK",
+  "validate": "OK: 0 reviewed, 108 unreviewed, 0 errors"
+ },
+ "file_sha256": {
+  "eval/telangana-retrieval-benchmark.json": "f186027c9f2e73ae2311d7259e72c059b09e770541e682ea1fbd6eece0d98106",
+  "eval/telangana-retrieval-review.csv": "361ad6957636fbae523260998395f91fa2fcee0c44aae5f8662c304641771fd5",
+  "eval/telangana-chunk-references.json": "2e06f8ed2608a281a4aa6f2a0eab5f68c05c3b4ce0ed0462bd34537a11c6f6ae"
+ },
+ "remaining_recall_failures": [
+  "TG-PQ-002",
+  "TG-PQ-017",
+  "TG-GO-007",
+  "TG-GO-012",
+  "TG-AM-003",
+  "TG-AM-004"
+ ],
+ "stage16_recall_failures": [
+  "TG-PQ-002",
+  "TG-PQ-017",
+  "TG-PQ-021",
+  "TG-MR-008",
+  "TG-GO-003",
+  "TG-GO-007",
+  "TG-GO-012",
+  "TG-AM-003",
+  "TG-AM-004"
+ ],
+ "rollback": "eval/legal-validation/stage-17-originals/hybrid_retrieval.py.pre-stage-17"
+}

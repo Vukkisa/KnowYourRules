@@ -1,0 +1,32 @@
+{
+ "machine": {
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "python": "3.11.2",
+  "cpus": 8,
+  "ram_gb": 8.0,
+  "loadavg_at_start": [
+   5.7,
+   5.06,
+   4.64
+  ],
+  "note": "a developer laptop, not a 0.1-CPU / 512 MB container: absolute times are optimistic"
+ },
+ "publish": {
+  "seconds": 6.27,
+  "version": "20261113T171758Z-140cd20089",
+  "index_archive_mb": 4.12,
+  "index_unpacked_mb": 9.96,
+  "lifecycle_archive_mb": 0.21,
+  "lifecycle_unpacked_mb": 1.47,
+  "chunks": 590,
+  "dimensions": 768
+ },
+ "real_index_and_registry_unchanged": true
+}
+full_environment cold import_s 9.59 rss_after_import 168.1 peak_total 295.8 snapshot_s 1.574
+full_environment warm import_s 8.58 rss_after_import 224.7 peak_total 324.0 snapshot_s 0.908
+full_environment warm import_s 9.02 rss_after_import 114.2 peak_total 347.4 snapshot_s 0.794
+cloud_requirements cold import_s 2.99 rss_after_import 152.6 peak_total 233.0 snapshot_s 0.574
+cloud_requirements warm import_s 3.09 rss_after_import 131.0 peak_total 212.2 snapshot_s 0.551
+cloud_requirements warm import_s 2.63 rss_after_import 201.4 peak_total 215.3 snapshot_s 0.476
+rc=0

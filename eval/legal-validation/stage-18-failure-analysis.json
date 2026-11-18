@@ -1,0 +1,1083 @@
+{
+ "stage": 18,
+ "cases": {
+  "TG-PQ-002": {
+   "classification": "benchmark_expectation",
+   "retrieval_defect": false,
+   "finding": "Expects Rules 16, 14, 17, 18. Retrieved 19, 24, 14, 15, 119 (Rule 11 of TMVTR at 6). Official chap-2 text: Rule 15 ('Intimation when Licence lost or destroyed and application for duplicate', Form LLD) is the step a person who lost a licence takes, but is not expected; Rule 14 concerns a duplicate with a new photograph after a Rule 13 photograph demand, not loss; Rule 19 (delivery of lost licence) and Rule 24 (duplicate learner's licence) are related. Four expected provisions plus a strong unlisted Rule 15 compete for five slots.",
+   "possible_label_issues": [
+    "Rule 15 missing from expected",
+    "Rule 14 relevance to a lost licence questionable"
+   ],
+   "question": "I lost my driving licence. How do I get a duplicate?",
+   "expected": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 17",
+    "tmvr-1989-chap-2::Rule 18"
+   ],
+   "tokens": [
+    "lost",
+    "driving",
+    "licence",
+    "get",
+    "duplicate"
+   ],
+   "final": [
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 15",
+    "tmvr-1989-chap-4::Rule 119",
+    "tmvtr-1963::Rule 11"
+   ],
+   "lookup": [],
+   "top10": [
+    {
+     "rank": 1,
+     "provision": "tmvr-1989-chap-2::Rule 19",
+     "vector": [
+      1,
+      0.477
+     ],
+     "bm25": [
+      1,
+      19.109
+     ]
+    },
+    {
+     "rank": 2,
+     "provision": "tmvr-1989-chap-2::Rule 24",
+     "vector": [
+      4,
+      0.51
+     ],
+     "bm25": [
+      2,
+      17.736
+     ]
+    },
+    {
+     "rank": 3,
+     "provision": "tmvr-1989-chap-2::Rule 14",
+     "vector": [
+      2,
+      0.4774
+     ],
+     "bm25": [
+      6,
+      13.032
+     ]
+    },
+    {
+     "rank": 4,
+     "provision": "tmvr-1989-chap-2::Rule 15",
+     "vector": [
+      5,
+      0.5155
+     ],
+     "bm25": [
+      3,
+      16.389
+     ]
+    },
+    {
+     "rank": 5,
+     "provision": "tmvr-1989-chap-4::Rule 119",
+     "vector": [
+      3,
+      0.5025
+     ],
+     "bm25": [
+      15,
+      9.997
+     ]
+    },
+    {
+     "rank": 6,
+     "provision": "tmvtr-1963::Rule 11",
+     "vector": [
+      7,
+      0.5242
+     ],
+     "bm25": [
+      4,
+      14.539
+     ]
+    },
+    {
+     "rank": 7,
+     "provision": "tmvr-1989-chap-3::Rule 59",
+     "vector": [
+      9,
+      0.5391
+     ],
+     "bm25": [
+      5,
+      13.987
+     ]
+    },
+    {
+     "rank": 8,
+     "provision": "tmvr-1989-chap-2::Rule 17",
+     "vector": [
+      6,
+      0.5227
+     ],
+     "bm25": [
+      9,
+      10.307
+     ]
+    }
+   ],
+   "expected_detail": {
+    "tmvr-1989-chap-2::Rule 16": {
+     "in_corpus": true,
+     "vector": [
+      10,
+      0.5465
+     ],
+     "bm25": [
+      13,
+      10.039
+     ]
+    },
+    "tmvr-1989-chap-2::Rule 14": {
+     "in_corpus": true,
+     "vector": [
+      2,
+      0.4774
+     ],
+     "bm25": [
+      6,
+      13.032
+     ]
+    },
+    "tmvr-1989-chap-2::Rule 17": {
+     "in_corpus": true,
+     "vector": [
+      6,
+      0.5227
+     ],
+     "bm25": [
+      9,
+      10.307
+     ]
+    },
+    "tmvr-1989-chap-2::Rule 18": {
+     "in_corpus": true,
+     "vector": [
+      16,
+      0.5872
+     ],
+     "bm25": [
+      14,
+      10.02
+     ]
+    }
+   },
+   "label_source": "machine_candidate",
+   "reviewer_status": "pending_human_review",
+   "outcome": "retrieve"
+  },
+  "TG-PQ-017": {
+   "classification": "corpus_context (retrieval weakness rooted in chunk text)",
+   "retrieval_defect": "not narrowly fixable",
+   "finding": "Expects Rules 476 and 455. Rule 455 ('Applications': application for compensation under Section 166 in Form C.I.D.) is a valid expectation and is in the corpus, but its chunk never says 'claim', 'tribunal' or 'accident'; the chapter-11 snapshot has no chapter heading to supply that context. Vector rank 14, BM25 rank 28. Rule 476 (Chapter X no-fault claims, Form CWF) occupies two slots (parts 1 and 2). Fix would need chunk/heading context in the index, which is out of scope.",
+   "possible_label_issues": [],
+   "question": "How do I apply for accident compensation before the Claims Tribunal?",
+   "expected": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 455"
+   ],
+   "tokens": [
+    "apply",
+    "accident",
+    "compensation",
+    "before",
+    "claim",
+    "tribunal"
+   ],
+   "final": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 458",
+    "tmvr-1989-chap-11::Rule 475",
+    "tmvr-1989-chap-11::Rule 474"
+   ],
+   "lookup": [],
+   "top10": [
+    {
+     "rank": 1,
+     "provision": "tmvr-1989-chap-11::Rule 476",
+     "vector": [
+      1,
+      0.4506
+     ],
+     "bm25": [
+      2,
+      23.171
+     ]
+    },
+    {
+     "rank": 2,
+     "provision": "tmvr-1989-chap-11::Rule 471",
+     "vector": [
+      4,
+      0.5572
+     ],
+     "bm25": [
+      1,
+      23.268
+     ]
+    },
+    {
+     "rank": 3,
+     "provision": "tmvr-1989-chap-11::Rule 476",
+     "vector": [
+      1,
+      0.4506
+     ],
+     "bm25": [
+      2,
+      23.171
+     ]
+    },
+    {
+     "rank": 4,
+     "provision": "tmvr-1989-chap-11::Rule 458",
+     "vector": [
+      3,
+      0.515
+     ],
+     "bm25": [
+      4,
+      20.806
+     ]
+    },
+    {
+     "rank": 5,
+     "provision": "tmvr-1989-chap-11::Rule 475",
+     "vector": [
+      9,
+      0.6507
+     ],
+     "bm25": [
+      5,
+      17.715
+     ]
+    },
+    {
+     "rank": 6,
+     "provision": "tmvr-1989-chap-11::Rule 474",
+     "vector": [
+      5,
+      0.6006
+     ],
+     "bm25": [
+      11,
+      12.113
+     ]
+    },
+    {
+     "rank": 7,
+     "provision": "tmvr-1989-chap-11::Rule 462",
+     "vector": [
+      13,
+      0.6549
+     ],
+     "bm25": [
+      6,
+      16.197
+     ]
+    },
+    {
+     "rank": 8,
+     "provision": "tmvr-1989-chap-11::Rule 459",
+     "vector": [
+      6,
+      0.6198
+     ],
+     "bm25": [
+      8,
+      13.779
+     ]
+    }
+   ],
+   "expected_detail": {
+    "tmvr-1989-chap-11::Rule 476": {
+     "in_corpus": true,
+     "vector": [
+      1,
+      0.4506
+     ],
+     "bm25": [
+      2,
+      23.171
+     ]
+    },
+    "tmvr-1989-chap-11::Rule 455": {
+     "in_corpus": true,
+     "vector": [
+      14,
+      0.6671
+     ],
+     "bm25": [
+      28,
+      6.365
+     ]
+    }
+   },
+   "label_source": "machine_candidate",
+   "reviewer_status": "pending_human_review",
+   "outcome": "retrieve"
+  },
+  "TG-GO-007": {
+   "classification": "unresolved_legal_status + benchmark_expectation",
+   "retrieval_defect": false,
+   "finding": "Expects four G.O. 77 chunks (Order, Paragraphs 2, 3, 4). Structured lookup of 'Rule 81' adds both parts of the old Rule 81 snapshot, which take ranks 1 and 3. Paragraph 2 ('no objections received') is procedural and ranks low (vector 9, BM25 29). The corpus's 'Paragraph 4' is actually item 4 of the amendment schedule (substituted sub-rule (6)), not paragraph 4 of the order.",
+   "possible_label_issues": [
+    "Paragraph 2 is procedural; whether it is needed to answer 'which G.O.' is a reviewer decision",
+    "'Paragraph 4' provision id mislabels amendment item 4"
+   ],
+   "question": "Which 2025 G.O. finally amended Rule 81 on reservation of special registration numbers?",
+   "expected": [
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "go-ms-77-2025-trb::Paragraph 4"
+   ],
+   "tokens": [
+    "2025",
+    "g",
+    "o",
+    "finally",
+    "amended",
+    "rule",
+    "81",
+    "reservation",
+    "special",
+    "registration",
+    "number"
+   ],
+   "final": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "lookup": [
+    "tmvr-1989-chap-4::Rule 81",
+    "tmvr-1989-chap-4::Rule 81"
+   ],
+   "top10": [
+    {
+     "rank": 1,
+     "provision": "tmvr-1989-chap-4::Rule 81",
+     "vector": [
+      4,
+      0.638
+     ],
+     "bm25": [
+      2,
+      19.994
+     ]
+    },
+    {
+     "rank": 2,
+     "provision": "go-ms-77-2025-trb::Order",
+     "vector": [
+      1,
+      0.5577
+     ],
+     "bm25": [
+      1,
+      24.064
+     ]
+    },
+    {
+     "rank": 3,
+     "provision": "tmvr-1989-chap-4::Rule 81",
+     "vector": [
+      4,
+      0.638
+     ],
+     "bm25": [
+      2,
+      19.994
+     ]
+    },
+    {
+     "rank": 4,
+     "provision": "go-ms-77-2025-trb::Paragraph 4",
+     "vector": [
+      2,
+      0.5897
+     ],
+     "bm25": [
+      3,
+      18.502
+     ]
+    },
+    {
+     "rank": 5,
+     "provision": "go-ms-77-2025-trb::Paragraph 3",
+     "vector": [
+      3,
+      0.6205
+     ],
+     "bm25": [
+      4,
+      16.675
+     ]
+    },
+    {
+     "rank": 6,
+     "provision": "go-ms-77-2025-trb::Paragraph 3",
+     "vector": [
+      3,
+      0.6205
+     ],
+     "bm25": [
+      4,
+      16.675
+     ]
+    },
+    {
+     "rank": 7,
+     "provision": "go-ms-77-2025-trb::References",
+     "vector": [
+      6,
+      0.6502
+     ],
+     "bm25": [
+      13,
+      10.152
+     ]
+    }
+   ],
+   "expected_detail": {
+    "go-ms-77-2025-trb::Order": {
+     "in_corpus": true,
+     "vector": [
+      1,
+      0.5577
+     ],
+     "bm25": [
+      1,
+      24.064
+     ]
+    },
+    "go-ms-77-2025-trb::Paragraph 2": {
+     "in_corpus": true,
+     "vector": [
+      9,
+      0.695
+     ],
+     "bm25": [
+      29,
+      6.411
+     ]
+    },
+    "go-ms-77-2025-trb::Paragraph 3": {
+     "in_corpus": true,
+     "vector": [
+      3,
+      0.6205
+     ],
+     "bm25": [
+      4,
+      16.675
+     ]
+    },
+    "go-ms-77-2025-trb::Paragraph 4": {
+     "in_corpus": true,
+     "vector": [
+      2,
+      0.5897
+     ],
+     "bm25": [
+      3,
+      18.502
+     ]
+    }
+   },
+   "label_source": "machine_candidate",
+   "reviewer_status": "pending_human_review",
+   "outcome": "retrieve"
+  },
+  "TG-GO-012": {
+   "classification": "retrieval_weakness (vector) without a narrow fix",
+   "retrieval_defect": "weak, not demonstrated as a defect",
+   "finding": "Expects G.O. 32 Order, Paragraph 2 and Preamble. Preamble retrieved (3). Order is BM25 rank 5 but vector rank 102 and ends at fused rank 7; Paragraph 2 (Supreme Court direction, the actual 'why') is vector 21, BM25 7. The final five are all G.O. 32 chunks (Paragraphs 4-7), so the answer still comes from the right G.O.; no generic change was shown to fix it without side effects.",
+   "possible_label_issues": [],
+   "question": "Why did Telangana notify a Designated Authority under Rule 167A?",
+   "expected": [
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 2",
+    "go-ms-32-2026-trb::Preamble"
+   ],
+   "tokens": [
+    "did",
+    "telangana",
+    "notify",
+    "designated",
+    "authority",
+    "rule",
+    "167a"
+   ],
+   "final": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7",
+    "tmvr-1989-chap-5::Rule 173"
+   ],
+   "lookup": [],
+   "top10": [
+    {
+     "rank": 1,
+     "provision": "go-ms-32-2026-trb::Paragraph 4",
+     "vector": [
+      1,
+      0.3769
+     ],
+     "bm25": [
+      1,
+      17.304
+     ]
+    },
+    {
+     "rank": 2,
+     "provision": "go-ms-32-2026-trb::Paragraph 5",
+     "vector": [
+      4,
+      0.4579
+     ],
+     "bm25": [
+      3,
+      16.02
+     ]
+    },
+    {
+     "rank": 3,
+     "provision": "go-ms-32-2026-trb::Preamble",
+     "vector": [
+      6,
+      0.4638
+     ],
+     "bm25": [
+      4,
+      15.328
+     ]
+    },
+    {
+     "rank": 4,
+     "provision": "go-ms-32-2026-trb::Paragraph 6",
+     "vector": [
+      117,
+      0.5858
+     ],
+     "bm25": [
+      2,
+      16.558
+     ]
+    },
+    {
+     "rank": 5,
+     "provision": "go-ms-32-2026-trb::Paragraph 7",
+     "vector": [
+      2,
+      0.4341
+     ],
+     "bm25": [
+      9,
+      12.065
+     ]
+    },
+    {
+     "rank": 6,
+     "provision": "tmvr-1989-chap-5::Rule 173",
+     "vector": [
+      3,
+      0.4556
+     ],
+     "bm25": [
+      36,
+      1.465
+     ]
+    },
+    {
+     "rank": 7,
+     "provision": "go-ms-32-2026-trb::Order",
+     "vector": [
+      102,
+      0.5804
+     ],
+     "bm25": [
+      5,
+      15.296
+     ]
+    },
+    {
+     "rank": 8,
+     "provision": "tmvr-1989-chap-4::Rule 103",
+     "vector": [
+      5,
+      0.4605
+     ],
+     "bm25": [
+      23,
+      1.532
+     ]
+    },
+    {
+     "rank": 9,
+     "provision": "go-ms-32-2026-trb::Paragraph 3",
+     "vector": [
+      7,
+      0.4706
+     ],
+     "bm25": [
+      6,
+      15.153
+     ]
+    }
+   ],
+   "expected_detail": {
+    "go-ms-32-2026-trb::Order": {
+     "in_corpus": true,
+     "vector": [
+      102,
+      0.5804
+     ],
+     "bm25": [
+      5,
+      15.296
+     ]
+    },
+    "go-ms-32-2026-trb::Paragraph 2": {
+     "in_corpus": true,
+     "vector": [
+      21,
+      0.5224
+     ],
+     "bm25": [
+      7,
+      14.097
+     ]
+    },
+    "go-ms-32-2026-trb::Preamble": {
+     "in_corpus": true,
+     "vector": [
+      6,
+      0.4638
+     ],
+     "bm25": [
+      4,
+      15.328
+     ]
+    }
+   },
+   "label_source": "machine_candidate",
+   "reviewer_status": "pending_human_review",
+   "outcome": "retrieve"
+  },
+  "TG-AM-003": {
+   "classification": "clarification_row (unscored)",
+   "finding": "'Tell me about the badge.' lists Rules 37 and 66. Rule 66 retrieved at 6 (outside top 5); Rule 37 at fused rank >9 (vector 8, BM25 11). Ten-plus badge rules in chapters 2 and 3 score almost identically on one token; the expected behaviour is a clarification, not retrieval of all listed rules.",
+   "question": "Tell me about the badge.",
+   "expected": [
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-3::Rule 66"
+   ],
+   "tokens": [
+    "about",
+    "badge"
+   ],
+   "final": [
+    "tmvr-1989-chap-2::Rule 40",
+    "tmvr-1989-chap-3::Rule 70",
+    "tmvr-1989-chap-2::Rule 39",
+    "tmvr-1989-chap-2::Rule 38",
+    "tmvr-1989-chap-3::Rule 68",
+    "tmvr-1989-chap-3::Rule 66"
+   ],
+   "lookup": [],
+   "top10": [
+    {
+     "rank": 1,
+     "provision": "tmvr-1989-chap-2::Rule 40",
+     "vector": [
+      1,
+      0.574
+     ],
+     "bm25": [
+      4,
+      7.785
+     ]
+    },
+    {
+     "rank": 2,
+     "provision": "tmvr-1989-chap-3::Rule 70",
+     "vector": [
+      2,
+      0.5768
+     ],
+     "bm25": [
+      3,
+      7.855
+     ]
+    },
+    {
+     "rank": 3,
+     "provision": "tmvr-1989-chap-2::Rule 39",
+     "vector": [
+      6,
+      0.6089
+     ],
+     "bm25": [
+      6,
+      7.567
+     ]
+    },
+    {
+     "rank": 4,
+     "provision": "tmvr-1989-chap-2::Rule 38",
+     "vector": [
+      11,
+      0.6428
+     ],
+     "bm25": [
+      1,
+      8.252
+     ]
+    },
+    {
+     "rank": 5,
+     "provision": "tmvr-1989-chap-3::Rule 68",
+     "vector": [
+      10,
+      0.6317
+     ],
+     "bm25": [
+      2,
+      8.233
+     ]
+    },
+    {
+     "rank": 6,
+     "provision": "tmvr-1989-chap-3::Rule 66",
+     "vector": [
+      3,
+      0.5887
+     ],
+     "bm25": [
+      10,
+      7.473
+     ]
+    },
+    {
+     "rank": 7,
+     "provision": "tmvr-1989-chap-3::Rule 71",
+     "vector": [
+      4,
+      0.5935
+     ],
+     "bm25": [
+      7,
+      7.567
+     ]
+    },
+    {
+     "rank": 8,
+     "provision": "tmvr-1989-chap-3::Rule 67",
+     "vector": [
+      9,
+      0.6224
+     ],
+     "bm25": [
+      5,
+      7.701
+     ]
+    },
+    {
+     "rank": 9,
+     "provision": "tmvr-1989-chap-2::Rule 41",
+     "vector": [
+      5,
+      0.5957
+     ],
+     "bm25": [
+      8,
+      7.55
+     ]
+    }
+   ],
+   "expected_detail": {
+    "tmvr-1989-chap-2::Rule 37": {
+     "in_corpus": true,
+     "vector": [
+      8,
+      0.6094
+     ],
+     "bm25": [
+      11,
+      7.319
+     ]
+    },
+    "tmvr-1989-chap-3::Rule 66": {
+     "in_corpus": true,
+     "vector": [
+      3,
+      0.5887
+     ],
+     "bm25": [
+      10,
+      7.473
+     ]
+    }
+   },
+   "label_source": "machine_candidate",
+   "reviewer_status": "pending_human_review",
+   "outcome": "clarification_required"
+  },
+  "TG-AM-004": {
+   "classification": "clarification_row (unscored)",
+   "finding": "'How do I get a duplicate?' lists six provisions across licences, registration, permits and taxation. Only Rules 120 and 228 make the top 5; 'duplicate' is the only content token. With six listed targets and five slots, full recall is impossible by construction; the row exists to trigger clarification.",
+   "question": "How do I get a duplicate?",
+   "expected": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvr-1989-chap-4::Rule 120",
+    "tmvr-1989-chap-5::Rule 228",
+    "tmvtr-1963::Rule 11"
+   ],
+   "tokens": [
+    "get",
+    "duplicate"
+   ],
+   "final": [
+    "tmvr-1989-chap-4::Rule 120",
+    "tmvr-1989-chap-2::Rule 21",
+    "tmvr-1989-chap-2::Rule 17",
+    "tmvr-1989-chap-5::Rule 258",
+    "tmvr-1989-chap-5::Rule 228",
+    "tmvr-1989-chap-7::Rule 342"
+   ],
+   "lookup": [],
+   "top10": [
+    {
+     "rank": 1,
+     "provision": "tmvr-1989-chap-4::Rule 120",
+     "vector": [
+      2,
+      0.6214
+     ],
+     "bm25": [
+      4,
+      5.784
+     ]
+    },
+    {
+     "rank": 2,
+     "provision": "tmvr-1989-chap-2::Rule 21",
+     "vector": [
+      3,
+      0.6221
+     ],
+     "bm25": [
+      3,
+      5.901
+     ]
+    },
+    {
+     "rank": 3,
+     "provision": "tmvr-1989-chap-2::Rule 17",
+     "vector": [
+      4,
+      0.6301
+     ],
+     "bm25": [
+      5,
+      5.738
+     ]
+    },
+    {
+     "rank": 4,
+     "provision": "tmvr-1989-chap-5::Rule 258",
+     "vector": [
+      543,
+      1.0691
+     ],
+     "bm25": [
+      1,
+      7.345
+     ]
+    },
+    {
+     "rank": 5,
+     "provision": "tmvr-1989-chap-5::Rule 228",
+     "vector": [
+      1,
+      0.6082
+     ],
+     "bm25": [
+      13,
+      5.23
+     ]
+    },
+    {
+     "rank": 6,
+     "provision": "tmvr-1989-chap-7::Rule 342",
+     "vector": [
+      344,
+      1.0048
+     ],
+     "bm25": [
+      2,
+      6.723
+     ]
+    },
+    {
+     "rank": 7,
+     "provision": "tmvr-1989-chap-5::Rule 229",
+     "vector": [
+      5,
+      0.6317
+     ],
+     "bm25": [
+      9,
+      5.659
+     ]
+    },
+    {
+     "rank": 8,
+     "provision": "tmvr-1989-chap-5::Rule 231",
+     "vector": [
+      13,
+      0.7181
+     ],
+     "bm25": [
+      6,
+      5.682
+     ]
+    },
+    {
+     "rank": 9,
+     "provision": "tmvr-1989-chap-4::Rule 99",
+     "vector": [
+      6,
+      0.6419
+     ],
+     "bm25": [
+      16,
+      5.031
+     ]
+    }
+   ],
+   "expected_detail": {
+    "tmvr-1989-chap-2::Rule 16": {
+     "in_corpus": true,
+     "vector": [
+      8,
+      0.6621
+     ],
+     "bm25": [
+      7,
+      5.679
+     ]
+    },
+    "tmvr-1989-chap-3::Rule 59": {
+     "in_corpus": true,
+     "vector": [
+      10,
+      0.6793
+     ],
+     "bm25": [
+      10,
+      5.543
+     ]
+    },
+    "tmvr-1989-chap-4::Rule 99": {
+     "in_corpus": true,
+     "vector": [
+      6,
+      0.6419
+     ],
+     "bm25": [
+      16,
+      5.031
+     ]
+    },
+    "tmvr-1989-chap-4::Rule 120": {
+     "in_corpus": true,
+     "vector": [
+      2,
+      0.6214
+     ],
+     "bm25": [
+      4,
+      5.784
+     ]
+    },
+    "tmvr-1989-chap-5::Rule 228": {
+     "in_corpus": true,
+     "vector": [
+      1,
+      0.6082
+     ],
+     "bm25": [
+      13,
+      5.23
+     ]
+    },
+    "tmvtr-1963::Rule 11": {
+     "in_corpus": true,
+     "vector": [
+      15,
+      0.7297
+     ],
+     "bm25": [
+      14,
+      5.155
+     ]
+    }
+   },
+   "label_source": "machine_candidate",
+   "reviewer_status": "pending_human_review",
+   "outcome": "clarification_required"
+  }
+ },
+ "rule_81": {
+  "snapshot": "tmvr-1989-chap-4 Rule 81 (unverified HTML snapshot, retrieved 29-10-2026, no amendment citations): fees Rs.50,000/30,000/20,000/10,000/5,000 tiers, Form RRMA, sub-rules (1)-(6).",
+  "go_77": "G.O.Ms.No.77 TR&B (Tr.I), dated 15-11-2025, final notification under s.65/s.212 MVA: omits sub-rules (1), (2), (4); substitutes (3) (new fee tiers Rs.1,50,000 to Rs.6,000/3,000, online-only), (5) (online bidding) and (6). Directs publication in a Telangana Gazette extraordinary issue dated 15.11.2025.",
+  "go_54": "G.O.Ms.No.54 dated 13-08-2025: preliminary notification (Gazette G-575, 13.08.2025).",
+  "known": [
+   "G.O. 77 text, date and the sub-rules it omits/substitutes",
+   "The snapshot predates G.O. 77 (its fee tiers differ)",
+   "G.O. 77 cites earlier G.O.s 02/2014, 41/2015, 44/2015, 95/2016, 26/2017, 52/2018 as references"
+  ],
+  "unknown": [
+   "Commencement: G.O. 77 has no 'come into force' clause; the Gazette issue itself is not in the corpus",
+   "Whether the Gazette was published as directed and on 15.11.2025",
+   "Contents of the 2014-2018 G.O.s and whether the snapshot already reflected them",
+   "Any amendment to Rule 81 after 15-11-2025",
+   "Whether any court order or later notification affects it"
+  ],
+  "provenance_gap": "goir/2025TRB_Ms77.pdf is not listed in source-documents/SHA256SUMS (G.O. 54 is).",
+  "sufficient_to_establish_current_rule": false,
+  "human_review_required": [
+   "Obtain the Telangana Gazette extraordinary dated 15.11.2025 and confirm publication and commencement",
+   "Confirm no amendment to Rule 81 after G.O. 77 (Gazette/GOIR search)",
+   "Obtain G.O.s 02/2014-52/2018 and determine the pre-2025 text",
+   "Produce a consolidated Rule 81 and decide how the outdated snapshot is marked (e.g. answer_eligible or superseded metadata)",
+   "Record checksum and provenance for 2025TRB_Ms77.pdf"
+  ]
+ }
+}

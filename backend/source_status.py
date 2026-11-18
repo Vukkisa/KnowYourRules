@@ -52,8 +52,8 @@ TEMPLATES = {
         "{label}: this text comes from an unofficial web copy of unknown date. It may not include later "
         "amendments, so check the official text before relying on it."),
     "official_text_commencement_unconfirmed": (
-        "{label}: the official order is held, but its Gazette publication and commencement have not been "
-        "confirmed."),
+        "{label}: the official text is held, but it has not been confirmed that this is the latest in-force version "
+        "(Gazette publication, commencement or later amendments are not all confirmed)."),
     "known_amendments_unresolved": (
         "{label}, {provision}: the text shown is an older unofficial web copy. {instruments} contains amendments "
         "to this provision; their commencement and the current consolidated wording have not been established, "
@@ -85,6 +85,9 @@ class Registry:
     errors: list = field(default_factory=list)
     sha256: str | None = None                 # SHA-256 of the registry file bytes
     by_hash: dict = field(default_factory=dict)
+    validity_ledger_sha256: str | None = None  # optional binding to a provision-validity ledger (roadmap Step 2); only ever set on a valid registry
+    validity_decision_register_sha256: str | None = None  # optional: SHA-256 of the exact decision-register file bytes (Step 3 review M1)
+    validity_evidence_manifest_sha256: str | None = None  # optional: SHA-256 of the canonical evidence manifest file bytes (Step 3 review M1)
 
     @property
     def valid(self) -> bool:
@@ -100,6 +103,17 @@ class Registry:
         return Status(src["status"], sha256, entry["file"], entry["label"],
                       provision_id if override else None, tuple(src["related_instruments"]),
                       tuple(src["decision_refs"]))
+
+
+REGISTRY_KEYS = frozenset({"schema_version", "jurisdiction", "note", "entries"})
+LEDGER_KEY = "validity_ledger_sha256"          # optional; absent from the real registry
+REGISTER_KEY = "validity_decision_register_sha256"   # optional; absent from the real registry
+MANIFEST_KEY = "validity_evidence_manifest_sha256"   # optional; absent from the real registry
+OPTIONAL_KEYS = frozenset({LEDGER_KEY, REGISTER_KEY, MANIFEST_KEY})
+
+
+def _ledger_sha_ok(v) -> bool:
+    return isinstance(v, str) and SHA256_RE.fullmatch(v) is not None
 
 
 def _text(v) -> bool:
@@ -185,8 +199,11 @@ def parse(data, today: dt.date | None = None) -> dict:
     """Validate a decoded registry strictly. Returns {sha256: entry}; raises SourceStatusError listing problems."""
     today = today or dt.date.today()
     errors = []
-    if not isinstance(data, dict) or set(data) != {"schema_version", "jurisdiction", "note", "entries"}:
+    if not isinstance(data, dict) or not REGISTRY_KEYS <= set(data) <= REGISTRY_KEYS | OPTIONAL_KEYS:
         raise SourceStatusError("registry must be an object with exactly schema_version, jurisdiction, note, entries")
+    for key in sorted(OPTIONAL_KEYS & set(data)):
+        if not _ledger_sha_ok(data[key]):
+            errors.append(f"{key} must be 64 lowercase hex characters")
     if data["schema_version"] != SCHEMA_VERSION or isinstance(data["schema_version"], bool):
         errors.append(f"schema_version must be {SCHEMA_VERSION}")
     if data["jurisdiction"] != JURISDICTION:
@@ -230,7 +247,7 @@ def parse(data, today: dt.date | None = None) -> dict:
                 _check_common(o, ow, errors, today)
                 overrides[o["provision_id"]] = o
         names[name] = h
-        by_hash[h] = {"file": f, "name": name, "label": e["label"].strip(), "status": e["status"],
+        by_hash[h] = {"file": f, "name": name, "manifest_id": e["manifest_id"].strip(), "label": e["label"].strip(), "status": e["status"],
                       "related_instruments": e["related_instruments"], "decision_refs": e["decision_refs"],
                       "overrides": overrides}
     if errors:
@@ -252,6 +269,8 @@ def index_errors(by_hash: dict, metadatas) -> list:
             errors.append(f"hash mismatch for {name!r}: index {str(h)[:12]}..., registry {name_to_hash[name][:12]}...")
         elif h not in by_hash:
             errors.append(f"missing registry entry for indexed document {name!r}")
+        elif m.get("manifest_id") and by_hash[h].get("manifest_id") and m["manifest_id"] != by_hash[h]["manifest_id"]:
+            errors.append(f"manifest id mismatch for {name!r}: index {m['manifest_id']!r}, registry {by_hash[h]['manifest_id']!r}")
     return errors
 
 
@@ -274,9 +293,22 @@ def load(path, metadatas=None, corpus_dir=None, today: dt.date | None = None) ->
         return Registry("absent", ["source-status registry not found"])
     try:
         raw = Path(path).read_bytes()
-        digest = hashlib.sha256(raw).hexdigest()
-        by_hash = parse(json.loads(raw.decode("utf-8")), today)
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as e:
+    except OSError as e:
+        return Registry("invalid", [f"cannot read source-status registry: {e.__class__.__name__}"])
+    return load_bytes(raw, metadatas, corpus_dir, today)
+
+
+def load_bytes(raw, metadatas=None, corpus_dir=None, today: dt.date | None = None) -> Registry:
+    """``load`` for bytes the caller has already read: the digest and the parse use exactly these bytes, so a caller that
+    hashes or verifies the same bytes cannot be affected by the file changing afterwards. Never raises."""
+    if not isinstance(raw, (bytes, bytearray)):
+        return Registry("invalid", ["cannot read source-status registry: not bytes"])
+    raw = bytes(raw)
+    digest = hashlib.sha256(raw).hexdigest()
+    try:
+        data = json.loads(raw.decode("utf-8"))
+        by_hash = parse(data, today)
+    except (UnicodeDecodeError, json.JSONDecodeError) as e:
         return Registry("invalid", [f"cannot read source-status registry: {e.__class__.__name__}"])
     except SourceStatusError as e:
         return Registry("invalid", [str(e)])
@@ -285,7 +317,52 @@ def load(path, metadatas=None, corpus_dir=None, today: dt.date | None = None) ->
         problems += corpus_errors(by_hash, corpus_dir)
     if problems:
         return Registry("invalid", problems, digest)
-    return Registry("valid", [], digest, by_hash)
+    return Registry("valid", [], digest, by_hash, data.get(LEDGER_KEY), data.get(REGISTER_KEY), data.get(MANIFEST_KEY))
+
+
+def verify_ledger_binding(registry, ledger_sha256) -> list:
+    """Hash check only: does this valid registry name exactly this ledger hash? Returns problems; [] means it does.
+
+    NECESSARY BUT NOT SUFFICIENT. It says nothing about the ledger's content. A ledger may be used only after
+    the ledger acceptance gate (``backend/ledger_acceptance.py``) has also validated it completely (any validation error rejects it)."""
+    if not isinstance(registry, Registry) or not registry.valid:
+        return ["source-status registry is not valid"]
+    bound = registry.validity_ledger_sha256
+    if bound is None:
+        return ["source-status registry does not bind a validity ledger"]
+    if not _ledger_sha_ok(bound):
+        return [f"{LEDGER_KEY} is malformed"]
+    if not _ledger_sha_ok(ledger_sha256):
+        return ["ledger sha256 must be 64 lowercase hex characters"]
+    if bound != ledger_sha256:
+        return ["validity ledger has changed since the registry bound it"]
+    return []
+
+
+def _verify_bound(registry, attr, key, noun, sha256) -> list:
+    if not isinstance(registry, Registry) or not registry.valid:
+        return ["source-status registry is not valid"]
+    bound = getattr(registry, attr)
+    if bound is None:
+        return [f"source-status registry does not bind a {noun}"]
+    if not _ledger_sha_ok(bound):
+        return [f"{key} is malformed"]
+    if not _ledger_sha_ok(sha256):
+        return [f"{noun} sha256 must be 64 lowercase hex characters"]
+    if bound != sha256:
+        return [f"{noun} has changed since the registry bound it"]
+    return []
+
+
+def verify_register_binding(registry, register_sha256) -> list:
+    """Hash check only: does this valid registry name exactly the SHA-256 of these decision-register bytes? [] means yes.
+    The registry is itself bound to the signed approval record, so a changed register no longer matches the signed chain."""
+    return _verify_bound(registry, "validity_decision_register_sha256", REGISTER_KEY, "validity decision register", register_sha256)
+
+
+def verify_manifest_binding(registry, manifest_sha256) -> list:
+    """Hash check only: does this valid registry name exactly the SHA-256 of these evidence-manifest bytes? [] means yes."""
+    return _verify_bound(registry, "validity_evidence_manifest_sha256", MANIFEST_KEY, "validity evidence manifest", manifest_sha256)
 
 
 def sha256_file(path) -> str | None:
@@ -330,3 +407,96 @@ def collect_warnings(registry: Registry, docs, citation_numbers=None, trust_veri
                     "related_instruments": list(s.related_instruments), "decision_refs": list(s.decision_refs),
                     "citations": [n]})
     return out
+
+
+# ---------------------------------------------------------------------------------------------------
+# Stage 7C (D12): which source of truth says what, and where the two disagree.
+#   * ELIGIBILITY (may a chunk be served at all) belongs to the lifecycle registry that travels in the R2 snapshot (state per file
+#     hash) and, for answering, to the signed approval record. This module can never make a source eligible.
+#   * TEXT STATUS (how far the text can be trusted as current law: a warning label) belongs to legal-status/source-status.json, which
+#     travels with the code in git, is validated against the restored index, and is bound by hash into the signed approval record.
+# Any disagreement is reported with a category. The BLOCKING categories already make the server refuse to answer (an invalid
+# registry means no answers: backend/server.py serving errors); the others are diagnostics. Nothing here reconciles or rewrites either file.
+# ---------------------------------------------------------------------------------------------------
+ABSENT_REGISTRY = "absent_status_registry"
+MALFORMED_REGISTRY = "malformed_status_registry"
+INVALID_REGISTRY = "invalid_status_registry"
+MISSING_ENTRY = "missing_status_entry"
+HASH_MISMATCH = "hash_mismatch"
+MANIFEST_ID_MISMATCH = "manifest_id_mismatch"
+EXTRA_ENTRY = "extra_status_entry"
+FILE_NAME_MISMATCH = "file_name_mismatch"
+LIFECYCLE_UNREADABLE = "lifecycle_registry_unreadable"
+LIFECYCLE_UNKNOWN = "lifecycle_hash_unknown"
+LIFECYCLE_COUNT_MISMATCH = "lifecycle_chunk_count_mismatch"
+STATUS_CONFLICT = "status_conflict"
+BLOCKING = frozenset({ABSENT_REGISTRY, MALFORMED_REGISTRY, INVALID_REGISTRY, MISSING_ENTRY, HASH_MISMATCH, MANIFEST_ID_MISMATCH})
+
+
+def diagnose(path, index_metadatas, lifecycle_registry_path=None) -> list:
+    """Categorised disagreements between the status file, the (restored) index and the lifecycle registry. Never raises, never
+    modifies anything. Each item: {"category", "document", "detail"}; `document` is a manifest id or file name, `detail` carries at most
+    12-character hash prefixes."""
+    out = []
+
+    def add(cat, doc, detail):
+        out.append({"category": cat, "document": doc, "detail": detail})
+    if path is None or not Path(path).is_file():
+        return [{"category": ABSENT_REGISTRY, "document": None, "detail": "source-status registry not found"}]
+    try:
+        raw = Path(path).read_bytes()
+        data = json.loads(raw.decode("utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as e:
+        return [{"category": MALFORMED_REGISTRY, "document": None, "detail": f"cannot read source-status registry: {e.__class__.__name__}"}]
+    try:
+        by_hash = parse(data)
+    except SourceStatusError as e:
+        return [{"category": INVALID_REGISTRY, "document": None, "detail": str(e)[:300]}]
+    meta = [m or {} for m in (index_metadatas or [])]
+    idx = {}
+    for m in meta:
+        if m.get("sha256"):
+            idx.setdefault(m["sha256"], {"manifest_id": m.get("manifest_id"), "file": m.get("source_file"), "chunks": 0})["chunks"] += 1
+    name_to_hash = {v["name"]: h for h, v in by_hash.items()}
+    for h, info in sorted(idx.items(), key=lambda kv: str(kv[1]["file"])):
+        doc = info["manifest_id"] or info["file"]
+        if info["file"] in name_to_hash and name_to_hash[info["file"]] != h:
+            add(HASH_MISMATCH, doc, f"index {h[:12]}, registry {name_to_hash[info['file']][:12]}")
+        elif h not in by_hash:
+            add(MISSING_ENTRY, doc, f"no status entry for indexed hash {h[:12]}")
+        else:
+            e = by_hash[h]
+            if info["manifest_id"] and e["manifest_id"] != info["manifest_id"]:
+                add(MANIFEST_ID_MISMATCH, doc, f"index {info['manifest_id']!r}, registry {e['manifest_id']!r}")
+            if info["file"] and e["name"] != info["file"]:
+                add(FILE_NAME_MISMATCH, doc, f"index {info['file']!r}, registry {e['name']!r}")
+    for h, e in sorted(by_hash.items(), key=lambda kv: kv[1]["manifest_id"]):
+        if h not in idx:
+            add(EXTRA_ENTRY, e["manifest_id"], f"status entry {h[:12]} matches nothing in the index")
+    if lifecycle_registry_path is not None:
+        try:
+            lc = json.loads(Path(lifecycle_registry_path).read_text("utf-8"))
+            versions = {rec["sha256"]: rec for src in lc["sources"].values() for rec in src["versions"].values()}
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            add(LIFECYCLE_UNREADABLE, None, "the lifecycle registry could not be read; nothing is servable")
+            return out
+        for h, info in sorted(idx.items(), key=lambda kv: str(kv[1]["file"])):
+            doc = info["manifest_id"] or info["file"]
+            rec = versions.get(h)
+            if rec is None:
+                add(LIFECYCLE_UNKNOWN, doc, f"hash {h[:12]} is in the index but in no lifecycle version: not servable")
+                continue
+            if rec.get("chunk_count") != info["chunks"]:
+                add(LIFECYCLE_COUNT_MISMATCH, doc, f"index holds {info['chunks']} chunks, lifecycle says {rec.get('chunk_count')}: not servable")
+            e = by_hash.get(h)
+            if e and e["status"] == "verified_current" and rec.get("state") != "approved":
+                add(STATUS_CONFLICT, doc, f"status file says verified_current, lifecycle state is {rec.get('state')!r}: shown as unconfirmed, not served")
+    return out
+
+
+def summarize(diagnostics: list) -> dict:
+    """Counts per category and whether anything blocks answering; safe for /status."""
+    counts = {}
+    for d in diagnostics:
+        counts[d["category"]] = counts.get(d["category"], 0) + 1
+    return {"consistent": not diagnostics, "blocking": sorted(c for c in counts if c in BLOCKING), "categories": counts}

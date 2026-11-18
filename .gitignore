@@ -44,3 +44,14 @@ Thumbs.db
 # Local Telangana indexes (built from the legal corpus, not source)
 chroma_telangana_db/
 chroma_telangana_preview/
+
+# Regenerated test and build artefacts (an empty Chroma DB that tests create in tests/, Pages build output)
+tests/chroma.sqlite3
+build/
+
+# Editor swap and temp files
+*.swp
+*.tmp
+
+chroma_telangana_staging_validity/
+.vercel

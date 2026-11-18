@@ -1,0 +1,3301 @@
+{
+ "stage": 14,
+ "status": "APPLIED to working tree (uncommitted). Mechanical benchmark corrections only; not legal approval or certification of current legal validity.",
+ "approvals": {
+  "P1": "approved",
+  "P2": "approved",
+  "P3": "approved",
+  "P4": "approved",
+  "P5": "approved",
+  "P6": "approved",
+  "D1": "approved",
+  "D7": "approved",
+  "D8": "approved",
+  "scope": "user chat message 11-11-2026: 'mechanical benchmark corrections, not as legal certification or confirmation of current legal validity'",
+  "reviewer_status_changed": false,
+  "approval_records_created": false
+ },
+ "transaction": {
+  "backups": {
+   "refs": "/Users/vj/Downloads/KnowYourRules-tg/eval/legal-validation/stage-14-originals/telangana-chunk-references.json.pre-stage-14",
+   "bench": "/Users/vj/Downloads/KnowYourRules-tg/eval/legal-validation/stage-14-originals/telangana-retrieval-benchmark.json.pre-stage-14",
+   "csv": "/Users/vj/Downloads/KnowYourRules-tg/eval/legal-validation/stage-14-originals/telangana-retrieval-review.csv.pre-stage-14",
+   "test": "/Users/vj/Downloads/KnowYourRules-tg/eval/legal-validation/stage-14-originals/test_review_import.py.pre-stage-14"
+  },
+  "original_sha256": {
+   "refs": "31dd5e8faa56f7ab4980de91278672c2c3dacb6176ecc78058e2ca8cc96fb8b7",
+   "bench": "80061e7544d95ef8ceb847e1c71547a63df00824c6104e47935e0723e2ec60de",
+   "csv": "e6ddfdd8a1857fd6f1204a697485f5463229764d054607d2c8100d8ac82245d1",
+   "test": "851b8f345677d5c66553802a49b12d620aefb451ebff5dbe9fb18e4beb146cd5"
+  },
+  "installed_sha256": {
+   "refs": "2e06f8ed2608a281a4aa6f2a0eab5f68c05c3b4ce0ed0462bd34537a11c6f6ae",
+   "bench": "f186027c9f2e73ae2311d7259e72c059b09e770541e682ea1fbd6eece0d98106",
+   "csv": "361ad6957636fbae523260998395f91fa2fcee0c44aae5f8662c304641771fd5",
+   "test": "e8254b41dbcaae64912868b1fdbcd7fab6ce7e97ce0f84226368e658cb94497d"
+  },
+  "rollback_triggered": false,
+  "checks": [
+   "base hashes matched Stage 13 before applying",
+   "human/reviewer/label_source CSV columns unchanged on all 108 rows",
+   "review_import validate OK",
+   "full unit suite OK"
+  ]
+ },
+ "d7_regenerated_columns": {
+  "columns": [
+   "machine_retrieved_top5",
+   "machine_retrieval_result",
+   "machine_first_relevant_rank",
+   "machine_recall_at_5"
+  ],
+  "index": "copy of chroma_telangana_preview_s11 (document-set sha256 72e4cf91be15...)",
+  "mode": "hybrid",
+  "format_inference": "no generator in repo; inferred format reproduces the old CSV on the old index for result/rank/recall 108/108 and top5 95/108; the 13 top5 differences are different retrieved documents (CSV predates the current retriever), not format",
+  "rows_changed": 30,
+  "changes": [
+   {
+    "id": "TG-EX-004",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. go-ms-53-2025-trb::Paragraph 1 | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Paragraph 1 - For the\n2. go-ms-53-2025-trb::Preamble | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Preamble GOVERNMENT O\n3. tmvtr-1963::Rule 5 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 5 - Filing of declaration when motor vehicle is altered 5. Filing of declaration when motor vehicle is altered : - (1) When in respect of any motor vehicle, additional amount of tax becom\n4. tmvtr-1963::Rule 12A | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12A - Liability for payment of tax in respect of motor vehicles kept for use 12-A. Liability for payment of tax in respect of motor vehicles kept for use :- For the purpose of Section 3 o",
+      "proposed": "1. go-ms-53-2025-trb::Paragraph 1 | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Paragraph 1 - For the\n2. go-ms-53-2025-trb::Preamble | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Preamble GOVERNMENT O\n3. tmvtr-1963::Rule 5 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 5 - Filing of declaration when motor vehicle is altered 5. Filing of declaration when motor vehicle is altered : - (1) When in respect of any motor vehicle, additional amount of tax becom\n4. tmvtr-1963::Rule 13 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 13 - Rates of penalty 13 Rates of penalty : - If the tax due in respect of motor vehicle has not been paid as specified in Section 4, the Licensing Officer shall impose the penalty under "
+     }
+    }
+   },
+   {
+    "id": "TG-EX-005",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvtr-1963::Rule 5 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 5 - Filing of declaration when motor vehicle is altered 5. Filing of declaration when motor vehicle is altered : - (1) When in respect of any motor vehicle, additional amount of tax becom\n2. tmvtr-1963::Rule 16 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 16 - Levy of tax on an articulated vehicle 16. Levy of tax on an articulated vehicle : - (1) If a motor vehicle is so constructed that a trailer may by partial super-imposition be attache\n3. tmvtr-1963::Rule 12A | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12A - Liability for payment of tax in respect of motor vehicles kept for use 12-A. Liability for payment of tax in respect of motor vehicles kept for use :- For the purpose of Section 3 o\n4. tmvtr-1963::Rule 6 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 6 - Payment of tax for motor vehicle purchased within the quarter and grant of Licence 6. Payment of tax for motor vehicle purchased within the quarter and grant of Licence : - Subject to\n5. tmvr-1989-chap-5::Rule 205 | Telangana Motor Vehicles Rules, 1989 - Rule 205 - Stage or Contract Carriage of personal Luggage 205. Stage or Contract Carriage of personal Luggage :- The Transport Authority shall have power to regulate the weight of luggage and goods whi",
+      "proposed": "1. tmvtr-1963::Rule 5 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 5 - Filing of declaration when motor vehicle is altered 5. Filing of declaration when motor vehicle is altered : - (1) When in respect of any motor vehicle, additional amount of tax becom\n2. tmvtr-1963::Rule 16 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 16 - Levy of tax on an articulated vehicle 16. Levy of tax on an articulated vehicle : - (1) If a motor vehicle is so constructed that a trailer may by partial super-imposition be attache\n3. tmvtr-1963::Rule 12B | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12B 12-B : - Whereby a notification under sub-Section (1) of Section 3 the rates of taxes for the periods for which the tax was already paid on a motor vehicle are increased from a date s\n4. tmvtr-1963::Rule 6 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 6 - Payment of tax for motor vehicle purchased within the quarter and grant of Licence 6. Payment of tax for motor vehicle purchased within the quarter and grant of Licence : - Subject to\n5. tmvr-1989-chap-5::Rule 205 | Telangana Motor Vehicles Rules, 1989 - Rule 205 - Stage or Contract Carriage of personal Luggage 205. Stage or Contract Carriage of personal Luggage :- The Transport Authority shall have power to regulate the weight of luggage and goods whi"
+     }
+    }
+   },
+   {
+    "id": "TG-EX-007",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvtr-1963::Rule 12A | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12A - Liability for payment of tax in respect of motor vehicles kept for use 12-A. Liability for payment of tax in respect of motor vehicles kept for use :- For the purpose of Section 3 o\n2. tmvtr-1963::Rule 12 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12 - Payment of tax and penalty 12. Payment of tax and penalty :- If the tax due in respect of any motor vehicle has not been paid as specified in Sec. 4 of the Act the registered owner o\n3. tmvr-1989-chap-4::Rule 104 | Telangana Motor Vehicles Rules, 1989 - Rule 104 - Procedure for noting hire-purchase agreement or hypothecation certificate of vehicle already registered 104. Procedure for noting hire-purchase agreement or hypothecation certificate of vehi\n4. tmvtr-1963::Rule 5 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 5 - Filing of declaration when motor vehicle is altered 5. Filing of declaration when motor vehicle is altered : - (1) When in respect of any motor vehicle, additional amount of tax becom\n5. tmvtr-1963::Rule 3 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 3 - Endorsement in certificate of registration of tax payable 3. Endorsement in certificate of registration of tax payable : - Where a motor vehicle is registered in a State, or the owner",
+      "proposed": "1. tmvtr-1963::Rule 12A | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12A - Liability for payment of tax in respect of motor vehicles kept for use 12-A. Liability for payment of tax in respect of motor vehicles kept for use :- For the purpose of Section 3 o\n2. tmvtr-1963::Rule 12 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12 - Payment of tax and penalty 12. Payment of tax and penalty :- If the tax due in respect of any motor vehicle has not been paid as specified in Sec. 4 of the Act the registered owner o\n3. tmvtr-1963::Rule 13 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 13 - Rates of penalty 13 Rates of penalty : - If the tax due in respect of motor vehicle has not been paid as specified in Section 4, the Licensing Officer shall impose the penalty under \n4. tmvtr-1963::Rule 5 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 5 - Filing of declaration when motor vehicle is altered 5. Filing of declaration when motor vehicle is altered : - (1) When in respect of any motor vehicle, additional amount of tax becom\n5. tmvtr-1963::Rule 12B | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12B 12-B : - Whereby a notification under sub-Section (1) of Section 3 the rates of taxes for the periods for which the tax was already paid on a motor vehicle are increased from a date s"
+     }
+    }
+   },
+   {
+    "id": "TG-GO-002",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. go-ms-25-2026-trb::Order | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Order ORDER: In the circumstances reported by the Transport Commissioner, Telanga\n2. tmvr-1989-chap-7::Rule 362 | Telangana Motor Vehicles Rules, 1989 - Rule 362 - Prohibition of a painting or marking in certain manner 362. Prohibition of a painting or marking in certain manner :- (1) Public service vehicle when regularly used for carrying Government m\n3. tmvr-1989-chap-3::Rule 65 | Telangana Motor Vehicles Rules, 1989 - Rule 65 - Report of change of permanent address 65. Report of change of permanent address :- (1) The holder of a Licence shall, except in the case of a temporary absence not involving a change of resid\n4. tmvr-1989-chap-2::Rule 30 | Telangana Motor Vehicles Rules, 1989 - Rule 30 - Report of change of permanent address 30. Report of change of permanent address:- (1) The holder of a Licence entitling him to drive a transport vehicle shall, except in the case of a tempora\n5. go-ms-77-2025-trb::Paragraph 3 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 3 - Accordingly, the following notification shall be published in an extraordinary (part 1 of 2) 3. Accordingly, the following notification sh",
+      "proposed": "1. go-ms-25-2026-trb::Order | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Order ORDER: In the circumstances reported by the Transport Commissioner, Telanga\n2. tmvr-1989-chap-7::Rule 362 | Telangana Motor Vehicles Rules, 1989 - Rule 362 - Prohibition of a painting or marking in certain manner 362. Prohibition of a painting or marking in certain manner :- (1) Public service vehicle when regularly used for carrying Government m\n3. tmvr-1989-chap-3::Rule 65 | Telangana Motor Vehicles Rules, 1989 - Rule 65 - Report of change of permanent address 65. Report of change of permanent address :- (1) The holder of a Licence shall, except in the case of a temporary absence not involving a change of resid\n4. tmvr-1989-chap-2::Rule 30 | Telangana Motor Vehicles Rules, 1989 - Rule 30 - Report of change of permanent address 30. Report of change of permanent address:- (1) The holder of a Licence entitling him to drive a transport vehicle shall, except in the case of a tempora\n5. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per"
+     }
+    }
+   },
+   {
+    "id": "TG-GO-007",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-4::Rule 81 | Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 1 of 2) 81. Assignment of Registration Number :- (1) On receipt of applications for registration, the Registering Authority shall arrange them alphabet\n2. go-ms-77-2025-trb::Order | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to e\n3. go-ms-77-2025-trb::Paragraph 4 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 4 - For sub-rule (6) the following shall be substituted, namely 4. For sub-rule (6) the following shall be substituted, namely:- “The number r\n4. go-ms-77-2025-trb::Paragraph 3 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 3 - Accordingly, the following notification shall be published in an extraordinary (part 2 of 2) (iii) Ten percent of the reservation fee for ",
+      "proposed": "1. tmvr-1989-chap-4::Rule 81 | Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 1 of 2) 81. Assignment of Registration Number :- (1) On receipt of applications for registration, the Registering Authority shall arrange them alphabet\n2. go-ms-77-2025-trb::Order | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to e\n3. tmvr-1989-chap-4::Rule 81 | Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 2 of 2) (6) The number reserved under sub-rules (3) (i), (ii) and (iii) shall be allotted on production of the vehicle and registered as per the proced\n4. go-ms-77-2025-trb::Paragraph 4 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 4 - For sub-rule (6) the following shall be substituted, namely 4. For sub-rule (6) the following shall be substituted, namely:- “The number r\n5. go-ms-77-2025-trb::Paragraph 3 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 3 - Accordingly, the following notification shall be published in an extraordinary (part 2 of 2) (iii) Ten percent of the reservation fee for "
+     }
+    }
+   },
+   {
+    "id": "TG-GO-008",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. go-ms-77-2025-trb::Paragraph 2 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 2 - Whereas no objections or suggestions have been received from the general 2. Whereas no objections or suggestions have been received from t\n2. go-ms-77-2025-trb::Order | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to e\n3. go-ms-77-2025-trb::Paragraph 3 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 3 - Accordingly, the following notification shall be published in an extraordinary (part 2 of 2) (iii) Ten percent of the reservation fee for \n4. tmvr-1989-chap-4::Rule 81 | Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 1 of 2) 81. Assignment of Registration Number :- (1) On receipt of applications for registration, the Registering Authority shall arrange them alphabet\n5. go-ms-77-2025-trb::Preamble | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Motor Vehicles – Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification – Order",
+      "proposed": "1. go-ms-77-2025-trb::Paragraph 2 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 2 - Whereas no objections or suggestions have been received from the general 2. Whereas no objections or suggestions have been received from t\n2. go-ms-77-2025-trb::Order | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to e\n3. go-ms-77-2025-trb::Paragraph 3 | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 3 - Accordingly, the following notification shall be published in an extraordinary (part 2 of 2) (iii) Ten percent of the reservation fee for \n4. tmvr-1989-chap-4::Rule 81 | Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 1 of 2) 81. Assignment of Registration Number :- (1) On receipt of applications for registration, the Registering Authority shall arrange them alphabet\n5. tmvr-1989-chap-4::Rule 81 | Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 2 of 2) (6) The number reserved under sub-rules (3) (i), (ii) and (iii) shall be allotted on production of the vehicle and registered as per the proced"
+     }
+    }
+   },
+   {
+    "id": "TG-GO-011",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. go-ms-53-2025-trb::Preamble | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Preamble GOVERNMENT O\n2. go-ms-53-2025-trb::Paragraph 1 | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Paragraph 1 - For the\n3. tmvr-1989-chap-2::Rule 14 | Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph 14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose ",
+      "proposed": "1. go-ms-53-2025-trb::Preamble | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Preamble GOVERNMENT O\n2. go-ms-53-2025-trb::Paragraph 1 | Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of life tax in Transport and Non-Transport Vehicles - Notification - Paragraph 1 - For the\n3. tmvr-1989-chap-2::Rule 14 | Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph 14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose "
+     }
+    }
+   },
+   {
+    "id": "TG-MR-005",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-12::Rule 484 | Telangana Motor Vehicles Rules, 1989 - Rule 484 - (i) Agency to issue Pollution Under Control Certificate 484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as def\n2. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 1 of 3) 486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for \n3. tmvr-1989-chap-12::Rule 485 | Telangana Motor Vehicles Rules, 1989 - Rule 485 - Fee for testing and issue of Pollution Under Control Certificate 485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Veh\n4. tmvr-1989-chap-4::Rule 83A | Telangana Motor Vehicles Rules, 1989 - Rule 83A - Communication of certificates of Central Government agencies of Motor Vehicles for registration 83-A. Communication of certificates of Central Government agencies of Motor Vehicles for regis",
+      "proposed": "1. tmvr-1989-chap-12::Rule 484 | Telangana Motor Vehicles Rules, 1989 - Rule 484 - (i) Agency to issue Pollution Under Control Certificate 484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as def\n2. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 1 of 3) 486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for \n3. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 2 of 3) (3) If after the issue of a duplicate Licence, original is found, the same shall be surrendered forthwith to the licensing authori\n4. tmvr-1989-chap-12::Rule 485 | Telangana Motor Vehicles Rules, 1989 - Rule 485 - Fee for testing and issue of Pollution Under Control Certificate 485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Veh\n5. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 3 of 3) (3) Appeal:- Any person aggrieved by an order of the licensing authority under sub-rule (6),(7) or (10) may appeal, where the Lice"
+     }
+    }
+   },
+   {
+    "id": "TG-MR-006",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S\n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n4. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio",
+      "proposed": "1. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S\n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n4. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n5. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per"
+     }
+    }
+   },
+   {
+    "id": "TG-PQ-007",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-12::Rule 484 | Telangana Motor Vehicles Rules, 1989 - Rule 484 - (i) Agency to issue Pollution Under Control Certificate 484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as def\n2. tmvr-1989-chap-12::Rule 485 | Telangana Motor Vehicles Rules, 1989 - Rule 485 - Fee for testing and issue of Pollution Under Control Certificate 485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Veh\n3. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 1 of 3) 486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for \n4. tmvr-1989-chap-4::Rule 107 | Telangana Motor Vehicles Rules, 1989 - Rule 107 - Certificate of fitness issuing authority 107. Certificate of fitness issuing authority :- A certificate of fitness under Section 56 shall be granted or renewed by the Inspector of Motor Vehi",
+      "proposed": "1. tmvr-1989-chap-12::Rule 484 | Telangana Motor Vehicles Rules, 1989 - Rule 484 - (i) Agency to issue Pollution Under Control Certificate 484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as def\n2. tmvr-1989-chap-12::Rule 485 | Telangana Motor Vehicles Rules, 1989 - Rule 485 - Fee for testing and issue of Pollution Under Control Certificate 485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Veh\n3. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 1 of 3) 486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for \n4. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 2 of 3) (3) If after the issue of a duplicate Licence, original is found, the same shall be surrendered forthwith to the licensing authori\n5. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 3 of 3) (3) Appeal:- Any person aggrieved by an order of the licensing authority under sub-rule (6),(7) or (10) may appeal, where the Lice"
+     }
+    }
+   },
+   {
+    "id": "TG-PQ-017",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-11::Rule 476 | Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 1 of 2) 476. Application for claim :- (1) Every application in the case of claim under Chapter X of the Motor Vehicles Act, 1988; shall be made in Form CWF (Claim\n2. tmvr-1989-chap-11::Rule 471 | Telangana Motor Vehicles Rules, 1989 - Rule 471 - Judgment and award of compensation 471. Judgment and award of compensation :- (1) The Claims Tribunal in passing orders shall record concisely in a judgment the findings on each of the issue\n3. tmvr-1989-chap-11::Rule 458 | Telangana Motor Vehicles Rules, 1989 - Rule 458 - Notice to parties involved 458. Notice to parties involved :- (1) If the application is not dismissed under Rule 457, the Claims Tribunal shall send to the owner of the motor vehicle involve\n4. tmvr-1989-chap-11::Rule 462 | Telangana Motor Vehicles Rules, 1989 - Rule 462 - Local Inspection 462. Local Inspection:- (1) The Claims Tribunal may, at any time during the course of any inquiry before it visits the site at which the accident occurred for the purpose of\n5. tmvr-1989-chap-11::Rule 474 | Telangana Motor Vehicles Rules, 1989 - Rule 474 - Form and number of appeals against the decision of Claims Tribunal 474. Form and number of appeals against the decision of Claims Tribunal :- (1) An Appeal against the award of a Claims Trib",
+      "proposed": "1. tmvr-1989-chap-11::Rule 476 | Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 1 of 2) 476. Application for claim :- (1) Every application in the case of claim under Chapter X of the Motor Vehicles Act, 1988; shall be made in Form CWF (Claim\n2. tmvr-1989-chap-11::Rule 471 | Telangana Motor Vehicles Rules, 1989 - Rule 471 - Judgment and award of compensation 471. Judgment and award of compensation :- (1) The Claims Tribunal in passing orders shall record concisely in a judgment the findings on each of the issue\n3. tmvr-1989-chap-11::Rule 476 | Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 2 of 2) (9) Payment of compensation of the Claims Tribunal:- The procedure of adjudicating the liability and award of compensation may be set apart from the proce\n4. tmvr-1989-chap-11::Rule 458 | Telangana Motor Vehicles Rules, 1989 - Rule 458 - Notice to parties involved 458. Notice to parties involved :- (1) If the application is not dismissed under Rule 457, the Claims Tribunal shall send to the owner of the motor vehicle involve\n5. tmvr-1989-chap-11::Rule 462 | Telangana Motor Vehicles Rules, 1989 - Rule 462 - Local Inspection 462. Local Inspection:- (1) The Claims Tribunal may, at any time during the course of any inquiry before it visits the site at which the accident occurred for the purpose of"
+     }
+    }
+   },
+   {
+    "id": "TG-GC-002",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose ",
+      "proposed": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 3 of 5) (iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be\n3. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 4 of 5) (xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle; (xiii) A complaint book with pages numbered seria\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 2 of 5) (xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ; (xiv) The fares and freights fixed by t\n5. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 5) (5) (vi) It shall be a condition of every permit of contract carriage motor cab and autorickshaw, that the vehicle shall not be allowed"
+     }
+    }
+   },
+   {
+    "id": "TG-MP-001",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 6) (d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with bl\n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. go-ms-25-2026-trb::Preamble | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles –\n4. tmvr-1989-chap-5::Rule 183 | Telangana Motor Vehicles Rules, 1989 - Rule 183 - Maintenance of history sheet in respect of a contract carriage 183. Maintenance of history sheet in respect of a contract carriage :- Every transport authority shall maintain a history sheet\n5. go-ms-25-2026-trb::References | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - References Read the following:- From the Transport Commissioner, Telangana, Hyder",
+      "proposed": "1. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n2. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per\n3. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n4. go-ms-25-2026-trb::Preamble | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles –\n5. tmvr-1989-chap-5::Rule 183 | Telangana Motor Vehicles Rules, 1989 - Rule 183 - Maintenance of history sheet in respect of a contract carriage 183. Maintenance of history sheet in respect of a contract carriage :- Every transport authority shall maintain a history sheet"
+     },
+     "machine_retrieval_result": {
+      "current": "n/a (missing_provision; see safety guard)",
+      "proposed": "PASS"
+     },
+     "machine_first_relevant_rank": {
+      "current": "",
+      "proposed": "1"
+     },
+     "machine_recall_at_5": {
+      "current": "",
+      "proposed": "1.0"
+     }
+    }
+   },
+   {
+    "id": "TG-MP-002",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 6) (d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with bl\n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. go-ms-25-2026-trb::Preamble | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles –\n4. tmvr-1989-chap-5::Rule 181 | Telangana Motor Vehicles Rules, 1989 - Rule 181 - Grant or refusal of additional trips or change of timings 181. Grant or refusal of additional trips or change of timings :- In granting additional trips or change of timings the transport au\n5. go-ms-25-2026-trb::References | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - References Read the following:- From the Transport Commissioner, Telangana, Hyder",
+      "proposed": "1. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n2. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per\n3. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n4. go-ms-25-2026-trb::Preamble | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles –\n5. tmvr-1989-chap-5::Rule 181 | Telangana Motor Vehicles Rules, 1989 - Rule 181 - Grant or refusal of additional trips or change of timings 181. Grant or refusal of additional trips or change of timings :- In granting additional trips or change of timings the transport au"
+     },
+     "machine_retrieval_result": {
+      "current": "n/a (missing_provision; see safety guard)",
+      "proposed": "PASS"
+     },
+     "machine_first_relevant_rank": {
+      "current": "",
+      "proposed": "1"
+     },
+     "machine_recall_at_5": {
+      "current": "",
+      "proposed": "1.0"
+     }
+    }
+   },
+   {
+    "id": "TG-MP-003",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S\n4. tmvr-1989-chap-3::Rule 72 | Telangana Motor Vehicles Rules, 1989 - Rule 72 - Stage carriage to carry conductors 72. Stage carriage to carry conductors :- No stage carriage shall be used in a public place unless it carries in addition to the driver a conductor. Provide",
+      "proposed": "1. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n2. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per\n3. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n4. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n5. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S"
+     },
+     "machine_retrieval_result": {
+      "current": "n/a (missing_provision; see safety guard)",
+      "proposed": "PASS"
+     },
+     "machine_first_relevant_rank": {
+      "current": "",
+      "proposed": "1"
+     },
+     "machine_recall_at_5": {
+      "current": "",
+      "proposed": "1.0"
+     }
+    }
+   },
+   {
+    "id": "TG-MP-004",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S",
+      "proposed": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S\n3. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n4. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per\n5. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 4 of 5) (xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle; (xiii) A complaint book with pages numbered seria"
+     },
+     "machine_retrieval_result": {
+      "current": "n/a (missing_provision; see safety guard)",
+      "proposed": "PASS"
+     },
+     "machine_first_relevant_rank": {
+      "current": "",
+      "proposed": "1"
+     },
+     "machine_recall_at_5": {
+      "current": "",
+      "proposed": "1.0"
+     }
+    }
+   },
+   {
+    "id": "TG-MP-005",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n2. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 6) (d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with bl\n3. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio\n4. tmvr-1989-chap-5::Rule 217A | Telangana Motor Vehicles Rules, 1989 - Rule 217A - Compounding Offences Partial Condonation 217-A. Compounding Offences Partial Condonation :- Where the Transport Authority is of the view that an offence requires to be condoned partially, t\n5. tmvr-1989-chap-5::Rule 183 | Telangana Motor Vehicles Rules, 1989 - Rule 183 - Maintenance of history sheet in respect of a contract carriage 183. Maintenance of history sheet in respect of a contract carriage :- Every transport authority shall maintain a history sheet",
+      "proposed": "1. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n2. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per\n3. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n4. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio\n5. tmvr-1989-chap-5::Rule 217A | Telangana Motor Vehicles Rules, 1989 - Rule 217A - Compounding Offences Partial Condonation 217-A. Compounding Offences Partial Condonation :- Where the Transport Authority is of the view that an offence requires to be condoned partially, t"
+     },
+     "machine_retrieval_result": {
+      "current": "n/a (missing_provision; see safety guard)",
+      "proposed": "PASS"
+     },
+     "machine_first_relevant_rank": {
+      "current": "",
+      "proposed": "1"
+     },
+     "machine_recall_at_5": {
+      "current": "",
+      "proposed": "1.0"
+     }
+    }
+   },
+   {
+    "id": "TG-OS-001",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. go-ms-77-2025-trb::Order | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to e\n3. tmvr-1989-chap-5::Rule 254 | Telangana Motor Vehicles Rules, 1989 - Rule 254 - Exemption 254. Exemption :- The provisions of Rule 253 shall not apply to motor vehicles registered under Section 60 or to goods vehicle which are being used for the carriage of troops or th\n4. tmvr-1989-chap-5::Rule 295 | Telangana Motor Vehicles Rules, 1989 - Rule 295 - Painting of goods Carriages 295. Painting of goods Carriages :- Every goods vehicle shall be painted either fully or its front and rear portions in highway yellow colour Provided that a good\n5. go-ms-32-2026-trb::Paragraph 2 | Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 2 - In the reference 2nd & 3rd read above, the Hon'ble Supreme",
+      "proposed": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. go-ms-77-2025-trb::Order | Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to e\n3. tmvr-1989-chap-5::Rule 254 | Telangana Motor Vehicles Rules, 1989 - Rule 254 - Exemption 254. Exemption :- The provisions of Rule 253 shall not apply to motor vehicles registered under Section 60 or to goods vehicle which are being used for the carriage of troops or th\n4. tmvr-1989-chap-1::Rule 2 | Telangana Motor Vehicles Rules, 1989 - Rule 2 - Definitions (part 1 of 2) 2. Definitions:- (1) In these rules, unless the context otherwise requires,- » ‘Act' means the Motor Vehicles Act, 1988 (Central Act 59 of 1988) ; » ‘Express State Ca\n5. go-ms-32-2026-trb::Paragraph 2 | Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 2 - In the reference 2nd & 3rd read above, the Hon'ble Supreme"
+     }
+    }
+   },
+   {
+    "id": "TG-OS-006",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 295 | Telangana Motor Vehicles Rules, 1989 - Rule 295 - Painting of goods Carriages 295. Painting of goods Carriages :- Every goods vehicle shall be painted either fully or its front and rear portions in highway yellow colour Provided that a good\n2. tmvr-1989-chap-5::Rule 176 | Telangana Motor Vehicles Rules, 1989 - Rule 176 - Grant of State-wide permits in respect of Motor Cabs 176. Grant of State-wide permits in respect of Motor Cabs :- The Regional Transport Authority of one region may grant a permit in respect\n3. tmvr-1989-chap-5::Rule 220 | Telangana Motor Vehicles Rules, 1989 - Rule 220 - Permit – Transfer of 220. Permit – Transfer of :- When the holder of permit desires to transfer the permit to some other person under sub-section (1) of Section 82, he shall together with th\n4. tmvr-1989-chap-5::Rule 184 | Telangana Motor Vehicles Rules, 1989 - Rule 184 - Grant or renewal of contract carriage permits-guiding principles 184. Grant or renewal of contract carriage permits-guiding principles :- (1) The transport authorities shall in deciding whet\n5. tmvr-1989-chap-5::Rule 201 | Telangana Motor Vehicles Rules, 1989 - Rule 201 - Stage and contract carriages, carriage of goods restriction 201. Stage and contract carriages, carriage of goods restriction :- (1) No goods liable to foul the interior of the vehicle or to ",
+      "proposed": "1. tmvr-1989-chap-5::Rule 295A | Telangana Motor Vehicles Rules, 1989 - Rule 295A - Painting of goods carriages carrying dangerous or hazardous goods 295-A . Painting of goods carriages carrying dangerous or hazardous goods:- Notwithstanding anything contained in Rule 295,\n2. tmvr-1989-chap-5::Rule 176 | Telangana Motor Vehicles Rules, 1989 - Rule 176 - Grant of State-wide permits in respect of Motor Cabs 176. Grant of State-wide permits in respect of Motor Cabs :- The Regional Transport Authority of one region may grant a permit in respect\n3. tmvr-1989-chap-5::Rule 295 | Telangana Motor Vehicles Rules, 1989 - Rule 295 - Painting of goods Carriages 295. Painting of goods Carriages :- Every goods vehicle shall be painted either fully or its front and rear portions in highway yellow colour Provided that a good\n4. tmvr-1989-chap-5::Rule 184 | Telangana Motor Vehicles Rules, 1989 - Rule 184 - Grant or renewal of contract carriage permits-guiding principles 184. Grant or renewal of contract carriage permits-guiding principles :- (1) The transport authorities shall in deciding whet\n5. tmvr-1989-chap-5::Rule 220 | Telangana Motor Vehicles Rules, 1989 - Rule 220 - Permit – Transfer of 220. Permit – Transfer of :- When the holder of permit desires to transfer the permit to some other person under sub-section (1) of Section 82, he shall together with th"
+     }
+    }
+   },
+   {
+    "id": "TG-PN-002",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-8::Rule 450 | Telangana Motor Vehicles Rules, 1989 - Rule 450 - Powers to levy penalty for causing of obstruction 450. Powers to levy penalty for causing of obstruction :- Officer of the Transport Department not below the rank of Assistant Motor Vehicles\n2. tmvtr-1963::Rule 12 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12 - Payment of tax and penalty 12. Payment of tax and penalty :- If the tax due in respect of any motor vehicle has not been paid as specified in Sec. 4 of the Act the registered owner o\n3. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio\n4. tmvtr-1963::Rule 13B | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 13B - Acceptance of tax and penalty by the checking officer 13-B Acceptance of tax and penalty by the checking officer :- (1) on the case of non-transport vehicle, seized and detained by \n5. tmvtr-1963::Rule 17 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 17 - Fine for breach of rules 17. Fine for breach of rules :- (1) whoever commits breach of any provision of these rules shall be punishable with fine which may extend to fifty rupees. (2",
+      "proposed": "1. tmvr-1989-chap-8::Rule 450 | Telangana Motor Vehicles Rules, 1989 - Rule 450 - Powers to levy penalty for causing of obstruction 450. Powers to levy penalty for causing of obstruction :- Officer of the Transport Department not below the rank of Assistant Motor Vehicles\n2. tmvtr-1963::Rule 13 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 13 - Rates of penalty 13 Rates of penalty : - If the tax due in respect of motor vehicle has not been paid as specified in Section 4, the Licensing Officer shall impose the penalty under \n3. tmvtr-1963::Rule 12 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12 - Payment of tax and penalty 12. Payment of tax and penalty :- If the tax due in respect of any motor vehicle has not been paid as specified in Sec. 4 of the Act the registered owner o\n4. tmvtr-1963::Rule 13B | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 13B - Acceptance of tax and penalty by the checking officer 13-B Acceptance of tax and penalty by the checking officer :- (1) on the case of non-transport vehicle, seized and detained by \n5. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio"
+     }
+    }
+   },
+   {
+    "id": "TG-PN-005",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvtr-1963::Rule 17 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 17 - Fine for breach of rules 17. Fine for breach of rules :- (1) whoever commits breach of any provision of these rules shall be punishable with fine which may extend to fifty rupees. (2\n2. tmvr-1989-chap-5::Rule 288A | Telangana Motor Vehicles Rules, 1989 - Rule 288A - Any officer of the Telangana State Road Transport Corporation not below the rank of Traffic Ticket Inspector, Grade-III may exercise powers of enforcing Rule 24 288-A. Any officer of the Te\n3. tmvr-1989-chap-8::Rule 408 | Telangana Motor Vehicles Rules, 1989 - Rule 408 - Payment for removal 408. Payment for removal :- Notwithstanding any fine or penalty which may be imposed upon any person upon conviction for the contravention of the provisions of Section 12\n4. tmvr-1989-chap-5::Rule 217A | Telangana Motor Vehicles Rules, 1989 - Rule 217A - Compounding Offences Partial Condonation 217-A. Compounding Offences Partial Condonation :- Where the Transport Authority is of the view that an offence requires to be condoned partially, t\n5. tmvr-1989-chap-5::Rule 214 | Telangana Motor Vehicles Rules, 1989 - Rule 214 - Permit surrender and cancellation 214. Permit surrender and cancellation :- (1) If the holder of a permit other than a temporary permit intends to surrender the permit, for cancellation, he ",
+      "proposed": "1. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 2 of 2) (3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respec\n2. tmvtr-1963::Rule 17 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 17 - Fine for breach of rules 17. Fine for breach of rules :- (1) whoever commits breach of any provision of these rules shall be punishable with fine which may extend to fifty rupees. (2\n3. tmvr-1989-chap-5::Rule 186 | Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a luxury tourist cab (part 1 of 2) 186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the per\n4. tmvr-1989-chap-5::Rule 288A | Telangana Motor Vehicles Rules, 1989 - Rule 288A - Any officer of the Telangana State Road Transport Corporation not below the rank of Traffic Ticket Inspector, Grade-III may exercise powers of enforcing Rule 24 288-A. Any officer of the Te\n5. tmvr-1989-chap-5::Rule 217A | Telangana Motor Vehicles Rules, 1989 - Rule 217A - Compounding Offences Partial Condonation 217-A. Compounding Offences Partial Condonation :- Where the Transport Authority is of the view that an offence requires to be condoned partially, t"
+     }
+    }
+   },
+   {
+    "id": "TG-DL-002",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-1::Rule 2 | Telangana Motor Vehicles Rules, 1989 - Rule 2 - Definitions (part 1 of 2) 2. Definitions:- (1) In these rules, unless the context otherwise requires,- » ‘Act' means the Motor Vehicles Act, 1988 (Central Act 59 of 1988) ; » ‘Express State Ca\n2. tmvtr-1963::Rule 2 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 2 - Definitions 2. Definitions : - In these rules unless the context otherwise requires: (a) Act means the Telangana Motor Vehicles Taxation Rules, 1963; (b) Form means a form appended to\n3. tmvr-1989-chap-7::Rule 393 | Telangana Motor Vehicles Rules, 1989 - Rule 393 - Exemption of Military vehicles 393. Exemption of Military vehicles: - The provisions of the rules specified in the first column of the Table below shall not, to the extent specified in the c\n4. tmvr-1989-chap-5::Rule 143 | Telangana Motor Vehicles Rules, 1989 - Rule 143 - Powers of Regional Transport Authority – Delegation (part 2 of 2) » Power under sub-rules (2) and (3) of Rule 214 to accept or not the surrender or to postpone the acceptance of the surrende\n5. tmvr-1989-chap-5::Rule 222 | Telangana Motor Vehicles Rules, 1989 - Rule 222 - Transfer to be void on false information 222. Transfer to be void on false information :- Without prejudice to any other penalty to which the parties may be liable, any transfer of a permit ",
+      "proposed": "1. tmvr-1989-chap-1::Rule 2 | Telangana Motor Vehicles Rules, 1989 - Rule 2 - Definitions (part 1 of 2) 2. Definitions:- (1) In these rules, unless the context otherwise requires,- » ‘Act' means the Motor Vehicles Act, 1988 (Central Act 59 of 1988) ; » ‘Express State Ca\n2. tmvtr-1963::Rule 2 | Telangana Motor Vehicles Taxation Rules, 1963 - Rule 2 - Definitions 2. Definitions : - In these rules unless the context otherwise requires: (a) Act means the Telangana Motor Vehicles Taxation Rules, 1963; (b) Form means a form appended to\n3. tmvr-1989-chap-7::Rule 393 | Telangana Motor Vehicles Rules, 1989 - Rule 393 - Exemption of Military vehicles 393. Exemption of Military vehicles: - The provisions of the rules specified in the first column of the Table below shall not, to the extent specified in the c\n4. tmvr-1989-chap-1::Rule 2 | Telangana Motor Vehicles Rules, 1989 - Rule 2 - Definitions (part 2 of 2) (la) “Sleeper Bus” means a stage carriage constructed or adapted to carry more thank six passengers (excluding driver) with facility of comfortable sleep on a berth, \n5. tmvr-1989-chap-5::Rule 143 | Telangana Motor Vehicles Rules, 1989 - Rule 143 - Powers of Regional Transport Authority – Delegation (part 2 of 2) » Power under sub-rules (2) and (3) of Rule 214 to accept or not the surrender or to postpone the acceptance of the surrende"
+     }
+    }
+   },
+   {
+    "id": "TG-DL-005",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-8::Rule 427 | Telangana Motor Vehicles Rules, 1989 - Rule 427 - Sound signals –Restrictions on use of 427. Sound signals –Restrictions on use of :- No driver of a motor vehicle shall sound the horn or other device for giving audible warning, with which t\n2. tmvr-1989-chap-2::Rule 14 | Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph 14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the\n3. tmvr-1989-chap-8::Rule 424 | Telangana Motor Vehicles Rules, 1989 - Rule 424 - Authority competent to exempt 424. Authority competent to exempt :- The Commissioner of Police in the cities of Hyderabad and Secunderabad and the Superintendent of Police at other places ma\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n5. tmvr-1989-chap-8::Rule 423 | Telangana Motor Vehicles Rules, 1989 - Rule 423 - Precaution with goods vehicle with projecting load 423. Precaution with goods vehicle with projecting load :- Clause (iii) of Rule 422 shall not apply to a goods vehicle when loaded with any",
+      "proposed": "1. tmvr-1989-chap-8::Rule 427 | Telangana Motor Vehicles Rules, 1989 - Rule 427 - Sound signals –Restrictions on use of 427. Sound signals –Restrictions on use of :- No driver of a motor vehicle shall sound the horn or other device for giving audible warning, with which t\n2. tmvr-1989-chap-2::Rule 14 | Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph 14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the\n3. tmvr-1989-chap-8::Rule 424 | Telangana Motor Vehicles Rules, 1989 - Rule 424 - Authority competent to exempt 424. Authority competent to exempt :- The Commissioner of Police in the cities of Hyderabad and Secunderabad and the Superintendent of Police at other places ma\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n5. tmvr-1989-chap-8::Rule 423 | Telangana Motor Vehicles Rules, 1989 - Rule 423 - Precaution with goods vehicle with projecting load 423. Precaution with goods vehicle with projecting load :- Clause (iii) of Rule 422 shall not apply to a goods vehicle when loaded with any"
+     }
+    }
+   },
+   {
+    "id": "TG-DL-013",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 177 | Telangana Motor Vehicles Rules, 1989 - Rule 177 - Grant of permits to Autorickshaws 177. Grant of permits to Autorickshaws :- The Regional Transport Authority of any one region may grant a permit in respect of an Auto rickshaw and Motor Cyc\n2. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio\n3. tmvr-1989-chap-5::Rule 176 | Telangana Motor Vehicles Rules, 1989 - Rule 176 - Grant of State-wide permits in respect of Motor Cabs 176. Grant of State-wide permits in respect of Motor Cabs :- The Regional Transport Authority of one region may grant a permit in respect\n4. tmvr-1989-chap-2::Rule 14 | Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph 14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the\n5. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 4 of 6) (xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle; (xiii) A complaint book with pages numbered seria",
+      "proposed": "1. tmvr-1989-chap-5::Rule 177 | Telangana Motor Vehicles Rules, 1989 - Rule 177 - Grant of permits to Autorickshaws 177. Grant of permits to Autorickshaws :- The Regional Transport Authority of any one region may grant a permit in respect of an Auto rickshaw and Motor Cyc\n2. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio\n3. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 5) (5) (vi) It shall be a condition of every permit of contract carriage motor cab and autorickshaw, that the vehicle shall not be allowed\n4. tmvr-1989-chap-2::Rule 14 | Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph 14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the\n5. tmvr-1989-chap-5::Rule 176 | Telangana Motor Vehicles Rules, 1989 - Rule 176 - Grant of State-wide permits in respect of Motor Cabs 176. Grant of State-wide permits in respect of Motor Cabs :- The Regional Transport Authority of one region may grant a permit in respect"
+     }
+    }
+   },
+   {
+    "id": "TG-DL-018",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-11::Rule 471 | Telangana Motor Vehicles Rules, 1989 - Rule 471 - Judgment and award of compensation 471. Judgment and award of compensation :- (1) The Claims Tribunal in passing orders shall record concisely in a judgment the findings on each of the issue\n2. tmvr-1989-chap-11::Rule 476 | Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 2 of 2) (9) Payment of compensation of the Claims Tribunal:- The procedure of adjudicating the liability and award of compensation may be set apart from the proce\n3. tmvr-1989-chap-11::Rule 474 | Telangana Motor Vehicles Rules, 1989 - Rule 474 - Form and number of appeals against the decision of Claims Tribunal 474. Form and number of appeals against the decision of Claims Tribunal :- (1) An Appeal against the award of a Claims Trib\n4. tmvr-1989-chap-11::Rule 472 | Telangana Motor Vehicles Rules, 1989 - Rule 472 - Enforcement of an award of the Claims Tribunal 472. Enforcement of an award of the Claims Tribunal :- Subject to the provisions of Section 174, the Claims Tribunal shall, for the purpose of \n5. tmvr-1989-chap-11::Rule 475 | Telangana Motor Vehicles Rules, 1989 - Rule 475 - Fees 475. Fees :- (1) Every application under sub-section (1) of Section 166 of the Act for payment of compensation shall be accompanied by a fee in the form of court fee stamps as specified",
+      "proposed": "1. tmvr-1989-chap-11::Rule 471 | Telangana Motor Vehicles Rules, 1989 - Rule 471 - Judgment and award of compensation 471. Judgment and award of compensation :- (1) The Claims Tribunal in passing orders shall record concisely in a judgment the findings on each of the issue\n2. tmvr-1989-chap-11::Rule 476 | Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 2 of 2) (9) Payment of compensation of the Claims Tribunal:- The procedure of adjudicating the liability and award of compensation may be set apart from the proce\n3. tmvr-1989-chap-11::Rule 474 | Telangana Motor Vehicles Rules, 1989 - Rule 474 - Form and number of appeals against the decision of Claims Tribunal 474. Form and number of appeals against the decision of Claims Tribunal :- (1) An Appeal against the award of a Claims Trib\n4. tmvr-1989-chap-11::Rule 476 | Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 1 of 2) 476. Application for claim :- (1) Every application in the case of claim under Chapter X of the Motor Vehicles Act, 1988; shall be made in Form CWF (Claim\n5. tmvr-1989-chap-11::Rule 472 | Telangana Motor Vehicles Rules, 1989 - Rule 472 - Enforcement of an award of the Claims Tribunal 472. Enforcement of an award of the Claims Tribunal :- Subject to the provisions of Section 174, the Claims Tribunal shall, for the purpose of "
+     }
+    }
+   },
+   {
+    "id": "TG-DL-019",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-12::Rule 484 | Telangana Motor Vehicles Rules, 1989 - Rule 484 - (i) Agency to issue Pollution Under Control Certificate 484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as def\n2. tmvr-1989-chap-12::Rule 485 | Telangana Motor Vehicles Rules, 1989 - Rule 485 - Fee for testing and issue of Pollution Under Control Certificate 485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Veh\n3. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 1 of 3) 486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for \n4. tmvr-1989-chap-4::Rule 107 | Telangana Motor Vehicles Rules, 1989 - Rule 107 - Certificate of fitness issuing authority 107. Certificate of fitness issuing authority :- A certificate of fitness under Section 56 shall be granted or renewed by the Inspector of Motor Vehi",
+      "proposed": "1. tmvr-1989-chap-12::Rule 484 | Telangana Motor Vehicles Rules, 1989 - Rule 484 - (i) Agency to issue Pollution Under Control Certificate 484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as def\n2. tmvr-1989-chap-12::Rule 485 | Telangana Motor Vehicles Rules, 1989 - Rule 485 - Fee for testing and issue of Pollution Under Control Certificate 485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Veh\n3. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 1 of 3) 486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for \n4. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 2 of 3) (3) If after the issue of a duplicate Licence, original is found, the same shall be surrendered forthwith to the licensing authori\n5. tmvr-1989-chap-12::Rule 486 | Telangana Motor Vehicles Rules, 1989 - Rule 486 - Pollution Testing Stations and Establishments (part 3 of 3) (3) Appeal:- Any person aggrieved by an order of the licensing authority under sub-rule (6),(7) or (10) may appeal, where the Lice"
+     }
+    }
+   },
+   {
+    "id": "TG-DL-024",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 297A | Telangana Motor Vehicles Rules, 1989 - Rule 297A - Special provisions regarding licensing of agents engaged in the sale of tickets or in otherwise soliciting customers for public service vehicles (part 1 of 6) 297-A. Special provisions rega\n2. tmvr-1989-chap-9::Rule 453 | Telangana Motor Vehicles Rules, 1989 - Rule 453 - Cover Note – Intimation of 453. Cover Note – Intimation of :- An insurer required under Section 147 to notify the fact of not issuing the policy of insurance following the issue of cover not",
+      "proposed": "1. tmvr-1989-chap-5::Rule 297A | Telangana Motor Vehicles Rules, 1989 - Rule 297A - Special provisions regarding licensing of agents engaged in the sale of tickets or in otherwise soliciting customers for public service vehicles (part 1 of 6) 297-A. Special provisions rega\n2. tmvr-1989-chap-5::Rule 297A | Telangana Motor Vehicles Rules, 1989 - Rule 297A - Special provisions regarding licensing of agents engaged in the sale of tickets or in otherwise soliciting customers for public service vehicles (part 3 of 6) (4)(a) For ensuring proper com\n3. tmvr-1989-chap-5::Rule 297A | Telangana Motor Vehicles Rules, 1989 - Rule 297A - Special provisions regarding licensing of agents engaged in the sale of tickets or in otherwise soliciting customers for public service vehicles (part 5 of 6) (i) Any failure to file the ag\n4. tmvr-1989-chap-5::Rule 297A | Telangana Motor Vehicles Rules, 1989 - Rule 297A - Special provisions regarding licensing of agents engaged in the sale of tickets or in otherwise soliciting customers for public service vehicles (part 6 of 6) (9)(a) Without prejudice to an\n5. tmvr-1989-chap-9::Rule 453 | Telangana Motor Vehicles Rules, 1989 - Rule 453 - Cover Note – Intimation of 453. Cover Note – Intimation of :- An insurer required under Section 147 to notify the fact of not issuing the policy of insurance following the issue of cover not"
+     }
+    }
+   },
+   {
+    "id": "TG-DL-025",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-8::Rule 426 | Telangana Motor Vehicles Rules, 1989 - Rule 426 - Carriage of dangerous substances 426. Carriage of dangerous substances :- Except for the fuel and lubricants necessary for the use of the vehicles, no explosive, highly inflammable or otherw\n2. tmvr-1989-chap-7::Rule 349 | Telangana Motor Vehicles Rules, 1989 - Rule 349 - Passenger’s luggage provisions for carrying of 349. Passenger’s luggage provisions for carrying of :- Luggage carried on the outside of a stage carriage shall be protected in wet weather by \n3. tmvr-1989-chap-5::Rule 295 | Telangana Motor Vehicles Rules, 1989 - Rule 295 - Painting of goods Carriages 295. Painting of goods Carriages :- Every goods vehicle shall be painted either fully or its front and rear portions in highway yellow colour Provided that a good\n4. tmvr-1989-chap-7::Rule 317 | Telangana Motor Vehicles Rules, 1989 - Rule 317 - Dangerous Projections 317. Dangerous Projections :- No mascot or other similar fitting or device shall be carried by any motor vehicle in any position where it is likely to strike any person\n5. tmvr-1989-chap-8::Rule 440 | Telangana Motor Vehicles Rules, 1989 - Rule 440 - When attendants may not be carried on trailers 440. When attendants may not be carried on trailers :- Rule 43 shall not apply, (i)to any trailer having not more than two wheels and not excee",
+      "proposed": "1. tmvr-1989-chap-8::Rule 426 | Telangana Motor Vehicles Rules, 1989 - Rule 426 - Carriage of dangerous substances 426. Carriage of dangerous substances :- Except for the fuel and lubricants necessary for the use of the vehicles, no explosive, highly inflammable or otherw\n2. tmvr-1989-chap-7::Rule 349 | Telangana Motor Vehicles Rules, 1989 - Rule 349 - Passenger’s luggage provisions for carrying of 349. Passenger’s luggage provisions for carrying of :- Luggage carried on the outside of a stage carriage shall be protected in wet weather by \n3. tmvr-1989-chap-5::Rule 295A | Telangana Motor Vehicles Rules, 1989 - Rule 295A - Painting of goods carriages carrying dangerous or hazardous goods 295-A . Painting of goods carriages carrying dangerous or hazardous goods:- Notwithstanding anything contained in Rule 295,\n4. tmvr-1989-chap-7::Rule 317 | Telangana Motor Vehicles Rules, 1989 - Rule 317 - Dangerous Projections 317. Dangerous Projections :- No mascot or other similar fitting or device shall be carried by any motor vehicle in any position where it is likely to strike any person\n5. tmvr-1989-chap-8::Rule 440 | Telangana Motor Vehicles Rules, 1989 - Rule 440 - When attendants may not be carried on trailers 440. When attendants may not be carried on trailers :- Rule 43 shall not apply, (i)to any trailer having not more than two wheels and not excee"
+     }
+    }
+   },
+   {
+    "id": "TG-PQ-005",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 244 | Telangana Motor Vehicles Rules, 1989 - Rule 244 - Prohibition of Smoking 244. Prohibition of Smoking :- No person shall smoke in public service vehicles except the motor cabs and notice bearing words “Smoking Prohibited” in Telugu and Engli\n2. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 3 of 6) (iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be\n3. tmvr-1989-chap-7::Rule 335 | Telangana Motor Vehicles Rules, 1989 - Rule 335 - Standing passengers in Stage Carriages 335. Standing passengers in Stage Carriages :- (1) The Transport Authority may impose a condition in the permit of any stage carriage that the vehicle \n4. tmvr-1989-chap-6::Rule 307 | Telangana Motor Vehicles Rules, 1989 - Rule 307 - Hiring of Private buses by State Transport Undertakings 307. Hiring of Private buses by State Transport Undertakings :- Notwithstanding anything in Rule 306 where an emergency arises that th\n5. tmvr-1989-chap-7::Rule 355 | Telangana Motor Vehicles Rules, 1989 - Rule 355 - Exhaust pipe of public service vehicle 355. Exhaust pipe of public service vehicle :- The exhaust pipe of every public service vehicle shall be fitted or shielded that no inflammable materia",
+      "proposed": "1. tmvr-1989-chap-5::Rule 244 | Telangana Motor Vehicles Rules, 1989 - Rule 244 - Prohibition of Smoking 244. Prohibition of Smoking :- No person shall smoke in public service vehicles except the motor cabs and notice bearing words “Smoking Prohibited” in Telugu and Engli\n2. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 3 of 5) (iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be\n3. tmvr-1989-chap-7::Rule 335 | Telangana Motor Vehicles Rules, 1989 - Rule 335 - Standing passengers in Stage Carriages 335. Standing passengers in Stage Carriages :- (1) The Transport Authority may impose a condition in the permit of any stage carriage that the vehicle \n4. tmvr-1989-chap-6::Rule 307 | Telangana Motor Vehicles Rules, 1989 - Rule 307 - Hiring of Private buses by State Transport Undertakings 307. Hiring of Private buses by State Transport Undertakings :- Notwithstanding anything in Rule 306 where an emergency arises that th\n5. tmvr-1989-chap-7::Rule 355 | Telangana Motor Vehicles Rules, 1989 - Rule 355 - Exhaust pipe of public service vehicle 355. Exhaust pipe of public service vehicle :- The exhaust pipe of every public service vehicle shall be fitted or shielded that no inflammable materia"
+     }
+    }
+   },
+   {
+    "id": "TG-PQ-014",
+    "changes": {
+     "machine_retrieved_top5": {
+      "current": "1. tmvr-1989-chap-5::Rule 246 | Telangana Motor Vehicles Rules, 1989 - Rule 246 - Conduct of passengers in Stage carriages (part 2 of 2) (xxix) distribute printed or similar matter of any description or distribute any article for the purpose of advertising ; (xxx) commit \n2. tmvr-1989-chap-5::Rule 191 | Telangana Motor Vehicles Rules, 1989 - Rule 191 - Permit to be carried in vehicle 191. Permit to be carried in vehicle :- The holder of a permit or temporary permit shall cause to be carried in the vehicle, at all times unless it has been s\n3. tmvr-1989-chap-5::Rule 288 | Telangana Motor Vehicles Rules, 1989 - Rule 288 - Inspection public service vehicle 288. Inspection public service vehicle :- (1) Any of the following persons may, at any time, when a public vehicle is in a public place call upon the driver\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n5. tmvr-1989-chap-5::Rule 286 | Telangana Motor Vehicles Rules, 1989 - Rule 286 - Inspection of goods vehicles and their contents 286. Inspection of goods vehicles and their contents :- (1) Any of the following persons may, at any time when a goods vehicle is in a public ",
+      "proposed": "1. tmvr-1989-chap-5::Rule 246 | Telangana Motor Vehicles Rules, 1989 - Rule 246 - Conduct of passengers in Stage carriages (part 2 of 2) (xxix) distribute printed or similar matter of any description or distribute any article for the purpose of advertising ; (xxx) commit \n2. tmvr-1989-chap-5::Rule 191 | Telangana Motor Vehicles Rules, 1989 - Rule 191 - Permit to be carried in vehicle 191. Permit to be carried in vehicle :- The holder of a permit or temporary permit shall cause to be carried in the vehicle, at all times unless it has been s\n3. tmvr-1989-chap-5::Rule 288 | Telangana Motor Vehicles Rules, 1989 - Rule 288 - Inspection public service vehicle 288. Inspection public service vehicle :- (1) Any of the following persons may, at any time, when a public vehicle is in a public place call upon the driver\n4. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 5) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n5. tmvr-1989-chap-5::Rule 286 | Telangana Motor Vehicles Rules, 1989 - Rule 286 - Inspection of goods vehicles and their contents 286. Inspection of goods vehicles and their contents :- (1) Any of the following persons may, at any time when a goods vehicle is in a public "
+     }
+    }
+   }
+  ]
+ },
+ "tests": {
+  "suite": "642 tests OK (623 existing + 19 new in tests/test_benchmark_integrity.py)",
+  "validate": "OK: 0 reviewed, 108 unreviewed, 0 errors"
+ },
+ "retrieval": {
+  "stage11_old_index_old_labels": {
+   "scored_cases": 74,
+   "hit@5": 1.0,
+   "recall@1": 0.6802,
+   "recall@3": 0.911,
+   "recall@5": 0.9527,
+   "mrr": 0.8732,
+   "precision@5": 0.2486,
+   "failure_rate": 0.0,
+   "hit@5_failures": []
+  },
+  "stage11_s11_index_old_labels": {
+   "scored_cases": 74,
+   "hit@5": 1.0,
+   "recall@1": 0.6802,
+   "recall@3": 0.911,
+   "recall@5": 0.9527,
+   "mrr": 0.8732,
+   "precision@5": 0.2486,
+   "failure_rate": 0.0,
+   "hit@5_failures": []
+  },
+  "stage14_s11_index_corrected_labels": {
+   "scored_cases": 79,
+   "hit@5": 1.0,
+   "recall@1": 0.6793,
+   "recall@3": 0.9167,
+   "recall@5": 0.9557,
+   "mrr": 0.8749,
+   "precision@5": 0.2532,
+   "failure_rate": 0.0,
+   "hit@5_failures": []
+  }
+ },
+ "guard": {
+  "stage11_old_index_old_labels": {
+   "cases": 12,
+   "correct": 12,
+   "accuracy": 1.0
+  },
+  "stage11_s11_index_old_labels": {
+   "cases": 12,
+   "correct": 7,
+   "accuracy": 0.5833333333333334
+  },
+  "stage14_s11_index_corrected_labels": {
+   "cases": 12,
+   "correct": 12,
+   "accuracy": 1.0
+  }
+ },
+ "guard_rows_stage14": {
+  "TG-MP-001": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-MP-002": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-MP-003": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-MP-004": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-MP-005": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-MP-006": {
+   "blocked": true,
+   "correct": true,
+   "missing": [
+    "Rule 999"
+   ]
+  },
+  "TG-MP-007": {
+   "blocked": true,
+   "correct": true,
+   "missing": [
+    "Rule 99"
+   ]
+  },
+  "TG-MP-008": {
+   "blocked": true,
+   "correct": true,
+   "missing": [
+    "Rule 600"
+   ]
+  },
+  "TG-GC-001": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-GC-002": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-GC-003": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  },
+  "TG-GC-004": {
+   "blocked": false,
+   "correct": true,
+   "missing": []
+  }
+ },
+ "leakage": {
+  "stage11_old_index_old_labels": 0,
+  "stage11_s11_index_old_labels": 0,
+  "stage14_s11_index_corrected_labels": 0
+ },
+ "model_calls": {
+  "stage11_old_index_old_labels": {},
+  "stage11_s11_index_old_labels": {},
+  "stage14_s11_index_corrected_labels": {}
+ },
+ "remaining_retrieval_failures_recall_below_1": [
+  {
+   "id": "TG-PQ-002",
+   "category": "paraphrased",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 15",
+    "tmvr-1989-chap-4::Rule 119"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 0.25
+   }
+  },
+  {
+   "id": "TG-PQ-017",
+   "category": "paraphrased",
+   "top5": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 458",
+    "tmvr-1989-chap-11::Rule 462",
+    "tmvr-1989-chap-11::Rule 474"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 0.5
+   }
+  },
+  {
+   "id": "TG-PQ-021",
+   "category": "paraphrased",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 180",
+    "tmvr-1989-chap-5::Rule 256",
+    "tmvr-1989-chap-5::Rule 239"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 0.5
+   }
+  },
+  {
+   "id": "TG-MR-008",
+   "category": "multi_rule",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 76"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 0.5
+   }
+  },
+  {
+   "id": "TG-GO-003",
+   "category": "government_order",
+   "top5": [
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 0.667
+   }
+  },
+  {
+   "id": "TG-GO-007",
+   "category": "government_order",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 0.75
+   }
+  },
+  {
+   "id": "TG-GO-012",
+   "category": "government_order",
+   "top5": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 0.333
+   }
+  }
+ ],
+ "retained_issues": {
+  "TG-MR-008": {
+   "type": "ranking failure",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 76"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 0.5
+   }
+  },
+  "TG-GO-007": {
+   "type": "outdated Rule 81 risk",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "note": "tmvr-1989-chap-4::Rule 81 retrievable, answer-eligible and unwarned; amendment by G.O. 77/2025 not modelled"
+  },
+  "TMVTR-12B": {
+   "type": "citation anchor limitation",
+   "note": "Rule 12B cites #13 (12-A's anchor); source has none for 12-B"
+  }
+ },
+ "per_question_changes_vs_stage11_old_index": [
+  {
+   "id": "TG-DL-013",
+   "stage11_old_index": {
+    "category": "direct_lookup",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 177",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvr-1989-chap-5::Rule 176",
+     "tmvr-1989-chap-2::Rule 14",
+     "tmvr-1989-chap-5::Rule 185"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "direct_lookup",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 177",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-2::Rule 14",
+     "tmvr-1989-chap-5::Rule 176"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage14": {
+    "category": "direct_lookup",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 177",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-2::Rule 14",
+     "tmvr-1989-chap-5::Rule 176"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-DL-025",
+   "stage11_old_index": {
+    "category": "direct_lookup",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-8::Rule 426",
+     "tmvr-1989-chap-7::Rule 349",
+     "tmvr-1989-chap-5::Rule 295",
+     "tmvr-1989-chap-7::Rule 317",
+     "tmvr-1989-chap-8::Rule 440"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "direct_lookup",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-8::Rule 426",
+     "tmvr-1989-chap-7::Rule 349",
+     "tmvr-1989-chap-5::Rule 295A",
+     "tmvr-1989-chap-7::Rule 317",
+     "tmvr-1989-chap-8::Rule 440"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage14": {
+    "category": "direct_lookup",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-8::Rule 426",
+     "tmvr-1989-chap-7::Rule 349",
+     "tmvr-1989-chap-5::Rule 295A",
+     "tmvr-1989-chap-7::Rule 317",
+     "tmvr-1989-chap-8::Rule 440"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-PQ-007",
+   "stage11_old_index": {
+    "category": "paraphrased",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-12::Rule 484",
+     "tmvr-1989-chap-12::Rule 485",
+     "tmvr-1989-chap-12::Rule 486",
+     "tmvr-1989-chap-4::Rule 107"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "paraphrased",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-12::Rule 484",
+     "tmvr-1989-chap-12::Rule 485",
+     "tmvr-1989-chap-12::Rule 486",
+     "tmvr-1989-chap-4::Rule 107"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage14": {
+    "category": "paraphrased",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-12::Rule 485",
+     "tmvr-1989-chap-12::Rule 484",
+     "tmvr-1989-chap-12::Rule 486",
+     "tmvr-1989-chap-8::Rule 400"
+    ],
+    "retrieval": {
+     "rank": 2,
+     "recall@5": 1.0
+    },
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-MR-005",
+   "stage11_old_index": {
+    "category": "multi_rule",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-12::Rule 484",
+     "tmvr-1989-chap-12::Rule 486",
+     "tmvr-1989-chap-12::Rule 485",
+     "tmvr-1989-chap-4::Rule 83A"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "multi_rule",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-12::Rule 484",
+     "tmvr-1989-chap-12::Rule 486",
+     "tmvr-1989-chap-12::Rule 485",
+     "tmvr-1989-chap-4::Rule 83A"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage14": {
+    "category": "multi_rule",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-12::Rule 484",
+     "tmvr-1989-chap-12::Rule 486",
+     "tmvr-1989-chap-12::Rule 485",
+     "tmvr-1989-chap-9::Rule 452"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-MR-006",
+   "stage11_old_index": {
+    "category": "multi_rule",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 187",
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 217"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "multi_rule",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 187",
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 217"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage14": {
+    "category": "multi_rule",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 187",
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 217"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-GO-002",
+   "stage11_old_index": {
+    "category": "government_order",
+    "outcome": "retrieve",
+    "top5": [
+     "go-ms-25-2026-trb::Order",
+     "tmvr-1989-chap-7::Rule 362",
+     "tmvr-1989-chap-3::Rule 65",
+     "tmvr-1989-chap-2::Rule 30",
+     "go-ms-77-2025-trb::Paragraph 3"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "government_order",
+    "outcome": "retrieve",
+    "top5": [
+     "go-ms-25-2026-trb::Order",
+     "tmvr-1989-chap-7::Rule 362",
+     "tmvr-1989-chap-3::Rule 65",
+     "tmvr-1989-chap-2::Rule 30",
+     "tmvr-1989-chap-5::Rule 186"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   },
+   "stage14": {
+    "category": "government_order",
+    "outcome": "retrieve",
+    "top5": [
+     "go-ms-25-2026-trb::Order",
+     "tmvr-1989-chap-7::Rule 362",
+     "tmvr-1989-chap-3::Rule 65",
+     "tmvr-1989-chap-2::Rule 30",
+     "tmvr-1989-chap-5::Rule 186"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-MP-001",
+   "stage11_old_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 188",
+     "go-ms-25-2026-trb::Preamble",
+     "tmvr-1989-chap-5::Rule 183",
+     "go-ms-25-2026-trb::References"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": true,
+     "correct": true,
+     "missing": [
+      "Rule 186"
+     ]
+    }
+   },
+   "stage11_s11_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 188",
+     "go-ms-25-2026-trb::Preamble",
+     "tmvr-1989-chap-5::Rule 183",
+     "go-ms-25-2026-trb::References"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": false,
+     "correct": false,
+     "missing": []
+    }
+   },
+   "stage14": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 188",
+     "go-ms-25-2026-trb::Preamble",
+     "tmvr-1989-chap-5::Rule 183",
+     "go-ms-25-2026-trb::References"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   }
+  },
+  {
+   "id": "TG-MP-002",
+   "stage11_old_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 188",
+     "go-ms-25-2026-trb::Preamble",
+     "tmvr-1989-chap-5::Rule 181",
+     "go-ms-25-2026-trb::References"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": true,
+     "correct": true,
+     "missing": [
+      "Rule 186"
+     ]
+    }
+   },
+   "stage11_s11_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 188",
+     "go-ms-25-2026-trb::Preamble",
+     "tmvr-1989-chap-5::Rule 181",
+     "go-ms-25-2026-trb::References"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": false,
+     "correct": false,
+     "missing": []
+    }
+   },
+   "stage14": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 188",
+     "go-ms-25-2026-trb::Preamble",
+     "tmvr-1989-chap-5::Rule 181",
+     "go-ms-25-2026-trb::References"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   }
+  },
+  {
+   "id": "TG-MP-003",
+   "stage11_old_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 187",
+     "tmvr-1989-chap-3::Rule 72"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": true,
+     "correct": true,
+     "missing": [
+      "Rule 186"
+     ]
+    }
+   },
+   "stage11_s11_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 187"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": false,
+     "correct": false,
+     "missing": []
+    }
+   },
+   "stage14": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 187"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   }
+  },
+  {
+   "id": "TG-MP-004",
+   "stage11_old_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 187"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": true,
+     "correct": true,
+     "missing": [
+      "Rule 186"
+     ]
+    }
+   },
+   "stage11_s11_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 187",
+     "tmvr-1989-chap-5::Rule 186"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": false,
+     "correct": false,
+     "missing": []
+    }
+   },
+   "stage14": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 187",
+     "tmvr-1989-chap-5::Rule 186"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   }
+  },
+  {
+   "id": "TG-MP-005",
+   "stage11_old_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvr-1989-chap-5::Rule 183",
+     "tmvr-1989-chap-5::Rule 181"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": true,
+     "correct": true,
+     "missing": [
+      "Rule 186"
+     ]
+    }
+   },
+   "stage11_s11_index": {
+    "category": "missing_provision",
+    "outcome": "missing_provision",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvr-1989-chap-5::Rule 217A",
+     "tmvr-1989-chap-3::Rule 67"
+    ],
+    "retrieval": null,
+    "guard": {
+     "blocked": false,
+     "correct": false,
+     "missing": []
+    }
+   },
+   "stage14": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 188",
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvr-1989-chap-5::Rule 217A",
+     "tmvr-1989-chap-3::Rule 67"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   }
+  },
+  {
+   "id": "TG-GC-002",
+   "stage11_old_index": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   },
+   "stage11_s11_index": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 235"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   },
+   "stage14": {
+    "category": "guard_control",
+    "outcome": "retrieve",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "tmvr-1989-chap-5::Rule 235"
+    ],
+    "retrieval": {
+     "rank": 1,
+     "recall@5": 1.0
+    },
+    "guard": {
+     "blocked": false,
+     "correct": true,
+     "missing": []
+    }
+   }
+  },
+  {
+   "id": "TG-EX-004",
+   "stage11_old_index": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "go-ms-53-2025-trb::Paragraph 1",
+     "go-ms-53-2025-trb::Preamble",
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 12A"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "go-ms-53-2025-trb::Paragraph 1",
+     "go-ms-53-2025-trb::Preamble",
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 13"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "go-ms-53-2025-trb::Paragraph 1",
+     "go-ms-53-2025-trb::Preamble",
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 13"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-EX-005",
+   "stage11_old_index": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 16",
+     "tmvtr-1963::Rule 12A",
+     "tmvtr-1963::Rule 6",
+     "tmvr-1989-chap-5::Rule 205"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 16",
+     "tmvtr-1963::Rule 12B",
+     "tmvtr-1963::Rule 6",
+     "tmvr-1989-chap-5::Rule 205"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 16",
+     "tmvtr-1963::Rule 12B",
+     "tmvtr-1963::Rule 6",
+     "tmvr-1989-chap-5::Rule 205"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-EX-007",
+   "stage11_old_index": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "tmvtr-1963::Rule 12A",
+     "tmvtr-1963::Rule 12",
+     "tmvr-1989-chap-4::Rule 104",
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 3"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "tmvtr-1963::Rule 12A",
+     "tmvtr-1963::Rule 12",
+     "tmvtr-1963::Rule 13",
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 12B"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "excluded_material",
+    "outcome": "excluded_no_context",
+    "top5": [
+     "tmvtr-1963::Rule 12A",
+     "tmvtr-1963::Rule 12",
+     "tmvtr-1963::Rule 13",
+     "tmvtr-1963::Rule 5",
+     "tmvtr-1963::Rule 12B"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-PN-002",
+   "stage11_old_index": {
+    "category": "penalty",
+    "outcome": "restricted",
+    "top5": [
+     "tmvr-1989-chap-8::Rule 450",
+     "tmvtr-1963::Rule 12",
+     "tmvr-1989-chap-5::Rule 217",
+     "tmvtr-1963::Rule 13B",
+     "tmvtr-1963::Rule 17"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "penalty",
+    "outcome": "restricted",
+    "top5": [
+     "tmvr-1989-chap-8::Rule 450",
+     "tmvtr-1963::Rule 13",
+     "tmvtr-1963::Rule 12",
+     "tmvtr-1963::Rule 13B",
+     "tmvr-1989-chap-5::Rule 217"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "penalty",
+    "outcome": "restricted",
+    "top5": [
+     "tmvr-1989-chap-8::Rule 450",
+     "tmvtr-1963::Rule 13",
+     "tmvtr-1963::Rule 12",
+     "tmvtr-1963::Rule 13B",
+     "tmvr-1989-chap-5::Rule 217"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-PN-005",
+   "stage11_old_index": {
+    "category": "penalty",
+    "outcome": "restricted",
+    "top5": [
+     "tmvtr-1963::Rule 17",
+     "tmvr-1989-chap-5::Rule 288A",
+     "tmvr-1989-chap-8::Rule 408",
+     "tmvr-1989-chap-5::Rule 217A",
+     "tmvr-1989-chap-5::Rule 214"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "penalty",
+    "outcome": "restricted",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvtr-1963::Rule 17",
+     "tmvr-1989-chap-5::Rule 288A",
+     "tmvr-1989-chap-5::Rule 217A",
+     "tmvr-1989-chap-5::Rule 216"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "penalty",
+    "outcome": "restricted",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 186",
+     "tmvtr-1963::Rule 17",
+     "tmvr-1989-chap-5::Rule 288A",
+     "tmvr-1989-chap-5::Rule 217A",
+     "tmvr-1989-chap-5::Rule 216"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-OS-001",
+   "stage11_old_index": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "go-ms-77-2025-trb::Order",
+     "tmvr-1989-chap-5::Rule 254",
+     "tmvr-1989-chap-5::Rule 295",
+     "go-ms-32-2026-trb::Paragraph 2"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "go-ms-77-2025-trb::Order",
+     "tmvr-1989-chap-5::Rule 254",
+     "tmvr-1989-chap-1::Rule 2",
+     "tmvr-1989-chap-5::Rule 143"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 185",
+     "go-ms-77-2025-trb::Order",
+     "tmvr-1989-chap-5::Rule 254",
+     "tmvr-1989-chap-1::Rule 2",
+     "go-ms-32-2026-trb::Paragraph 2"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-OS-002",
+   "stage11_old_index": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-4::Rule 83",
+     "tmvr-1989-chap-4::Rule 83A",
+     "go-ms-32-2026-trb::References",
+     "go-ms-32-2026-trb::Paragraph 5",
+     "tmvr-1989-chap-7::Rule 316"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-4::Rule 83",
+     "tmvr-1989-chap-4::Rule 83A",
+     "go-ms-32-2026-trb::References",
+     "go-ms-32-2026-trb::Paragraph 5",
+     "tmvr-1989-chap-7::Rule 316"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-4::Rule 83",
+     "tmvr-1989-chap-4::Rule 83A",
+     "tmvr-1989-chap-7::Rule 316",
+     "go-ms-32-2026-trb::Paragraph 5",
+     "tmvr-1989-chap-5::Rule 185"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  },
+  {
+   "id": "TG-OS-006",
+   "stage11_old_index": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 295",
+     "tmvr-1989-chap-5::Rule 176",
+     "tmvr-1989-chap-5::Rule 220",
+     "tmvr-1989-chap-5::Rule 184",
+     "tmvr-1989-chap-5::Rule 201"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage11_s11_index": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 295A",
+     "tmvr-1989-chap-5::Rule 176",
+     "tmvr-1989-chap-5::Rule 295",
+     "tmvr-1989-chap-5::Rule 184",
+     "tmvr-1989-chap-5::Rule 220"
+    ],
+    "retrieval": null,
+    "guard": null
+   },
+   "stage14": {
+    "category": "out_of_scope_central",
+    "outcome": "out_of_scope",
+    "top5": [
+     "tmvr-1989-chap-5::Rule 295A",
+     "tmvr-1989-chap-5::Rule 176",
+     "tmvr-1989-chap-5::Rule 295",
+     "tmvr-1989-chap-5::Rule 184",
+     "tmvr-1989-chap-5::Rule 220"
+    ],
+    "retrieval": null,
+    "guard": null
+   }
+  }
+ ],
+ "per_question_stage14": {
+  "TG-DL-001": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 433",
+    "tmvr-1989-chap-7::Rule 389",
+    "tmvr-1989-chap-8::Rule 417",
+    "tmvr-1989-chap-5::Rule 164"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-002": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-1::Rule 2",
+    "tmvtr-1963::Rule 2",
+    "tmvr-1989-chap-7::Rule 393",
+    "tmvr-1989-chap-5::Rule 143",
+    "tmvr-1989-chap-5::Rule 222"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-003": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 80",
+    "tmvr-1989-chap-4::Rule 88",
+    "tmvr-1989-chap-8::Rule 433",
+    "tmvr-1989-chap-4::Rule 80A",
+    "tmvr-1989-chap-8::Rule 432"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-004": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 372",
+    "tmvr-1989-chap-7::Rule 380",
+    "tmvr-1989-chap-5::Rule 270"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-005": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-8::Rule 424",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-8::Rule 423"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-006": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 244",
+    "go-ms-32-2026-trb::Paragraph 2",
+    "tmvr-1989-chap-5::Rule 288A",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-25-2026-trb::Preamble"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-007": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 389A",
+    "tmvr-1989-chap-7::Rule 359",
+    "tmvr-1989-chap-12::Rule 482",
+    "tmvr-1989-chap-4::Rule 109",
+    "tmvr-1989-chap-5::Rule 291"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-008": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 191",
+    "tmvr-1989-chap-5::Rule 221",
+    "tmvr-1989-chap-6::Rule 301",
+    "tmvr-1989-chap-11::Rule 463",
+    "tmvr-1989-chap-5::Rule 188"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-009": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 20",
+    "tmvtr-1963::Rule 11"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-010": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-2::Rule 39",
+    "tmvr-1989-chap-2::Rule 41",
+    "tmvr-1989-chap-3::Rule 67",
+    "tmvr-1989-chap-2::Rule 38"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-011": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-3::Rule 74",
+    "tmvr-1989-chap-3::Rule 72",
+    "tmvr-1989-chap-3::Rule 76",
+    "tmvr-1989-chap-2::Rule 32",
+    "tmvr-1989-chap-5::Rule 277"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-012": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 107",
+    "tmvr-1989-chap-4::Rule 116",
+    "tmvr-1989-chap-4::Rule 115",
+    "tmvr-1989-chap-4::Rule 125",
+    "tmvr-1989-chap-11::Rule 469"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-013": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 177",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-5::Rule 176"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-014": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 294A",
+    "tmvr-1989-chap-7::Rule 324",
+    "tmvr-1989-chap-8::Rule 443",
+    "tmvr-1989-chap-5::Rule 297A",
+    "tmvr-1989-chap-2::Rule 14"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-015": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-8::Rule 407",
+    "tmvr-1989-chap-5::Rule 257",
+    "tmvr-1989-chap-8::Rule 405",
+    "tmvr-1989-chap-7::Rule 389"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-016": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvtr-1963::Rule 13B",
+    "tmvr-1989-chap-8::Rule 448",
+    "tmvr-1989-chap-2::Rule 14"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-017": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-9::Rule 451",
+    "tmvr-1989-chap-9::Rule 452",
+    "tmvr-1989-chap-5::Rule 207",
+    "tmvr-1989-chap-9::Rule 453",
+    "tmvr-1989-chap-4::Rule 83A"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-018": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 474",
+    "tmvr-1989-chap-11::Rule 472",
+    "tmvr-1989-chap-11::Rule 475"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-019": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-4::Rule 107"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-020": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-10::Rule 454",
+    "tmvr-1989-chap-8::Rule 449",
+    "tmvr-1989-chap-8::Rule 448",
+    "tmvr-1989-chap-5::Rule 189",
+    "tmvr-1989-chap-8::Rule 424"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-021": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvtr-1963::Rule 11",
+    "tmvr-1989-chap-2::Rule 21",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-8::Rule 425"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-022": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 314",
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-7::Rule 310",
+    "tmvr-1989-chap-7::Rule 350",
+    "tmvr-1989-chap-2::Rule 14"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-023": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-7::Rule 350",
+    "tmvr-1989-chap-8::Rule 431",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-8::Rule 432"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-024": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 297A",
+    "tmvr-1989-chap-9::Rule 453"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-DL-025": {
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 426",
+    "tmvr-1989-chap-7::Rule 349",
+    "tmvr-1989-chap-5::Rule 295A",
+    "tmvr-1989-chap-7::Rule 317",
+    "tmvr-1989-chap-8::Rule 440"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-001": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 378",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-5::Rule 194",
+    "tmvr-1989-chap-5::Rule 294A",
+    "tmvr-1989-chap-4::Rule 81"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-002": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 15",
+    "tmvr-1989-chap-4::Rule 119"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 0.25
+   },
+   "guard": null
+  },
+  "TG-PQ-003": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 19"
+   ],
+   "retrieval": {
+    "rank": 4,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-004": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 389A",
+    "tmvr-1989-chap-5::Rule 247",
+    "tmvr-1989-chap-5::Rule 177",
+    "tmvr-1989-chap-5::Rule 152",
+    "tmvr-1989-chap-7::Rule 388"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-005": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 244",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-6::Rule 307",
+    "tmvr-1989-chap-7::Rule 355"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-006": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 428",
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-7::Rule 391",
+    "tmvr-1989-chap-4::Rule 114",
+    "tmvr-1989-chap-7::Rule 335"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-007": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-8::Rule 400"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-008": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 314",
+    "tmvr-1989-chap-7::Rule 313",
+    "tmvr-1989-chap-7::Rule 350",
+    "tmvr-1989-chap-12::Rule 481",
+    "tmvr-1989-chap-8::Rule 430"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-009": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-7::Rule 372",
+    "tmvr-1989-chap-7::Rule 379",
+    "tmvr-1989-chap-7::Rule 373"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-010": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 245",
+    "tmvr-1989-chap-5::Rule 249",
+    "tmvr-1989-chap-5::Rule 250",
+    "tmvr-1989-chap-3::Rule 74",
+    "tmvr-1989-chap-3::Rule 73"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-011": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 252",
+    "tmvr-1989-chap-2::Rule 36",
+    "tmvr-1989-chap-7::Rule 328",
+    "tmvr-1989-chap-5::Rule 285",
+    "tmvr-1989-chap-3::Rule 73"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-012": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 324",
+    "tmvr-1989-chap-8::Rule 418",
+    "tmvr-1989-chap-7::Rule 368",
+    "tmvr-1989-chap-8::Rule 420",
+    "tmvr-1989-chap-5::Rule 277"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-013": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvr-1989-chap-8::Rule 429",
+    "tmvr-1989-chap-5::Rule 264",
+    "tmvr-1989-chap-7::Rule 342"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-014": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 246",
+    "tmvr-1989-chap-5::Rule 191",
+    "tmvr-1989-chap-5::Rule 288",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 286"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-015": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 368",
+    "tmvr-1989-chap-7::Rule 324",
+    "tmvr-1989-chap-8::Rule 438",
+    "tmvr-1989-chap-8::Rule 439",
+    "tmvr-1989-chap-5::Rule 285"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-016": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 400",
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvtr-1963::Rule 3",
+    "tmvr-1989-chap-4::Rule 97",
+    "tmvr-1989-chap-7::Rule 322"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-017": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 458",
+    "tmvr-1989-chap-11::Rule 462",
+    "tmvr-1989-chap-11::Rule 474"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 0.5
+   },
+   "guard": null
+  },
+  "TG-PQ-018": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-9::Rule 451",
+    "tmvr-1989-chap-9::Rule 452",
+    "tmvr-1989-chap-4::Rule 109",
+    "tmvtr-1963::Rule 13A",
+    "tmvr-1989-chap-5::Rule 209"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-019": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvtr-1963::Rule 14A",
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-5::Rule 158",
+    "tmvr-1989-chap-7::Rule 339",
+    "tmvr-1989-chap-8::Rule 443"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-020": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 263",
+    "tmvr-1989-chap-7::Rule 358",
+    "tmvr-1989-chap-8::Rule 415",
+    "tmvr-1989-chap-7::Rule 351A",
+    "tmvr-1989-chap-5::Rule 189"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-021": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 180",
+    "tmvr-1989-chap-5::Rule 256",
+    "tmvr-1989-chap-5::Rule 239"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 0.5
+   },
+   "guard": null
+  },
+  "TG-PQ-022": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 253",
+    "tmvr-1989-chap-5::Rule 201",
+    "tmvr-1989-chap-5::Rule 252",
+    "tmvr-1989-chap-5::Rule 204",
+    "tmvr-1989-chap-5::Rule 202"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-023": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 54",
+    "tmvr-1989-chap-3::Rule 53",
+    "tmvr-1989-chap-3::Rule 56",
+    "tmvr-1989-chap-12::Rule 477"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-024": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 246",
+    "tmvr-1989-chap-5::Rule 189",
+    "tmvr-1989-chap-3::Rule 72",
+    "tmvr-1989-chap-7::Rule 334"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-PQ-025": {
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 405",
+    "tmvr-1989-chap-5::Rule 248",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-8::Rule 431",
+    "tmvr-1989-chap-4::Rule 112"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-001": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 424",
+    "tmvr-1989-chap-7::Rule 389",
+    "tmvr-1989-chap-8::Rule 423"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-002": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 24"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-003": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-7::Rule 379",
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 372",
+    "tmvr-1989-chap-7::Rule 380"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-004": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvtr-1963::Rule 10",
+    "tmvr-1989-chap-8::Rule 448",
+    "tmvtr-1963::Rule 15"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-005": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-9::Rule 452"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-006": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 187",
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 217"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-007": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-3::Rule 71",
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-3::Rule 66",
+    "tmvr-1989-chap-3::Rule 67",
+    "tmvr-1989-chap-7::Rule 337"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-MR-008": {
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 76"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 0.5
+   },
+   "guard": null
+  },
+  "TG-GO-001": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-25-2026-trb::Order",
+    "go-ms-25-2026-trb::Preamble",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-002": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-25-2026-trb::Order",
+    "tmvr-1989-chap-7::Rule 362",
+    "tmvr-1989-chap-3::Rule 65",
+    "tmvr-1989-chap-2::Rule 30",
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-003": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 0.667
+   },
+   "guard": null
+  },
+  "TG-GO-004": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 4"
+   ],
+   "retrieval": {
+    "rank": 5,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-005": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "tmvr-1989-chap-4::Rule 108"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-006": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-10-2026-trb::Order",
+    "go-ms-10-2026-trb::Preamble",
+    "go-ms-10-2026-trb::References",
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-16-2026-trb::Preamble"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-007": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 0.75
+   },
+   "guard": null
+  },
+  "TG-GO-008": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Preamble"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-009": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-77-2025-trb::Preamble",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::References",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 2"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-010": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-16-2026-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-10-2026-trb::Order",
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-10-2026-trb::References"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-011": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-5::Rule 185"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": null
+  },
+  "TG-GO-012": {
+   "category": "government_order",
+   "outcome": "retrieve",
+   "top5": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7"
+   ],
+   "retrieval": {
+    "rank": 3,
+    "recall@5": 0.333
+   },
+   "guard": null
+  },
+  "TG-MP-001": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 188",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 183",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-MP-002": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 188",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 181",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-MP-003": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 187"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-MP-004": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 187",
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-MP-005": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-5::Rule 217A",
+    "tmvr-1989-chap-3::Rule 67"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-MP-006": {
+   "category": "missing_provision",
+   "outcome": "missing_provision",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 81",
+    "tmvr-1989-chap-4::Rule 100",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "tmvr-1989-chap-3::Rule 62",
+    "tmvr-1989-chap-5::Rule 164"
+   ],
+   "retrieval": null,
+   "guard": {
+    "blocked": true,
+    "correct": true,
+    "missing": [
+     "Rule 999"
+    ]
+   }
+  },
+  "TG-MP-007": {
+   "category": "missing_provision",
+   "outcome": "missing_provision",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvr-1989-chap-6::Rule 298",
+    "tmvr-1989-chap-4::Rule 87",
+    "tmvr-1989-chap-6::Rule 303",
+    "tmvr-1989-chap-4::Rule 92"
+   ],
+   "retrieval": null,
+   "guard": {
+    "blocked": true,
+    "correct": true,
+    "missing": [
+     "Rule 99"
+    ]
+   }
+  },
+  "TG-MP-008": {
+   "category": "missing_provision",
+   "outcome": "missing_provision",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 200",
+    "tmvr-1989-chap-3::Rule 75",
+    "tmvr-1989-chap-5::Rule 198",
+    "tmvr-1989-chap-5::Rule 264",
+    "tmvr-1989-chap-5::Rule 197"
+   ],
+   "retrieval": null,
+   "guard": {
+    "blocked": true,
+    "correct": true,
+    "missing": [
+     "Rule 600"
+    ]
+   }
+  },
+  "TG-GC-001": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-5::Rule 173",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 183"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-GC-002": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 235"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-GC-003": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvtr-1963::Rule 13A",
+    "tmvr-1989-chap-4::Rule 87",
+    "tmvr-1989-chap-5::Rule 297",
+    "tmvr-1989-chap-5::Rule 221",
+    "go-ms-25-2026-trb::Preamble"
+   ],
+   "retrieval": {
+    "rank": 1,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-GC-004": {
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "top5": [
+    "tmvr-1989-chap-7::Rule 378",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 444",
+    "tmvr-1989-chap-4::Rule 81",
+    "tmvr-1989-chap-5::Rule 294A"
+   ],
+   "retrieval": {
+    "rank": 2,
+    "recall@5": 1.0
+   },
+   "guard": {
+    "blocked": false,
+    "correct": true,
+    "missing": []
+   }
+  },
+  "TG-EX-001": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 218"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-002": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "go-ms-10-2026-trb::References",
+    "go-ms-10-2026-trb::Order"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-003": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "go-ms-25-2026-trb::Order",
+    "tmvr-1989-chap-5::Rule 218",
+    "tmvr-1989-chap-12::Rule 479",
+    "go-ms-32-2026-trb::References",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-004": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-53-2025-trb::Preamble",
+    "tmvtr-1963::Rule 5",
+    "tmvtr-1963::Rule 13"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-005": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "tmvtr-1963::Rule 5",
+    "tmvtr-1963::Rule 16",
+    "tmvtr-1963::Rule 12B",
+    "tmvtr-1963::Rule 6",
+    "tmvr-1989-chap-5::Rule 205"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-006": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "go-ms-16-2026-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-10-2026-trb::Order",
+    "go-ms-10-2026-trb::References",
+    "go-ms-10-2026-trb::Preamble"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-007": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "tmvtr-1963::Rule 12A",
+    "tmvtr-1963::Rule 12",
+    "tmvtr-1963::Rule 13",
+    "tmvtr-1963::Rule 5",
+    "tmvtr-1963::Rule 12B"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-EX-008": {
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "top5": [
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-53-2025-trb::Preamble"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-PN-001": {
+   "category": "penalty",
+   "outcome": "restricted",
+   "top5": [
+    "tmvtr-1963::Rule 17",
+    "tmvr-1989-chap-5::Rule 288A",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 408",
+    "tmvr-1989-chap-5::Rule 214"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-PN-002": {
+   "category": "penalty",
+   "outcome": "restricted",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 450",
+    "tmvtr-1963::Rule 13",
+    "tmvtr-1963::Rule 12",
+    "tmvtr-1963::Rule 13B",
+    "tmvr-1989-chap-5::Rule 217"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-PN-003": {
+   "category": "penalty",
+   "outcome": "restricted",
+   "top5": [
+    "tmvtr-1963::Rule 17",
+    "tmvr-1989-chap-5::Rule 288A",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-8::Rule 408",
+    "tmvr-1989-chap-8::Rule 450"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-PN-004": {
+   "category": "penalty",
+   "outcome": "restricted",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 218",
+    "tmvr-1989-chap-7::Rule 313",
+    "go-ms-25-2026-trb::References",
+    "tmvr-1989-chap-7::Rule 325",
+    "tmvr-1989-chap-4::Rule 94"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-PN-005": {
+   "category": "penalty",
+   "outcome": "restricted",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvtr-1963::Rule 17",
+    "tmvr-1989-chap-5::Rule 288A",
+    "tmvr-1989-chap-5::Rule 217A",
+    "tmvr-1989-chap-5::Rule 216"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-PN-006": {
+   "category": "penalty",
+   "outcome": "restricted",
+   "top5": [
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 25",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-12::Rule 477",
+    "tmvr-1989-chap-2::Rule 18"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-OS-001": {
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 185",
+    "go-ms-77-2025-trb::Order",
+    "tmvr-1989-chap-5::Rule 254",
+    "tmvr-1989-chap-1::Rule 2",
+    "go-ms-32-2026-trb::Paragraph 2"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-OS-002": {
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "top5": [
+    "tmvr-1989-chap-4::Rule 83",
+    "tmvr-1989-chap-4::Rule 83A",
+    "tmvr-1989-chap-7::Rule 316",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "tmvr-1989-chap-5::Rule 185"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-OS-003": {
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "top5": [
+    "tmvr-1989-chap-6::Rule 309",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-5::Rule 179",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-5::Rule 246"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-OS-004": {
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "top5": [
+    "tmvr-1989-chap-8::Rule 434",
+    "tmvr-1989-chap-2::Rule 8",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-5::Rule 171",
+    "tmvr-1989-chap-2::Rule 25"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-OS-005": {
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "top5": [
+    "go-ms-16-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 280",
+    "go-ms-10-2026-trb::Preamble",
+    "go-ms-32-2026-trb::References",
+    "go-ms-10-2026-trb::References"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-OS-006": {
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 295A",
+    "tmvr-1989-chap-5::Rule 176",
+    "tmvr-1989-chap-5::Rule 295",
+    "tmvr-1989-chap-5::Rule 184",
+    "tmvr-1989-chap-5::Rule 220"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-AM-001": {
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 10",
+    "tmvtr-1963::Rule 10",
+    "tmvr-1989-chap-4::Rule 106",
+    "tmvr-1989-chap-4::Rule 109",
+    "tmvr-1989-chap-6::Rule 309"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-AM-002": {
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "top5": [
+    "tmvr-1989-chap-10::Rule 454",
+    "tmvr-1989-chap-4::Rule 111",
+    "tmvtr-1963::Rule 1",
+    "tmvr-1989-chap-5::Rule 221",
+    "tmvr-1989-chap-1::Rule 1"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-AM-003": {
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 40",
+    "tmvr-1989-chap-3::Rule 70",
+    "tmvr-1989-chap-2::Rule 39",
+    "tmvr-1989-chap-2::Rule 38",
+    "tmvr-1989-chap-3::Rule 68"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-AM-004": {
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "top5": [
+    "tmvr-1989-chap-2::Rule 21",
+    "tmvr-1989-chap-4::Rule 120",
+    "tmvr-1989-chap-2::Rule 17",
+    "tmvr-1989-chap-7::Rule 342",
+    "tmvr-1989-chap-5::Rule 228"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-AM-005": {
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 199",
+    "tmvtr-1963::Rule 15B",
+    "tmvr-1989-chap-11::Rule 475",
+    "tmvr-1989-chap-12::Rule 480",
+    "tmvr-1989-chap-12::Rule 482"
+   ],
+   "retrieval": null,
+   "guard": null
+  },
+  "TG-AM-006": {
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "top5": [
+    "tmvr-1989-chap-5::Rule 297A",
+    "tmvr-1989-chap-8::Rule 407",
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-5::Rule 257",
+    "tmvr-1989-chap-8::Rule 405"
+   ],
+   "retrieval": null,
+   "guard": null
+  }
+ }
+}

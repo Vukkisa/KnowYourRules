@@ -1,0 +1,15 @@
+{
+ "chunks": 590,
+ "dims": 768,
+ "norm_min": 0.9999994039535522,
+ "norm_max": 1.0000005960464478,
+ "norm_mean": 1.0,
+ "questions": 108,
+ "chunk_chars_min": 138,
+ "chunk_chars_max": 3681,
+ "non_ascii_chunks": 146,
+ "collection_configuration": "{'hnsw': {'space': 'l2', 'ef_construction': 100, 'ef_search': 100, 'max_neighbors': 16, 'resize_factor': 1.2, 'sync_threshold': 1000}, 'spann': None, 'embedding_function': None}",
+ "index_digest_before": "140cd2008980f7e64858a8089d81f0346f758db1eda4d8c5c390418eac0ebe29",
+ "index_digest_after": "140cd2008980f7e64858a8089d81f0346f758db1eda4d8c5c390418eac0ebe29",
+ "index_unchanged": true
+}

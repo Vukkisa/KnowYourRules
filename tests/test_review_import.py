@@ -56,9 +56,9 @@ class Base(unittest.TestCase):
 class ReferenceTests(unittest.TestCase):
     def test_references_are_unique_and_cover_the_index(self):
         refs = ri.load_references()
-        self.assertEqual(len(refs["chunks"]), 586)
-        self.assertEqual(sum(c["answer_eligible"] for c in refs["chunks"]), 572)
-        self.assertEqual(len({c["ref"] for c in refs["chunks"]}), 586)
+        self.assertEqual(len(refs["chunks"]), 590)
+        self.assertEqual(sum(c["answer_eligible"] for c in refs["chunks"]), 576)
+        self.assertEqual(len({c["ref"] for c in refs["chunks"]}), 590)
 
     def test_duplicate_go53_chunk_id_gets_two_distinct_refs(self):
         refs = ri.load_references()

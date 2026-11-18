@@ -1,0 +1,275 @@
+{
+  "decisions": [
+    {
+      "conditions": [],
+      "decision": "approved as recorded",
+      "decision_id": "LD-012",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "start",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        },
+        {
+          "file": "evidence/gazette-print.txt",
+          "kind": "gazette_print",
+          "location": "p. 1",
+          "sha256": "7d3d1e99b8e80f2a703f1f3095415599f10e426a80807df108e0b6b776b1d13d"
+        }
+      ]
+    },
+    {
+      "conditions": [],
+      "decision": "approved as recorded",
+      "decision_id": "LD-013",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "end",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        }
+      ]
+    },
+    {
+      "conditions": [],
+      "coverage_confirmation": [
+        {
+          "provisions": [
+            "TG:ACT:S9/2900#s1"
+          ],
+          "text_sha256": "03302b3035b7310c0663926e8338e19e34bccffc2968421e3747d7f78a94eb13"
+        }
+      ],
+      "decision": "approved as recorded",
+      "decision_id": "LD-014",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "cov",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        }
+      ]
+    },
+    {
+      "conditions": [],
+      "decision": "approved as recorded",
+      "decision_id": "LD-015",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "rule",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        }
+      ]
+    },
+    {
+      "conditions": [],
+      "decision": "approved as recorded",
+      "decision_id": "LD-016",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "fresh",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        }
+      ]
+    },
+    {
+      "conditions": [],
+      "decision": "approved as recorded",
+      "decision_id": "LD-017",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "close",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        }
+      ]
+    },
+    {
+      "conditions": [],
+      "decision": "approved as recorded",
+      "decision_id": "LD-061",
+      "history": [
+        {
+          "by": "tooling",
+          "date": "2026-01-01",
+          "status": "pending"
+        },
+        {
+          "by": "Reviewer Alpha",
+          "date": "2026-01-02",
+          "status": "approved"
+        }
+      ],
+      "prepared_by": "Preparer Beta",
+      "rationale": "rationale recorded for this decision",
+      "replaces": null,
+      "review_date": "2026-01-02",
+      "reviewer": {
+        "designation": "Reviewing Counsel",
+        "name": "Reviewer Alpha",
+        "organisation": "Alpha Chambers"
+      },
+      "status": "approved",
+      "subject": "closer",
+      "supporting_sources": [
+        {
+          "file": "evidence/instrument-clause.txt",
+          "kind": "instrument_text",
+          "location": "cl. 1",
+          "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+        }
+      ]
+    }
+  ],
+  "fixture": true,
+  "jurisdiction": "Telangana",
+  "note": "SYNTHETIC decision register for tests. LD-012 onward; the real Stage 22 records are untouched.",
+  "schema_version": 1,
+  "stage": 22
+}

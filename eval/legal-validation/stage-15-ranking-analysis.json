@@ -1,0 +1,637 @@
+{
+ "stage": 15,
+ "index": "copy of chroma_telangana_preview_s11",
+ "mode": "hybrid (structured lookup + BM25 + vector, RRF k=60), RETRIEVE_K=6 chunks, metrics at top-5 provisions",
+ "gaps": {
+  "TG-PQ-002": {
+   "question": "I lost my driving licence. How do I get a duplicate?",
+   "category": "paraphrased",
+   "expected": {
+    "tmvr-1989-chap-2::Rule 16": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 10,
+     "best_l2": 0.5464976138893726,
+     "within_max_distance": true,
+     "bm25_provision_rank": 12,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 16 - Issue of Duplicate Licence"
+    },
+    "tmvr-1989-chap-2::Rule 14": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 3,
+     "exact_vector_provision_rank": 2,
+     "best_l2": 0.47739417180903737,
+     "within_max_distance": true,
+     "bm25_provision_rank": 6,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 14 - Duplicate Licence with new photograph"
+    },
+    "tmvr-1989-chap-2::Rule 17": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 6,
+     "best_l2": 0.5226606085174677,
+     "within_max_distance": true,
+     "bm25_provision_rank": 9,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 17 - Photograph for duplicate Licence"
+    },
+    "tmvr-1989-chap-2::Rule 18": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 16,
+     "best_l2": 0.5872260019163196,
+     "within_max_distance": true,
+     "bm25_provision_rank": 14,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 18 - Fee for duplicate Licence"
+    }
+   },
+   "final_top6": [
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 15",
+    "tmvr-1989-chap-4::Rule 119",
+    "tmvtr-1963::Rule 11"
+   ],
+   "competitors": [
+    {
+     "provision": "tmvr-1989-chap-2::Rule 19",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 19 - Delivery of lost Licence"
+    },
+    {
+     "provision": "tmvr-1989-chap-2::Rule 24",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 24 - Issue of duplicate Learner's Licence and its fee"
+    },
+    {
+     "provision": "tmvr-1989-chap-2::Rule 15",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 15 - Intimation when Licence lost or destroyed and application for duplicate"
+    },
+    {
+     "provision": "tmvr-1989-chap-4::Rule 119",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 119 - Report of loss or destruction-Application for duplicate fee"
+    },
+    {
+     "provision": "tmvtr-1963::Rule 11",
+     "heading": "Telangana Motor Vehicles Taxation Rules, 1963 - Rule 11 - Prohibition of alteration, etc., of Licence, and issue of duplicate Licence"
+    }
+   ],
+   "lookup": [],
+   "query_tokens": [
+    "lost",
+    "driving",
+    "licence",
+    "get",
+    "duplicate"
+   ],
+   "classification": [
+    "benchmark expectation issue",
+    "ranking or filtering (chunk budget)"
+   ],
+   "cause": "Four expected provisions (Rules 14, 16, 17, 18) compete with five closely related duplicate-licence provisions (15, 19, 24, 119, TMVTR 11). RETRIEVE_K=6 chunks cannot hold them all. Rule 15 ('Intimation when Licence lost or destroyed and application for duplicate') is retrieved and arguably answers the question but is not expected; Rule 18 (fee) ranks 16th by vector.",
+   "recommendation": "Human review of the expected set: consider adding Rule 15 and treating 17/18 as supporting rather than required. Do not tune retrieval to this row."
+  },
+  "TG-PQ-017": {
+   "question": "How do I apply for accident compensation before the Claims Tribunal?",
+   "category": "paraphrased",
+   "expected": {
+    "tmvr-1989-chap-11::Rule 476": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 2,
+     "final_rank": 1,
+     "exact_vector_provision_rank": 1,
+     "best_l2": 0.4506054341956632,
+     "within_max_distance": true,
+     "bm25_provision_rank": 2,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 476 - Application for claim (part 1 of 2)"
+    },
+    "tmvr-1989-chap-11::Rule 455": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 13,
+     "best_l2": 0.6671023555103436,
+     "within_max_distance": true,
+     "bm25_provision_rank": 25,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 455 - Applications"
+    }
+   },
+   "final_top6": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 458",
+    "tmvr-1989-chap-11::Rule 462",
+    "tmvr-1989-chap-11::Rule 474"
+   ],
+   "competitors": [
+    {
+     "provision": "tmvr-1989-chap-11::Rule 471",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 471 - Judgment and award of compensation"
+    },
+    {
+     "provision": "tmvr-1989-chap-11::Rule 458",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 458 - Notice to parties involved"
+    },
+    {
+     "provision": "tmvr-1989-chap-11::Rule 462",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 462 - Local Inspection"
+    },
+    {
+     "provision": "tmvr-1989-chap-11::Rule 474",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 474 - Form and number of appeals against the decision of Claims Tribunal"
+    }
+   ],
+   "lookup": [],
+   "query_tokens": [
+    "apply",
+    "accident",
+    "compensation",
+    "before",
+    "claims",
+    "tribunal"
+   ],
+   "classification": [
+    "embedding similarity",
+    "benchmark expectation issue"
+   ],
+   "cause": "Rule 476 (Application for claim) is rank 1. Rule 455 is headed only 'Applications' and ranks 13th by vector and 25th by BM25; its text does not share the query's words.",
+   "recommendation": "Human review whether Rule 455 is required for 'how do I apply'. If it is, a heading/chapter-aware boost (Claims Tribunal chapter context in the embedding title) is the targeted fix."
+  },
+  "TG-PQ-021": {
+   "question": "Where are vehicles allowed to park or halt?",
+   "category": "paraphrased",
+   "expected": {
+    "tmvr-1989-chap-8::Rule 406": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 1,
+     "exact_vector_provision_rank": 1,
+     "best_l2": 0.39192769319113746,
+     "within_max_distance": true,
+     "bm25_provision_rank": 4,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 406 - Parking places and halting places"
+    },
+    "tmvr-1989-chap-8::Rule 407": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 6,
+     "exact_vector_provision_rank": 3,
+     "best_l2": 0.4932408407379156,
+     "within_max_distance": true,
+     "bm25_provision_rank": 316,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 407 - Vehicle in parking place"
+    }
+   },
+   "final_top6": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 180",
+    "tmvr-1989-chap-5::Rule 256",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-8::Rule 407"
+   ],
+   "competitors": [
+    {
+     "provision": "tmvr-1989-chap-7::Rule 335",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 335 - Standing passengers in Stage Carriages"
+    },
+    {
+     "provision": "tmvr-1989-chap-5::Rule 180",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 180 - Variation or extension of route"
+    },
+    {
+     "provision": "tmvr-1989-chap-5::Rule 256",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 256 - Stopping place for stage carriage"
+    },
+    {
+     "provision": "tmvr-1989-chap-5::Rule 239",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 239 - Hours – Work of drivers – Provisions – exemptions from"
+    }
+   ],
+   "lookup": [],
+   "query_tokens": [
+    "vehicles",
+    "allowed",
+    "park",
+    "halt"
+   ],
+   "classification": [
+    "ranking or filtering (fusion)"
+   ],
+   "cause": "Rule 407 is 3rd by exact vector but 316th by BM25 (no 'park'/'halt' tokens: its text uses 'parking place'; tokenizer has no stemming). RRF with one vote puts it at provision rank 6, outside top 5.",
+   "recommendation": "Add light stemming or a parking/park normalisation in the BM25 tokenizer, or raise the scored cut-off to match RETRIEVE_K. Evaluate on the whole benchmark, not this row."
+  },
+  "TG-MR-008": {
+   "question": "Who issues medical certificates for drivers and for conductors?",
+   "category": "multi_rule",
+   "expected": {
+    "tmvr-1989-chap-2::Rule 43": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 2,
+     "exact_vector_provision_rank": 1,
+     "best_l2": 0.5470491908588891,
+     "within_max_distance": true,
+     "bm25_provision_rank": 10,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 43 - Issuing Authority of Medical Certificate"
+    },
+    "tmvr-1989-chap-3::Rule 77": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 6,
+     "exact_vector_provision_rank": 3,
+     "best_l2": 0.5492773718642994,
+     "within_max_distance": true,
+     "bm25_provision_rank": 9,
+     "in_structured_lookup": false,
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 77 - Issuing Authority of Medical Certificate"
+    }
+   },
+   "final_top6": [
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 76",
+    "tmvr-1989-chap-3::Rule 77"
+   ],
+   "competitors": [
+    {
+     "provision": "tmvr-1989-chap-7::Rule 337",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 337 - Seats for conductors and drivers"
+    },
+    {
+     "provision": "tmvr-1989-chap-5::Rule 239",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 239 - Hours – Work of drivers – Provisions – exemptions from"
+    },
+    {
+     "provision": "tmvr-1989-chap-3::Rule 47",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 47 - Form of application for Conductor's Licence"
+    },
+    {
+     "provision": "tmvr-1989-chap-3::Rule 76",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 76 - Exemption"
+    }
+   ],
+   "lookup": [],
+   "query_tokens": [
+    "issues",
+    "medical",
+    "certificates",
+    "drivers",
+    "conductors"
+   ],
+   "classification": [
+    "ranking or filtering (fusion)"
+   ],
+   "cause": "Rule 77 (conductors) and Rule 43 (drivers) have the same heading 'Issuing Authority of Medical Certificate'. Rule 77 is 3rd by exact vector and 9th by BM25, but lexical-only competitors (Rule 337 'Seats for conductors and drivers', Rule 239, Rule 47) out-fuse it; final provision rank 6.",
+   "recommendation": "Multi-part question: retrieve per sub-question ('for drivers' / 'for conductors') or reserve slots for distinct provisions that share a heading with a top hit. Kept on record as a ranking failure."
+  },
+  "TG-GO-003": {
+   "question": "Who certifies electronic enforcement devices such as speed cameras in Telangana?",
+   "category": "government_order",
+   "expected": {
+    "go-ms-32-2026-trb::Paragraph 4": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 3,
+     "exact_vector_provision_rank": 5,
+     "best_l2": 0.5011591924052293,
+     "within_max_distance": true,
+     "bm25_provision_rank": 6,
+     "in_structured_lookup": false,
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 4 - The Government, after careful examination of the proposal of the"
+    },
+    "go-ms-32-2026-trb::Order": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 171,
+     "best_l2": 0.6324834328871128,
+     "within_max_distance": true,
+     "bm25_provision_rank": 5,
+     "in_structured_lookup": false,
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Order"
+    },
+    "go-ms-32-2026-trb::Paragraph 5": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 4,
+     "exact_vector_provision_rank": 8,
+     "best_l2": 0.5115823688828206,
+     "within_max_distance": true,
+     "bm25_provision_rank": 1,
+     "in_structured_lookup": false,
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 5 - The Designated Authority so constituted shall be empowered to:"
+    }
+   },
+   "final_top6": [
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7"
+   ],
+   "competitors": [
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 3",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 3 - In the reference 5th read above, the Transport Commissioner, Telangana"
+    },
+    {
+     "provision": "go-ms-32-2026-trb::Preamble",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Preamble"
+    },
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 6",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 6 - The Designated Authority shall devise its own procedure for examination"
+    },
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 7",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 7 - The Transport Commissioner, Telangana, shall take necessary further"
+    }
+   ],
+   "lookup": [],
+   "query_tokens": [
+    "certifies",
+    "electronic",
+    "enforcement",
+    "devices",
+    "such",
+    "speed",
+    "cameras",
+    "telangana"
+   ],
+   "classification": [
+    "ranking or filtering (chunk budget)",
+    "embedding similarity"
+   ],
+   "cause": "G.O. 32 is split into Preamble, Order and Paragraphs 2–7; the 6-chunk budget is filled by its paragraphs. The Order chunk is 5th by BM25 but 171st by vector (its text is mostly a header and reference list).",
+   "recommendation": "Group chunks of one G.O. and return the G.O. as a unit (or expand to sibling paragraphs) when several paragraphs of one G.O. rank; alternatively review whether 'Order' should be expected."
+  },
+  "TG-GO-007": {
+   "question": "Which 2025 G.O. finally amended Rule 81 on reservation of special registration numbers?",
+   "category": "government_order",
+   "expected": {
+    "go-ms-77-2025-trb::Order": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 2,
+     "exact_vector_provision_rank": 1,
+     "best_l2": 0.5577273895214373,
+     "within_max_distance": true,
+     "bm25_provision_rank": 1,
+     "in_structured_lookup": false,
+     "heading": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Order"
+    },
+    "go-ms-77-2025-trb::Paragraph 2": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 7,
+     "best_l2": 0.6949545481733712,
+     "within_max_distance": true,
+     "bm25_provision_rank": 26,
+     "in_structured_lookup": false,
+     "heading": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 2 - Whereas no objections or suggestions have been received from the general"
+    },
+    "go-ms-77-2025-trb::Paragraph 3": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 2,
+     "final_rank": 4,
+     "exact_vector_provision_rank": 3,
+     "best_l2": 0.620535133416343,
+     "within_max_distance": true,
+     "bm25_provision_rank": 3,
+     "in_structured_lookup": false,
+     "heading": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 3 - Accordingly, the following notification shall be published in an extraordinary (part 1 of 2)"
+    },
+    "go-ms-77-2025-trb::Paragraph 4": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 3,
+     "exact_vector_provision_rank": 2,
+     "best_l2": 0.5897182922892544,
+     "within_max_distance": true,
+     "bm25_provision_rank": 4,
+     "in_structured_lookup": false,
+     "heading": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification - Paragraph 4 - For sub-rule (6) the following shall be substituted, namely"
+    }
+   },
+   "final_top6": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "competitors": [
+    {
+     "provision": "tmvr-1989-chap-4::Rule 81",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 81 - Assignment of Registration Number (part 1 of 2)"
+    }
+   ],
+   "lookup": [
+    "tmvr-1989-chap-4::Rule 81"
+   ],
+   "query_tokens": [
+    "2025",
+    "g",
+    "o",
+    "finally",
+    "amended",
+    "rule",
+    "81",
+    "reservation",
+    "special",
+    "registration",
+    "numbers"
+   ],
+   "classification": [
+    "ranking or filtering (structured lookup)",
+    "missing version metadata"
+   ],
+   "cause": "See Part D: the structured lookup matches 'Rule 81' in the question and places the unamended snapshot Rule 81 first; nothing in the metadata says G.O. 77/2025 substitutes parts of it. Paragraph 2 of G.O. 77 (procedural recital) ranks 7th by vector and 26th by BM25.",
+   "recommendation": "Amendment-aware retrieval (Part D). Kept on record as the outdated Rule 81 risk."
+  },
+  "TG-GO-012": {
+   "question": "Why did Telangana notify a Designated Authority under Rule 167A?",
+   "category": "government_order",
+   "expected": {
+    "go-ms-32-2026-trb::Order": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 100,
+     "best_l2": 0.5803626860917088,
+     "within_max_distance": true,
+     "bm25_provision_rank": 5,
+     "in_structured_lookup": false,
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Order"
+    },
+    "go-ms-32-2026-trb::Paragraph 2": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": null,
+     "exact_vector_provision_rank": 21,
+     "best_l2": 0.522434643776931,
+     "within_max_distance": true,
+     "bm25_provision_rank": 7,
+     "in_structured_lookup": false,
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 2 - In the reference 2nd & 3rd read above, the Hon'ble Supreme Court of India,"
+    },
+    "go-ms-32-2026-trb::Preamble": {
+     "in_index": true,
+     "answer_eligible": true,
+     "parts": 1,
+     "final_rank": 3,
+     "exact_vector_provision_rank": 6,
+     "best_l2": 0.46383224272515716,
+     "within_max_distance": true,
+     "bm25_provision_rank": 4,
+     "in_structured_lookup": false,
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Preamble"
+    }
+   },
+   "final_top6": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7",
+    "tmvr-1989-chap-5::Rule 173"
+   ],
+   "competitors": [
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 4",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 4 - The Government, after careful examination of the proposal of the"
+    },
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 5",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 5 - The Designated Authority so constituted shall be empowered to:"
+    },
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 6",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 6 - The Designated Authority shall devise its own procedure for examination"
+    },
+    {
+     "provision": "go-ms-32-2026-trb::Paragraph 7",
+     "heading": "Road Safety - Electronic Monitoring and Enforcement System (EMES) - Notification of Designated Authority under Rule 167A(1) of the Central Motor Vehicles Rules, 1989 - Paragraph 7 - The Transport Commissioner, Telangana, shall take necessary further"
+    },
+    {
+     "provision": "tmvr-1989-chap-5::Rule 173",
+     "heading": "Telangana Motor Vehicles Rules, 1989 - Rule 173 - Authority to be applied to"
+    }
+   ],
+   "lookup": [],
+   "query_tokens": [
+    "did",
+    "telangana",
+    "notify",
+    "designated",
+    "authority",
+    "rule",
+    "167a"
+   ],
+   "classification": [
+    "query formulation",
+    "embedding similarity",
+    "ranking or filtering (chunk budget)"
+   ],
+   "cause": "A 'why' question. The reason is in Paragraph 2 (Supreme Court direction), 21st by vector and 7th by BM25; the 'Designated Authority' wording pulls Paragraphs 4–7 and an unrelated TMVR Rule 173 ('Authority to be applied to').",
+   "recommendation": "Same G.O.-grouping fix as TG-GO-003; optionally a recital/reason section tag for 'why' queries. Review whether 'Order' is required."
+  }
+ },
+ "rule81": {
+  "question": "TG-GO-007",
+  "what_the_index_holds": "Rule 81 from an unverified HTML snapshot (tmvr-1989-chap-4, retrieved 29-10-2026; manifest notes: consolidated text with no amendment citations, known outdated elsewhere). G.O.Ms.No.77/2025 (official copy, dated 15-11-2025, publication and effective dates null) substitutes sub-rule (6) and amends the reservation fees in sub-rule (3).",
+  "textual_evidence": "Snapshot sub-rule (6) refers to clauses '(3) (i), (ii) and (iii)'; G.O. 77 Paragraph 4 substitutes it with '(i)…(vii)'. The snapshot text contains no clause '(vii)'. This shows the snapshot does not reflect G.O. 77's text; it does not establish which text is legally in force.",
+  "why_first": {
+   "lookup": "structured lookup returns both Rule 81 chunks (the question names 'Rule 81')",
+   "fused_top": [
+    [
+     "tmvr-1989-chap-4::Rule 81::part1of2",
+     0.04717
+    ],
+    [
+     "go-ms-77-2025-trb::Order::part1of1",
+     0.03279
+    ],
+    [
+     "tmvr-1989-chap-4::Rule 81::part2of2",
+     0.03226
+    ],
+    [
+     "go-ms-77-2025-trb::Paragraph 4::part1of1",
+     0.03175
+    ],
+    [
+     "go-ms-77-2025-trb::Paragraph 3::part2of2",
+     0.03175
+    ],
+    [
+     "go-ms-77-2025-trb::Paragraph 3::part1of2",
+     0.03077
+    ]
+   ],
+   "explanation": "Rule 81 part 1 receives three votes (lookup rank 1, BM25 rank 6, vector rank 4); G.O. 77 Order receives two (BM25 1, vector 1). The extra lookup vote wins."
+  },
+  "metadata_present": [
+   "source_class=unverified_snapshot",
+   "verification_status=unverified",
+   "effective_date empty",
+   "publication_date empty",
+   "manifest_notes (free text)"
+  ],
+  "metadata_missing": [
+   "amended_by / amends links between G.O. 77 and Rule 81 (sub-rules (3), (6))",
+   "per-sub-rule version or 'as at' date for the snapshot",
+   "effective/commencement date of G.O. 77 (gazette not obtained)",
+   "a machine-readable supersession status on the Rule 81 chunks",
+   "a retrieval-time rule that a known amending instrument must accompany the amended provision"
+  ],
+  "proposed_design": [
+   "Add a reviewed amendment map (amending instrument -> target provision, sub-rule, action: substitute/insert/omit, effective date or null) as data, not inferred by code",
+   "At retrieval, when a provision with a mapped amendment is returned, always include the amending G.O. chunks next to it and attach an 'amended by G.O. X; snapshot text may be outdated' warning",
+   "Never present snapshot text of an amended sub-rule as current; the answer layer cites both and states that currency is unverified",
+   "If effective dates are unknown, do not choose between versions; show both with the warning",
+   "Optionally down-rank (not drop) the snapshot sub-rule when a mapped amendment exists, so the G.O. leads",
+   "Tests: TG-GO-007 must return G.O. 77 Order/Paragraph 4 with Rule 81 and must carry the warning; no test may assert legal currency"
+  ]
+ },
+ "reproducibility_recommendations": [
+  "Make vector search exact for this corpus size (590 chunks): brute-force distance over stored embeddings, or a much higher hnsw:search_ef/construction_ef; then re-baseline",
+  "Open evaluation indexes read-only through copies, and record data_level0.bin hashes with every run",
+  "Make BM25 score summation order deterministic (iterate query tokens in a fixed order instead of set(query_tokens), hybrid_retrieval.py:79)",
+  "Record vector, lexical and lookup lists with scores in retrieval_eval output so later discrepancies can be traced"
+ ]
+}

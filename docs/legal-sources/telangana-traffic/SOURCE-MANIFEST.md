@@ -1,0 +1,81 @@
+# Telangana source manifest
+
+**Prepared:** 29 October 2026 · **Gate: HOLD INDEX BUILD. Not approved.** Separate from the Gujarat package.
+
+## Status columns
+
+Each column is a separate test, and "Yes" in one does not imply the next:
+- **Rec:** an official record or listing names the document.
+- **Got:** the file has been retrieved and stored in this package.
+- **Read:** its content has been inspected.
+- **Law:** its current legal status has been verified. That is counsel's call; nothing here has been.
+
+## Where the evidence comes from
+
+**Supplied input.** `supplied/Telangana_Traffic_Law_Legal_Review_Summary.pdf`: 4 pages, SHA-256 `6ce1603d034e3b57223027df9c1994f977432ab06d252b7c8e6a38fcf17f89f5`, identical to both copies in `~/Downloads`. It is a briefing summary of an earlier handoff and **not itself a legal source**. It lists 9 archived PDFs under `telangana-traffic/source-documents/`. **None of those files exists** in either worktree or in `~/Downloads`, `~/Desktop` or `~/Documents`, so their recorded hashes cannot be checked.
+
+**Official listings checked on 29 Oct 2026** (listing pages read; no files downloaded):
+
+| Abbreviation | Source |
+|---|---|
+| **TD** | Telangana Transport Department, [Acts & Rules](https://www.transport.telangana.gov.in/html/actsrules.html) and [TG MV Acts / Rules](https://www.transport.telangana.gov.in/html/telangana-motor-vehicles-act-rule.html) |
+| **GOIR** | [Telangana Government Order Issue Register](https://goir.telangana.gov.in/), filtered to Transport Roads and Building, MS, 2025 and 2026, Transport-I section |
+
+## Sources
+
+| ID | Instrument (as listed) | Type | Number / date | Official listing | Rec | Got | Read | Law | Notes |
+|---|---|---|---|---|---|---|---|---|---|
+| TG-TMVR | Telangana Motor Vehicles Rules, 1989 | State rules | Base: AP G.O.Ms.No. 216, TR&B (Tr.II), 07-08-1989, AP Gazette 25-08-1989, pp. 1–135 (as cited in G.O.Ms.No. 332/2008) | TD (HTML, 12 chapters) | Yes | **Yes** (HTML snapshot, 49 files, `html-snapshots/tmvr-1989/`) | **Partly**: rules 1, 81, 217 | No | Rule 1 reads "Telangana Motor Vehicles Rules, 1989 … whole of the State of Telangana". There are no amendment citations or "as amended" date. **Outdated in at least one place:** rule 217's table still shows pre-2008 amounts (e.g. "Plying without payment of Tax Rs. 50"; "Other offences Rs. 5"), which G.O.Ms.No. 332/2008 replaced. Rule 81 shows special-number fees from Rs. 50,000; not yet compared with G.O.Ms.No. 77/2025 (not retrieved). |
+| TG-GO54-2025 | Amendment to Rule 81 of TMVR, preliminary notification | **Draft** (s.212(1); 30-day objection period) | G.O.Ms.No. 54, TR&B (Tr.I), 13-08-2025; for the Telangana Gazette Extraordinary of 13-08-2025 | GOIR | Yes | **Yes** (`goir/2025TRB_Ms54.pdf`, 3 pp., downloaded by the user) | **Yes** (pp. 1–2) | No | Made under s.65 MV Act. Omits rule 81(1), (2) and (4) and substitutes rule 81(3) (online applications for registration numbers). Confirms the TMVR base is AP G.O.Ms.No. 216 of 07-08-1989, "as subsequently amended". **Lists earlier rule 81 orders:** G.O.Ms.No. 02 (17-06-2014), 41 (29-09-2015), 44 (15-10-2015), 95 (08-12-2016), **26 (24-04-2017)**, 52 (11-04-2018); none retrieved. Final version: TG-GO77-2025 (not retrieved). |
+| TG-GO77-2025 | Amendment to Rule 81 of TMVR, final notification | Rules amendment | G.O.Ms.No. 77, TR&B (Tr-I), 15-11-2025 | GOIR | Yes | No | No | No | The summary records `TMVR-1989-GO77-2025.pdf` with SHA-256 `74a6839d…`; that file is absent. Rule 81 concerns fancy-number fees and bidding, per the summary only. |
+| TG-GO334-2008 | Permit-fee enhancement order | G.O. | G.O. 334, 2008 (per summary) | Not located | No | No | No | No | Pre-2014 (combined Andhra Pradesh) order. Telangana applicability is unestablished. |
+| TG-TMVTA | Telangana Motor Vehicles Taxation Act, 1963 (Act No. 5 of 1963) | State Act | Act 5 of 1963 | TD listing; GOIR subjects cite "Act No. 5 of 1963" | Yes | No | No | No | No text retrieved. The summary's `TMVTA-1963-ACT5.pdf` is absent. |
+| TG-A8-2026 | Telangana Motor Vehicles Taxation (Amendment) Act, 2026 | Amending Act | Act No. 8 of 2026 | GOIR (cited in the subject of G.O.Ms.No. 10/2026) | Yes (cited) | No | No | No | The Act text is not located. The summary calls the 2026 instrument a "Road Safety Cess"; the GOIR subject does not say so. **Unverified.** |
+| TG-GO10-2026 | Date of commencement of Act No. 8 of 2026 | Commencement notification | G.O.Ms.No. 10, TR&B, 25-02-2026 | GOIR | Yes | No | No | No | Commencement date unknown until read. |
+| TG-GO16-2026 | Amendment to the Seventh Schedule under s.3 of the Taxation Act | Tax notification | G.O.Ms.No. 16, TR&B (Tr-I), 20-03-2026 | GOIR | Yes | No | No | No | **Not in the summary.** |
+| TG-GO53-2025 | Amendment to the Third, Sixth and Seventh Schedules (life tax) | Tax notification (department G.O. copy) | G.O.Ms.No. 53, TR&B (Tr.I), 13-08-2025 | GOIR | Yes | **Yes** (`goir/13082025TRB_MS53.PDF`, 5 pp.) | **Yes** | No | Issued by the Government of Telangana under **s.17** of Act 5 of 1963. Substitutes the Third Schedule (two-wheelers: 9 / 12 / 15 / 18% of cost at registration, by cost band; invalid carriages exempt), the Sixth Schedule (cars, jeeps and similar up to 10 seats: 13 / 14 / 18 / 20 / 21%), and the Seventh Schedule (company or institution vehicles 15–25%; a second or later personal vehicle pays an extra 2%). Directs publication in the Telangana Gazette, Extraordinary, of **14-08-2025**; the gazette print is not obtained. Refers to G.O.Ms.No. 22 of 07-05-2022. Whether it was later modified (e.g. by G.O.Ms.No. 16/2026, Seventh Schedule) is unknown. |
+| TG-GOMS10-2014 | Tax exemption order | G.O. | G.O.Ms.No. 10, 2014 (per summary) | Not searched | No | No | No | No | The summary's `TMVTA-1963-GOMS10-2014.pdf` is absent. |
+| TG-EV-2021 | EV tax exemption order | G.O. | 2021 (number not given) | Not searched | No | No | No | No | The summary's `TMVTA-1963-EV-EXEMPT-2021.pdf` is absent. |
+| TG-TMVTR | Telangana Motor Vehicles Taxation Rules, 1963 | State rules | — | TD (HTML, frames) | Yes | **Yes** (HTML snapshot, 4 files, `html-snapshots/tmvtr-1963/`) | **Partly**: rule 1 and the contents list | No | The page title reads "ANDHRA PRADESH MOTOR VEHICLES TAXATION RULES, 1963" under a "Finance Department Govt. of Andhra Pradesh" header, while rule 1 reads "Telangana Motor Vehicles Taxation Rules, 1963 … whole of the State of Telangana". The adaptation instrument and amendment currency are unknown. No PDF or gazette reprint. |
+| TG-COMP-2006-54 | Compounding schedule under s.200 MV Act | Compounding G.O. | G.O. 54, 2006 (per summary) | Not located | No | No | No | No | Pre-2014. Applicability in Telangana and later supersession unestablished. The summary's file is absent. |
+| TG-COMP-2006-242 | Authority to compound offences | G.O. | G.O. 242, 2006 (per summary) | Not located | No | No | No | No | As above. |
+| TG-COMP-2008-332 | Revision of compounding fee under **s.86(5)** MV Act: amends **rule 217** of the AP MV Rules, 1989 (final notification) | Rules amendment, issued by the **Government of Andhra Pradesh** | G.O.Ms.No. 332, TR&B (Tr.I), 13-11-2008; preliminary G.O.Ms.No. 240 of 22-08-2008; for the AP Gazette Extraordinary of 15-11-2008 | TD ("Compounding" link) | Yes | **Yes** (`transport-dept/2008trb_ms332_compounding.pdf`, 5 pp.) | **Yes** | No | This is **not** the s.200 traffic-offence schedule. It sets sums payable instead of permit suspension or cancellation: stage carriages, heavy goods vehicles and others (e.g. plying without tax Rs. 5,000 for stage carriages). It is pre-2014; how it continues in Telangana is unestablished. **Not in the summary.** |
+| TG-COMP-2020-42 | Compounding fee revision | G.O. | G.O.Ms.No. 42, TR&B, July 2020 (per summary) | **No GOIR record** (TRB / MS / 2020 / No. 42) | No | No | No | No | **Unresolved.** A missing GOIR record does not show the G.O. doesn't exist. |
+| TG-GO26 | Penalty-point system (per the summary) | G.O. | G.O.Ms.No. 26 (year and department not given in the summary) | Not searched | No | No | No | No | **Possible number collision:** G.O.Ms.No. 54/2025 cites **G.O.Ms.No. 26, TR&B (Tr.I), 24-04-2017** in the rule 81 (registration-number) amendment chain. Whether that is the order the summary calls the penalty-point G.O., or a different G.O. with the same number, is **unresolved**. Counsel question 4. |
+| TG-GO24/25-2026 | Challans under Rule 167 CMVR (as amended by G.S.R. 48(E), 20-01-2026): electronic challans; authorisation | G.O. | G.O.Ms.No. 24 and 25, 01-06-2026 | GOIR | Yes | No | No | No | **Not in the summary.** Relevant to enforcement answers. |
+| TG-GO32-2026 | Electronic Monitoring and Enforcement System: designated authority under Rule 167A(1) CMVR | G.O. | G.O.Ms.No. 32, 30-06-2026 | GOIR | Yes | No | No | No | **Not in the summary.** |
+| TG-ROR | Rules of the Road Regulations, 1989 (Central): **out of scope** (Telangana-only decision, 08-11-2026; kept as reference) | Central regulations | S.O. 439(E), 12-06-1989; in force from 01-07-1989 | TD | Yes | **Yes** (`transport-dept/rules_of_the_road_regulations_1989.pdf`, 5 pp.) | **Partly**: title, commencement, regulations 2–3 | No | Original 1989 text with no amendment notes. Whether later Central driving regulations replaced it is **unverified**; ask counsel. The summary's file is absent. |
+| TG-CMVR, TG-MVA | Central Motor Vehicles Rules 1989; Motor Vehicles Act 1988: **out of scope** (Telangana-only decision) | Central | — | Shared with the national corpus | — | — | — | — | The project's Central copies are already known to be out of date (`../../../archive/abandoned-gujarat/docs/legal-source-audit.md`). |
+| TG-HC | Telangana High Court precedents | Case law | Not identified in the summary | — | No | No | No | No | No citations available. |
+
+## Retrieval record (29 Oct 2026, downloads approved by the user)
+
+Files are in `source-documents/`, and every SHA-256 is listed in `source-documents/SHA256SUMS`:
+
+| File | Source | SHA-256 |
+|---|---|---|
+| `transport-dept/2008trb_ms332_compounding.pdf` (121,075 B) | `https://www.transport.telangana.gov.in/html/pdf/2008trb_ms332_compounding.pdf` | `3fb415be037dcf3b64bd3da86b37e337256335cd9cb619df7dd8e5081a2bd533` |
+| `transport-dept/rules_of_the_road_regulations_1989.pdf` (46,506 B) | `https://www.transport.telangana.gov.in/html/pdf/rules_of_the_road_regulations_1989.pdf` | `1242880c31e134e22490527f244ce38ac9a7264ad6a26782b9fad15041e1990f` |
+| `goir/13082025TRB_MS53.PDF` (77,128 B) | goir.telangana.gov.in, Download for G.O.Ms.No. 53/2025 (TRB, MS) | `a93f8daa6865eccd2ee646494c10883d98fb0e7c99d3a0f4c64dffe803c15c18` |
+| `goir/2025TRB_Ms54.pdf` | goir.telangana.gov.in, G.O.Ms.No. 54/2025; downloaded by the user, moved from `~/Downloads` | `2965f7be670264ed339c062d0caecb41d799d7e192e2ba5b9bc7184d0a5840f7` |
+| `goir/2025TRB_Ms77.pdf` (33,646 B) | goir.telangana.gov.in, G.O.Ms.No. 77/2025; downloaded by the user on 09-11-2026 (macOS download origin `https://goir.telangana.gov.in/Default.aspx`). Added to SHA256SUMS in Stage 19 | `3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71` |
+| `goir/2026TRB_Ms10.pdf` (28,107 B) | goir.telangana.gov.in, G.O.Ms.No. 10/2026 (25-02-2026; commencement of Act No. 8 of 2026); downloaded by the user on 09-11-2026 (macOS download origin `https://goir.telangana.gov.in/Default.aspx`). Added to SHA256SUMS in Stage 20; the checksum records file integrity only, not legal status | `df0ee9357b05ca4db9a187481ff2c8ac50c4a9d2ca05f91800e9bc4161f8c5fd` |
+| `goir/2026TRB_Ms16.pdf` (19,604 B) | goir.telangana.gov.in, G.O.Ms.No. 16/2026 (20-03-2026; TMVT Act Seventh Schedule amendment, in force 23-03-2026 per its text); downloaded by the user on 09-11-2026 (macOS download origin `https://goir.telangana.gov.in/Default.aspx`). Added to SHA256SUMS in Stage 20; the checksum records file integrity only, not legal status | `139f96454954a4b77b3f07a796946827c29a81754f9a782e3e25dd5dfc76e0d5` |
+| `goir/2026TRB_Ms24.pdf` (35,456 B) | goir.telangana.gov.in, G.O.Ms.No. 24/2026 (01-06-2026; CMV Rule 167 challan disposal authorities. **Draft or final unresolved** (order says "draft Notification")); downloaded by the user on 09-11-2026 (macOS download origin `https://goir.telangana.gov.in/Default.aspx`). Added to SHA256SUMS in Stage 20; the checksum records file integrity only, not legal status | `ba0c9516575ed081181da4288c1395a19ad416bc9e9981c56f65b522b7007905` |
+| `goir/2026TRB_Ms25.pdf` (26,515 B) | goir.telangana.gov.in, G.O.Ms.No. 25/2026 (01-06-2026; CMV Rule 167 electronic challans); downloaded by the user on 09-11-2026 (macOS download origin `https://goir.telangana.gov.in/Default.aspx`). Added to SHA256SUMS in Stage 20; the checksum records file integrity only, not legal status | `c9bd1ff3a7e02a3c5324965835dd81ddea9f30df831adf0cb4387f8d3f374872` |
+| `goir/2026TRB_Ms32.pdf` (21,096 B) | goir.telangana.gov.in, G.O.Ms.No. 32/2026 (30-06-2026; EMES Designated Authority under CMV Rule 167A(1)); downloaded by the user on 09-11-2026 (macOS download origin `https://goir.telangana.gov.in/Default.aspx`). Added to SHA256SUMS in Stage 20; the checksum records file integrity only, not legal status | `4bb6273f8c13c08d7e15a64ad063c4ad868beaf527c469c6f1975b71a57f8629` |
+| `html-snapshots/tmvr-1989/` (49 files) | `https://www.transport.telangana.gov.in/html/telangana-motor-vehicles-rules-1989.html` and its chapter frames under `/html/acts-rules/` | see SHA256SUMS |
+| `html-snapshots/tmvtr-1963/` (4 files) | `https://www.transport.telangana.gov.in/html/acts-rules/main-ap-mv-tr-%201963.htm` and its frames | see SHA256SUMS |
+
+**Update (Stage 19):** G.O.Ms.No. 77/2025 and 10, 16, 24, 25 and 32 of 2026 were later downloaded by the user (INGESTION-VALIDATION-REPORT section 7). No. 77 was added to SHA256SUMS in Stage 19 and the five 2026 PDFs in Stage 20. The paragraph below is the original record.
+
+**Not retrieved (original record):** G.O.Ms.No. 77/2025, 10/2026, 16/2026, 24/2026, 25/2026 and 32/2026. G.O.Ms.No. 53 downloaded normally through the register's Download button; later downloads from the same site were aborted by the browser, apparently because it blocks repeated automatic downloads. They need a person to click Download in the register, or to allow multiple downloads.
+
+## Originally retrievable once you approved downloads
+
+| Item | Size | Source |
+|---|---|---|
+| `2008trb_ms332_compounding.pdf` | 121,075 bytes | TD |
+| `rules_of_the_road_regulations_1989.pdf` | 46,506 bytes | TD |
+| HTML snapshots of the TMVR 1989 chapters and the TMVTR 1963 frames | Small | TD |
+| G.O.Ms.No. 53/2025, 54/2025, 77/2025, 10/2026, 16/2026, 24/2026, 25/2026, 32/2026 | Unknown until downloaded | GOIR, via form postback |

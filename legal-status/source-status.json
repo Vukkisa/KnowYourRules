@@ -513,6 +513,78 @@
         "rationale": null
       },
       "provision_overrides": []
+    },
+    {
+      "manifest_id": "mva-1988-india-code-extract",
+      "file": "central/mva-1988-india-code-extract.html",
+      "sha256": "93f703f2bdefd3953cc403ad4c9b708f6acfed4df72b3ec922ef5504231b0860",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Motor Vehicles Act, 1988 (Central), extract of selected sections from the India Code consolidation as on 15-08-2026",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "central/mva-1988-india-code-extract.html",
+          "sha256": "93f703f2bdefd3953cc403ad4c9b708f6acfed4df72b3ec922ef5504231b0860",
+          "note": "CENTRAL-manifest.json source_class=official; derived extract of the India Code consolidation (parent file SHA-256 c619755eabb2085ec5ef8068777724223f3ec7e1cc1170aee0dd1608216dc482); currency and 2026 commencement not confirmed"
+        }
+      ],
+      "assigned_by": "assistant, Central sources step: conservative default; not a legal decision and not a verification",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "mvdr-2017-gsr-634e",
+      "file": "central/gsr-634e-2017-motor-vehicles-driving-regulations.pdf",
+      "sha256": "5f899762f5c7e85c17f624d84891c6755aca063276ec986c31ab7021d9e37149",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Motor Vehicles (Driving) Regulations, 2017 (Central), G.S.R. 634(E)",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "central/gsr-634e-2017-motor-vehicles-driving-regulations.pdf",
+          "sha256": "5f899762f5c7e85c17f624d84891c6755aca063276ec986c31ab7021d9e37149",
+          "note": "CENTRAL-manifest.json source_class=official; byte-identical to the file egazette.gov.in serves for the source_url (checked 2026-11-17); later amendments not ruled out"
+        }
+      ],
+      "assigned_by": "assistant, Central sources step: conservative default; not a legal decision and not a verification",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
+    },
+    {
+      "manifest_id": "mvdr-2020-amendment-gsr-586e",
+      "file": "central/gsr-586e-2020-motor-vehicles-driving-amendment-regulations.pdf",
+      "sha256": "2d0ffec888a4bb7182982f9cc17d09e470b1c141fae6183f024137c781b299c4",
+      "status": "official_text_commencement_unconfirmed",
+      "label": "Motor Vehicles (Driving) (Amendment) Regulations, 2020 (Central), G.S.R. 586(E)",
+      "related_instruments": [],
+      "decision_refs": [],
+      "evidence": [
+        {
+          "file": "central/gsr-586e-2020-motor-vehicles-driving-amendment-regulations.pdf",
+          "sha256": "2d0ffec888a4bb7182982f9cc17d09e470b1c141fae6183f024137c781b299c4",
+          "note": "CENTRAL-manifest.json source_class=official; byte-identical to the file egazette.gov.in serves for the source_url (checked 2026-11-17)"
+        }
+      ],
+      "assigned_by": "assistant, Central sources step: conservative default; not a legal decision and not a verification",
+      "review": {
+        "reviewer": null,
+        "review_date": null,
+        "decision": null,
+        "rationale": null
+      },
+      "provision_overrides": []
     }
   ]
 }

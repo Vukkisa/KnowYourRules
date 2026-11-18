@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "jurisdiction": "Central",
+  "documents": [
+    {
+      "id": "mva-1988-india-code-extract",
+      "title": "Motor Vehicles Act, 1988 (Central Act) - extract of selected sections, India Code consolidation as on 15-08-2026",
+      "document_type": "Act",
+      "issuing_authority": "Parliament of India (text from India Code, Legislative Department, Ministry of Law and Justice)",
+      "document_number": "Act No. 59 of 1988",
+      "publication_date": null,
+      "effective_date": null,
+      "source_url": "https://indiacode.gov.in/act/2bbbcc40-38f1-4b15-ae94-646b85db4ee7",
+      "file": "central/mva-1988-india-code-extract.html",
+      "jurisdiction": "Central",
+      "format": "html",
+      "source_class": "official",
+      "verification_status": "unverified",
+      "sha256": "93f703f2bdefd3953cc403ad4c9b708f6acfed4df72b3ec922ef5504231b0860",
+      "notes": "CENTRAL law, kept separate from Telangana sources. Derived extract (sections 3-15, 39-41, 50, 56, 112, 128-130, 134, 146 and the footnotes printed on the same PDF pages) of the India Code consolidated PDF 'As on the 15th August, 2026' (file SHA-256 c619755eabb2085ec5ef8068777724223f3ec7e1cc1170aee0dd1608216dc482, 4,329,031 bytes, 176 pages, re-fetched 2026-11-17 with the same hash). Text copied unchanged from the PDF text layer with the diagonal 'India Code' watermark removed (pdftotext -nodiag) and checked line by line against a second extractor (pypdf): 0 unmatched lines. Amendments by Act 32 of 2019 (ss. 4-10, 41, 44) and Act 8 of 2026 (ss. 8, 9, 12, 14, 15) were compared with the Gazette text of those Acts; the s.129 commencement of 15-02-2022 was checked against S.O. 691(E). NOT confirmed: the 2026 commencement date (15-08-2026) rests on India Code's own footnotes (MoRTH S.O. 4100(E), 24-07-2026, not read); the 2019 commencement notifications for 1-9-2019, 1-4-2021 and 1-7-2021 were not read; India Code's stored checksum for this file differs from the served bytes (cause unresolved); not a Gazette print; currency after 15-08-2026 not established. Contains no penalty sections (Chapter XIII is not included). The Central Motor Vehicles Rules, 1989 (which prescribe forms, documents, fees and tests) are NOT in the knowledge base."
+    },
+    {
+      "id": "mvdr-2017-gsr-634e",
+      "title": "Motor Vehicles (Driving) Regulations, 2017 (Central) - G.S.R. 634(E), 23-06-2017",
+      "document_type": "Regulations",
+      "issuing_authority": "Ministry of Road Transport and Highways, Government of India",
+      "document_number": "G.S.R. 634(E)",
+      "publication_date": "2017-06-23",
+      "effective_date": "2017-06-23",
+      "source_url": "https://egazette.gov.in/WriteReadData/2017/176975.pdf",
+      "file": "central/gsr-634e-2017-motor-vehicles-driving-regulations.pdf",
+      "jurisdiction": "Central",
+      "format": "pdf",
+      "source_class": "official",
+      "verification_status": "unverified",
+      "sha256": "5f899762f5c7e85c17f624d84891c6755aca063276ec986c31ab7021d9e37149",
+      "notes": "CENTRAL regulations, kept separate from Telangana sources. The Gazette of India Extraordinary (Part II, Sec. 3(i)) as served by egazette.gov.in; re-fetched 2026-11-17 and byte-identical to the held copy. Made under section 118 of the Motor Vehicles Act, 1988, in supersession of the Rules of the Road Regulations, 1989; in force on publication (regulation 1(2)). The first part of the PDF is the Hindi text in a legacy font that does not extract as readable text; those chunks are flagged answer_eligible=false. Amended by the Motor Vehicles (Driving) (Amendment) Regulations, 2020 (G.S.R. 586(E), in force 1-10-2020; regulations 37 and 38), held as a separate document. No other amendment was found, which does not show that none exists: a later amendment, or a consolidated official text, has not been ruled out."
+    },
+    {
+      "id": "mvdr-2020-amendment-gsr-586e",
+      "title": "Motor Vehicles (Driving) (Amendment) Regulations, 2020 (Central) - G.S.R. 586(E), 25-09-2020",
+      "document_type": "Notification",
+      "issuing_authority": "Ministry of Road Transport and Highways, Government of India",
+      "document_number": "G.S.R. 586(E)",
+      "publication_date": "2020-09-25",
+      "effective_date": "2020-10-01",
+      "source_url": "https://egazette.gov.in/WriteReadData/2020/222008.pdf",
+      "file": "central/gsr-586e-2020-motor-vehicles-driving-amendment-regulations.pdf",
+      "jurisdiction": "Central",
+      "format": "pdf",
+      "source_class": "official",
+      "verification_status": "unverified",
+      "sha256": "2d0ffec888a4bb7182982f9cc17d09e470b1c141fae6183f024137c781b299c4",
+      "notes": "CENTRAL amendment, kept separate from Telangana sources. The Gazette of India Extraordinary (Part II, Sec. 3(ii)) as served by egazette.gov.in; re-fetched 2026-11-17 and byte-identical to the held copy. Amends regulations 37 and 38 of the Motor Vehicles (Driving) Regulations, 2017; in force 1-10-2020 (regulation 1(2)). Its operative text amends the 2017 Regulations and does not restate them. The first part of the PDF is Hindi in a legacy font that does not extract as readable text; those chunks are flagged answer_eligible=false."
+    }
+  ]
+}

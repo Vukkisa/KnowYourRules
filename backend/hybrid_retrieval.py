@@ -56,8 +56,23 @@ def normalise(text: str) -> str:
     return t
 
 
+def fold_plural(word: str) -> str:
+    """Plural-only folding (Harman's S-stemmer), so "certificates" matches "certificate" and "issues" matches
+    "issue". Only alphabetic words longer than 3 letters change; numbers, rule tokens like "12b" and G.O. tokens
+    like "go32y2026" never do. No other suffixes are removed (Stage 17)."""
+    if len(word) <= 3 or not word.isalpha():
+        return word
+    if word.endswith("ies") and not word.endswith(("eies", "aies")):
+        return word[:-3] + "y"
+    if word.endswith("es") and not word.endswith(("aes", "ees", "oes")):
+        return word[:-1]
+    if word.endswith("s") and not word.endswith(("us", "ss")):
+        return word[:-1]
+    return word
+
+
 def tokenize(text: str) -> list[str]:
-    return [w for w in re.findall(r"[a-z0-9]+", normalise(text)) if w not in STOPWORDS]
+    return [fold_plural(w) for w in re.findall(r"[a-z0-9]+", normalise(text)) if w not in STOPWORDS]
 
 
 class BM25:
@@ -108,11 +123,43 @@ class Lookup:
     missing_gos: list = field(default_factory=list)        # ["G.O.Ms.No. 99/2026"]
 
 
+def lexical_text(doc) -> str:
+    """Chunk text as BM25 sees it: the stored text without the chapter label in its header line (Stage 28).
+
+    The chapter label is shared by every chunk of a chapter. It helps the embedding place a terse rule in its
+    subject (Rule 455 "Applications" under "Claims Tribunals"), but as BM25 terms it lifts or sinks whole chapters
+    on title words such as "drivers" or "conductors". The stored text and metadata are unchanged."""
+    text, chapter = doc.page_content, (doc.metadata or {}).get("chapter")
+    if not chapter:
+        return text
+    head, sep, body = text.partition("\n")
+    return head.replace(f" - {chapter}", "", 1) + sep + body
+
+
+CHAPTER_NUMBER_RE = re.compile(r"^CHAPTER\s+[IVXLC]+(?:-[A-Z])?\b", re.IGNORECASE)
+
+
+def chapter_of(doc) -> tuple | None:
+    """(document title, chapter label) of a chunk, or None when the chunk has no chapter."""
+    m = getattr(doc, "metadata", None) or {}
+    return (m.get("title"), m["chapter"]) if m.get("chapter") else None
+
+
+def chapter_naming_terms(docs) -> dict:
+    """For each chapter, the title words that occur in no other chapter title of the index (Stage 29):
+    "conductor" names "Licensing of Conductors of Stage Carriages"; "motor" and "vehicle" name nothing, because
+    several chapters share them. Words are tokenised like BM25 text; the chapter number is not a word."""
+    words = {c: set(tokenize(CHAPTER_NUMBER_RE.sub(" ", c[1]))) for c in {chapter_of(d) for d in docs} - {None}}
+    df = Counter(w for ws in words.values() for w in ws)
+    return {c: frozenset(w for w in ws if df[w] == 1) for c, ws in words.items()}
+
+
 class LexicalIndex:
     def __init__(self, documents, metadatas):
         self.docs = [Document(page_content=d, metadata=dict(m or {})) for d, m in zip(documents, metadatas)]
+        self.chapter_terms = chapter_naming_terms(self.docs)
         fields = ("provision_id", "provision_heading", "title", "document_number")
-        self.bm25 = BM25([tokenize(d.page_content + " " + " ".join(str(d.metadata.get(f) or "") for f in fields))
+        self.bm25 = BM25([tokenize(lexical_text(d) + " " + " ".join(str(d.metadata.get(f) or "") for f in fields))
                           for d in self.docs])
         self.by_provision = {}
         self.gos = {}  # (number, year) -> manifest_id
@@ -141,6 +188,27 @@ class LexicalIndex:
         scores = self.bm25.scores(tokenize(question))
         ranked = sorted((i for i, s in enumerate(scores) if s > 0), key=lambda i: -scores[i])
         return [self.docs[i] for i in ranked[:k]]
+
+    def spread_named_chapters(self, question: str, docs: list) -> list:
+        """Reorder docs so that every chapter the question names leads with its best candidate (Stage 29).
+
+        A question such as "badge rules for drivers and for conductors" names two chapters. When one chapter has
+        many matching rules, they can fill the top of the list and push the other chapter's only rule to the end.
+        If two or more named chapters have a candidate in docs, the best candidate of each later chapter moves up
+        to directly follow the best candidate of the first. Nothing is added or removed, nothing moves ahead of
+        the first named chapter's best candidate, and a question naming fewer than two chapters is unchanged."""
+        asked = set(tokenize(question))
+        named = {c for c, terms in self.chapter_terms.items() if terms & asked}
+        best = []
+        for d in docs:
+            c = chapter_of(d)
+            if c in named and all(chapter_of(b) != c for b in best):
+                best.append(d)
+        if len(best) < 2:
+            return docs
+        first = docs.index(best[0])
+        rest = [d for d in docs[first + 1:] if all(d is not b for b in best)]
+        return docs[:first] + best + rest
 
     def go_references(self, question: str) -> list[tuple]:
         refs = []
@@ -185,6 +253,51 @@ class LexicalIndex:
 
     def _first_index(self, key) -> int:
         return self.docs.index(self.by_provision[key][0])
+
+
+def parse_vector_protect(value, k: int = 6, default: int = 3) -> int:
+    """RAG_VECTOR_PROTECT: an integer from 0 (guard off) to k; anything else falls back to the default."""
+    try:
+        n = int(str(value).strip())
+    except (TypeError, ValueError):
+        return default
+    return n if 0 <= n <= k else default
+
+
+def protect_vector_leaders(top: list, candidates: list, vector_docs: list, protect: int, k: int) -> list:
+    """Keep the vector search's `protect` best chunks in the final `k` (Stage 4D).
+
+    Reciprocal-rank fusion gives a chunk found only by BM25 at rank r the same vote as one found only by the
+    vector search at rank r, and ties go to the BM25 list. So a chunk the embedding model ranks 3rd can lose its
+    place to two keyword-only chunks that merely share generic words (e.g. "application", "licence").
+    `candidates` is the fused, filtered, de-duplicated list; a vector leader is protected only if it is in it,
+    so every filter (state, approval, answer_eligible) still applies. Leaders missing from `top` are appended and
+    the lowest-ranked unprotected chunks make room. Nothing is added that fusion had not already accepted, and the
+    result never exceeds `k`. `protect` <= 0 returns `top` unchanged."""
+    if protect <= 0:
+        return top
+    allowed = {chunk_key(d): d for d in candidates}
+    leaders = []
+    for d in vector_docs:
+        key = chunk_key(d)
+        if key in allowed and all(chunk_key(x) != key for x in leaders):
+            leaders.append(allowed[key])
+        if len(leaders) == protect:
+            break
+    present = {chunk_key(d) for d in top}
+    missing = [d for d in leaders if chunk_key(d) not in present]
+    if not missing:
+        return top
+    protected = {chunk_key(d) for d in leaders}
+    kept = list(top)
+    while len(kept) + len(missing) > k:
+        for i in range(len(kept) - 1, -1, -1):
+            if chunk_key(kept[i]) not in protected:
+                del kept[i]
+                break
+        else:
+            break
+    return kept + missing
 
 
 def reciprocal_rank_fusion(ranked_lists, k=RRF_K) -> list:

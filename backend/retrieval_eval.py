@@ -4,7 +4,7 @@ Retrieval-only evaluation of the Telangana preview index against eval/telangana-
 No answer is generated and no model grades anything: every metric compares retrieved chunk identifiers with
 the benchmark's expected identifiers. Groq is trapped so any model call fails loudly and is counted.
 
-    TG_DB_DIR=chroma_telangana_preview python -m backend.retrieval_eval [--out results.json]
+    TG_DB_DIR=INDEX_DIR python -m backend.retrieval_eval      # or --db-dir INDEX_DIR (required) [--out results.json]
 """
 
 import argparse
@@ -148,11 +148,13 @@ def summarise(rows) -> dict:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Retrieval-only evaluation (no answer generation).")
-    ap.add_argument("--db-dir", default=os.environ.get("TG_DB_DIR", BASE_DIR / "chroma_telangana_preview"))
+    ap.add_argument("--db-dir", default=os.environ.get("TG_DB_DIR"), help="index directory to evaluate (required; or set TG_DB_DIR)")
     ap.add_argument("--benchmark", default=BENCHMARK)
     ap.add_argument("--mode", choices=("vector", "hybrid"), help="override RAG_RETRIEVAL_MODE")
     ap.add_argument("--out")
     a = ap.parse_args(argv)
+    if not a.db_dir:
+        ap.error("--db-dir (or TG_DB_DIR) is required: there is no default index path")
     cases = json.loads(Path(a.benchmark).read_text(encoding="utf-8"))["cases"]
     server, calls = load_server(a.db_dir)
     if a.mode:

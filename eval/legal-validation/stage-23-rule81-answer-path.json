@@ -1,0 +1,490 @@
+{
+ "stage": 23,
+ "date": "2026-11-11",
+ "read_only": true,
+ "environment": {
+  "index": "copy of chroma_telangana_preview_s11",
+  "embeddings": "local Ollama nomic-embed-text",
+  "groq_or_external_calls": false,
+  "answer_mode_actual": "disabled",
+  "kb_approved": false,
+  "approved_sources": 0,
+  "modes_run": [
+   "exact",
+   "hnsw"
+  ]
+ },
+ "rule81_chunks": {
+  "chunk": "tmvr-1989-chap-4::Rule 81 (2 parts)",
+  "source_file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+  "source_class": "unverified_snapshot",
+  "verification_status": "unverified",
+  "answer_eligible": true,
+  "effective_date": "",
+  "amendment_metadata": null
+ },
+ "path_trace": [
+  {
+   "stage": "chunk metadata",
+   "file": "backend/tg_ingest.py:563",
+   "observed": "source_class and verification_status stored; no amended_by / superseded / status-note field; effective_date empty"
+  },
+  {
+   "stage": "vector search (exact & hnsw)",
+   "file": "backend/server.py:878",
+   "observed": "filter state=Telangana only; no status filter; identical rankings in both modes for all 4 questions"
+  },
+  {
+   "stage": "hybrid fusion + filters",
+   "file": "backend/server.py:889-930",
+   "observed": "drops answer_eligible=False and (approved mode) unapproved hashes; Rule 81 passes all filters; no demotion or pairing with G.O. 77"
+  },
+  {
+   "stage": "grounded answer prompt",
+   "file": "backend/grounded_answer.py:192-202",
+   "observed": "evidence header carries verification_status='unverified' to the model only; source_class not passed; no instruction about snapshots or amendments"
+  },
+  {
+   "stage": "citation",
+   "file": "backend/grounded_answer.py:479",
+   "observed": "label = title, provision, location; e.g. 'Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/...#4)'; no status text"
+  },
+  {
+   "stage": "API response",
+   "file": "backend/server.py:1158-1186",
+   "observed": "response text + sources{title,instrument,verified,file,sha256}; with_penalty_note adds a generic date note only when the answer text mentions money/penalty"
+  },
+  {
+   "stage": "frontend",
+   "file": "frontend/index.html:220,254-257",
+   "observed": "kind tag; source badge 'Verified'/'Unverified' from approval membership, not source_class"
+  }
+ ],
+ "current_user_exposure": "none: answer mode 'disabled' (no approval record), so every question returns kind 'unavailable' before retrieval output is shown",
+ "user_visible_warnings": {
+  "older_snapshot": false,
+  "go77_amends": false,
+  "commencement_status_unverified": false,
+  "cannot_establish_consolidated_text": false,
+  "partial": [
+   "generic PENALTY_NOTE on answers mentioning money (not Rule-81-specific)",
+   "'Unverified' source badge only when the document is outside the approval record",
+   "legacy_dev mode DEV_OUTPUT_BANNER (development only)"
+  ]
+ },
+ "internal_only_metadata": [
+  "source_class=unverified_snapshot",
+  "verification_status=unverified (also in model prompt header)",
+  "effective_date (empty)"
+ ],
+ "questions": {
+  "Q1_direct": {
+   "question": "What does Rule 81 of the Telangana Motor Vehicles Rules say?",
+   "retrieved_exact": [
+    {
+     "rank": 1,
+     "chunk": "go-ms-77-2025-trb::Order",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 2,
+     "chunk": "tmvr-1989-chap-4::Rule 81",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#4",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 3,
+     "chunk": "tmvr-1989-chap-4::Rule 81",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#4",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 4,
+     "chunk": "go-ms-77-2025-trb::Preamble",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 5,
+     "chunk": "go-ms-77-2025-trb::Paragraph 4",
+     "location": "goir/2025TRB_Ms77.pdf#page=3",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 6,
+     "chunk": "tmvr-1989-chap-5::Rule 195",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#67",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "61f019808cb69abb6bb4b1c17b91a5687e2d2f323d15af1c4d5e9beb3d502a52"
+    }
+   ],
+   "hnsw_identical_ranking": true,
+   "rule81_snapshot_retrieved": true,
+   "go77_retrieved": true,
+   "citation_labels_if_answered": [
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Order (goir/2025TRB_Ms77.pdf#page=1)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Preamble (goir/2025TRB_Ms77.pdf#page=1)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Paragraph 4 (goir/2025TRB_Ms77.pdf#page=3)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 195 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#67)"
+   ],
+   "model_prompt_header_status": [
+    "unverified"
+   ],
+   "actual_api_response": {
+    "kind": "unavailable",
+    "response": "Answers from the Telangana documents aren't available yet: they need a completed legal review first. Please check the official Telangana Transport Department sources.",
+    "sources": [],
+    "kb_approved": false
+   },
+   "simulated_approved_grounded_response": {
+    "kind": "no_support",
+    "response": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+    "sources": [],
+    "note": "in-memory simulation; mock generator; non-'answer' kinds are validator rejections of crude mock claims, not warning behaviour"
+   }
+  },
+  "Q2_current": {
+   "question": "What are the current requirements under Rule 81 for reserving a registration mark?",
+   "retrieved_exact": [
+    {
+     "rank": 1,
+     "chunk": "tmvr-1989-chap-4::Rule 81",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#4",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 2,
+     "chunk": "tmvr-1989-chap-4::Rule 81",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#4",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 3,
+     "chunk": "tmvr-1989-chap-4::Rule 80",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#2",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 4,
+     "chunk": "tmvr-1989-chap-4::Rule 88",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#12",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 5,
+     "chunk": "tmvr-1989-chap-4::Rule 80A",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#3",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 6,
+     "chunk": "tmvr-1989-chap-8::Rule 433",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#38",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "f86f82fd3f240aa4895674d79428578baf093facd6e58f5d20b43deddfd0c201"
+    }
+   ],
+   "hnsw_identical_ranking": true,
+   "rule81_snapshot_retrieved": true,
+   "go77_retrieved": false,
+   "citation_labels_if_answered": [
+    "Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 80 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#2)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 88 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#12)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 80A (html-snapshots/tmvr-1989/middle-main-chap-4.htm#3)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 433 (html-snapshots/tmvr-1989/middle-main-chap-8.htm#38)"
+   ],
+   "model_prompt_header_status": [
+    "unverified"
+   ],
+   "actual_api_response": {
+    "kind": "unavailable",
+    "response": "Answers from the Telangana documents aren't available yet: they need a completed legal review first. Please check the official Telangana Transport Department sources.",
+    "sources": [],
+    "kb_approved": false
+   },
+   "simulated_approved_grounded_response": {
+    "kind": "answer",
+    "response": "If no applicant applies for the number or numbers, the said number or numbers shall be referred to the Transport Commissioner at intervals decided by him for re-notification or further action. [1] The bid amount offered shall not be less than the fees referred to in sub-rules (3) (i), (ii) and (iii), as the case may be. [2] Registration Mark :- The registration mark to be assigned under sub-section (6) of Section 41 by the registering authority specified in the first column of the First Schedule to these rules shall be as set forth in the corresponding entry in the second column thereof. [3] (2) To enable the dealer to assign temporary registration marks to vehicles the registering authority concerned shall allocate to each dealer a block of temporary registration marks. [4] The length and thickness of the hyphen shall be not less than three-fourth and one-fourth of a centimeter respectively. [5] Registration and other marks to be kept in clear condition :- All registration and other marks required to be exhibited on a motor vehicle by or under the provisions of the Act shall at all times be maintained as far as may be reasonably possible in a clear and legible condition. [6]\n\nCited:\n[1] Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)\n[2] Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)\n[3] Telangana Motor Vehicles Rules, 1989, Rule 80 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#2)\n[4] Telangana Motor Vehicles Rules, 1989, Rule 88 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#12)\n[5] Telangana Motor Vehicles Rules, 1989, Rule 80A (html-snapshots/tmvr-1989/middle-main-chap-4.htm#3)\n[6] Telangana Motor Vehicles Rules, 1989, Rule 433 (html-snapshots/tmvr-1989/middle-main-chap-8.htm#38)",
+    "sources": [
+     {
+      "title": "?",
+      "instrument": "unverified_snapshot",
+      "verified": true,
+      "file": "middle-main-chap-4.htm",
+      "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+     },
+     {
+      "title": "?",
+      "instrument": "unverified_snapshot",
+      "verified": true,
+      "file": "middle-main-chap-8.htm",
+      "sha256": "f86f82fd3f240aa4895674d79428578baf093facd6e58f5d20b43deddfd0c201"
+     }
+    ],
+    "note": "in-memory simulation; mock generator; non-'answer' kinds are validator rejections of crude mock claims, not warning behaviour"
+   }
+  },
+  "Q3_go77": {
+   "question": "What is the fee for a fancy registration number and how does online bidding work under G.O. 77?",
+   "retrieved_exact": [
+    {
+     "rank": 1,
+     "chunk": "go-ms-77-2025-trb::Paragraph 3",
+     "location": "goir/2025TRB_Ms77.pdf#page=3",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 2,
+     "chunk": "tmvr-1989-chap-4::Rule 81",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#4",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 3,
+     "chunk": "go-ms-77-2025-trb::Paragraph 3",
+     "location": "goir/2025TRB_Ms77.pdf#page=1 .. goir/2025TRB_Ms77.pdf#page=3",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 4,
+     "chunk": "go-ms-77-2025-trb::Order",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 5,
+     "chunk": "go-ms-77-2025-trb::Preamble",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 6,
+     "chunk": "go-ms-77-2025-trb::References",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    }
+   ],
+   "hnsw_identical_ranking": true,
+   "rule81_snapshot_retrieved": true,
+   "go77_retrieved": true,
+   "citation_labels_if_answered": [
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Paragraph 3 (goir/2025TRB_Ms77.pdf#page=3)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Paragraph 3 (goir/2025TRB_Ms77.pdf#page=1 .. goir/2025TRB_Ms77.pdf#page=3)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Order (goir/2025TRB_Ms77.pdf#page=1)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Preamble (goir/2025TRB_Ms77.pdf#page=1)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, References (goir/2025TRB_Ms77.pdf#page=1)"
+   ],
+   "model_prompt_header_status": [
+    "unverified"
+   ],
+   "actual_api_response": {
+    "kind": "unavailable",
+    "response": "Answers from the Telangana documents aren't available yet: they need a completed legal review first. Please check the official Telangana Transport Department sources.",
+    "sources": [],
+    "kb_approved": false
+   },
+   "simulated_approved_grounded_response": {
+    "kind": "no_support",
+    "response": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+    "sources": [],
+    "note": "in-memory simulation; mock generator; non-'answer' kinds are validator rejections of crude mock claims, not warning behaviour"
+   }
+  },
+  "Q4_both": {
+   "question": "How has G.O.Ms.No. 77 of 2025 amended Rule 81 for choice registration numbers?",
+   "retrieved_exact": [
+    {
+     "rank": 1,
+     "chunk": "go-ms-77-2025-trb::Order",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 2,
+     "chunk": "tmvr-1989-chap-4::Rule 81",
+     "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#4",
+     "source_class": "unverified_snapshot",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba"
+    },
+    {
+     "rank": 3,
+     "chunk": "go-ms-77-2025-trb::Paragraph 4",
+     "location": "goir/2025TRB_Ms77.pdf#page=3",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 4,
+     "chunk": "go-ms-77-2025-trb::Preamble",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 5,
+     "chunk": "go-ms-77-2025-trb::References",
+     "location": "goir/2025TRB_Ms77.pdf#page=1",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "rank": 6,
+     "chunk": "go-ms-77-2025-trb::Paragraph 3",
+     "location": "goir/2025TRB_Ms77.pdf#page=3",
+     "source_class": "official",
+     "verification_status": "unverified",
+     "answer_eligible": true,
+     "effective_date": "",
+     "amended_by_field_present": false,
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    }
+   ],
+   "hnsw_identical_ranking": true,
+   "rule81_snapshot_retrieved": true,
+   "go77_retrieved": true,
+   "citation_labels_if_answered": [
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Order (goir/2025TRB_Ms77.pdf#page=1)",
+    "Telangana Motor Vehicles Rules, 1989, Rule 81 (html-snapshots/tmvr-1989/middle-main-chap-4.htm#4)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Paragraph 4 (goir/2025TRB_Ms77.pdf#page=3)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Preamble (goir/2025TRB_Ms77.pdf#page=1)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, References (goir/2025TRB_Ms77.pdf#page=1)",
+    "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77, Paragraph 3 (goir/2025TRB_Ms77.pdf#page=3)"
+   ],
+   "model_prompt_header_status": [
+    "unverified"
+   ],
+   "actual_api_response": {
+    "kind": "unavailable",
+    "response": "Answers from the Telangana documents aren't available yet: they need a completed legal review first. Please check the official Telangana Transport Department sources.",
+    "sources": [],
+    "kb_approved": false
+   },
+   "simulated_approved_grounded_response": {
+    "kind": "no_support",
+    "response": "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't guess. Try rephrasing your question, or check the official Telangana Transport Department sources.",
+    "sources": [],
+    "note": "in-memory simulation; mock generator; non-'answer' kinds are validator rejections of crude mock claims, not warning behaviour"
+   }
+  }
+ },
+ "unresolved": [
+  "LD-001 and LD-002 unchanged (evidence_incomplete)",
+  "Whether an approval record would list the snapshot file",
+  "Real-model behaviour not tested (no Groq)"
+ ]
+}

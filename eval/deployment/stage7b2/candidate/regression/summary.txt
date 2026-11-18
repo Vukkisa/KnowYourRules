@@ -1,0 +1,10 @@
+exact test_licence_retrieval rc=1 Ran 19 tests in 29.117s FAILED (failures=4, errors=8) 
+exact test_rule6_pipeline_real rc=0 Ran 8 tests in 27.524s OK 
+exact test_life_tax_real rc=0 Ran 10 tests in 13.829s OK 
+exact test_view_source_real rc=1 Ran 7 tests in 13.178s FAILED (failures=2) 
+exact test_answer_cache_real rc=0 Ran 18 tests in 32.015s OK 
+hnsw test_licence_retrieval rc=1 Ran 19 tests in 29.670s FAILED (failures=4, errors=8) 
+hnsw test_rule6_pipeline_real rc=0 Ran 8 tests in 27.624s OK 
+hnsw test_life_tax_real rc=0 Ran 10 tests in 12.156s OK 
+hnsw test_view_source_real rc=1 Ran 7 tests in 11.941s FAILED (failures=2) 
+hnsw test_answer_cache_real rc=0 Ran 18 tests in 30.235s OK 

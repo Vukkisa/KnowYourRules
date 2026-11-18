@@ -1,0 +1,362 @@
+{
+ "description": "Basic driving-licence, vehicle-document and traffic-rule questions for the Telangana assistant. 'expect' is the outcome the sources should support (answer, partial, restricted); 'want' lists the provisions (manifest_id::provision) that should be among the top retrieved chunks.",
+ "questions": [
+  {
+   "id": "L1",
+   "group": "Learner's licence",
+   "q": "What is the minimum age to get a learner's licence?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 4",
+    "mva-1988-india-code-extract::Section 7"
+   ]
+  },
+  {
+   "id": "L2",
+   "group": "Learner's licence",
+   "q": "What are the requirements for a learner's licence in Telangana?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 8"
+   ]
+  },
+  {
+   "id": "L3",
+   "group": "Learner's licence",
+   "q": "What documents are required to apply for a learner's licence?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 8"
+   ]
+  },
+  {
+   "id": "L4",
+   "group": "Learner's licence",
+   "q": "How long is a learner's licence valid?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 14"
+   ]
+  },
+  {
+   "id": "L5",
+   "group": "Learner's licence",
+   "q": "Is a medical certificate needed for a learner's licence?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 8"
+   ]
+  },
+  {
+   "id": "L6",
+   "group": "Learner's licence",
+   "q": "Can a person under 18 get a learner's licence for a motorcycle?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 7",
+    "mva-1988-india-code-extract::Section 4"
+   ]
+  },
+  {
+   "id": "L7",
+   "group": "Learner's licence",
+   "q": "How do I get a duplicate learner's licence and what is the fee?",
+   "expect": "answer",
+   "want": [
+    "tmvr-1989-chap-2::Rule 24"
+   ]
+  },
+  {
+   "id": "D1",
+   "group": "Driving licence",
+   "q": "What is the minimum age for a driving licence?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 4"
+   ]
+  },
+  {
+   "id": "D2",
+   "group": "Driving licence",
+   "q": "What is the minimum age to drive a transport vehicle?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 4",
+    "mva-1988-india-code-extract::Section 7"
+   ]
+  },
+  {
+   "id": "D3",
+   "group": "Driving licence",
+   "q": "What documents are required to apply for a driving licence?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 9"
+   ]
+  },
+  {
+   "id": "D4",
+   "group": "Driving licence",
+   "q": "What is the procedure for obtaining a driving licence?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 9",
+    "tmvr-1989-chap-2::Rule 6"
+   ]
+  },
+  {
+   "id": "D5",
+   "group": "Driving licence",
+   "q": "What happens if I fail the driving test?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 9"
+   ]
+  },
+  {
+   "id": "D6",
+   "group": "Driving licence",
+   "q": "How soon can I retake the driving test?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 9"
+   ]
+  },
+  {
+   "id": "D7",
+   "group": "Driving licence",
+   "q": "How can I add another class of vehicle to my driving licence?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 11",
+    "tmvr-1989-chap-2::Rule 28"
+   ]
+  },
+  {
+   "id": "D8",
+   "group": "Driving licence",
+   "q": "Is a driving licence valid in all states of India?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 13"
+   ]
+  },
+  {
+   "id": "R1",
+   "group": "Renewal and duplicates",
+   "q": "How can I renew my driving licence?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 15"
+   ]
+  },
+  {
+   "id": "R2",
+   "group": "Renewal and duplicates",
+   "q": "How long is a driving licence valid?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 14"
+   ]
+  },
+  {
+   "id": "R3",
+   "group": "Renewal and duplicates",
+   "q": "Is there a grace period after my driving licence expires?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 14"
+   ]
+  },
+  {
+   "id": "R4",
+   "group": "Renewal and duplicates",
+   "q": "Can I renew my driving licence after it has expired?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 15"
+   ]
+  },
+  {
+   "id": "R5",
+   "group": "Renewal and duplicates",
+   "q": "How do I get a duplicate driving licence if mine is lost?",
+   "expect": "answer",
+   "want": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 14"
+   ]
+  },
+  {
+   "id": "R6",
+   "group": "Renewal and duplicates",
+   "q": "How do I change the address on my driving licence?",
+   "expect": "answer",
+   "want": [
+    "tmvr-1989-chap-2::Rule 30"
+   ]
+  },
+  {
+   "id": "V1",
+   "group": "Vehicle documents",
+   "q": "Is it compulsory to register a motor vehicle?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 39"
+   ]
+  },
+  {
+   "id": "V2",
+   "group": "Vehicle documents",
+   "q": "How do I register a new vehicle in Telangana?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 41",
+    "tmvr-1989-chap-4::Rule 79"
+   ]
+  },
+  {
+   "id": "V3",
+   "group": "Vehicle documents",
+   "q": "How do I get a duplicate registration certificate?",
+   "expect": "answer",
+   "want": [
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvr-1989-chap-4::Rule 100"
+   ]
+  },
+  {
+   "id": "V4",
+   "group": "Vehicle documents",
+   "q": "How do I transfer ownership of a vehicle?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 50"
+   ]
+  },
+  {
+   "id": "V5",
+   "group": "Vehicle documents",
+   "q": "Is insurance compulsory for a motor vehicle?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 146"
+   ]
+  },
+  {
+   "id": "V6",
+   "group": "Vehicle documents",
+   "q": "Which documents must a driver carry and show to the police?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 130",
+    "mvdr-2017-gsr-634e::Regulation 38"
+   ]
+  },
+  {
+   "id": "V7",
+   "group": "Vehicle documents",
+   "q": "Can I show my documents in electronic form to the police?",
+   "expect": "answer",
+   "want": [
+    "mvdr-2020-amendment-gsr-586e::Regulation 37",
+    "mvdr-2017-gsr-634e::Regulation 38"
+   ]
+  },
+  {
+   "id": "V8",
+   "group": "Vehicle documents",
+   "q": "Does a transport vehicle need a certificate of fitness?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 56"
+   ]
+  },
+  {
+   "id": "T1",
+   "group": "Traffic rules",
+   "q": "Is it compulsory to wear a helmet on a two-wheeler?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 129"
+   ]
+  },
+  {
+   "id": "T2",
+   "group": "Traffic rules",
+   "q": "How many people can ride on a two-wheeler?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 128"
+   ]
+  },
+  {
+   "id": "T3",
+   "group": "Traffic rules",
+   "q": "What should a driver do after a road accident?",
+   "expect": "answer",
+   "want": [
+    "mva-1988-india-code-extract::Section 134",
+    "mvdr-2017-gsr-634e::Regulation 29"
+   ]
+  },
+  {
+   "id": "T4",
+   "group": "Traffic rules",
+   "q": "Can I use a mobile phone while driving?",
+   "expect": "answer",
+   "want": [
+    "mvdr-2017-gsr-634e::Regulation 37"
+   ]
+  },
+  {
+   "id": "T5",
+   "group": "Traffic rules",
+   "q": "Who has the right of way at a roundabout?",
+   "expect": "answer",
+   "want": [
+    "mvdr-2017-gsr-634e::Regulation 10"
+   ]
+  },
+  {
+   "id": "T6",
+   "group": "Traffic rules",
+   "q": "What do the red, amber and green traffic lights mean?",
+   "expect": "answer",
+   "want": [
+    "mvdr-2017-gsr-634e::Regulation 12"
+   ]
+  },
+  {
+   "id": "T7",
+   "group": "Traffic rules",
+   "q": "What is the speed limit for cars?",
+   "expect": "partial",
+   "want": [
+    "mva-1988-india-code-extract::Section 112",
+    "mvdr-2017-gsr-634e::Regulation 16"
+   ]
+  },
+  {
+   "id": "P1",
+   "group": "Penalties (must stay restricted)",
+   "q": "What is the penalty for riding without a helmet?",
+   "expect": "restricted",
+   "want": []
+  },
+  {
+   "id": "P2",
+   "group": "Penalties (must stay restricted)",
+   "q": "What is the fine for driving without a licence?",
+   "expect": "restricted",
+   "want": []
+  },
+  {
+   "id": "P3",
+   "group": "Penalties (must stay restricted)",
+   "q": "What is the punishment for drunk driving?",
+   "expect": "restricted",
+   "want": []
+  }
+ ]
+}

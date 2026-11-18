@@ -1,0 +1,396 @@
+{
+ "description": "Real-model answers from the Vercel Preview (Groq openai/gpt-oss-120b, snapshot 20261117T123454Z-a5d03a2afe) for eval/basic-questions.json, 2026-11-17. 'unavailable' means the model providers returned HTTP 429 (free-tier quota), not that the sources lack support; 'no_support' means the model or the claim validator declined to answer.",
+ "results": [
+  {
+   "id": "L1",
+   "question": "What is the minimum age to get a learner's licence?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "L2",
+   "question": "What are the requirements for a learner's licence in Telangana?",
+   "expected": "partial",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "L3",
+   "question": "What documents are required to apply for a learner's licence?",
+   "expected": "partial",
+   "kind": "answer",
+   "answer": "Every application under sub-section (1) shall be in such form and shall be accompanied by such documents 4[with such fee and submit in such manner, including electronic means] as may be prescribed by the Central Government. [1] Every application 5[to drive a transport vehicle made] under sub-section (1) shall be accompanied by a medical certificate in such form as may be prescribed by the Central Government and signed by such registered medical practitioner, as the State Government or any person authorised in this behalf by the State Government may, by notification in the Official Gazette, appoint for this purpose: [1] Cited: [1] Motor Vehicles Act, 1988 (Central Act) - extract of selected sections, India Code consolidation as on 15-08-2026, Act No. 59 of 1988, Section 8 (central/mva-1988-india-code-extract.html#block-38 .. central/mva-1988-india-code-extract.html#block-60)",
+   "sources": [
+    "mva-1988-india-code-extract.html"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "L4",
+   "question": "How long is a learner's licence valid?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "L5",
+   "question": "Is a medical certificate needed for a learner's licence?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "Every application to drive a transport vehicle made under sub-section (1) shall be accompanied by a medical certificate in such form as may be prescribed by the Central Government and signed by such registered medical practitioner, as the State Government or any person authorised in this behalf by the State Government may, by notification in the Official Gazette, appoint for this purpose: [1] Cited: [1] Motor Vehicles Act, 1988 (Central Act) - extract of selected sections, India Code consolidation as on 15-08-2026, Act No. 59 of 1988, Section 8 (central/mva-1988-india-code-extract.html#block-38 .. central/mva-1988-india-code-extract.html#block-60)",
+   "sources": [
+    "mva-1988-india-code-extract.html"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "L6",
+   "question": "Can a person under 18 get a learner's licence for a motorcycle?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "(2) No person under the age of eighteen years shall be granted a learner’s licence to drive a motor cycle without gear except with the consent in writing of the person having the care of the person desiring the learner’s licence. [1] Cited: [1] Motor Vehicles Act, 1988 (Central Act) - extract of selected sections, India Code consolidation as on 15-08-2026, Act No. 59 of 1988, Section 7 (central/mva-1988-india-code-extract.html#block-32 .. central/mva-1988-india-code-extract.html#block-36)",
+   "sources": [
+    "mva-1988-india-code-extract.html"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "L7",
+   "question": "How do I get a duplicate learner's licence and what is the fee?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "If, at any time, a learner's Licence is lost or destroyed the holder shall intimate the fact to the licensing authority by which the Licence was granted. [1] On receipt of the intimation, the licensing authority shall proceed as if the learner's Licence was driving Licence. [1] Provided that the fee for a duplicate Licence shall be rupees fifteen. [1] Cited: [1] Telangana Motor Vehicles Rules, 1989, Rule 24 (html-snapshots/tmvr-1989/middle-main-chap-2.htm#22)",
+   "sources": [
+    "middle-main-chap-2.htm"
+   ],
+   "warnings": [
+    "unverified_snapshot"
+   ]
+  },
+  {
+   "id": "D1",
+   "question": "What is the minimum age for a driving licence?",
+   "expected": "answer",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "D2",
+   "question": "What is the minimum age to drive a transport vehicle?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "(2) Subject to the provisions of section 18, no person under the age of twenty years shall drive a transport vehicle in any public place. [1] Cited: [1] Motor Vehicles Act, 1988 (Central Act) - extract of selected sections, India Code consolidation as on 15-08-2026, Act No. 59 of 1988, Section 4 (central/mva-1988-india-code-extract.html#block-10 .. central/mva-1988-india-code-extract.html#block-18)",
+   "sources": [
+    "mva-1988-india-code-extract.html"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "D3",
+   "question": "What documents are required to apply for a driving licence?",
+   "expected": "partial",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "D4",
+   "question": "What is the procedure for obtaining a driving licence?",
+   "expected": "partial",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "D5",
+   "question": "What happens if I fail the driving test?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "D6",
+   "question": "How soon can I retake the driving test?",
+   "expected": "answer",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "D7",
+   "question": "How can I add another class of vehicle to my driving licence?",
+   "expected": "partial",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "D8",
+   "question": "Is a driving licence valid in all states of India?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "R1",
+   "question": "How can I renew my driving licence?",
+   "expected": "partial",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "R2",
+   "question": "How long is a driving licence valid?",
+   "expected": "answer",
+   "kind": "transport_error",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "R3",
+   "question": "Is there a grace period after my driving licence expires?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "R4",
+   "question": "Can I renew my driving licence after it has expired?",
+   "expected": "partial",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "R5",
+   "question": "How do I get a duplicate driving licence if mine is lost?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "R6",
+   "question": "How do I change the address on my driving licence?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V1",
+   "question": "Is it compulsory to register a motor vehicle?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V2",
+   "question": "How do I register a new vehicle in Telangana?",
+   "expected": "partial",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V3",
+   "question": "How do I get a duplicate registration certificate?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "(1) On receipt of an application under Rule 53 of the Central Motor Vehicle Rules, 1989 with prescribed fee the registering authority shall cause necessary enquiries to be made as to the reasons for loss, genuineness of the application, verification of signatures of the applicant with reference to the records maintained in his office and after satisfying itself that the application can be complied with, shall issue a duplicate certificate of registration clearly stamped “DUPLICATE” in red. [1] (2) If the registering authority referred to in sub-rule (1) is not the authority which registered the vehicle originally or had assigned a registration mark under Section 47 the registering authority on production of a no objection letter filed by the owner of the vehicle from the original registering authority and after making necessary verification as to the genuineness of the application shall ",
+   "sources": [
+    "middle-main-chap-4.htm"
+   ],
+   "warnings": [
+    "unverified_snapshot"
+   ]
+  },
+  {
+   "id": "V4",
+   "question": "How do I transfer ownership of a vehicle?",
+   "expected": "partial",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V5",
+   "question": "Is insurance compulsory for a motor vehicle?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V6",
+   "question": "Which documents must a driver carry and show to the police?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V7",
+   "question": "Can I show my documents in electronic form to the police?",
+   "expected": "answer",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "V8",
+   "question": "Does a transport vehicle need a certificate of fitness?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "T1",
+   "question": "Is it compulsory to wear a helmet on a two-wheeler?",
+   "expected": "answer",
+   "kind": "no_support",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "T2",
+   "question": "How many people can ride on a two-wheeler?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "No driver of a two-wheeled motorcycle shall carry more than one person in addition to himself on the motorcycle and no such person shall be carried otherwise than sitting on a proper seat securely fixed to the motorcycle behind the driver’s seat with appropriate safety measures. [1] Cited: [1] Motor Vehicles Act, 1988 (Central Act) - extract of selected sections, India Code consolidation as on 15-08-2026, Act No. 59 of 1988, Section 128 (central/mva-1988-india-code-extract.html#block-358 .. central/mva-1988-india-code-extract.html#block-362)",
+   "sources": [
+    "mva-1988-india-code-extract.html"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "T3",
+   "question": "What should a driver do after a road accident?",
+   "expected": "answer",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "T4",
+   "question": "Can I use a mobile phone while driving?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "The driver shall not use any hand held mobile phone or other communication device. [1] Cited: [1] Motor Vehicles (Driving) Regulations, 2017 (Central) - G.S.R. 634(E), 23-06-2017, G.S.R. 634(E), Regulation 37 (central/gsr-634e-2017-motor-vehicles-driving-regulations.pdf#page=28)",
+   "sources": [
+    "gsr-634e-2017-motor-vehicles-driving-regulations.pdf"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "T5",
+   "question": "Who has the right of way at a roundabout?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "While entering a roundabout, traffic already in the roundabout shall have the right of way. [1] Cited: [1] Motor Vehicles (Driving) Regulations, 2017 (Central) - G.S.R. 634(E), 23-06-2017, G.S.R. 634(E), Regulation 10 (central/gsr-634e-2017-motor-vehicles-driving-regulations.pdf#page=20)",
+   "sources": [
+    "gsr-634e-2017-motor-vehicles-driving-regulations.pdf"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "T6",
+   "question": "What do the red, amber and green traffic lights mean?",
+   "expected": "answer",
+   "kind": "answer",
+   "answer": "a motor vehicle facing the red light of a traffic control signal at an intersection or at a place other than an intersection, shall stop the vehicle before the stop line preceding the pedestrian crossing; [1] when, at an intersection or at a place other than an intersection, an amber light is on at a traffic control signal, the vehicle facing the amber light shall stop before the stop line preceding the pedestrian crossing; [2] when, at an intersection or at a place other than an intersection, a green light is on at a traffic control signal, a motor vehicle facing the green light shall,- (i) drive the vehicle into the intersection or pedestrian crossing only if the way ahead is clear; [1] Cited: [1] Motor Vehicles (Driving) Regulations, 2017 (Central) - G.S.R. 634(E), 23-06-2017, G.S.R. 634(E), Regulation 12 (central/gsr-634e-2017-motor-vehicles-driving-regulations.pdf#page=20 .. central",
+   "sources": [
+    "gsr-634e-2017-motor-vehicles-driving-regulations.pdf"
+   ],
+   "warnings": [
+    "official_text_commencement_unconfirmed"
+   ]
+  },
+  {
+   "id": "T7",
+   "question": "What is the speed limit for cars?",
+   "expected": "partial",
+   "kind": "unavailable",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "P1",
+   "question": "What is the penalty for riding without a helmet?",
+   "expected": "restricted",
+   "kind": "restricted",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "P2",
+   "question": "What is the fine for driving without a licence?",
+   "expected": "restricted",
+   "kind": "restricted",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  },
+  {
+   "id": "P3",
+   "question": "What is the punishment for drunk driving?",
+   "expected": "restricted",
+   "kind": "restricted",
+   "answer": null,
+   "sources": [],
+   "warnings": []
+  }
+ ]
+}

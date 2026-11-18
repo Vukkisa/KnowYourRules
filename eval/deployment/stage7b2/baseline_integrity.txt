@@ -1,0 +1,8 @@
+real index tree digest:      140cd2008980f7e64858a8089d81f0346f758db1eda4d8c5c390418eac0ebe29
+INDEX UNCHANGED
+real lifecycle tree digest:  5f4094d88cf9b770b7210749fdadddfeea4d4c0cfd168c39bb3b905767bbdbe3
+REGISTRY UNCHANGED
+219df1c7105036c1fec8c38bff378519652d80a710bebc34e8cc98e9cd29de2a  legal/lifecycle/registry.json
+12f285a7fbaeb129ef3e8e742082237f93f52174e8363ce04dfcf6757a5232c7  legal/lifecycle/audit.jsonl
+lifecycle verify: consistent
+lifecycle audit-verify: audit history intact

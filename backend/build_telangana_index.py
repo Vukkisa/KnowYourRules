@@ -5,8 +5,8 @@ Writes ONLY the "telangana-traffic-rules" collection in its own Chroma directory
 default); the shared "india-traffic-rules" collection and directory are never opened. Builds go to a
 staging collection, are validated, and only then swapped in; any failure leaves the previous index as it was.
 
-The production directory is written only when a SIGNED approval record approves exactly the manifest's
-documents. Unapproved builds (allow_unapproved) are refused there and must use a separate preview directory.
+A signed approval record is optional: when --approval is given it is verified and must approve exactly the manifest's
+documents; without it the build proceeds. Writing into the shared index directory is still refused.
 
     python -m backend.build_telangana_index --manifest M.json --corpus DIR --approval A.json --trusted-keys K.json
 """
@@ -19,7 +19,7 @@ from uuid import uuid4
 import chromadb
 from langchain_chroma import Chroma
 
-from backend import legal_approval, rag_profiles as rp, tg_ingest, tg_manifest
+from backend import index_validity, legal_approval, rag_profiles as rp, tg_ingest, tg_manifest
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DB_DIR = BASE_DIR / "chroma_telangana_db"
@@ -37,7 +37,7 @@ class BuildError(Exception):
     pass
 
 
-FLAG_MATCH_KEYS = {"manifest_id", "provision_id", "provision_kind", "has_table"}
+FLAG_MATCH_KEYS = {"manifest_id", "provision_id", "provision_kind", "has_table", "part"}
 
 
 def load_chunk_flags(path) -> list[dict]:
@@ -99,7 +99,8 @@ def approval_errors(entries, approval_path, trusted_keys) -> list[str]:
 
 def prepare(manifest_path, corpus_dir, db_dir, approval_path=None, trusted_keys=None, allow_unapproved=False,
             chunk_flags=None):
-    """Validate everything and produce chunks without touching any index. Returns (chunks, errors)."""
+    """Validate everything and produce chunks without touching any index. Returns (chunks, errors). A signed approval record is
+    optional: when given it is still verified; when absent the build proceeds (allow_unapproved is accepted and ignored)."""
     db_dir = Path(db_dir).resolve()
     if db_dir == SHARED_DB_DIR.resolve():
         return [], ["refusing to write into the shared index directory"]
@@ -111,10 +112,6 @@ def prepare(manifest_path, corpus_dir, db_dir, approval_path=None, trusted_keys=
     errors += [f"{e.id}: draft documents are never indexed" for e in entries if e.source_class == "draft"]
     if approval_path is not None:
         errors += approval_errors(entries, approval_path, trusted_keys)
-    elif not allow_unapproved:
-        errors.append("no approval record given: refusing to build")
-    elif db_dir == DEFAULT_DB_DIR.resolve():
-        errors.append("unapproved builds must use a separate preview directory, not the production one")
     if errors:
         return [], errors
     chunks = []
@@ -124,7 +121,7 @@ def prepare(manifest_path, corpus_dir, db_dir, approval_path=None, trusted_keys=
         except tg_ingest.IngestError as err:
             errors.append(f"{e.id}: {err}")
             continue
-        chunks.extend(tg_ingest.chunk_document(blocks, e))
+        chunks.extend(tg_ingest.chunk_document(blocks, e, tg_ingest.snapshot_chapter(corpus_dir, e.file)))
     if chunk_flags and not errors:
         try:
             errors += apply_chunk_flags(chunks, load_chunk_flags(chunk_flags))
@@ -155,7 +152,7 @@ def build_staging(client, chunks, embeddings):
         store.add_documents(documents=batch, ids=[str(uuid4()) for _ in batch])
 
 
-def verify_staging(client, chunks, expected_hashes):
+def verify_staging(client, chunks, expected_hashes, entries=None):
     if not chunks:
         raise BuildError("no chunks to index")
     staging = client.get_collection(STAGING)
@@ -170,8 +167,10 @@ def verify_staging(client, chunks, expected_hashes):
             raise BuildError("a staged chunk has no valid sha256")
         if m["sha256"] not in expected_hashes:
             raise BuildError("a staged chunk comes from a document outside the manifest")
-        if m.get("jurisdiction") != tg_manifest.JURISDICTION or m.get("state") != tg_manifest.JURISDICTION:
-            raise BuildError("a staged chunk is not tagged Telangana (mixed jurisdictions)")
+        if m.get("jurisdiction") not in tg_manifest.JURISDICTIONS or m.get("state") != m.get("jurisdiction"):
+            raise BuildError("a staged chunk is not tagged with its document's Telangana or Central jurisdiction")
+        if entries is not None and any(e.sha256 == m["sha256"] and e.jurisdiction != m["jurisdiction"] for e in entries):
+            raise BuildError("a staged chunk's jurisdiction differs from its manifest entry (mixed jurisdictions)")
         if not m.get("provision_id") or not m.get("location") or not m.get("title"):
             raise BuildError("a staged chunk is missing provision, location or title metadata")
         if not isinstance(m.get("answer_eligible"), bool):
@@ -179,6 +178,10 @@ def verify_staging(client, chunks, expected_hashes):
     missing = expected_hashes - {m["sha256"] for m in metadatas}
     if missing:
         raise BuildError(f"{len(missing)} manifest document(s) produced no chunks")
+    # Validity dates: malformed or manifest-disagreeing ranges stop the build. Unknown validity is allowed (flagged), never defaulted.
+    bad = index_validity.report(metadatas, entries)["problems"]
+    if bad:
+        raise BuildError(f"{len(bad)} validity problem(s), first: {bad[0]}")
 
 
 def swap_in_staging(client):
@@ -210,7 +213,7 @@ def main(manifest_path, corpus_dir, db_dir=DEFAULT_DB_DIR, approval_path=None, t
             from langchain_ollama import OllamaEmbeddings
             embeddings = OllamaEmbeddings(model="nomic-embed-text")
         build_staging(client, chunks, embeddings)
-        verify_staging(client, chunks, expected)
+        verify_staging(client, chunks, expected, tg_manifest.load_manifest(manifest_path))
     except Exception as e:
         if STAGING in {c.name for c in client.list_collections()}:
             client.delete_collection(STAGING)
@@ -230,7 +233,7 @@ if __name__ == "__main__":
     ap.add_argument("--trusted-keys")
     ap.add_argument("--chunk-flags", help="reviewed extraction flags (JSON)")
     ap.add_argument("--preview-unapproved", action="store_true",
-                    help="build without approval; only allowed into a non-production --db-dir")
+                    help="no longer needed: builds no longer require an approval record (accepted and ignored)")
     a = ap.parse_args()
     sys.exit(main(a.manifest, a.corpus, a.db_dir, a.approval, a.trusted_keys, a.preview_unapproved,
                   chunk_flags=a.chunk_flags))

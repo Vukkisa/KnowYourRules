@@ -1,0 +1,12 @@
+# Allow-list: upload only what the function needs. Everything else (research requirements.txt, notebooks, eval, tests, raw data,
+# both Chroma index directories, local databases, the model file) stays out of the deployment and out of the 500 MB Python bundle.
+/*
+!backend
+!frontend
+!legal
+!legal-status
+!snapshot-store
+!pyproject.toml
+!vercel.json
+__pycache__
+*.pyc

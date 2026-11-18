@@ -1,0 +1,3 @@
+candidate chunks: 590 dims: 384 config: {'hnsw': {'space': 'l2', 'ef_construction': 100, 'ef_search': 100, 'max_neighbors': 16, 'resize_factor': 1.2, 'sync_threshold': 1000}, 'spann': None, 'embedding_function': <chromadb.api.types.DefaultEmbeddingFunction object at 0x12fba7390>}
+candidate index tree digest: a72a577f86ad495aca69a4c5de1fcd7ef31c4638764f9c7d6bf2a813afec4cb2
+real index unchanged: 140cd2008980f7e64858a8089d81f0346f758db1eda4d8c5c390418eac0ebe29

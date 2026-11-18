@@ -1,0 +1,30 @@
+# KnowYourRules: notebook and research environment. Not for the server and never for deployment.
+# Layered on the active application so shared packages cannot conflict.
+-r requirements.txt
+
+# Jupyter (notebooks/rag_pipeline.ipynb, reference/*.ipynb)
+jupyter==1.1.1
+ipykernel==7.4.0
+nbconvert==7.17.2
+
+# LangChain notebook extras. langchain-experimental requires langchain-community; both are used only by notebooks.
+langchain-community==0.3.31
+langchain-experimental==0.3.4
+langgraph==1.0.1
+
+# Retrieval and model libraries used by notebooks and eval scripts
+faiss-cpu==1.16.0
+sentence-transformers==6.3.0
+transformers==5.23.0
+huggingface_hub==1.33.0
+tiktoken==0.14.0
+langdetect==1.0.9
+
+# PDF loading with OCR (notebooks/rag_pipeline.ipynb: UnstructuredPDFLoader, hi_res strategy)
+unstructured[pdf]==0.18.32
+unstructured-inference==1.1.1
+
+# Research tooling (scripts/extract_documents.py, research/ spreadsheets) and eval measurement scripts (eval/deployment/*)
+openpyxl==3.1.5
+onnxruntime==1.32.0
+torch==2.15.0

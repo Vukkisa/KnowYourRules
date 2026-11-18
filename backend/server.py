@@ -6,12 +6,12 @@ Run with:
     uvicorn backend.server:app --reload --port 8000
 (from the project root)
 
-Scope: Telangana state instruments only. Central texts (MV Act, CMVR) and other states are not covered.
+Scope: Telangana state instruments, plus selected Central provisions (Motor Vehicles Act extract, Driving Regulations 2017)
+kept under their own "Central" tag. The Central Motor Vehicles Rules, 1989 and other states are not covered.
 The Telangana knowledge base is under legal review (docs/legal-sources/telangana-traffic/), so:
   - the server starts without an index and reports it as unavailable instead of crashing;
   - penalty / fine / compounding questions get a fixed "not yet verified" reply, without calling the
-    model, unless a valid legal approval record (TG_APPROVAL_FILE, see backend/legal_approval.py)
-    explicitly approves penalty answers and matches the indexed documents hash for hash.
+    model. (The signed legal-approval record that used to open them was removed; they stay locked.)
 """
 
 import hashlib
@@ -24,29 +24,44 @@ import time
 import unicodedata
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from langchain.chat_models import init_chat_model
 from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
-from langchain_ollama import OllamaEmbeddings
 
-from backend import (exact_vector, grounded_answer, hybrid_retrieval, legal_approval, rag_profiles, runtime_config,
-                     source_status)
+from backend import (answer_cache, api_protection, chat_guards, document_identity, document_lifecycle, embedding_provider, exact_vector,
+                     grounded_answer, hybrid_retrieval, index_snapshot, legal_approval, provision_validity_runtime, providers, rag_profiles,
+                     release_gates, runtime_config, source_status)
+from backend import offence_date as offence_routing
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # .env is read only when the process environment says TG_ENVIRONMENT=development, and never overrides it.
 runtime_config.load_local_env()
 
 ASSISTANT_STATE = "Telangana"
+# Chunks the index may hold and /chat may serve. Central instruments are kept under their own "Central" tag, never relabelled
+# as Telangana; any other state (or an untagged chunk) is still refused.
+CENTRAL_STATE = "Central"
+SERVED_STATES = (ASSISTANT_STATE, CENTRAL_STATE)
 # A separate directory and collection: the shared multi-state index is never read or modified here.
 TG_COLLECTION = "telangana-traffic-rules"
-TG_DB_DIR = Path(os.environ.get("TG_DB_DIR", BASE_DIR / "chroma_telangana_db"))
+# Stage 7A: with TG_SNAPSHOT_STORE set, the index and the lifecycle registry come from ONE verified snapshot (backend/index_snapshot.py)
+# and TG_DB_DIR / TG_LIFECYCLE_DIR must not be set. A snapshot that fails to load points both at paths that do not exist: the index
+# is "missing" (nothing is ever created) and the lifecycle filter fails closed. Without TG_SNAPSHOT_STORE nothing changes.
+SNAPSHOT = index_snapshot.activate_from_env()
+_UNAVAILABLE_DIR = BASE_DIR / ".snapshot-unavailable"
+if SNAPSHOT.enabled:
+    TG_DB_DIR = SNAPSHOT.db_dir if SNAPSHOT.ready else _UNAVAILABLE_DIR / "index"
+    _SNAPSHOT_LIFECYCLE_ENV = {"TG_LIFECYCLE_DIR": str(SNAPSHOT.lifecycle_dir if SNAPSHOT.ready else _UNAVAILABLE_DIR / "lifecycle")}
+else:
+    TG_DB_DIR = Path(os.environ.get("TG_DB_DIR", BASE_DIR / "chroma_telangana_db"))
+    _SNAPSHOT_LIFECYCLE_ENV = None
 
 
 def env_flag(name: str) -> bool:
@@ -57,7 +72,7 @@ def env_flag(name: str) -> bool:
 # Answer mode. Safe by default: with no configuration, no model is ever called and every question that passes
 # the deterministic guards gets a fixed "not available" reply.
 #   disabled      - default. No model client is even constructed.
-#   grounded      - TG_GROUNDED_ANSWERS=1. Validated, approval-gated answers (see grounded_gate_errors).
+#   grounded      - TG_GROUNDED_ANSWERS=1. Validated answers (see grounded_gate_errors).
 #   legacy_dev    - TG_LEGACY_DEV_ANSWERS=1 AND TG_ENVIRONMENT=development AND a GROQ_API_KEY. Unvalidated
 #                   free text, labelled as development output. For local development only.
 #                   Rejected in staging and production. Not suitable for public legal-answer traffic: an operator
@@ -94,11 +109,6 @@ if ANSWER_MODE_PROBLEMS:
     logging.getLogger(__name__).error("answer mode misconfigured, all answers disabled: %s", ANSWER_MODE_PROBLEMS)
 
 
-# Legal approval comes only from a structured record transcribed from the signed approval block in
-# LEGAL-REVIEW-HANDOFF.md section 5 - never from a bare environment flag. No record = not approved.
-APPROVAL_FILE = Path(os.environ.get("TG_APPROVAL_FILE", BASE_DIR / "legal" / "telangana-approval.json"))
-# Public keys of the approval authority (see docs/approval-trust-model.md). Unset = no trusted keys = no approval.
-TRUSTED_KEYS_FILE = Path(os.environ["TG_TRUSTED_KEYS_FILE"]) if os.environ.get("TG_TRUSTED_KEYS_FILE") else None
 # Optional: the source documents; when set, they are hashed and compared with the record too.
 CORPUS_DIR = Path(os.environ["TG_CORPUS_DIR"]) if os.environ.get("TG_CORPUS_DIR") else None
 try:
@@ -106,7 +116,10 @@ try:
 except ValueError:
     APPROVAL_RECHECK_SECONDS = 300.0
 
-embeddings_model = rag_profiles.ProfileEmbeddings(OllamaEmbeddings(model="nomic-embed-text"))
+# Stage 7A: query embeddings come from EMBEDDING_PROVIDER (default ollama, exactly as before; openai_compatible for cloud). The choice is
+# independent of the generation providers, never falls back to another provider, and every failure raises EmbeddingUnavailable.
+EMBEDDING = embedding_provider.build_embeddings(embedding_provider.EmbeddingSettings.from_env())
+embeddings_model = rag_profiles.ProfileEmbeddings(EMBEDDING)
 
 
 def open_store():
@@ -135,10 +148,10 @@ def inspect_index(store) -> dict:
     if not metadatas:
         return {"index": "empty", "chunks": 0, "detail": "The Telangana index has no chunks."}
     states = {(m or {}).get("state") for m in metadatas}
-    if states != {ASSISTANT_STATE}:
-        # Telangana-only by design: chunks without a state, or from another state / Central, are refused.
+    if ASSISTANT_STATE not in states or not states <= set(SERVED_STATES):
+        # Telangana plus the separately tagged Central instruments only: chunks without a state, or from another state, are refused.
         return {"index": "invalid", "chunks": len(metadatas),
-                "detail": "The index contains chunks that are not tagged Telangana; rebuild it."}
+                "detail": "The index contains chunks that are not tagged Telangana or Central; rebuild it."}
     return {"index": "ready", "chunks": len(metadatas), "detail": "Telangana index loaded."}
 
 
@@ -154,25 +167,46 @@ def index_metadatas(store) -> list:
 
 
 # ---------------------------------------------------------------------------------------------------
-# Approval lifecycle. Full validation (signature, record, index metadata, corpus hashes) runs at startup,
-# on POST /approval/refresh, and every APPROVAL_RECHECK_SECONDS while approved. Every request runs a
-# cheap fingerprint check; any change marks the approval "stale" (not approved, penalties off, no
-# VERIFIED sources) until a full revalidation succeeds.
+# Revalidation lifecycle. A signed legal-approval record (legal/telangana-approval.json, its .sig file and a
+# trusted-keys file) is NOT required to answer: that gate was removed. What still decides whether a question can
+# be answered is the source-status registry, the document lifecycle (only approved, active versions are served),
+# the index, snapshot and embedding checks, and the rule-matrix release gates. Those inputs are validated at
+# startup and on POST /approval/refresh; every request runs a cheap fingerprint check, and a change marks the
+# inputs stale (grounded answers off) until a refresh succeeds.
 # ---------------------------------------------------------------------------------------------------
 _approval_lock = threading.RLock()
-APPROVAL = legal_approval.ApprovalStatus("absent")
+# "kb_approved" in /status and /chat, which the unchanged frontend turns into "Approved" / "Pending counsel" and the
+# "not legally reviewed" badge. No signed record is read any more, so nothing can set it: it stays False, and no code
+# path uses it to allow or block an answer.
 KB_APPROVED = False
 PENALTY_ANSWERS_ENABLED = False
-# Verified title and instrument, keyed by the SHA-256 of the exact approved file - never by file name.
-# Filled only from a valid approval record; empty otherwise, so every source is labelled unverified.
-# VERIFIED status comes only from chunk metadata matched here; nothing the model writes can set it.
+# Verified title and instrument keyed by document SHA-256. It was filled only from a signed record; with that gone it
+# stays empty, so every source keeps its unverified label. Nothing here can mark a source verified.
 SOURCES: dict[str, tuple[str, str]] = {}
-# Stage 25: text status of each source (legal-status/source-status.json), independent of approval. Reloaded with
-# the approval; a signed record must name this file's SHA-256 (source_status_sha256) or the approval is invalid.
+
+
+class _ServedHashes:
+    """What a citation may name: a file hash the document lifecycle serves (the active version, or one retained for dated
+    questions). With no lifecycle configured every well-formed hash passes, as everywhere else in the lifecycle filter."""
+
+    def __contains__(self, sha256) -> bool:
+        return LIFECYCLE.servable_on(sha256, True)
+
+
+SERVED = _ServedHashes()
+# Stage 25: text status of each source (legal-status/source-status.json).
 SOURCE_STATUS_FILE = Path(os.environ.get("TG_SOURCE_STATUS_FILE", BASE_DIR / "legal-status" / "source-status.json"))
 SOURCE_STATUS = source_status.Registry("absent", ["not loaded"])
 _FINGERPRINT = None
-_LAST_FULL_CHECK = 0.0
+_STALE = False
+_LAST_VALIDITY_CHECK = 0.0
+# Step 4: provision-level validity (backend/provision_validity_runtime.py), off by default and unchanged. Its own signed
+# ledger chain is a separate opt-in layer; it still needs TG_APPROVAL_FILE / TG_TRUSTED_KEYS_FILE if someone turns it on, and
+# it can only REMOVE chunks. The server no longer has an approval of its own to bind it to, so restrict mode serves nothing.
+VALIDITY = provision_validity_runtime.from_env(
+    os.environ, approval_file=Path(os.environ["TG_APPROVAL_FILE"]) if os.environ.get("TG_APPROVAL_FILE") else None,
+    trusted_keys=Path(os.environ["TG_TRUSTED_KEYS_FILE"]) if os.environ.get("TG_TRUSTED_KEYS_FILE") else None,
+    source_status_file=SOURCE_STATUS_FILE, corpus_dir=CORPUS_DIR)
 
 
 def _small_file_digest(path):
@@ -205,35 +239,13 @@ def _corpus_fingerprint():
 
 
 def approval_fingerprint():
-    """Cheap: hashes of the small record/signature/key files, index id + count, corpus file sizes/mtimes."""
+    """Cheap: hash of the source-status registry, index id + count, corpus file sizes/mtimes, validity inputs."""
     return (
-        _small_file_digest(APPROVAL_FILE),
-        _small_file_digest(legal_approval.signature_path(APPROVAL_FILE)),
-        _small_file_digest(TRUSTED_KEYS_FILE),
         _small_file_digest(SOURCE_STATUS_FILE),
         _index_fingerprint(),
         _corpus_fingerprint(),
+        VALIDITY.fingerprint(),
     )
-
-
-def _apply_approval(status):
-    global APPROVAL, KB_APPROVED, PENALTY_ANSWERS_ENABLED
-    APPROVAL = status
-    KB_APPROVED = status.general_answers
-    PENALTY_ANSWERS_ENABLED = status.penalty_answers
-    SOURCES.clear()  # same dict object, so nothing can keep a stale reference
-    if KB_APPROVED:
-        SOURCES.update({d.sha256: (d.title, d.instrument) for d in status.record.documents})
-
-
-def _full_validation():
-    if INDEX_INFO["index"] != "ready":
-        if APPROVAL_FILE.exists():
-            return legal_approval.ApprovalStatus("invalid", ["the Telangana index is not ready"])
-        return legal_approval.ApprovalStatus("absent")
-    return legal_approval.evaluate(APPROVAL_FILE, index_metadatas(vector_store),
-                                   trusted_keys=TRUSTED_KEYS_FILE, corpus_dir=CORPUS_DIR,
-                                   source_status_file=SOURCE_STATUS_FILE)
 
 
 def load_source_status():
@@ -247,46 +259,91 @@ def load_source_status():
     return SOURCE_STATUS
 
 
-def registry_bound() -> bool:
-    """True only when a valid approval names the exact, valid registry in use."""
-    record = APPROVAL.record
-    return (APPROVAL.state == "valid" and record is not None and SOURCE_STATUS.valid
-            and record.source_status_sha256 == SOURCE_STATUS.sha256)
+_DIAGNOSTICS = {"key": None, "value": []}
+
+
+def source_status_diagnostics() -> list:
+    """Categorised disagreements between the status file (git), the restored index and the lifecycle registry (R2 snapshot); see
+    source_status.diagnose. Read-only: nothing is reconciled, approved or rewritten. Cached until an input changes."""
+    lifecycle = globals().get("LIFECYCLE")
+    lc_path = lifecycle.path if (lifecycle is not None and lifecycle.enabled) else None
+    key = (approval_fingerprint(), lifecycle.digest() if lc_path is not None else None)
+    if _DIAGNOSTICS["key"] != key:
+        metadatas = index_metadatas(vector_store) if INDEX_INFO["index"] == "ready" else []
+        _DIAGNOSTICS["value"] = source_status.diagnose(SOURCE_STATUS_FILE, metadatas, lc_path)
+        _DIAGNOSTICS["key"] = key
+        for d in _DIAGNOSTICS["value"]:
+            logging.getLogger(__name__).warning("source-status consistency: category=%s document=%s", d["category"], d["document"])
+    return _DIAGNOSTICS["value"]
+
+
+def _load_validity():
+    """Run the signed-ledger acceptance gate. No-op while the layer is off. approval_valid is False: the server has no
+    approval record any more, so a layer that is switched on stays fail-closed."""
+    global _LAST_VALIDITY_CHECK
+    if VALIDITY.enabled:
+        VALIDITY.load(index_metadatas(vector_store) if INDEX_INFO["index"] == "ready" else [],
+                      registry_sha256=getattr(SOURCE_STATUS, "sha256", None) if SOURCE_STATUS.valid else None,
+                      approval_valid=False)
+        _LAST_VALIDITY_CHECK = time.monotonic()
+        if VALIDITY.state != "accepted":
+            logging.getLogger(__name__).warning("provision validity (%s): %s; %s", VALIDITY.mode, VALIDITY.state, VALIDITY.problems[:3])
 
 
 def refresh_approval():
-    """Full revalidation. The only way back to an approved state after a change."""
-    global _FINGERPRINT, _LAST_FULL_CHECK
+    """Full revalidation of the registry and validity inputs. The only way back from "stale"."""
+    global _FINGERPRINT, _STALE
     with _approval_lock:
         _FINGERPRINT = approval_fingerprint()
         load_source_status()
-        _apply_approval(_full_validation())
-        _LAST_FULL_CHECK = time.monotonic()
-        return APPROVAL
+        _STALE = False
+        _load_validity()
+        return not _STALE
 
 
 def ensure_approval_current():
-    """Per-request check. Invalidates on any detected change; never re-approves by itself."""
-    global _FINGERPRINT, _LAST_FULL_CHECK
+    """Per-request check. Marks the inputs stale on any detected change; never revalidates by itself."""
+    global _FINGERPRINT, _STALE
     with _approval_lock:
         current = approval_fingerprint()
         if current != _FINGERPRINT:
             _FINGERPRINT = current
-            if APPROVAL.state != "absent" or current[0] is not None:
-                _apply_approval(legal_approval.ApprovalStatus(
-                    "stale", ["approval inputs changed since the last validation; revalidation required"],
-                    APPROVAL.record))
+            _STALE = True
+            VALIDITY.invalidate()      # a changed input never leaves an older acceptance in force; only refresh_approval re-accepts
             return
-        if APPROVAL.state == "valid" and time.monotonic() - _LAST_FULL_CHECK >= APPROVAL_RECHECK_SECONDS:
-            status = _full_validation()
-            _LAST_FULL_CHECK = time.monotonic()
-            if status.state != "valid":
-                _apply_approval(status)
+        if VALIDITY.enabled and VALIDITY.accepted and time.monotonic() - _LAST_VALIDITY_CHECK >= APPROVAL_RECHECK_SECONDS:
+            _load_validity()           # periodic re-acceptance: a chain that no longer passes stops serving
 
 
 refresh_approval()
 INDEX_PROFILE = rag_profiles.profile_of_index(vector_store)
 embeddings_model.profile = INDEX_PROFILE
+
+
+def index_dimensions(store):
+    """Dimensionality of the stored vectors (read-only), or None when it cannot be read."""
+    try:
+        got = store._collection.get(limit=1, include=["embeddings"])["embeddings"]
+        return len(got[0]) if len(got) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def configure_embedding_guard():
+    """Tell the embedding guard what the index requires (size, model family, probe vectors) and, for a hosted provider, check it now.
+    A failure here never stops the server: the guard simply refuses to produce query vectors (and /status says why)."""
+    emb = (SNAPSHOT.manifest or {}).get("embedding", {}) if SNAPSHOT.ready else {}
+    EMBEDDING.configure_index(dims=emb.get("dimensions") or (index_dimensions(vector_store) if vector_store is not None else None),
+                              family=emb.get("family"), probes=emb.get("probes"), min_cosine=emb.get("min_cosine"))
+    if EMBEDDING.settings.verification_required and EMBEDDING.probes and EMBEDDING.state in ("unverified", "unavailable"):
+        try:
+            EMBEDDING.verify()
+        except embedding_provider.EmbeddingUnavailable as err:
+            logging.getLogger(__name__).warning("embedding provider not verified at startup: %s", err.reason)
+    logging.getLogger(__name__).warning("embedding provider: %s", {k: v for k, v in EMBEDDING.health().items() if k != "verification"})
+
+
+configure_embedding_guard()
 
 # The Groq client exists only in legacy development mode; in every other mode there is nothing to call.
 llm = init_chat_model("openai/gpt-oss-120b", model_provider="groq") if ANSWER_MODE == "legacy_dev" else None
@@ -451,7 +508,7 @@ def classify_rule_references(message: str) -> RuleCheck:
         if (ref, scope) in seen:
             continue
         seen.add((ref, scope))
-        ids = PROVISION_CATALOGUE.get(ref, set())
+        ids = {i for i in PROVISION_CATALOGUE.get(ref, set()) if eligible_manifest(i)}   # Stage 6D: eligible documents only
         cited = CENTRAL_CITATIONS.get(ref, [])
         if scope in (INSTRUMENT_PREFIXES["tmvr"], INSTRUMENT_PREFIXES["tmvtr"]):
             (out.present if any(i.startswith(scope) for i in ids) else out.missing).append(ref)
@@ -506,7 +563,30 @@ def provision_lookup(message: str):
         return None
     scope = instrument_scope(message)
     refs = [ref for ref, s, e in rule_reference_spans(message) if reference_scope(message, s, e) != CENTRAL]
-    return LEXICAL_INDEX.lookup(message, list(dict.fromkeys(refs)), None if scope == CENTRAL else scope)
+    return eligible_lookup(LEXICAL_INDEX.lookup(message, list(dict.fromkeys(refs)), None if scope == CENTRAL else scope))
+
+
+def eligible_lookup(lookup):
+    """Stage 6D: the 'which instrument do you mean' candidates must not name documents the lifecycle does not serve. Candidates
+    that are not eligible (or not recognised) are dropped; fewer than two left means there is nothing ambiguous to ask about.
+    Matched documents are left alone: retrieve() filters them, and removing them here would change which retrieval path runs."""
+    if not LIFECYCLE.enabled:
+        return lookup
+    names = {name: prefix for prefix, name in hybrid_retrieval.INSTRUMENTS.items()}
+    kept = []
+    for label, options in lookup.ambiguous:
+        ok = []
+        for option in options:
+            go = re.match(r"G\.O\.Ms\.No\. (\d+)/(\d{4})$", option)
+            if go:
+                manifest = LEXICAL_INDEX.gos.get((int(go.group(1)), go.group(2)))
+                if manifest and eligible_manifest(manifest):
+                    ok.append(option)
+            elif option in names and eligible_prefix(names[option]):
+                ok.append(option)
+        if len(ok) > 1:
+            kept.append((label, ok))
+    return hybrid_retrieval.Lookup(documents=lookup.documents, ambiguous=kept, missing_gos=lookup.missing_gos)
 
 
 def missing_references(message: str) -> tuple[list[str], list[str]]:
@@ -547,14 +627,15 @@ def missing_provision_message(missing: list[str], present: list[str]) -> str:
 
 
 strict_template = """You are the Telangana Traffic Rules Assistant. Answer the question using ONLY the
-context below, which comes from Telangana state instruments (Rules, Acts and Government Orders). Cite
-the source document exactly as given in the "Source:" tag on each context chunk. The Source tag says
-whether the document is an Act, Rules or a G.O. - never call one by another's name. If a Source tag
-says the source is unverified, say so when you cite it.
+context below, which comes from Telangana state instruments (Rules, Acts and Government Orders) and
+from a few selected Central provisions. Cite the source document exactly as given in the "Source:" tag on
+each context chunk. The Source tag says whether the document is an Act, Rules or a G.O. - never call one
+by another's name. If a Source tag says the source is unverified, say so when you cite it.
 
-This knowledge base covers Telangana only. It does NOT include the Central Motor Vehicles Act, 1988,
-the Central Motor Vehicles Rules, 1989 or any other state's law. If answering properly would need
-those, say so plainly instead of filling the gap from memory.
+This knowledge base covers Telangana, plus selected sections of the Central Motor Vehicles Act, 1988 and
+the Central Motor Vehicles (Driving) Regulations, 2017, kept separate and labelled Central. It does NOT
+include the Central Motor Vehicles Rules, 1989 or any other state's law. If answering properly would
+need those, say so plainly instead of filling the gap from memory.
 
 If the context does not contain enough information to answer, say clearly that this knowledge base
 does not cover it - do NOT use outside knowledge or guess.
@@ -580,21 +661,58 @@ def describe_source(metadata) -> str:
     return f"Unverified source - title and instrument type not verified (file: {(metadata or {}).get('source_file', 'unknown')})"
 
 
-def source_entries(docs) -> list[dict]:
-    """Distinct sources of the retrieved chunks, for the UI, in retrieval order."""
-    entries, seen = [], set()
+def source_passage(doc, cited: bool = False) -> dict:
+    """One retrieved chunk as the UI's "View source" shows it: the stored text without its header line, which
+    repeats the document title, and a label built from metadata. The text itself is never rewritten.
+
+    "cited" is True only when a validated grounded answer cites this chunk. Development output is unvalidated
+    free text, so its chunks are only "retrieved": nothing confirms which of them the answer used."""
+    m = doc.metadata
+    label = " - ".join(x for x in (m.get("provision_id"), m.get("provision_heading")) if x) or "Passage"
+    if (m.get("parts") or 1) > 1:
+        label += f" (part {m.get('part')} of {m['parts']})"
+    head, sep, body = doc.page_content.partition("\n")
+    # Provenance of this one chunk. A source row may group several files of one document, so every passage
+    # keeps its own chunk id, file, hash and location.
+    return {"provision_id": m.get("provision_id") or None, "label": label, "text": body if sep else head,
+            "cited": cited, "chunk_id": grounded_answer.chunk_id_of(m), "manifest_id": m.get("manifest_id") or None,
+            "file": m.get("source_file", "unknown"), "sha256": chunk_hash(m), "chapter": m.get("chapter") or None,
+            "location": m.get("location") or None}
+
+
+def source_entries(docs, cited: bool = False) -> list[dict]:
+    """Distinct source documents of the given chunks, for the UI, in retrieval order, each with its passages.
+    Pass cited=True only for the chunks a validated grounded answer cites.
+
+    One row is one logical document (backend/document_identity.py): the chapter files of the Rules share a row,
+    listed under "files". Files are grouped only when they have a valid hash, the same approval state and approved
+    title, and identical describing metadata; anything else keeps one row per file, as before. "file" and "sha256"
+    are the first file of the row; "files" has all of them."""
+    groupable = document_identity.consistent_document_ids(d.metadata for d in docs)
+    entries, by_key = [], {}
     for d in docs:
         source_file = d.metadata.get("source_file", "unknown")
         h = chunk_hash(d.metadata)
-        key = h or ("file", source_file)
-        if key in seen:
-            continue
-        seen.add(key)
         title, instrument = SOURCES.get(h, (None, None))
-        entries.append({"title": title or "Unverified source", "instrument": instrument,
-                        "verified": h in SOURCES, "file": source_file, "sha256": h})
+        doc_id = document_identity.logical_document_id(d.metadata)
+        if h and doc_id in groupable:
+            key = ("document", doc_id, h in SOURCES, title, instrument)
+        else:  # no hash or inconsistent metadata: never merged with another file
+            key, doc_id = h or ("file", source_file), d.metadata.get("manifest_id") or None
+        if key not in by_key:
+            by_key[key] = {"title": title or "Unverified source", "instrument": instrument,
+                           "verified": h in SOURCES, "file": source_file, "sha256": h, "document_id": doc_id,
+                           "files": [], "passages": []}
+            entries.append(by_key[key])
+        file_ref = {"file": source_file, "sha256": h, "manifest_id": d.metadata.get("manifest_id") or None}
+        if file_ref not in by_key[key]["files"]:
+            by_key[key]["files"].append(file_ref)
+        passage = source_passage(d, cited)
+        if passage not in by_key[key]["passages"]:
+            by_key[key]["passages"].append(passage)
     for e in entries:  # text status is separate from "verified" (approval) and never derived from it
-        e["text_status"] = source_text_status(e["sha256"], docs)
+        statuses = {source_text_status(f["sha256"], docs) for f in e["files"]}
+        e["text_status"] = next(s for s in STATUS_SEVERITY if s in statuses)  # the most cautious of its files
     return entries
 
 
@@ -608,12 +726,12 @@ def source_text_status(sha256, docs) -> str:
     for d in docs:
         if chunk_hash(d.metadata) == sha256:
             s = SOURCE_STATUS.lookup(sha256, d.metadata.get("provision_id")).status
-            statuses.add(source_status.UNCONFIRMED_CURRENT if s == "verified_current" and not registry_bound() else s)
+            statuses.add(source_status.UNCONFIRMED_CURRENT if s == "verified_current" else s)
     return next((s for s in STATUS_SEVERITY if s in statuses), source_status.UNRECORDED)
 
 
 def source_warnings(docs, citation_numbers=None) -> list[dict]:
-    return source_status.collect_warnings(SOURCE_STATUS, docs, citation_numbers, trust_verified=registry_bound())
+    return source_status.collect_warnings(SOURCE_STATUS, docs, citation_numbers, trust_verified=False)
 
 
 def with_status_block(text: str, warnings: list[dict]) -> str:
@@ -877,6 +995,10 @@ def parse_max_distance(value) -> float:
 MAX_DISTANCE = parse_max_distance(os.environ.get("RAG_MAX_DISTANCE"))
 RETRIEVE_K = 6
 
+
+# How many of the vector search's top chunks fusion may not drop (RAG_VECTOR_PROTECT; 0 turns the guard off; default 3).
+VECTOR_PROTECT = hybrid_retrieval.parse_vector_protect(os.environ.get("RAG_VECTOR_PROTECT", "3"), RETRIEVE_K)
+
 NO_SUPPORT_MESSAGE = (
     "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't "
     "guess. Try rephrasing your question, or check the official Telangana Transport Department sources."
@@ -932,32 +1054,62 @@ EXACT_INDEX = _build_exact_index()
 
 
 def vector_search(question: str) -> list:
-    """(Document, squared-L2 distance) pairs, Telangana only; exact when available, otherwise Chroma's HNSW."""
-    where = {"state": ASSISTANT_STATE}
-    if EXACT_INDEX is not None:
-        try:
-            return EXACT_INDEX.similarity_search_with_score(question, k=RETRIEVE_K, filter=where)
-        except ValueError:
-            pass
-    return vector_store.similarity_search_with_score(question, k=RETRIEVE_K, filter=where)
+    """(Document, squared-L2 distance) pairs from the served states only (one filtered search per state, merged by distance);
+    exact when available, otherwise Chroma's HNSW."""
+    merged = []
+    for state in SERVED_STATES:
+        where = {"state": state}
+        hits = None
+        if EXACT_INDEX is not None:
+            try:
+                hits = EXACT_INDEX.similarity_search_with_score(question, k=RETRIEVE_K, filter=where)
+            except ValueError:
+                hits = None
+        if hits is None:
+            hits = vector_store.similarity_search_with_score(question, k=RETRIEVE_K, filter=where)
+        if not isinstance(hits, list):
+            return hits      # malformed result: passed on unchanged for relevant_docs() to reject
+        merged.extend(hits)
+    try:
+        merged.sort(key=lambda item: float(item[1]))
+    except (TypeError, ValueError, IndexError):
+        return merged        # malformed scores: unsorted, and relevant_docs() drops them
+    return merged[:RETRIEVE_K]
 
 
 def retrieve(question: str) -> list:
-    """Telangana-only retrieval: always filtered to state=Telangana, never Central or other states."""
-    if vector_store is None:
-        return []
+    """Retrieval filtered to the served states (Telangana and the separately tagged Central instruments), never another state."""
+    return _retrieve(question, None)[0]
+
+
+def retrieve_dated(question: str, offence_date):
+    """(docs, TemporalRouting) for an offence date. Only chunks whose own valid_from/valid_to cover the date come
+    back; chunks with no usable validity metadata are never returned (they are not evidence of the law on that date)."""
+    return _retrieve(question, offence_date)
+
+
+def _retrieve(question: str, offence_date) -> tuple:
+    if vector_store is None or VALIDITY.serving_errors():
+        # Step 4: in restrict mode nothing is retrieved until the signed ledger chain has been accepted.
+        return [], (offence_routing.route_documents([], offence_date) if offence_date else None)
     docs = relevant_docs(vector_search(question))
+    vector_docs, exact_lookup = docs, False
     if RETRIEVAL_MODE == "hybrid" and LEXICAL_INDEX is not None:
         lookup = provision_lookup(question)
+        exact_lookup = bool(lookup.documents)
         # Every candidate, whichever list it came from, goes through the same filters below.
         docs = hybrid_retrieval.reciprocal_rank_fusion(
             [lookup.documents, LEXICAL_INDEX.search(question, RETRIEVE_K), docs])
     seen, unique = set(), []
     for d in docs:
-        if d.metadata.get("state") != ASSISTANT_STATE:
+        if d.metadata.get("state") not in SERVED_STATES:
             continue
-        if KB_APPROVED and chunk_hash(d.metadata) not in SOURCES:
-            continue  # approved mode: never use a chunk whose document is not in the approval record
+        if not LIFECYCLE.servable_on(chunk_hash(d.metadata), offence_date is not None):
+            # Stage 6: only the approved, active version of a document may be served (disabled without a registry). A DATED
+            # question may also use a retained historical version; its own validity range then has to cover the date.
+            continue
+        if offence_date is None and not offence_routing.in_force_today(d.metadata):
+            continue  # current law only: a text whose range ended, has not begun, or is malformed is not served as current
         if d.metadata.get("answer_eligible") is False:
             continue  # flagged at build time (e.g. unreliable table extraction): stored for review only
         # Chunk identity, not a text prefix: chunks of one G.O. share a long title header, so a prefix key
@@ -966,7 +1118,22 @@ def retrieve(question: str) -> list:
         if key not in seen:
             seen.add(key)
             unique.append(d)
-    return [with_text_status(d) for d in unique[:RETRIEVE_K]]
+    if VALIDITY.enabled:
+        # Step 4: the accepted ledger may only remove what the checks above allowed (restrict) or log what it would (shadow).
+        unique = VALIDITY.filter(unique, offence_date)
+    routing = None
+    if offence_date is not None:
+        # Every candidate, from every list, is routed by its own validity dates before ranking is trimmed. Unversioned
+        # and malformed chunks leave here: nothing downstream (fusion protection, chapter spreading) can bring them back.
+        routing = offence_routing.route_documents(unique, offence_date)
+        unique = list(routing.authoritative)
+    top = unique[:RETRIEVE_K]
+    if RETRIEVAL_MODE == "hybrid" and LEXICAL_INDEX is not None:
+        if VECTOR_PROTECT and not exact_lookup:
+            # Stage 4D: a keyword-only match must not push out one of the vector search's own best chunks.
+            top = hybrid_retrieval.protect_vector_leaders(top, unique, vector_docs, VECTOR_PROTECT, RETRIEVE_K)
+        top = LEXICAL_INDEX.spread_named_chapters(question, top)  # reorders the same chunks, never changes them
+    return [with_text_status(d) for d in top], routing
 
 
 def with_text_status(doc):
@@ -1056,8 +1223,18 @@ def other_places(message: str) -> list[str]:
 # With TG_GROUNDED_ANSWERS on, paths 1 and 2 are unreachable: follow-ups are handled locally and deterministically.
 # With it off (the default), the legacy path is unchanged and CAN still call Groq when a key is configured.
 # ---------------------------------------------------------------------------------------------------
-EXPECTED_CORPUS_VERSION = os.environ.get("TG_EXPECTED_CORPUS_VERSION", "").strip() or None
-ANSWER_GENERATOR: grounded_answer.AnswerGenerator = grounded_answer.DisabledGenerator()
+# Grounded mode: Groq -> Gemini -> Ollama (backend/providers.py), still reached only after the gate above passes.
+# Every other mode: DisabledGenerator, so nothing can be called.
+ANSWER_GENERATOR: grounded_answer.AnswerGenerator = (
+    providers.from_env() if ANSWER_MODE == "grounded" else grounded_answer.DisabledGenerator())
+if isinstance(ANSWER_GENERATOR, providers.ProviderOrchestrator):
+    logging.getLogger("kyr.providers").info("grounded providers: %s", providers.safe_json(
+        {p["name"]: {k: p[k] for k in ("model", "enabled", "configured")}
+         for p in ANSWER_GENERATOR.status()["providers"]}))
+PROVIDERS_UNAVAILABLE_MESSAGE = (
+    "The answer service is temporarily unavailable, so I can't answer from the Telangana documents right now. "
+    "Please try again later, or check the official Telangana Transport Department sources."
+)
 
 GROUNDED_UNAVAILABLE_MESSAGE = (
     "Answers from the Telangana documents aren't available yet: they need a completed legal review first. "
@@ -1072,44 +1249,227 @@ GROUNDED_FOLLOW_UP_MESSAGE = (
 
 
 def grounded_gate_errors() -> list[str]:
-    """Every prerequisite for grounded generation; any entry blocks it. Reads approval state, never changes it."""
+    """Every prerequisite for grounded generation; any entry blocks it. No signed approval record is required."""
     errors = []
     if not GROUNDED_ANSWERS_ENABLED or ANSWER_MODE != "grounded":
         errors.append("grounded answers are not enabled")
-    if TRUSTED_KEYS_FILE is None:
-        errors.append("no trusted signing keys configured")
     if CORPUS_DIR is None:
         errors.append("no corpus directory configured, so source files are not hash-checked")
-    status = APPROVAL
-    record = status.record
-    if status.state != "valid" or record is None:
-        errors.append(f"legal approval is {status.state}")
-    else:
-        if record.unresolved_conditions:
-            errors.append("approval has unresolved conditions")
-        if not record.general_answers_approved:
-            errors.append("general answers are not approved")
-        if record.penalty_answers_approved:
-            errors.append("penalty approval must stay off while grounded answers are in use")
-        if EXPECTED_CORPUS_VERSION is None or record.corpus_version != EXPECTED_CORPUS_VERSION:
-            errors.append("approved corpus version does not match the expected corpus version")
+    if _STALE:
+        errors.append("source inputs changed since the last validation; revalidation required")
     if not SOURCE_STATUS.valid:
         errors.append(f"source-status registry is {SOURCE_STATUS.state}")
-    elif record is not None and record.source_status_sha256 != SOURCE_STATUS.sha256:
-        errors.append("approval does not bind the source-status registry in use")
-    if not KB_APPROVED:
-        errors.append("knowledge base is not approved")
     if PENALTY_ANSWERS_ENABLED:
         errors.append("penalty answers are enabled")
+    if LIFECYCLE.enabled and not LIFECYCLE.ready():
+        errors.append("document lifecycle registry is not ready: no approved, consistent document can be served")
+    if EMBEDDING.state in ("misconfigured", "incompatible"):
+        errors.append("query embedding provider is misconfigured or incompatible with the index")
+    if SNAPSHOT.enabled and not SNAPSHOT.ready:
+        errors.append("index snapshot is not loaded and verified")
+    errors.extend(VALIDITY.serving_errors())  # restrict: no legal chunk before the signed ledger chain has been accepted
     return errors
 
 
-def grounded_answer_question(question: str, history: list[dict], session_id: str = "") -> dict:
+# Stage 6: document lifecycle registry (TG_LIFECYCLE_DIR). Unset = no extra filtering. Set = fail-closed: a chunk is served
+# only if its file hash is the approved, active version of its source (backend/document_lifecycle.py). Read-only here.
+LIFECYCLE = document_lifecycle.ServeFilter.from_env(_SNAPSHOT_LIFECYCLE_ENV)  # snapshot mode: the snapshot's own registry directory
+if LIFECYCLE.enabled:
+    # Stage 6D: check the registry and audit chain at startup and tell the filter what the index really holds. Whatever this
+    # finds, the filter stays on: an unreadable/inconsistent state serves nothing, it never falls back to unrestricted retrieval.
+    import collections as _collections
+    LIFECYCLE.reconcile(_collections.Counter((m or {}).get("sha256") for m in index_metadatas(vector_store)))
+    LIFECYCLE_STARTUP = LIFECYCLE.health()
+    logging.getLogger(__name__).warning("document lifecycle filter enabled: state=%s servable_documents=%s problems=%s",
+                                        LIFECYCLE_STARTUP["state"], LIFECYCLE_STARTUP["servable_documents"],
+                                        LIFECYCLE_STARTUP["problems"][:3])
+else:
+    LIFECYCLE_STARTUP = {"enabled": False}
+MANIFEST_SHAS: dict = {}
+for _m in index_metadatas(vector_store) if LIFECYCLE.enabled else []:
+    if (_m or {}).get("manifest_id") and (_m or {}).get("sha256"):
+        MANIFEST_SHAS.setdefault(_m["manifest_id"], set()).add(_m["sha256"])
+
+
+def eligible_manifest(manifest_id) -> bool:
+    """Does the lifecycle serve any version of this document? (Always True when the lifecycle is not enabled.)"""
+    if not LIFECYCLE.enabled:
+        return True
+    return any(LIFECYCLE.servable(sha) for sha in MANIFEST_SHAS.get(manifest_id, ()))
+
+
+def eligible_prefix(prefix: str) -> bool:
+    return any(eligible_manifest(m) for m in MANIFEST_SHAS if m.startswith(prefix))
+
+# ---------------------------------------------------------------------------------------------------
+# Stage 5: answer cache (backend/answer_cache.py). Off unless TG_CACHE=exact|semantic; TG_CACHE_DISABLED=1 is a kill
+# switch. It stores only the validated raw model output and REPLAYS it through build_contract + validate (penalty gate
+# and Stage 4F/4G masks included) against live context documents on every hit. It sits after the approval gate, the
+# penalty lock and the vague-follow-up check, so none of those can be bypassed.
+# ---------------------------------------------------------------------------------------------------
+CACHE_SETTINGS = answer_cache.settings_from_env()
+ANSWER_CACHE = answer_cache.AnswerCache(CACHE_SETTINGS)
+if CACHE_SETTINGS.semantic:  # transparent memo: the cache lookup and the retrieval share one query embedding
+    embeddings_model.embed_query = answer_cache.EmbeddingMemo(embeddings_model.embed_query,
+                                                              key=f"{getattr(embeddings_model.base, 'model', '')}")
+_CODE_DIGEST = answer_cache.digest([hashlib.sha256((BASE_DIR / "backend" / f).read_bytes()).hexdigest()
+                                    for f in ("grounded_answer.py", "meaning_checks.py", "eligibility_status.py",
+                                              "benign_wording.py", "answer_cache.py")
+                                    if (BASE_DIR / "backend" / f).is_file()])
+_LIVE = {"at": 0.0, "fp": None, "map": {}}
+
+
+def cache_epoch() -> str:
+    """Digest of every input that decides what an answer may say. Any change makes every older entry unusable."""
+    return answer_cache.digest(
+        _FINGERPRINT, _STALE, sorted(SOURCES),
+        getattr(SOURCE_STATUS, "sha256", None), INDEX_PROFILE.name, INDEX_PROFILE.chunking, INDEX_PROFILE.query_prefix,
+        INDEX_PROFILE.doc_prefix, rag_profiles.CHUNK_SIZE, rag_profiles.CHUNK_OVERLAP,
+        getattr(getattr(embeddings_model, "base", None), "model", None), getattr(getattr(embeddings_model, "base", None), "provider", None),
+        RETRIEVAL_MODE, RETRIEVE_K, MAX_DISTANCE,
+        VECTOR_PROTECT, VECTOR_SEARCH, PENALTY_ANSWERS_ENABLED, type(ANSWER_GENERATOR).__name__, id(ANSWER_GENERATOR),
+        _CODE_DIGEST, LIFECYCLE.digest(), VALIDITY.digest())
+
+
+def chunk_identity(doc) -> str:
+    return answer_cache.digest(hybrid_retrieval.chunk_key(doc))
+
+
+def live_chunks() -> dict:
+    """identity -> stored chunk, read from the live collection (re-read when the index fingerprint changes or every
+    TG_CACHE_VERIFY_SECONDS)."""
+    fp, now = _index_fingerprint(), time.monotonic()
+    if fp != _LIVE["fp"] or now - _LIVE["at"] >= CACHE_SETTINGS.verify_seconds:
+        got = vector_store.get(include=["documents", "metadatas"])
+        _LIVE.update(fp=fp, at=now, map={chunk_identity(d): d for d in (
+            Document(page_content=t, metadata=m or {}) for t, m in zip(got["documents"], got["metadatas"]))})
+    return _LIVE["map"]
+
+
+def cache_context(ids):
+    """The cached answer's context documents, as the live index has them and under retrieve()'s own filters; None if
+    any is gone, changed, no longer approved or not answer-eligible."""
+    try:
+        known = live_chunks()
+    except Exception:
+        return None
+    docs = []
+    for i in ids:
+        d = known.get(i)
+        m = getattr(d, "metadata", None) or {}
+        if (d is None or m.get("state") not in SERVED_STATES or m.get("answer_eligible") is False
+                or not LIFECYCLE.servable(chunk_hash(m))
+                or not offence_routing.in_force_today(m)):
+            return None
+        docs.append(with_text_status(d))
+    if VALIDITY.enabled and len(VALIDITY.filter(docs)) != len(docs):
+        return None  # a cached answer may not use a chunk the signed ledger would now remove
+    return docs
+
+
+def cache_replay(question: str, entry, docs):
+    """Validate the cached model output again, now, against these documents. (text, cited, cited_docs) or None."""
+    contract, kept = grounded_answer.build_contract(question, docs)
+    res = grounded_answer.validate(entry.raw, contract, penalty_reason=answer_drift_reason)
+    if not res.ok or res.answer is None or res.answer.evidence_sufficiency != "sufficient":
+        return None
+    text, cited = grounded_answer.render(res.answer, contract)
+    index = {e.evidence_id: n for n, e in enumerate(contract.evidence)}
+    cited_docs = [kept[index[e.evidence_id]] for e in cited]
+    if tuple(chunk_identity(d) for d in cited_docs) != entry.cited_ids:
+        return None
+    if provision_validity_runtime.citation_errors(cited, cited_docs, SERVED):
+        return None
+    return text, cited, cited_docs
+
+
+def cached_response(question: str, text: str, cited, cited_docs) -> dict:
+    """Same assembly as a fresh answer: backend-built Cited block, live sources, live source warnings."""
+    text += "\n\nCited:\n" + "\n".join(f"[{n}] {grounded_answer.citation_label(e)}" for n, e in enumerate(cited, 1))
+    warnings = [dict(w, numbered=True) for w in source_warnings(cited_docs, list(range(1, len(cited_docs) + 1)))]
+    return {"kind": "answer", "answer": with_status_block(text, warnings), "sources": source_entries(cited_docs, cited=True),
+            "question": question, "source_warnings": [{k: v for k, v in w.items() if k != "numbered"} for w in warnings]}
+
+
+def cache_sweep():
+    """Drop cache entries from an older epoch as soon as the epoch has moved, even on requests that are then refused (a blocked
+    state must not leave answers from before it lying around). Never raises."""
+    if CACHE_SETTINGS.enabled:
+        try:
+            ANSWER_CACHE.note_epoch(cache_epoch())
+        except Exception:  # noqa: BLE001
+            pass
+
+
+def cache_begin(question: str):
+    if not CACHE_SETTINGS.enabled:
+        return None
+    if answer_cache.uncacheable_reason(question):
+        ANSWER_CACHE.stats["bypass_uncacheable"] += 1
+        return None
+    epoch = cache_epoch()
+    ANSWER_CACHE.note_epoch(epoch)
+    flags = answer_cache.risk_flags(question)
+    return {"key": answer_cache.normalize_query(question), "epoch": epoch, "flags": flags,
+            "sig": answer_cache.signature(question), "semantic": CACHE_SETTINGS.semantic and not flags}
+
+
+def cache_exact(question: str, ctx):
+    entry = ANSWER_CACHE.lookup_exact(ctx["key"], ctx["epoch"])
+    if entry is None:
+        return None
+    docs = cache_context(entry.context_ids)
+    replay = cache_replay(question, entry, docs) if docs is not None else None
+    if replay is None:
+        ANSWER_CACHE.drop(entry, "source" if docs is None else "revalidation")
+        return None
+    entry.hits += 1
+    ANSWER_CACHE.stats["hit_exact"] += 1
+    return cached_response(question, *replay)
+
+
+def cache_query_vector(question: str):
+    try:
+        return embeddings_model.embed_query(question)
+    except Exception:
+        return None
+
+
+def cache_semantic(question: str, ctx, docs):
+    """Only after a FRESH retrieval: the cached answer must have been generated from exactly this context."""
+    vector = cache_query_vector(question)
+    found = ANSWER_CACHE.lookup_semantic(vector, ctx["sig"], ctx["epoch"], [chunk_identity(d) for d in docs]) \
+        if vector is not None and docs else None
+    if found is None:
+        return None
+    entry, similarity = found
+    replay = cache_replay(question, entry, docs)
+    if replay is None:
+        # The entry may be perfectly good for the question it was made for; it just does not validate for this one.
+        ANSWER_CACHE.stats["semantic_replay_rejected"] += 1
+        return None
+    entry.hits += 1
+    ANSWER_CACHE.stats["hit_semantic"] += 1
+    return cached_response(question, *replay)
+
+
+def cache_store(question: str, ctx, docs, result):
+    if not (result.kind == "answer" and not result.errors and result.raw and result.cited_docs):
+        ANSWER_CACHE.stats["store_skipped"] += 1
+        return
+    vector = cache_query_vector(question) if ctx["semantic"] else None
+    ANSWER_CACHE.put(ctx["key"], ctx["sig"], vector, ctx["epoch"], result.raw, [chunk_identity(d) for d in docs],
+                     [chunk_identity(d) for d in result.cited_docs],
+                     sorted({(chunk_hash(d.metadata) or "", d.metadata.get("manifest_id")) for d in docs}), ctx["flags"])
+
+
+def grounded_answer_question(question: str, history: list[dict], session_id: str = "", offence_date=None) -> dict:
     """Grounded mode. No legacy model call can happen here: the only model entry point is ANSWER_GENERATOR,
     after every approval prerequisite has passed."""
     gate = grounded_gate_errors()
     if gate:
         logging.getLogger(__name__).info("grounded answers blocked: %s", gate)
+        cache_sweep()
         return {"kind": "unavailable", "answer": GROUNDED_UNAVAILABLE_MESSAGE, "sources": [], "question": question}
     if history and is_vague_follow_up(question):
         # Deterministic: a context-dependent follow-up is not rewritten by a model; the user restates it.
@@ -1119,27 +1479,123 @@ def grounded_answer_question(question: str, history: list[dict], session_id: str
         log_lock("grounded_question", reason, session_id, question)
         return {"kind": "restricted", "answer": PENALTY_LOCKED_MESSAGE, "sources": [], "question": question,
                 "lock_reason": reason}
-    docs = [d for d in retrieve(question) if chunk_hash(d.metadata) in SOURCES]  # approved documents only
-    result = grounded_answer.answer(question, docs, ANSWER_GENERATOR, penalty_reason=answer_drift_reason)
+    # The answer cache is keyed on the question alone, so a dated question never reads or writes it.
+    cache_ctx = cache_begin(question) if offence_date is None else None
+    if cache_ctx:
+        hit = cache_exact(question, cache_ctx)
+        if hit:
+            return hit
+        ANSWER_CACHE.stats["miss_exact"] += 1
+    # Stage 4: per-stage wall-clock timings for the log line (perf_counter; no content, no secrets)
+    started = time.perf_counter()
+    routing = None
+    if offence_date is not None:
+        retrieved, routing = retrieve_dated(question, offence_date)
+    else:
+        retrieved = retrieve(question)
+    docs = list(retrieved)  # retrieve() already serves only what the document lifecycle serves
+    retrieval_ms = (time.perf_counter() - started) * 1000
+    if offence_date is not None and not docs:
+        return temporal_refusal(question, offence_date, routing)
+    if cache_ctx and cache_ctx["semantic"]:
+        hit = cache_semantic(question, cache_ctx, docs)
+        if hit:
+            return hit
+        ANSWER_CACHE.stats["miss_semantic"] += 1
+    orchestrator = ANSWER_GENERATOR if isinstance(ANSWER_GENERATOR, providers.ProviderOrchestrator) else None
+    session = orchestrator.session() if orchestrator else None
+    answer_started = time.perf_counter()
+    stages: dict = {}  # local per-stage ms accumulated across every answer() call
+    result = grounded_answer.answer(question, docs, session or ANSWER_GENERATOR, penalty_reason=answer_drift_reason,
+                                    stage_ms=stages)
+    candidates = 1
+    # A candidate the validator rejected may be replaced by ONE answer from the next provider (bounded by
+    # PROVIDER_VALIDATION_FALLBACKS); it goes through the same answer()/validate() pipeline from scratch. A refusal
+    # or "insufficient evidence" is never "rejected", so it is never sent to another model.
+    while (session and result.kind == "rejected" and not session.exhausted and not session.blocked
+           and candidates <= orchestrator.settings.validation_fallbacks and session.advance("validation_rejected")):
+        if result.errors:
+            logging.getLogger(__name__).warning("grounded answer %s: %s", result.contract.request_id, result.errors)
+        candidates += 1
+        result = grounded_answer.answer(question, docs, session, penalty_reason=answer_drift_reason,
+                                        stage_ms=stages)
+    answer_ms = (time.perf_counter() - answer_started) * 1000
+    mapping_errors = (provision_validity_runtime.citation_errors(result.cited, result.cited_docs, SERVED)
+                      if result.kind in ("answer", "conflict") else [])
+    if mapping_errors:  # every citation must map to one approved document and one provision, or nothing is cited
+        logging.getLogger(__name__).warning("grounded answer %s: citation mapping failed: %s", result.contract.request_id,
+                                            mapping_errors[:3])
+    if cache_ctx and result.kind == "answer" and not mapping_errors:
+        cache_store(question, cache_ctx, docs, result)  # never raises: storage errors are counted, not propagated
     if result.errors:
         logging.getLogger(__name__).warning("grounded answer %s: %s", result.contract.request_id, result.errors)
-    kind = {"answer": "answer", "conflict": "conflict", "clarification": "clarification"}.get(result.kind,
-                                                                                               "no_support")
+    produced = bool(session) and any(a.outcome == "ok" for a in session.attempts)
+    if session and session.exhausted and not produced:
+        kind = "unavailable"  # every provider failed: a safe reply, never an ungrounded answer
+    else:
+        kind = {"answer": "answer", "conflict": "conflict", "clarification": "clarification"}.get(result.kind,
+                                                                                                   "no_support")
+    if mapping_errors:
+        kind = "no_support"  # fail closed: an answer whose citations do not map exactly is withheld
+
+    def finish(response: dict) -> dict:
+        if session:
+            summary = dict(session.summary(), request_id=result.contract.request_id, candidates=candidates,
+                           validation=result.kind, validation_errors=len(result.errors), final=kind)
+            generation_ms, wait_ms = summary.get("generation_ms") or 0, summary.get("wait_ms") or 0
+            summary["timings_ms"] = {
+                "retrieval": round(retrieval_ms, 1),
+                "answer": round(answer_ms, 1),               # every answer() call: contract, prompt, model, validation
+                "generation": generation_ms,                 # provider HTTP time inside it, every attempt
+                "retry_wait": wait_ms,                       # back-off sleeps between retries
+                "local": round(max(answer_ms - generation_ms - wait_ms, 0.0), 1),  # contract, prompt, validation, render
+                "response": round((time.perf_counter() - response_started) * 1000, 1),  # sources and warnings
+                "total": round((time.perf_counter() - started) * 1000, 1)}
+            # contract / prompt / validate / render: the parts of "local" that answer() can separate
+            summary["local_stages_ms"] = {k: round(v, 2) for k, v in sorted(stages.items())}
+            orchestrator.record_request({k: v for k, v in summary.items() if k != "calls"})
+            logging.getLogger("kyr.providers").info("grounded generation %s", providers.safe_json(summary))
+        return response
+
+    response_started = time.perf_counter()
+    if kind == "unavailable":
+        return finish({"kind": "unavailable", "answer": PROVIDERS_UNAVAILABLE_MESSAGE, "sources": [],
+                       "question": question})
     text = result.text if kind != "no_support" else NO_SUPPORT_MESSAGE
     if kind in ("answer", "conflict"):  # [n] markers refer to these backend-built labels, never model-written ones
         text += "\n\nCited:\n" + "\n".join(f"[{n}] {grounded_answer.citation_label(e)}"
                                          for n, e in enumerate(result.cited, 1))
-    sources = source_entries(result.cited_docs) if kind in ("answer", "conflict") else []
+    sources = source_entries(result.cited_docs, cited=True) if kind in ("answer", "conflict") else []
     warnings = []
     if kind in ("answer", "conflict"):
         warnings = [dict(w, numbered=True) for w in
                     source_warnings(result.cited_docs, list(range(1, len(result.cited_docs) + 1)))]
         text = with_status_block(text, warnings)
-    return {"kind": kind, "answer": text, "sources": sources, "question": question,
-            "source_warnings": [{k: v for k, v in w.items() if k != "numbered"} for w in warnings]}
+    out = {"kind": kind, "answer": text, "sources": sources, "question": question,
+           "source_warnings": [{k: v for k, v in w.items() if k != "numbered"} for w in warnings]}
+    if offence_date is not None:
+        out["temporal"] = temporal_info(offence_date, routing)
+    return finish(out)
 
 
-def answer_question(question: str, history: list[dict], session_id: str = "") -> dict:
+def penalty_lock_active() -> bool:
+    """True unless the Telangana fine gate is open. That gate is locked in code (release_gates.TELANGANA_LOCKED), so
+    this is True today whatever the approval record or TG_PENALTY_ANSWERS says."""
+    return not release_gates.gate_open(current_release_gates()[2], release_gates.TG_FINE)
+
+
+def temporal_info(offence_date, routing) -> dict:
+    return {"offence_date": offence_date.isoformat(), "law_band": offence_routing.band_for(offence_date),
+            "notes": list(routing.notes) if routing is not None else []}
+
+
+def temporal_refusal(question: str, offence_date, routing) -> dict:
+    """No chunk is dated to cover the offence date: no model call, nothing presented as the law on that date."""
+    return {"kind": "no_support", "answer": chat_guards.TEMPORAL_UNVERIFIED_MESSAGE.format(date=offence_date.isoformat()),
+            "sources": [], "question": question, "temporal": temporal_info(offence_date, routing)}
+
+
+def answer_question(question: str, history: list[dict], session_id: str = "", offence_date=None) -> dict:
     """Returns {"kind", "answer", "sources", "question", "lock_reason"}; "question" is what was retrieved/answered.
 
     The caller has already checked the raw message (and the sticky lock) before this runs, so the
@@ -1151,51 +1607,108 @@ def answer_question(question: str, history: list[dict], session_id: str = "") ->
                 "lock_reason": reason}
 
     if ANSWER_MODE == "grounded":
+        if offence_date is not None:
+            return grounded_answer_question(question, history, session_id, offence_date)
         return grounded_answer_question(question, history, session_id)  # never reaches the legacy model calls
     if ANSWER_MODE != "legacy_dev":
         # disabled or misconfigured: no model call, no fallback to another mode
         return {"kind": "unavailable", "answer": GROUNDED_UNAVAILABLE_MESSAGE, "sources": [], "question": question}
     standalone_question = contextualize_question(question, history)
-    if not PENALTY_ANSWERS_ENABLED:
+    lock_on = penalty_lock_active()
+    if lock_on:
         # A follow-up like "and for a bike?" can turn into a penalty question once rewritten.
         reason = penalty_lock_reason(standalone_question)
         if reason:
             return locked("rewritten_question", reason, standalone_question)
 
-    docs = retrieve(standalone_question)
+    routing = None
+    if offence_date is not None:
+        docs, routing = retrieve_dated(standalone_question, offence_date)
+        if not docs:
+            return temporal_refusal(standalone_question, offence_date, routing)
+    else:
+        docs = retrieve(standalone_question)
     if not docs:
         return {"kind": "no_support", "answer": NO_SUPPORT_MESSAGE, "sources": [], "question": standalone_question}
     chain = strict_prompt | llm | StrOutputParser()
     answer = chain.invoke({"context": format_docs(docs), "question": standalone_question})
-    if not PENALTY_ANSWERS_ENABLED:
+    if lock_on:
         # The model drifted into penalty territory from a non-penalty question: withhold it.
         reason = answer_drift_reason(answer)
         if reason:
             return locked("answer_drift", reason, answer)
     # Development output only: unvalidated model text, never presented as a Telangana legal answer.
     warnings = source_warnings(docs)
-    return {"kind": "development", "answer": with_status_block(DEV_OUTPUT_BANNER + answer, warnings),
-            "sources": source_entries(docs), "question": standalone_question, "source_warnings": warnings}
+    out = {"kind": "development", "answer": with_status_block(DEV_OUTPUT_BANNER + answer, warnings),
+           "sources": source_entries(docs), "question": standalone_question, "source_warnings": warnings}
+    if offence_date is not None:
+        out["temporal"] = temporal_info(offence_date, routing)
+    return out
 
 
-# Session state is in-memory only (fine for a single local dev server).
-sessions: dict[str, dict] = {}
+# Session state is in-memory only, and bounded (OCI pilot Stage 1): a capped, idle-expiring store instead of an unbounded dict.
+# It is created before the app so the limits come from the same validated configuration. See api_protection.SessionStore.
+PROTECTION = api_protection.config_from_env()      # read once; also used below for the request guards
+sessions = api_protection.SessionStore(PROTECTION.max_sessions, PROTECTION.session_ttl_seconds)
 
 app = FastAPI(title="Telangana Traffic Rules Assistant API")
+
+# OCI pilot Stage 1: in-process protection of POST /chat only (rate limit per client, request-body cap, concurrent-question cap).
+# Counters live in this process: per worker, not distributed, so production keeps ONE worker. Installed before CORS so that the
+# CORS middleware wraps it and the frontend can read a 429/413. See backend/api_protection.py.
+app.add_middleware(api_protection.ProtectionMiddleware, config=PROTECTION)
+QUESTION_SLOTS = api_protection.ConcurrencyLimiter(PROTECTION.max_concurrent)
+
+# Stage 7A: the static frontend (GitHub Pages) is another origin. Off unless TG_CORS_ORIGINS lists exact origins; never "*", never
+# credentials, only the two methods and one header the frontend uses. Same-origin use (served by this app) needs none of it.
+CORS_ORIGINS, CORS_REJECTED = runtime_config.cors_origins()
+CORS_PROBLEMS = runtime_config.cors_problems()      # production: an explicit, non-empty, valid, non-localhost list is mandatory
+if CORS_REJECTED:
+    logging.getLogger(__name__).error("TG_CORS_ORIGINS entries ignored (must be exact https origins): %s", CORS_REJECTED)
+for _problem in CORS_PROBLEMS:
+    logging.getLogger(__name__).error("CORS configuration: %s (CORS stays closed: no browser origin is allowed)", _problem)
+if CORS_ORIGINS:
+    from fastapi.middleware.cors import CORSMiddleware
+    app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_methods=["GET", "POST"], allow_headers=["Content-Type"],
+                       allow_credentials=False, max_age=600)
 
 
 class ChatRequest(BaseModel):
     message: str
-    session_id: str
+    session_id: str = Field(max_length=api_protection.MAX_SESSION_ID_LENGTH)   # the frontend sends a 36-character UUID
+    # Date of the offence, YYYY-MM-DD or DD-MM-YYYY. Never inferred from the message. Absent: no date-specific claim is made.
+    offence_date: str | None = Field(default=None, max_length=32)
+
+
+class SourcePassage(BaseModel):
+    provision_id: str | None = None
+    label: str
+    text: str
+    cited: bool = False  # True: a validated grounded answer cites it. False: retrieved only (development output)
+    chunk_id: str | None = None  # manifest::provision::part{n}of{m}, as in the retrieval benchmark
+    manifest_id: str | None = None
+    file: str | None = None  # the file this chunk was read from; a source row can group several
+    sha256: str | None = None
+    chapter: str | None = None
+    location: str | None = None
+
+
+class SourceFile(BaseModel):
+    file: str
+    sha256: str | None = None
+    manifest_id: str | None = None
 
 
 class Source(BaseModel):
     title: str
     instrument: str | None = None
     verified: bool
-    file: str
+    file: str  # first file of the row; "files" lists every file
     sha256: str | None = None
+    document_id: str | None = None  # logical document: chapter files of one instrument share it
+    files: list[SourceFile] = []
     text_status: str | None = None  # Stage 25: registry text status; independent of "verified" (approval)
+    passages: list[SourcePassage] = []  # the chunks this answer used from the source, for "View source"
 
 
 class SourceWarning(BaseModel):
@@ -1216,21 +1729,33 @@ class ChatResponse(BaseModel):
     sources: list[Source] = []
     kb_approved: bool
     source_warnings: list[SourceWarning] = []
+    offence_date: str | None = None   # echoed only when the request carried a valid one
+    law_band: str | None = None       # offence_date.band_for(); a label, not a statement of what the law was
+    notes: list[str] = []             # fixed backend notes about temporal evidence
 
 
 MAX_HISTORY_TURNS = 4
 PROVIDER_ERROR = "The answering service is temporarily unavailable. Please try again in a minute."
+EMBEDDING_ERROR = ("The search service is temporarily unavailable, so your question was not searched or answered. "
+                   "Please try again in a minute.")
 
 
-def reply(kind: str, text: str, sources=(), warnings=()) -> ChatResponse:
+def reply(kind: str, text: str, sources=(), warnings=(), temporal=None) -> ChatResponse:
+    temporal = temporal or {}
     return ChatResponse(response=text, kind=kind, sources=list(sources), kb_approved=KB_APPROVED,
-                        source_warnings=list(warnings))
+                        source_warnings=list(warnings), offence_date=temporal.get("offence_date"),
+                        law_band=temporal.get("law_band"), notes=list(temporal.get("notes", ())))
 
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     ensure_approval_current()
-    session = sessions.setdefault(req.session_id, {"history": []})
+    try:
+        session = sessions.setdefault(req.session_id, {"history": []})
+    except api_protection.SessionCapacityExceeded as full:
+        # Every slot holds a live conversation. A new one is refused (never an existing one evicted); nothing was processed.
+        raise HTTPException(status_code=503, detail=api_protection.GENERIC_SESSIONS_FULL,
+                            headers={"Retry-After": str(full.retry_after)})
     message = req.message.strip()
 
     def restricted(stage, reason):
@@ -1241,20 +1766,48 @@ def chat(req: ChatRequest):
     places = other_places(message)
     if places:
         return reply("out_of_scope", OUT_OF_SCOPE_MESSAGE.format(places=", ".join(places)))
-    # Both lock checks run before any model call (including the contextual rewrite).
-    if not PENALTY_ANSWERS_ENABLED:
+    # The offence date is explicit input only. An unusable one is refused, never dropped (dropping it would answer
+    # as if no date had been given).
+    offence_date, date_error = chat_guards.parse_request_date(req.offence_date)
+    if date_error:
+        return reply("clarification", date_error)
+    matrix, _matrix_error, gates = current_release_gates()
+    temporal = {"offence_date": offence_date.isoformat(), "law_band": offence_routing.band_for(offence_date)} if offence_date else None
+    if chat_guards.COMPOUNDING_RE.search(message):
+        # Compounding vocabulary is penalty vocabulary to the classifier below, so this runs first. It can only refuse, ask
+        # for the offence date or name a Section 200(1) listing status from the verified matrix: never an amount, and a
+        # message that also asks for penalty content once the compounding words are removed is refused.
+        penalty_cue = penalty_lock_reason(chat_guards.COMPOUNDING_RE.sub(" ", message)) is not None
+        guard = chat_guards.evaluate(message, matrix, gates, offence_date, penalty_cue=penalty_cue)
+        logging.getLogger(__name__).info("chat guard: kind=%s gate=%s section_200=%s", guard.kind, guard.gate, guard.section_200)
+        session["last_locked"] = True  # a short follow-up ("and for a bike?") to a compounding turn stays locked
+        text = PENALTY_LOCKED_MESSAGE if guard.kind == "restricted" else guard.text  # one message for the penalty family
+        return reply(guard.kind, text, temporal=temporal)
+    # Both lock checks run before any model call (including the contextual rewrite). The Telangana fine gate is
+    # locked in code, so this holds whatever TG_PENALTY_ANSWERS or the approval record says.
+    if not release_gates.gate_open(gates, release_gates.TG_FINE):
         reason = penalty_lock_reason(message)
         if reason:
             return restricted("message", reason)
         if session.get("last_locked") and is_vague_follow_up(message):
             return restricted("sticky_follow_up", "follows_locked_turn")
-    if not index_ready():
+    if not index_ready() or not integrity_ready():
         return reply("unavailable", UNAVAILABLE_MESSAGE)
+    if LIFECYCLE.enabled and not LIFECYCLE.ready():
+        # Stage 6D: no consistent approved document: nothing, not even "which instrument do you mean" or "no such rule", may be
+        # said about the contents of documents that are not served.
+        cache_sweep()
+        return reply("unavailable", GROUNDED_UNAVAILABLE_MESSAGE)
+    if VALIDITY.serving_errors():
+        # Step 4 (restrict): the signed ledger chain has not been accepted, so nothing may be said about the legal corpus.
+        cache_sweep()
+        return reply("unavailable", GROUNDED_UNAVAILABLE_MESSAGE)
     missing, present = missing_references(message)
     if missing:
         # Deterministic: no retrieval, no rewrite, no model call, nothing substituted for the missing rule.
         return reply("missing_provision", missing_provision_message(missing, present))
-    central_text = classify_rule_references(message).central_text
+    rule_check = classify_rule_references(message)
+    central_text = rule_check.central_text
     if central_text:
         # Asks what a Central rule says: only citations of it are indexed, never its text. No model call.
         return reply("missing_provision", central_rule_message(central_text))
@@ -1262,26 +1815,88 @@ def chat(req: ChatRequest):
     if ambiguous:
         # "Rule 10" exists in both the TMVR and the TMVTR: ask, never pick one silently. No model call.
         return reply("clarification", clarification_message(ambiguous))
+    guard = chat_guards.evaluate(message, matrix, gates, offence_date, rule_reference_handled=bool(rule_references(message)))
+    if guard:
+        # Release gates, Section 200(1) disclosure and date bands: deterministic, no retrieval, no model call.
+        logging.getLogger(__name__).info("chat guard: kind=%s gate=%s section_200=%s", guard.kind, guard.gate, guard.section_200)
+        if guard.lock:
+            session["last_locked"] = True
+        return reply(guard.kind, guard.text, temporal=temporal)
 
     try:
-        result = answer_question(message, session["history"], req.session_id)
+        # Only the expensive part holds a permit; the deterministic replies above never do. No waiting: busy means refused.
+        with QUESTION_SLOTS.slot():
+            result = (answer_question(message, session["history"], req.session_id, offence_date) if offence_date is not None
+                      else answer_question(message, session["history"], req.session_id))
+    except api_protection.CapacityExceeded:
+        raise HTTPException(status_code=503, detail=api_protection.GENERIC_BUSY,
+                            headers={"Retry-After": str(api_protection.BUSY_RETRY_AFTER_SECONDS)})
+    except embedding_provider.EmbeddingUnavailable:
+        # Stage 7A: the question could not be embedded, so it was NOT searched and NOT answered. Nothing is substituted.
+        raise HTTPException(status_code=503, detail=EMBEDDING_ERROR)
     except Exception:
         raise HTTPException(status_code=503, detail=PROVIDER_ERROR)
     session["last_locked"] = result["kind"] == "restricted"
     if result["kind"] in ("answer", "conflict", "development"):
         session["history"].append({"question": result["question"], "answer": result["answer"]})
         session["history"] = session["history"][-MAX_HISTORY_TURNS:]
-        return reply(result["kind"], with_penalty_note(result["answer"]), result["sources"],
-                     result.get("source_warnings", ()))
-    return reply(result["kind"], result["answer"])
+        text = with_penalty_note(result["answer"])
+        notes = (result.get("temporal") or {}).get("notes") or ()
+        if notes:
+            text += "\n\n" + "\n".join(notes)
+        return reply(result["kind"], text, result["sources"], result.get("source_warnings", ()), result.get("temporal"))
+    return reply(result["kind"], result["answer"], temporal=result.get("temporal"))
+
+
+# Stage 7A: read once at startup, like every other setting.
+APPROVAL_REFRESH_ENABLED = (runtime_config.deployment_environment() not in ("staging", "production")
+                            or env_flag("TG_ENABLE_APPROVAL_REFRESH"))
 
 
 @app.post("/approval/refresh")
 def approval_refresh():
-    """Revalidate the approval record against the index (and corpus). Full scan: keep behind admin access."""
-    status_ = refresh_approval()
-    return {"approval": status_.state, "approval_errors": status_.errors, "kb_approved": KB_APPROVED,
+    """Revalidate the source-status registry and validity inputs against the index (and corpus). Full scan: keep behind admin access."""
+    if not APPROVAL_REFRESH_ENABLED:
+        # Stage 7A: a public, unauthenticated full scan on a small host is an admin endpoint; off outside development unless chosen.
+        raise HTTPException(status_code=404, detail="Not Found")
+    refresh_approval()
+    return {"approval": "not_required", "approval_errors": [], "kb_approved": KB_APPROVED,
             "penalty_answers": PENALTY_ANSWERS_ENABLED}
+
+
+RULE_MATRIX_FILE = Path(os.environ.get("TG_RULE_MATRIX_FILE", BASE_DIR / "legal" / "rule-matrix.json"))
+_MATRIX_CACHE = {"key": None, "value": (None, release_gates.ERR_NOT_FOUND)}
+
+
+def _load_rule_matrix():
+    """Cached by (mtime, size) so a public GET cannot force a file read and parse on every request."""
+    try:
+        st = RULE_MATRIX_FILE.stat()
+        key = (st.st_mtime_ns, st.st_size)
+    except OSError:
+        key = None
+    if key is None or key != _MATRIX_CACHE["key"]:
+        _MATRIX_CACHE["value"] = release_gates.load_matrix(RULE_MATRIX_FILE)
+        _MATRIX_CACHE["key"] = key
+    return _MATRIX_CACHE["value"]
+
+
+def current_release_gates():
+    """Read-only. Gates open only as the rule matrix allows and never past the code locks (Telangana fines and
+    compounding stay locked); a signed approval record is no longer needed."""
+    ensure_approval_current()
+    matrix, matrix_error = _load_rule_matrix()
+    report = release_gates.effective_gates(matrix, PENALTY_ANSWERS_ENABLED)
+    return matrix, matrix_error, report
+
+
+@app.get("/release-gates")
+def release_gates_view():
+    """The same gate report /chat enforces (current_release_gates). Exposes gate states and coarse booleans, never
+    paths, hashes, reviewer details, matrix content or error text."""
+    matrix, matrix_error, report = current_release_gates()
+    return {"gates": report.gates, "approval_valid": False,
+            "matrix_loaded": matrix is not None, "matrix_problem": matrix_error is not None}
 
 
 @app.get("/status")
@@ -1297,16 +1912,86 @@ def status():
         "legal_review": "approved" if KB_APPROVED else "pending",
         "penalty_answers": PENALTY_ANSWERS_ENABLED,
         "answer_mode": ANSWER_MODE,
+        **({"validity_layer": VALIDITY.status()} if VALIDITY.enabled else {}),   # Step 4: mode and state only, no paths
         # No reviewer details here; problems are technical descriptions only.
-        "approval": APPROVAL.state,
-        "approval_errors": APPROVAL.errors,
-        "corpus_version": APPROVAL.record.corpus_version if KB_APPROVED else None,
+        "approval": "not_required",
+        "approval_errors": [],
+        "corpus_version": None,
+        # Names, models, switches and whether a key is set - never a key.
+        "providers": (ANSWER_GENERATOR.status() if isinstance(ANSWER_GENERATOR, providers.ProviderOrchestrator)
+                      else {"order": [], "providers": [], "available": False, "last_request": None}),
+        # Stage 7A: query-embedding provider state (names, model, state; never a key, never a full URL).
+        "embedding": {k: v for k, v in EMBEDDING.health().items() if k != "verification"},
+        **({"snapshot": SNAPSHOT.public()} if SNAPSHOT.enabled else {}),
+        # Only present when TG_LIFECYCLE_DIR is set. Process health is /health; corpus readiness is here.
+        **({"lifecycle": dict(LIFECYCLE.health(), corpus_ready=corpus_ready())} if LIFECYCLE.enabled else {}),
+        # True only when EVERY component the corpus needs is loaded and consistent (approval, index, lifecycle, embeddings, snapshot).
+        "corpus_ready": corpus_ready(),
+        "readiness": {k: ("ok" if v else "failed") for k, v in readiness_report()["checks"].items()},
+        "cors": {"origins_configured": len(CORS_ORIGINS), "problems": CORS_PROBLEMS},
+        "protection": PROTECTION.public(),      # limits and counts only: no proxy addresses, no client data
+        "source_status": {"state": SOURCE_STATUS.state, **source_status.summarize(source_status_diagnostics())},
     }
+
+
+def corpus_ready() -> bool:
+    """Process health (/health) says nothing about this. The corpus is ready only when every required component is."""
+    return bool(INDEX_INFO["index"] == "ready" and LIFECYCLE.ready() and EMBEDDING.ready()
+                and (not SNAPSHOT.enabled or SNAPSHOT.ready))
 
 
 @app.get("/health")
 def health():
+    """LIVENESS only: the process is up and answering HTTP. It says nothing about the corpus; see /ready (and /status)."""
     return {"status": "ok"}
+
+
+PRODUCTION_LIKE = runtime_config.is_production_like()      # read once at startup, like every other setting
+# Strict readiness (a restored snapshot, a lifecycle registry and a valid status registry are all REQUIRED) applies to a snapshot deployment
+# and to any production-like cloud deployment. A self-hosted process that reads local directories keeps its previous behaviour.
+STRICT_READINESS = SNAPSHOT.enabled or (PRODUCTION_LIKE and embedding_provider.cloud_mode())
+
+
+def readiness_report() -> dict:
+    """Every technical precondition for serving, each reduced to ok/failed (no paths, no secrets, no approval material).
+    Readiness is about integrity, not legal approval: a verified snapshot whose sources are all still pending is READY and simply
+    serves nothing (corpus_ready / `answering` says whether anything can be answered). Any failed check keeps readiness false."""
+    strict = STRICT_READINESS
+    checks = {}
+    if SNAPSHOT.enabled:
+        checks["snapshot_restore"] = SNAPSHOT.ready
+        checks["snapshot_pinned"] = SNAPSHOT.ready and (SNAPSHOT.pinned or not PRODUCTION_LIKE)
+    else:
+        checks["snapshot_restore"] = not strict          # a cloud deployment must run from a restored, verified snapshot
+        checks["snapshot_pinned"] = not strict
+    manifest_chunks = ((SNAPSHOT.manifest or {}).get("index") or {}).get("chunk_count") if SNAPSHOT.ready else None
+    checks["index_present"] = (INDEX_INFO["index"] == "ready" and INDEX_INFO["chunks"] > 0
+                               and (manifest_chunks is None or INDEX_INFO["chunks"] == manifest_chunks))
+    if LIFECYCLE.enabled:
+        checks["lifecycle_registry_and_audit"] = LIFECYCLE.health().get("state") == "ok"
+    else:
+        checks["lifecycle_registry_and_audit"] = not strict
+    checks["source_status_registry"] = SOURCE_STATUS.valid or not strict     # invalid/absent/mismatched status file: nothing may be answered
+    checks["embedding"] = EMBEDDING.state == "ok"
+    checks["configuration"] = not CORS_PROBLEMS
+    return {"ready": all(checks.values()), "checks": checks}
+
+
+def integrity_ready() -> bool:
+    """The part of readiness that gates answering inside /chat (the embedding provider keeps its own, more specific, error path)."""
+    r = readiness_report()["checks"]
+    # the index itself is gated by index_ready() just before this call; /ready additionally compares its chunk count with the manifest
+    return all(r[k] for k in ("snapshot_restore", "snapshot_pinned", "lifecycle_registry_and_audit"))
+
+
+@app.get("/ready")
+def readiness(response: Response):
+    """READINESS: 200 only when the corpus was restored and verified and every check passes, otherwise 503. Cheap: no outbound calls."""
+    report = readiness_report()
+    if not report["ready"]:
+        response.status_code = 503
+    return {"ready": report["ready"], "answering": corpus_ready(),
+            "checks": {k: ("ok" if v else "failed") for k, v in report["checks"].items()}}
 
 
 FRONTEND_DIR = BASE_DIR / "frontend"

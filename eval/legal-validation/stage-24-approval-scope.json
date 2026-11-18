@@ -1,0 +1,51 @@
+{
+ "stage": 24,
+ "date": "2026-11-11",
+ "approval_record_exists": false,
+ "approval_path_default": "legal/telangana-approval.json (absent)",
+ "approval_set_definition": {
+  "what": "the 'documents' list in a signed record; no code builds it automatically",
+  "code": [
+   "backend/legal_approval.py:122 parse_record",
+   "backend/legal_approval.py:374 index_errors",
+   "backend/legal_approval.py:349 corpus_errors",
+   "backend/legal_approval.py:405 evaluate",
+   "backend/server.py:212 _apply_approval -> SOURCES"
+  ]
+ },
+ "rule81_file": {
+  "file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+  "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba",
+  "manifest_entry": "DRAFT-telangana-manifest.json id tmvr-1989-chap-4 (source_class unverified_snapshot, verification_status unverified)",
+  "in_SHA256SUMS": true,
+  "chunks_from_file_in_preview_index": 55,
+  "rule81_chunk_ids": [
+   "b46d621c-51f1-479b-ac05-cccb2de81134",
+   "6e085556-a1ad-405f-9405-ebfc621cb798"
+  ],
+  "rule81_chunks_sha256_equals_file": true
+ },
+ "findings": {
+  "included_in_approval_set": "No record exists. For the current index any VALID record must include it: index_errors() rejects any indexed hash not in the record ('unapproved document in index'), so the record is all-or-nothing over the 20 indexed documents.",
+  "valid_record_enables_rule81_chunks": "Yes. Both chunks are answer_eligible=True, so retrieve() keeps them once their hash is in SOURCES.",
+  "excluding_snapshot_from_record_without_rebuild": "Not possible: the record would be invalid and ALL answers disabled. Stage 23 mitigation M2 is therefore only viable together with an index rebuild that omits the file.",
+  "corpus_check": "With TG_CORPUS_DIR set (required by grounded_gate_errors), every corpus file must also be in the record (corpus_errors 'unapproved document').",
+  "stage23_simulation_accuracy": {
+   "accurate": [
+    "retrieval, filtering and ranking",
+    "citation labels",
+    "absence of any Rule 81 warning",
+    "response shape"
+   ],
+   "inaccurate": [
+    "only retrieved hashes added to SOURCES, not all 20 documents",
+    "source titles '?' and instrument set to source_class instead of a record title and an INSTRUMENTS value (Act, Rules, Regulations, G.O., Notification, Order)",
+    "gate bypassed rather than satisfied (trusted keys, corpus dir, corpus version)",
+    "mock generator instead of a real model",
+    "preview index s11, not a production index (chroma_telangana_db does not exist)"
+   ],
+   "verdict": "Representative for the warning question: a valid record covering the current index would make Rule 81 answerable and the source badge 'Verified' with the record's title; no Rule 81 warning would appear."
+  }
+ },
+ "ld_001_ld_002": "unchanged (evidence_incomplete)"
+}

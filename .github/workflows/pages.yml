@@ -1,0 +1,48 @@
+# GitHub Pages deployment of the static frontend. MANUAL ONLY: nothing is published until an operator runs this workflow
+# (Actions -> "Deploy frontend to GitHub Pages" -> Run workflow). It never runs on push, so merging code cannot publish anything.
+# Prerequisites: Settings -> Pages -> Source = "GitHub Actions"; Settings -> Secrets and variables -> Actions -> Variables ->
+# KYR_API_BASE_URL = the Render service's https origin (a public URL, not a secret). No secret is read or needed by this workflow.
+# Action versions below are major-version tags; check them (and pin to commit SHAs if your policy requires) at deployment time.
+name: Deploy frontend to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Frontend checks (sanitisation, pinned scripts, Pages build)
+        run: python -m unittest discover -s tests -p "test_frontend.py" && python -m unittest discover -s tests -p "test_pages_build.py"
+      - name: Build static site (fails if the output contains anything credential-like)
+        env:
+          KYR_API_BASE_URL: ${{ vars.KYR_API_BASE_URL }}
+          KYR_REQUEST_TIMEOUT_SECONDS: ${{ vars.KYR_REQUEST_TIMEOUT_SECONDS }}   # optional (5-300); empty = the page's default
+        run: python scripts/build_pages.py --out build/pages --require-api-base
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

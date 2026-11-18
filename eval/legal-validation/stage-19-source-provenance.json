@@ -1,0 +1,130 @@
+{
+ "stage": 19,
+ "g_o_77": {
+  "verified": {
+   "path": "docs/legal-sources/telangana-traffic/source-documents/goir/2025TRB_Ms77.pdf (main checkout, untracked)",
+   "bytes": 33646,
+   "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71",
+   "matches_draft_manifest_sha": true,
+   "download_origin_metadata": [
+    "https://goir.telangana.gov.in/Default.aspx",
+    "https://goir.telangana.gov.in/"
+   ],
+   "downloaded": "09-11-2026 by the user (INGESTION-VALIDATION-REPORT section 7)",
+   "pdf_pages": 3,
+   "pdf_creation": "2025-11-03 17:16 IST",
+   "pdf_modification": "2025-11-15 15:33 IST",
+   "text_identity": "G.O.Ms.No. 77, TR&B (Transport.I) Department, Dated 15-11-2025, final notification amending Rule 81 TMVR",
+   "classification": "original file as served by the official GOIR register (not a derived or re-typed copy); not digitally signed; not a Gazette print"
+  },
+  "not_verifiable": [
+   "No digital signature, so authenticity rests on the download origin only",
+   "An earlier summary recorded a different file, TMVR-1989-GO77-2025.pdf, SHA-256 74a6839d...; that file is absent and its hash cannot be compared (EVIDENCE-GAP-REGISTER G1)"
+  ],
+  "checksum_change": "appended to source-documents/SHA256SUMS; all 58 entries verify"
+ },
+ "other_unlisted_files": {
+  "files": [
+   "goir/2026TRB_Ms10.pdf",
+   "goir/2026TRB_Ms16.pdf",
+   "goir/2026TRB_Ms24.pdf",
+   "goir/2026TRB_Ms25.pdf",
+   "goir/2026TRB_Ms32.pdf"
+  ],
+  "status": "present, hashes in the draft manifest, not in SHA256SUMS; left unchanged (out of Stage 19 scope)"
+ },
+ "earlier_rule_81_orders": [
+  {
+   "id": "G.O.Ms.No. 02",
+   "dated": "17-06-2014",
+   "department": "TR&B (Transport-I)",
+   "cited_in": [
+    "G.O.Ms.No. 54/2025",
+    "G.O.Ms.No. 77/2025"
+   ],
+   "relationship": "cited in the 'Read' list of the Rule 81 amendment orders; whether each amended Rule 81, and how, is not stated",
+   "copy_in_repository": false
+  },
+  {
+   "id": "G.O.Ms.No. 41",
+   "dated": "29-09-2015",
+   "department": "TR&B (Transport-I)",
+   "cited_in": [
+    "G.O.Ms.No. 54/2025",
+    "G.O.Ms.No. 77/2025"
+   ],
+   "relationship": "cited in the 'Read' list of the Rule 81 amendment orders; whether each amended Rule 81, and how, is not stated",
+   "copy_in_repository": false
+  },
+  {
+   "id": "G.O.Ms.No. 44",
+   "dated": "15-10-2015",
+   "department": "TR&B (Transport-I)",
+   "cited_in": [
+    "G.O.Ms.No. 54/2025",
+    "G.O.Ms.No. 77/2025"
+   ],
+   "relationship": "cited in the 'Read' list of the Rule 81 amendment orders; whether each amended Rule 81, and how, is not stated",
+   "copy_in_repository": false
+  },
+  {
+   "id": "G.O.Ms.No. 95",
+   "dated": "08-12-2016",
+   "department": "TR&B (Transport-I)",
+   "cited_in": [
+    "G.O.Ms.No. 54/2025",
+    "G.O.Ms.No. 77/2025"
+   ],
+   "relationship": "cited in the 'Read' list of the Rule 81 amendment orders; whether each amended Rule 81, and how, is not stated",
+   "copy_in_repository": false
+  },
+  {
+   "id": "G.O.Ms.No. 26",
+   "dated": "24-04-2017",
+   "department": "TR&B (Transport-I)",
+   "cited_in": [
+    "G.O.Ms.No. 54/2025",
+    "G.O.Ms.No. 77/2025"
+   ],
+   "relationship": "cited in the 'Read' list of the Rule 81 amendment orders; whether each amended Rule 81, and how, is not stated",
+   "copy_in_repository": false
+  },
+  {
+   "id": "G.O.Ms.No. 52",
+   "dated": "11-04-2018",
+   "department": "TR&B (Transport-I)",
+   "cited_in": [
+    "G.O.Ms.No. 54/2025",
+    "G.O.Ms.No. 77/2025"
+   ],
+   "relationship": "cited in the 'Read' list of the Rule 81 amendment orders; whether each amended Rule 81, and how, is not stated",
+   "copy_in_repository": false
+  }
+ ],
+ "rule_81_versions": {
+  "snapshot": {
+   "source": "html-snapshots/tmvr-1989 chapter 4, retrieved 29-10-2026, transport.telangana.gov.in",
+   "status": "unverified, no amendment citations or as-amended date",
+   "content": "sub-rules (1)-(6); Form RRMA; fee tiers Rs.50,000/30,000/20,000/10,000/5,000",
+   "which_amendments_it_reflects": "unknown"
+  },
+  "g_o_77_changes": {
+   "omits": [
+    "(1)",
+    "(2)",
+    "(4)"
+   ],
+   "substitutes": [
+    "(3): online applications, fees Rs.1,50,000 to Rs.6,000 (Rs.3,000 two-wheelers), current number Rs.2,000",
+    "(5): online bidding 2-4 pm, forfeiture, 10% non-refundable",
+    "(6): allotment on production of vehicle; cancellation after 15 days"
+   ]
+  },
+  "commencement": "unknown: G.O. 77 contains no commencement clause; it directs Gazette publication dated 15.11.2025",
+  "gazette_evidence": "missing: no Gazette print of G.O. 77 (or G.O. 54, G-575 of 13.08.2025) is held",
+  "earlier_amendments": "missing: the six 2014-2018 G.O.s above",
+  "post_november_2025": "unknown: no source checked for later amendments",
+  "consolidated_text": "not produced; requires authoritative sources and human legal approval",
+  "snapshot_replacement": "none; the snapshot remains indexed unchanged and must not be presented as current"
+ }
+}

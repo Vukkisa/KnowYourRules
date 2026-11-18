@@ -16,6 +16,8 @@ from bs4 import BeautifulSoup, Comment, NavigableString
 from langchain_core.documents import Document
 from pypdf import PdfReader
 
+from backend import tg_manifest
+
 MAX_CHUNK_CHARS = 3500
 MIN_DOC_CHARS = 200          # less extractable PDF text than this: the document is treated as empty
 MIN_HTML_CHARS = 80          # HTML pages can legitimately hold one short rule (e.g. a one-rule chapter)
@@ -535,13 +537,48 @@ def _location(blocks):
     return locs[0] if len(locs) == 1 else f"{locs[0]} .. {locs[-1]}"
 
 
-def chunk_document(blocks, entry) -> list[Document]:
+# Table of contents of an HTML snapshot: "Chapter-XI ( Claims Tribunals - Establishment of )".
+TOC_CHAPTER_RE = re.compile(r"Chapter\s*-\s*([IVXLCDM]+)\s*\(\s*([^()]*?)\s*\)", re.IGNORECASE)
+SNAPSHOT_CHAPTER_PAGE_RE = re.compile(r"(?:^|/)middle-main-chap-(\d{1,2})\.html?$", re.IGNORECASE)
+ROMAN = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+
+def _roman_value(numeral: str) -> int:
+    values = [ROMAN[c] for c in numeral.upper()]
+    return sum(-v if i + 1 < len(values) and v < values[i + 1] else v for i, v in enumerate(values))
+
+
+def snapshot_chapter(corpus_dir, rel_file) -> str:
+    """Chapter label for one chapter page of an HTML snapshot whose pages carry no chapter heading (Stage 28).
+
+    The label comes from the snapshot's own table of contents (index.html in the same folder): for
+    middle-main-chap-N, the entry "Chapter-<N in Roman numerals> ( title )". It has the same form as a chapter
+    heading found in the text ("CHAPTER XI CLAIMS TRIBUNALS - ESTABLISHMENT OF"). Returns "" when the file is not
+    such a page, there is no table of contents, or no entry has the matching number: never guessed."""
+    m = SNAPSHOT_CHAPTER_PAGE_RE.search(str(rel_file or ""))
+    if not m or corpus_dir is None:
+        return ""
+    toc = (Path(corpus_dir) / rel_file).parent / "index.html"
+    try:
+        text = BeautifulSoup(toc.read_bytes(), "html.parser").get_text(" ")
+    except OSError:
+        return ""
+    wanted = int(m.group(1))
+    for numeral, title in TOC_CHAPTER_RE.findall(text):
+        if _roman_value(numeral) == wanted and _clean(title):
+            return _clean(f"CHAPTER {numeral.upper()} {title.upper()}")
+    return ""
+
+
+def chunk_document(blocks, entry, default_chapter: str = "") -> list[Document]:
     """Legal-aware chunks of one manifest entry. Every chunk carries full source and provision metadata.
 
     Chroma accepts only str/int/float/bool metadata, so unknown values are stored as "" (never guessed).
+    default_chapter applies only to provisions with no chapter heading in the text (see snapshot_chapter).
     """
     docs = []
     for p in segment(blocks, entry.document_type):
+        p.chapter = p.chapter or default_chapter
         groups, method = split_provision(p)
         for i, group in enumerate(groups, start=1):
             pages = [b.page for b in group if b.page is not None]
@@ -577,5 +614,8 @@ def chunk_document(blocks, entry) -> list[Document]:
                 "manifest_notes": entry.notes or "",   # provenance and jurisdiction warnings, verbatim
                 "extraction_warning": "",              # set by reviewed chunk flags at build time
                 "answer_eligible": True,               # False = stored for review, never used to answer
+                # valid_from/valid_to (int yyyymmdd) only for reviewed, verified validity; otherwise absent and
+                # validity_status = "unknown", which the offence-date router reads as unversioned.
+                **tg_manifest.validity_metadata(entry),
             }))
     return docs

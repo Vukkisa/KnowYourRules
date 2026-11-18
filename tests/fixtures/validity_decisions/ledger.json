@@ -1,0 +1,167 @@
+{
+  "coverage": [
+    {
+      "decision_ref": "LD-014",
+      "provisions": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "selector": {
+        "manifest_id": "m1",
+        "page_end": 1,
+        "page_start": 1,
+        "part": 1,
+        "parts": 1,
+        "provision_id": "SECTION 1",
+        "sha256": "dd1d127d1e7828fe30056c0185399194d99240d03bcf702af1d9b455ed1186c1",
+        "text_sha256": "03302b3035b7310c0663926e8338e19e34bccffc2968421e3747d7f78a94eb13"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "LD-012",
+      "prepared_by": "Preparer Beta",
+      "reviewer": {
+        "name": "Reviewer Alpha"
+      },
+      "status": "approved",
+      "subject": "start"
+    },
+    {
+      "decision_id": "LD-013",
+      "prepared_by": "Preparer Beta",
+      "reviewer": {
+        "name": "Reviewer Alpha"
+      },
+      "status": "approved",
+      "subject": "end"
+    },
+    {
+      "decision_id": "LD-014",
+      "prepared_by": "Preparer Beta",
+      "reviewer": {
+        "name": "Reviewer Alpha"
+      },
+      "status": "approved",
+      "subject": "cov"
+    },
+    {
+      "decision_id": "LD-015",
+      "prepared_by": "Preparer Beta",
+      "reviewer": {
+        "name": "Reviewer Alpha"
+      },
+      "status": "approved",
+      "subject": "rule"
+    },
+    {
+      "decision_id": "LD-016",
+      "prepared_by": "Preparer Beta",
+      "reviewer": {
+        "name": "Reviewer Alpha"
+      },
+      "status": "approved",
+      "subject": "fresh"
+    },
+    {
+      "decision_id": "LD-017",
+      "prepared_by": "Preparer Beta",
+      "reviewer": {
+        "name": "Reviewer Alpha"
+      },
+      "status": "approved",
+      "subject": "close"
+    },
+    {
+      "decision_id": "LD-061",
+      "prepared_by": "Preparer Beta",
+      "reviewer": "Reviewer Alpha",
+      "status": "approved",
+      "subject": "closer"
+    }
+  ],
+  "fixture": true,
+  "freshness_window": {
+    "days": 365,
+    "decision_ref": "LD-016"
+  },
+  "instruments": [
+    {
+      "jurisdiction": "TG",
+      "key": "TG:ACT:S9/2900",
+      "kind": "ACT",
+      "manifest_ids": [
+        "m1"
+      ]
+    }
+  ],
+  "interval_rule": {
+    "decision_ref": "LD-015",
+    "rule": "day_before_successor_start"
+  },
+  "note": "SYNTHETIC ledger for the Step 3 decision-record tests. Not legal data.",
+  "operations": [
+    {
+      "effective_from": {
+        "candidate": 29000101,
+        "date": 29000101,
+        "decision_ref": "LD-012",
+        "evidence": [
+          {
+            "file": "evidence/instrument-clause.txt",
+            "locator": "cl. 1",
+            "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+          }
+        ],
+        "kind": "commencement",
+        "state": "approved"
+      },
+      "id": "OP-A",
+      "source": "TG:ACT:S9/2900",
+      "targets": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "type": "insert"
+    },
+    {
+      "effective_from": {
+        "candidate": 29050101,
+        "date": 29050101,
+        "decision_ref": "LD-061",
+        "evidence": [
+          {
+            "file": "evidence/instrument-clause.txt",
+            "locator": "cl. 1",
+            "sha256": "479ac2ce1296cd79f89ab06de6253335a1e52cbcfd9350720d0a14ddaf3fb68c"
+          }
+        ],
+        "kind": "commencement",
+        "state": "approved"
+      },
+      "id": "OP-DEL",
+      "source": "TG:ACT:S9/2900",
+      "targets": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "type": "delete"
+    }
+  ],
+  "provisions": [
+    {
+      "key": "TG:ACT:S9/2900#s1"
+    }
+  ],
+  "schema_version": 1,
+  "versions": [
+    {
+      "closed_by_op": "OP-DEL",
+      "created_by_op": "OP-A",
+      "end": {
+        "state": "closed"
+      },
+      "key": "TG:ACT:S9/2900#s1@1",
+      "provision": "TG:ACT:S9/2900#s1",
+      "text": "held"
+    }
+  ]
+}

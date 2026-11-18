@@ -1,0 +1,25 @@
+# Runtime dependencies of backend.server for the cloud deployment (Render). Deliberately NOT requirements.txt, which is the research/
+# notebook environment (jupyter, unstructured, torch via sentence-transformers/transformers, faiss, ...).
+#
+# Why this matters: when `transformers` is installed, langchain_core imports it (and with it torch) while the server starts, which
+# costs hundreds of MB of resident memory. The server does not use either. Without them langchain_core skips that import.
+# Not needed at runtime and therefore absent: langchain-ollama (the embedding provider imports it only for EMBEDDING_PROVIDER=ollama),
+# langchain-groq (legacy development mode only; grounded answers call Groq/Gemini over plain HTTP with `requests`), transformers,
+# torch, sentence-transformers, faiss-cpu, unstructured, jupyter, huggingface_hub (pulled in by chromadb only), boto3 (R2 is signed
+# by backend/index_snapshot.py with SigV4 over requests).
+#
+# Versions are those the test suites ran against. Transitive dependencies are resolved by pip.
+fastapi==0.136.1
+uvicorn==0.46.0
+langchain==0.3.30
+langchain-core==0.3.86
+langchain-chroma==0.2.6
+chromadb==1.5.9
+numpy==1.26.4
+requests==2.32.5
+python-dotenv==1.2.3
+pydantic==2.12.4
+# inprocess_nomic (backend/nomic_local.py) needs exactly these two besides numpy; tokenizers is already a dependency of chromadb and is pinned
+# here to the version the engine was tested with (Stage 7B.1/7C), so the WordPiece behaviour cannot drift.
+tokenizers==0.23.2
+cryptography==50.0.2

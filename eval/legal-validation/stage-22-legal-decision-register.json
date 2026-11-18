@@ -1,0 +1,673 @@
+{
+ "schema_version": 1,
+ "stage": 22,
+ "jurisdiction": "Telangana",
+ "created": "2026-11-11",
+ "status_values": {
+  "pending": "evidence sufficient to decide; awaiting a reviewer",
+  "evidence_incomplete": "cannot be decided until the listed evidence is obtained",
+  "approved": "a named human reviewer approved one option, with date and rationale",
+  "rejected": "a named human reviewer rejected the proposal(s)",
+  "requires_further_review": "a reviewer looked at it and asked for more work"
+ },
+ "rules": [
+  "Only a human reviewer may set approved, rejected or requires_further_review, and only with reviewer name, designation, review_date, decision and rationale filled in.",
+  "The assistant may only create records, add evidence and set pending or evidence_incomplete.",
+  "An approved decision changes nothing by itself: metadata or code changes are made afterwards, with backups, and recorded in history.",
+  "Decisions affecting answer eligibility of approved documents must also be reflected in the signed approval record (backend/legal_approval.py); this register is not a substitute for it.",
+  "Benchmark review (backend/review_import.py) is not legal approval and cannot settle any decision here."
+ ],
+ "existing_mechanisms": {
+  "signed_approval_record": "backend/legal_approval.py + docs/approval-trust-model.md: one Ed25519-signed record for the whole approved document set, written from LEGAL-REVIEW-HANDOFF.md section 5. No record, key or signature exists. It has no per-provision version or supersession fields.",
+  "benchmark_review": "backend/review_import.py: retrieval labels only; explicitly 'NOT LEGAL APPROVAL'.",
+  "source_integrity": "source-documents/SHA256SUMS (63 entries) and SOURCE-MANIFEST.md"
+ },
+ "summary": {
+  "total": 11,
+  "pending": 4,
+  "evidence_incomplete": 7,
+  "approved": 0,
+  "rejected": 0,
+  "requires_further_review": 0
+ },
+ "decisions": [
+  {
+   "decision_id": "LD-001",
+   "priority": 1,
+   "subject": "Rule 81 TMVR: answer eligibility of the old snapshot",
+   "question": "Can the Rule 81 web snapshot remain answerable, must it be temporarily excluded, or should it stay answerable only with a warning?",
+   "evidence_available": [
+    "Snapshot text (chap-4 #4): Form RRMA, fees Rs.50,000-5,000; unverified, no amendment citations",
+    "G.O. 77 (15-11-2025) omits (1),(2),(4) and substitutes (3),(5),(6); text differs from snapshot",
+    "Snapshot chunks part1of2/part2of2 are answer_eligible=True; structured lookup returns both for 'Rule 81' queries"
+   ],
+   "evidence_required": [
+    "Gazette of G.O. 77 (15.11.2025) and its commencement",
+    "Any amendment after 15-11-2025"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Exclude both snapshot chunks from answers (answer_eligible=False) until a consolidated text is approved"
+    },
+    {
+     "option": "B",
+     "text": "Keep answerable, but every answer citing Rule 81 must carry a warning that the text may be superseded by G.O.Ms.No.77/2025 and its fees may be outdated"
+    },
+    {
+     "option": "C",
+     "text": "Keep as is (no change)"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+     "sha256": "d901ad962697002883f18c9f4c97f530de64966931f13bbd91d49708b391a3ba",
+     "location": "#4"
+    },
+    {
+     "file": "source-documents/goir/2025TRB_Ms77.pdf",
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    }
+   ],
+   "stage_21_questions": [
+    3,
+    4,
+    5,
+    7
+   ],
+   "would_change_if_approved": "Option A: chunk metadata at the next approved rebuild. Option B: answer-generation warning (code change). Option C: none.",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ],
+   "interim_note": "Until decided, the system's existing behaviour continues: the snapshot is answerable and nothing presents it as current law."
+  },
+  {
+   "decision_id": "LD-002",
+   "priority": 1,
+   "subject": "Rule 81 TMVR: restoring eligibility / approving a consolidated version",
+   "question": "What evidence is required before a consolidated Rule 81 may be indexed and the snapshot's eligibility restored, and who may approve it?",
+   "evidence_available": [
+    "G.O. 77 final text (held, checksummed)",
+    "G.O. 54 draft (held); G.O. 77 recites its Gazette G-575 of 13.08.2025"
+   ],
+   "evidence_required": [
+    "Gazette print of G.O. 77 with publication date",
+    "Commencement evidence",
+    "The six cited orders G.O.Ms.No.02/2014, 41/2015, 44/2015, 95/2016, 26/2017, 52/2018 (or a finding that they do not affect Rule 81)",
+    "Search for amendments after 15-11-2025",
+    "Resolution of the absent summary file TMVR-1989-GO77-2025.pdf (74a6839d...)"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Require all listed evidence, then a counsel-approved consolidated text recorded in the signed approval record"
+    },
+    {
+     "option": "B",
+     "text": "Accept G.O. 77 plus its Gazette print as sufficient for sub-rules (3),(5),(6), leaving the others flagged as unverified"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel only; the consolidated text must then appear in the signed approval record (Ed25519)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2025TRB_Ms77.pdf",
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    },
+    {
+     "file": "source-documents/goir/2025TRB_Ms54.pdf",
+     "sha256": "2965f7be670264ed339c062d0caecb41d799d7e192e2ba5b9bc7184d0a5840f7"
+    }
+   ],
+   "stage_21_questions": [
+    1,
+    2,
+    3,
+    4,
+    6
+   ],
+   "would_change_if_approved": "A consolidated text would be a new source document; it needs its own checksum and inclusion in the signed approval record's documents list.",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-003",
+   "priority": 2,
+   "subject": "Six G.O.s cited in the Rule 81 orders",
+   "question": "For each of G.O.Ms.No.02/2014, 41/2015, 44/2015, 95/2016, 26/2017, 52/2018 (TR&B Tr-I): what is its subject, and did it amend Rule 81?",
+   "evidence_available": [
+    "Cited by department and date in the Read lists of G.O. 54 and G.O. 77",
+    "No subject stated; no copy in the repository"
+   ],
+   "evidence_required": [
+    "Each order (official source)",
+    "Gazette publication"
+   ],
+   "proposed_options": [
+    {
+     "option": "per order",
+     "text": "Record one of: amends Rule 81 / does not / undetermined, with the source examined"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2025TRB_Ms54.pdf",
+     "sha256": "2965f7be670264ed339c062d0caecb41d799d7e192e2ba5b9bc7184d0a5840f7"
+    },
+    {
+     "file": "source-documents/goir/2025TRB_Ms77.pdf",
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    }
+   ],
+   "stage_21_questions": [
+    1,
+    2
+   ],
+   "would_change_if_approved": "Input to LD-002",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-004",
+   "priority": 1,
+   "subject": "G.O.Ms.No.24/2026: draft or final, and Gazette publication",
+   "question": "Is G.O. 24 a final notification in force, a draft, or undetermined?",
+   "evidence_available": [
+    "Order: 'decided to publish the draft Notification, as required under Rule 167'",
+    "Body headed 'NOTIFICATION'; para 5: comes into force on Gazette publication",
+    "No objection period; no s.212 reference",
+    "Directed for Gazette of 02-06-2026; printer note leaves the date blank",
+    "Companion G.O. 25 (same date, same letter) has no 'draft' wording"
+   ],
+   "evidence_required": [
+    "Gazette print of 02-06-2026 (or another date)",
+    "Any final notification",
+    "Whether CMVR Rule 167(5) (as amended by G.S.R. 48(E)) requires a prior draft"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Final and in force from Gazette publication (requires the Gazette print)"
+    },
+    {
+     "option": "B",
+     "text": "Draft; exclude from answers until a final notification is held"
+    },
+    {
+     "option": "C",
+     "text": "Undetermined; keep answerable with a warning that its status is unconfirmed"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2026TRB_Ms24.pdf",
+     "sha256": "ba0c9516575ed081181da4288c1395a19ad416bc9e9981c56f65b522b7007905"
+    },
+    {
+     "file": "source-documents/goir/2026TRB_Ms25.pdf",
+     "sha256": "c9bd1ff3a7e02a3c5324965835dd81ddea9f30df831adf0cb4387f8d3f374872"
+    }
+   ],
+   "stage_21_questions": [
+    8,
+    9
+   ],
+   "would_change_if_approved": "Metadata on go-ms-24-2026-trb chunks at the next approved rebuild",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-005",
+   "priority": 1,
+   "subject": "G.O.Ms.No.16/2026: deletion of Seventh Schedule column 8",
+   "question": "Does G.O. 16 delete column 8 of the TMVT Act Seventh Schedule as substituted by G.O. 53, with effect from 23-03-2026?",
+   "evidence_available": [
+    "G.O. 16 cites G.O. 53 in its Read list",
+    "G.O. 53 para 3 substitutes the Seventh Schedule; its column (8) is 'Second or more personalized vehicles upto a seating capacity of ten (10) in all owned by an individual'",
+    "G.O. 16 deletes 'column No.8' with the same description",
+    "G.O. 16 para 4: in force w.e.f. 23.03.2026"
+   ],
+   "evidence_required": [
+    "Gazette print of 23.03.2026",
+    "Check for later instruments affecting column 8",
+    "G.O.Ms.No.22/2022 (cited by both) if counsel considers it relevant"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Confirm the deletion w.e.f. 23-03-2026"
+    },
+    {
+     "option": "B",
+     "text": "Confirm the text relationship but leave effective date unconfirmed pending the Gazette"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2026TRB_Ms16.pdf",
+     "sha256": "139f96454954a4b77b3f07a796946827c29a81754f9a782e3e25dd5dfc76e0d5"
+    },
+    {
+     "file": "source-documents/goir/13082025TRB_MS53.PDF",
+     "sha256": "a93f8daa6865eccd2ee646494c10883d98fb0e7c99d3a0f4c64dffe803c15c18",
+     "location": "#page=3-4"
+    }
+   ],
+   "stage_21_questions": [
+    11
+   ],
+   "would_change_if_approved": "Prerequisite for LD-006",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-006",
+   "priority": 2,
+   "subject": "G.O.Ms.No.53/2025 Seventh Schedule chunk: superseded-in-part flag",
+   "question": "Should go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1 carry 'superseded in part (column 8) by G.O.Ms.No.16/2026 w.e.f. 23.03.2026'?",
+   "evidence_available": [
+    "Chunk already answer_eligible=False (unreliable table extraction), so answers do not use it today",
+    "Relationship evidence as in LD-005"
+   ],
+   "evidence_required": [
+    "Approval of LD-005"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Add the flag at the next approved rebuild"
+    },
+    {
+     "option": "B",
+     "text": "No flag while the chunk stays non-answerable; revisit if it becomes eligible"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "pending",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/13082025TRB_MS53.PDF",
+     "sha256": "a93f8daa6865eccd2ee646494c10883d98fb0e7c99d3a0f4c64dffe803c15c18",
+     "location": "#page=3-4"
+    },
+    {
+     "file": "source-documents/goir/2026TRB_Ms16.pdf",
+     "sha256": "139f96454954a4b77b3f07a796946827c29a81754f9a782e3e25dd5dfc76e0d5"
+    }
+   ],
+   "stage_21_questions": [
+    11
+   ],
+   "would_change_if_approved": "Chunk metadata at the next approved rebuild",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "pending",
+     "by": "assistant (register created; no human decision)"
+    }
+   ],
+   "depends_on": [
+    "LD-005"
+   ]
+  },
+  {
+   "decision_id": "LD-007",
+   "priority": 3,
+   "subject": "G.O.Ms.No.10/2026 and Act No.8 of 2026",
+   "question": "What does Act No.8 of 2026 amend, and does any indexed TMVT content need updating from 01-03-2026?",
+   "evidence_available": [
+    "G.O. 10 appoints 01-03-2026 as the Act's commencement"
+   ],
+   "evidence_required": [
+    "Act No.8 of 2026",
+    "Gazette of 01.03.2026"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Obtain the Act before any further TMVT answers are approved"
+    },
+    {
+     "option": "B",
+     "text": "Accept current TMVT content with a warning that it may predate Act No.8/2026"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2026TRB_Ms10.pdf",
+     "sha256": "df0ee9357b05ca4db9a187481ff2c8ac50c4a9d2ca05f91800e9bc4161f8c5fd"
+    }
+   ],
+   "stage_21_questions": [
+    10
+   ],
+   "would_change_if_approved": "TMVT chunk metadata or warnings",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-008",
+   "priority": 3,
+   "subject": "G.O.Ms.No.25/2026 and 32/2026: eligibility without Central rules",
+   "question": "Should G.O. 25 (electronic challans) and G.O. 32 (Designated Authority, no stated effective date) stay answerable while the CMVR they implement is out of scope?",
+   "evidence_available": [
+    "G.O. 25 'with immediate effect'; G.O. 32 states no effective date",
+    "CMVR excluded by the user's scope decision of 08-11-2026"
+   ],
+   "evidence_required": [
+    "Gazette prints",
+    "G.O. 32 effective date"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Keep answerable"
+    },
+    {
+     "option": "B",
+     "text": "Keep answerable with a note that the governing Central rule is not in the corpus"
+    },
+    {
+     "option": "C",
+     "text": "Exclude"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "pending",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2026TRB_Ms25.pdf",
+     "sha256": "c9bd1ff3a7e02a3c5324965835dd81ddea9f30df831adf0cb4387f8d3f374872"
+    },
+    {
+     "file": "source-documents/goir/2026TRB_Ms32.pdf",
+     "sha256": "4bb6273f8c13c08d7e15a64ad063c4ad868beaf527c469c6f1975b71a57f8629"
+    }
+   ],
+   "stage_21_questions": [
+    12
+   ],
+   "would_change_if_approved": "Chunk metadata or answer warnings",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "pending",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-009",
+   "priority": 3,
+   "subject": "Alternative G.O. 77 file (74a6839d...)",
+   "question": "What is TMVR-1989-GO77-2025.pdf listed in the supplied summary, and does it affect the held G.O. 77?",
+   "evidence_available": [
+    "Summary lists it with a SHA-256 beginning 74a6839d33b82a394bcff753ef0b68631ff98f1fbdcf5 (truncated)",
+    "File absent; held GOIR copy is 3de90735..."
+   ],
+   "evidence_required": [
+    "The archive file or its origin"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Treat as unresolved; held GOIR copy remains the source"
+    },
+    {
+     "option": "B",
+     "text": "Obtain and compare"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "evidence_incomplete",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/goir/2025TRB_Ms77.pdf",
+     "sha256": "3de907353bdf37415df25f10d45b05e336bd29c077285fae2c9bda2655f7be71"
+    }
+   ],
+   "stage_21_questions": [
+    6
+   ],
+   "would_change_if_approved": "Possibly LD-002",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "evidence_incomplete",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-010",
+   "priority": 3,
+   "subject": "G.O.Ms.No.332/2008 (Andhra Pradesh)",
+   "question": "Does G.O. 332/2008 (permit compounding, rule 217) apply in Telangana?",
+   "evidence_available": [
+    "AP instrument; excluded from the draft manifest as 'applicability unestablished'",
+    "TMVR rule 217 in the snapshot shows pre-2008 amounts"
+   ],
+   "evidence_required": [
+    "Telangana adaptation instrument or counsel opinion"
+   ],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Applies; include"
+    },
+    {
+     "option": "B",
+     "text": "Does not apply / undetermined; keep excluded"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "pending",
+   "authorized_approver": "legal counsel (approval authority under docs/approval-trust-model.md)",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/transport-dept/2008trb_ms332_compounding.pdf",
+     "sha256": "3fb415be037dcf3b64bd3da86b37e337256335cd9cb619df7dd8e5081a2bd533"
+    }
+   ],
+   "stage_21_questions": [
+    13
+   ],
+   "would_change_if_approved": "Draft manifest inclusion; rule 217 warnings",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "pending",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  },
+  {
+   "decision_id": "LD-011",
+   "priority": 4,
+   "subject": "Rules of the Road Regulations, 1989",
+   "question": "Confirm that the Central Rules of the Road stay excluded.",
+   "evidence_available": [
+    "User scope decision 08-11-2026: Telangana only; Central texts excluded"
+   ],
+   "evidence_required": [],
+   "proposed_options": [
+    {
+     "option": "A",
+     "text": "Confirm exclusion"
+    },
+    {
+     "option": "B",
+     "text": "Revisit scope"
+    }
+   ],
+   "proposal_note": "Options drafted by the assistant for the reviewer to choose from; none is a decision.",
+   "status": "pending",
+   "authorized_approver": "project owner (scope decision), with counsel",
+   "reviewer": {
+    "name": null,
+    "designation": null,
+    "organisation": null
+   },
+   "review_date": null,
+   "decision": null,
+   "rationale": null,
+   "conditions": [],
+   "supporting_sources": [
+    {
+     "file": "source-documents/transport-dept/rules_of_the_road_regulations_1989.pdf",
+     "sha256": "1242880c31e134e22490527f244ce38ac9a7264ad6a26782b9fad15041e1990f"
+    }
+   ],
+   "stage_21_questions": [
+    14
+   ],
+   "would_change_if_approved": "None if confirmed",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "status": "pending",
+     "by": "assistant (register created; no human decision)"
+    }
+   ]
+  }
+ ]
+}

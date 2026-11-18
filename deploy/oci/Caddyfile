@@ -1,0 +1,58 @@
+# Caddy in front of the KnowYourRules API on an OCI Always Free A1 VM. NOT installed or started by anything in this repository.
+# Caddy obtains and renews the Let's Encrypt certificate itself (HTTP-01 on port 80), so ports 80 and 443 must be open to the internet
+# and the hostname must already resolve to the VM. The backend listens on 127.0.0.1:8000 and is never opened to the network.
+#
+# Required: the environment variable KYR_DOMAIN, the full hostname, e.g. a DuckDNS name you own. No default is provided on purpose;
+# without it Caddy refuses to load this file. Set it in /etc/caddy/caddy.env and load that file from a systemd drop-in
+# (see eval/deployment/OCI-DEPLOYMENT-READINESS-AUDIT.md, "Setup"). Optional: add  email you@example.com  to the global block for
+# certificate notices; it is not set here because it would be a personal address.
+#
+# Validate without starting anything:   KYR_DOMAIN=example.duckdns.org caddy validate --config deploy/oci/Caddyfile --adapter caddyfile
+#
+# Limits here sit IN FRONT of the application's own, which stay in force: 8,192-byte body (HTTP 413), 10 questions per client per
+# minute, 2 concurrent questions, 500 sessions. The body cap below is deliberately larger than the application's so that the
+# application's own refusal wording is what a normal oversized request sees; Caddy's cap only stops a flood of huge bodies earlier.
+{
+	servers {
+		timeouts {
+			# Slow-request defence: the whole header and the whole body must arrive within these times, or the connection is closed.
+			read_header 10s
+			read_body 15s
+			# Must exceed the slowest legitimate answer (retrieval + Groq + Gemini). With PROVIDER_TIMEOUT_SECONDS=12 and
+			# PROVIDER_MAX_RETRIES=0 (deploy/oci/kyr.env.example) that is about 31 s. If you raise those, raise this too.
+			write 60s
+			idle 60s
+		}
+	}
+}
+
+{$KYR_DOMAIN} {
+	request_body {
+		max_size 16KB
+	}
+
+	header {
+		-Server
+		Strict-Transport-Security "max-age=86400"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+	}
+
+	# Only what the page needs. /ready, /approval/refresh, /docs, /openapi.json and / are not reachable from outside.
+	@api path /chat /status /health
+	handle @api {
+		reverse_proxy 127.0.0.1:8000 {
+			# One address, the real TCP peer: whatever X-Forwarded-For a client sent is discarded, so it cannot spoof its identity.
+			# The application trusts this header only from 127.0.0.1/::1 (TG_TRUSTED_PROXIES).
+			header_up X-Forwarded-For {remote_host}
+			transport http {
+				dial_timeout 5s
+				response_header_timeout 60s
+			}
+		}
+	}
+
+	handle {
+		respond "Not found" 404
+	}
+}

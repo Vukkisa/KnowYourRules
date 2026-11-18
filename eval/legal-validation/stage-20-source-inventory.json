@@ -1,0 +1,136 @@
+{
+ "stage": 20,
+ "note": "The Stage 20 request text ended partway through step 3; steps 1-3 were completed and deliverables named on the Stage 19 pattern.",
+ "counts": {
+  "files_on_disk_excl_SHA256SUMS_and_.DS_Store": 63,
+  "pdfs": 10,
+  "sha256sums_before": 58,
+  "sha256sums_after": 63,
+  "draft_manifest_entries": 20
+ },
+ "discrepancies_before": {
+  "present_and_checksummed": "58 files: 53 HTML snapshots + goir MS53, Ms54, Ms77 + 2 transport-dept PDFs",
+  "present_not_checksummed": [
+   "goir/2026TRB_Ms10.pdf",
+   "goir/2026TRB_Ms16.pdf",
+   "goir/2026TRB_Ms24.pdf",
+   "goir/2026TRB_Ms25.pdf",
+   "goir/2026TRB_Ms32.pdf"
+  ],
+  "checksum_entry_file_missing": [],
+  "draft_manifest_entry_file_missing": [],
+  "file_present_absent_from_draft_manifest": {
+   "goir/2025TRB_Ms54.pdf": "intentional: draft notification, excluded (superseded by No. 77)",
+   "transport-dept/2008trb_ms332_compounding.pdf": "not in draft manifest; reason not recorded",
+   "transport-dept/rules_of_the_road_regulations_1989.pdf": "not in draft manifest; reason not recorded",
+   "html-snapshots (non-content frames)": "index/left frames are checksummed but not manifest documents, by design"
+  },
+  "file_present_absent_from_SOURCE_MANIFEST_file_table": [
+   "goir/2026TRB_Ms10.pdf",
+   "goir/2026TRB_Ms16.pdf",
+   "goir/2026TRB_Ms24.pdf",
+   "goir/2026TRB_Ms25.pdf",
+   "goir/2026TRB_Ms32.pdf"
+  ],
+  "duplicate_or_conflicting": {
+   "duplicate_ids": [],
+   "duplicate_content": [],
+   "draft_vs_disk_sha_mismatch": [],
+   "conflicting_identity": "G.O. 77: summary-recorded TMVR-1989-GO77-2025.pdf (74a6839d...) absent and differs from held file (3de90735...); unresolved (gap G1)"
+  },
+  "outside_source_documents": {
+   "supplied/Telangana_Traffic_Law_Legal_Review_Summary.pdf": "a secondary summary, not a legal source; not checksummed in SHA256SUMS"
+  }
+ },
+ "g_os_2026": [
+  {
+   "file": "goir/2026TRB_Ms10.pdf",
+   "bytes": 28107,
+   "sha256": "df0ee9357b05ca4db9a187481ff2c8ac50c4a9d2ca05f91800e9bc4161f8c5fd",
+   "draft_manifest_id": "go-ms-10-2026-trb",
+   "g_o": "G.O.Ms.No. 10, TR&B (Tr.I)",
+   "dated": "25-02-2026",
+   "document_type": "commencement notification for Act No. 8 of 2026 (TMVT Amendment Act)",
+   "draft_manifest_sha_matches": true,
+   "download_origin": "https://goir.telangana.gov.in/Default.aspx",
+   "note": "the Act itself is not held"
+  },
+  {
+   "file": "goir/2026TRB_Ms16.pdf",
+   "bytes": 19604,
+   "sha256": "139f96454954a4b77b3f07a796946827c29a81754f9a782e3e25dd5dfc76e0d5",
+   "draft_manifest_id": "go-ms-16-2026-trb",
+   "g_o": "G.O.Ms.No. 16, TR&B (Tr.I)",
+   "dated": "20-03-2026",
+   "document_type": "notification amending the TMVT Act Seventh Schedule",
+   "draft_manifest_sha_matches": true,
+   "download_origin": "https://goir.telangana.gov.in/Default.aspx",
+   "note": "text: in force from 23.03.2026; affects No. 53's Seventh Schedule chunk (superseded-in-part flag pending)"
+  },
+  {
+   "file": "goir/2026TRB_Ms24.pdf",
+   "bytes": 35456,
+   "sha256": "ba0c9516575ed081181da4288c1395a19ad416bc9e9981c56f65b522b7007905",
+   "draft_manifest_id": "go-ms-24-2026-trb",
+   "g_o": "G.O.Ms.No. 24, TR&B (TR-I)",
+   "dated": "01-06-2026",
+   "document_type": "notification under CMV Rule 167 (challan disposal authorities): DRAFT OR FINAL UNRESOLVED",
+   "draft_manifest_sha_matches": true,
+   "download_origin": "https://goir.telangana.gov.in/Default.aspx",
+   "note": "order 'decided to publish the draft Notification', yet the notification 'shall come into force from the date of its publication'"
+  },
+  {
+   "file": "goir/2026TRB_Ms25.pdf",
+   "bytes": 26515,
+   "sha256": "c9bd1ff3a7e02a3c5324965835dd81ddea9f30df831adf0cb4387f8d3f374872",
+   "draft_manifest_id": "go-ms-25-2026-trb",
+   "g_o": "G.O.Ms.No. 25, TR&B (TR-I)",
+   "dated": "01-06-2026",
+   "document_type": "notification under CMV Rule 167 (electronic challans)",
+   "draft_manifest_sha_matches": true,
+   "download_origin": "https://goir.telangana.gov.in/Default.aspx",
+   "note": ""
+  },
+  {
+   "file": "goir/2026TRB_Ms32.pdf",
+   "bytes": 21096,
+   "sha256": "4bb6273f8c13c08d7e15a64ad063c4ad868beaf527c469c6f1975b71a57f8629",
+   "draft_manifest_id": "go-ms-32-2026-trb",
+   "g_o": "G.O.Ms.No. 32, TR&B (TR.I)",
+   "dated": "30-06-2026",
+   "document_type": "order notifying a Designated Authority under CMV Rule 167A(1)",
+   "draft_manifest_sha_matches": true,
+   "download_origin": "https://goir.telangana.gov.in/Default.aspx",
+   "note": ""
+  }
+ ],
+ "g_os_2026_common": "each: user download from GOIR on 09-11-2026 (ingestion report section 7), macOS origin goir.telangana.gov.in, not digitally signed, no Gazette print held; checksum added = file integrity only, not legal status",
+ "missing_earlier_g_os": {
+  "ids": [
+   "G.O.Ms.No. 02 (17-06-2014)",
+   "G.O.Ms.No. 41 (29-09-2015)",
+   "G.O.Ms.No. 44 (15-10-2015)",
+   "G.O.Ms.No. 95 (08-12-2016)",
+   "G.O.Ms.No. 26 (24-04-2017)",
+   "G.O.Ms.No. 52 (11-04-2018)"
+  ],
+  "searched": "both checkouts (all files, by G.O. date strings; all PDFs), SHA256SUMS, draft manifest, SOURCE-MANIFEST.md, supplied summary PDF",
+  "found": "citations only (G.O. 54/77 text, SOURCE-MANIFEST.md, benchmark/eval files); no copy of any order",
+  "not_to_confuse": "the supplied summary's TMVTA-1963-GOMS10-2014 is G.O.Ms.No. 10 of 2014 (tax exemption), not G.O.Ms.No. 02 of 2014",
+  "relationship_to_rule_81": "cited in the 'Read' list of G.O. 54 and G.O. 77 (Rule 81 amendments); content and effect on Rule 81 unknown"
+ },
+ "changes": {
+  "SHA256SUMS": "+5 lines (58 -> 63)",
+  "SOURCE-MANIFEST.md": "+5 file-table rows; Stage 19 note updated",
+  "backups": "eval/legal-validation/stage-20-originals/"
+ },
+ "validation": {
+  "shasum_c": "63/63 OK",
+  "source_compare_checksums": {
+   "ok": 63,
+   "mismatch": 0,
+   "missing": 0
+  },
+  "tests": "672 OK default, 672 OK hnsw"
+ }
+}

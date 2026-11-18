@@ -1,0 +1,66 @@
+{
+ "stage": 25,
+ "date": "2026-11-11",
+ "registry": {
+  "path": "legal-status/source-status.json",
+  "sha256": "5a174820fbd2a3567c98d3e1dc0ad86391bd8f2012ee675d2ccd56437afaf1cf",
+  "schema_version": 1,
+  "entries": 20,
+  "status_counts": {
+   "unverified_snapshot": 13,
+   "official_text_commencement_unconfirmed": 7
+  },
+  "provision_overrides": [
+   {
+    "file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm",
+    "provision_id": "Rule 81",
+    "status": "known_amendments_unresolved",
+    "related_instruments": [
+     "G.O.Ms.No. 77, TR&B, 15-11-2025"
+    ],
+    "decision_refs": [
+     "LD-001",
+     "LD-002"
+    ]
+   }
+  ],
+  "verified_current_entries": 0,
+  "reviewer_fields_filled": 0,
+  "assignment_basis": "documents: draft manifest source_class (unverified_snapshot -> unverified_snapshot; official -> official_text_commencement_unconfirmed); Rule 81 override: recorded Stage 19-22 facts. Assigned by the assistant; not legal decisions."
+ },
+ "validation_results": {
+  "against_preview_index_copy": "valid: 20/20 indexed documents have entries; no hash mismatch",
+  "against_corpus_files": "valid: all 20 registered files hash to their registry SHA-256",
+  "against_SHA256SUMS_and_draft_manifest": "all 20 match (test ShippedRegistryTests)",
+  "source_checksums": "63/63 OK"
+ },
+ "rejection_rules_tested": [
+  "unknown status",
+  "malformed hash (uppercase, short, empty, null, non-hex)",
+  "duplicate sha256",
+  "duplicate file name",
+  "duplicate provision override",
+  "unknown or missing keys",
+  "empty entries",
+  "verified_current without complete review",
+  "partly filled review",
+  "placeholder reviewer",
+  "future review date",
+  "verified_current without decision ref",
+  "known_amendments_unresolved without instrument",
+  "invalid decision id",
+  "missing evidence provenance",
+  "missing assigned_by",
+  "missing registry entry for indexed document",
+  "hash mismatch with index",
+  "hash mismatch with corpus file",
+  "registered file missing from corpus",
+  "unreadable or malformed JSON (fails closed: all sources 'status not recorded')"
+ ],
+ "governance": {
+  "LD-001": "evidence_incomplete (unchanged)",
+  "LD-002": "evidence_incomplete (unchanged)",
+  "rule81_answer_eligible": "unchanged (True)",
+  "rule81_marked_current": false
+ }
+}

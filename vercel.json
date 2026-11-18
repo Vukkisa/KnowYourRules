@@ -1,0 +1,5 @@
+{
+  "functions": {
+    "backend/vercel_app.py": { "maxDuration": 300 }
+  }
+}

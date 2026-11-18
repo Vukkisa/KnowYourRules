@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "fixture": true,
+  "note": "SYNTHETIC TEST FIXTURE. Every name, number, date and approval here is invented. Not legal data.",
+  "interval_rule": {
+    "rule": "day_before_successor_start",
+    "decision_ref": "LD-905"
+  },
+  "freshness_window": {
+    "days": 365,
+    "decision_ref": "LD-906"
+  },
+  "instruments": [
+    {
+      "key": "TG:ACT:S5/2900",
+      "kind": "ACT",
+      "jurisdiction": "TG"
+    },
+    {
+      "key": "TG:GO:S53/2901",
+      "kind": "GO",
+      "jurisdiction": "TG",
+      "manifest_ids": [
+        "synthetic-go53"
+      ]
+    },
+    {
+      "key": "TG:GO:S16/2902",
+      "kind": "GO",
+      "jurisdiction": "TG",
+      "manifest_ids": [
+        "synthetic-go16"
+      ]
+    }
+  ],
+  "provisions": [
+    {
+      "key": "TG:ACT:S5/2900#sch7"
+    },
+    {
+      "key": "TG:ACT:S5/2900#sch7.col1",
+      "parent": "TG:ACT:S5/2900#sch7"
+    },
+    {
+      "key": "TG:ACT:S5/2900#sch7.col8",
+      "parent": "TG:ACT:S5/2900#sch7"
+    }
+  ],
+  "operations": [
+    {
+      "id": "OP-S53-1",
+      "type": "substitute",
+      "source": "TG:GO:S53/2901",
+      "locator": "synthetic para 2",
+      "targets": [
+        "TG:ACT:S5/2900#sch7.col1",
+        "TG:ACT:S5/2900#sch7.col8"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 29010301,
+        "date": 29010301,
+        "decision_ref": "LD-901"
+      },
+      "decision_ref": "LD-901"
+    },
+    {
+      "id": "OP-S16-1",
+      "type": "delete",
+      "source": "TG:GO:S16/2902",
+      "locator": "synthetic para 4",
+      "targets": [
+        "TG:ACT:S5/2900#sch7.col8"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 29020601,
+        "date": 29020601,
+        "decision_ref": "LD-902"
+      },
+      "decision_ref": "LD-902"
+    },
+    {
+      "id": "OP-S16-scope",
+      "type": "scope_note",
+      "source": "TG:GO:S16/2902",
+      "targets": [
+        "TG:ACT:S5/2900#sch7.col8"
+      ],
+      "scope_note": "synthetic: at registration of new vehicles only"
+    }
+  ],
+  "versions": [
+    {
+      "key": "TG:ACT:S5/2900#sch7.col1@0",
+      "provision": "TG:ACT:S5/2900#sch7.col1",
+      "text": "not_held",
+      "closed_by_op": "OP-S53-1",
+      "end": {
+        "state": "closed"
+      }
+    },
+    {
+      "key": "TG:ACT:S5/2900#sch7.col1@1",
+      "provision": "TG:ACT:S5/2900#sch7.col1",
+      "text": "held",
+      "created_by_op": "OP-S53-1",
+      "end": {
+        "state": "continuing_verified",
+        "checked_through": 29100101,
+        "decision_ref": "LD-903"
+      }
+    },
+    {
+      "key": "TG:ACT:S5/2900#sch7.col8@0",
+      "provision": "TG:ACT:S5/2900#sch7.col8",
+      "text": "not_held",
+      "closed_by_op": "OP-S53-1",
+      "end": {
+        "state": "closed"
+      }
+    },
+    {
+      "key": "TG:ACT:S5/2900#sch7.col8@1",
+      "provision": "TG:ACT:S5/2900#sch7.col8",
+      "text": "held",
+      "created_by_op": "OP-S53-1",
+      "closed_by_op": "OP-S16-1",
+      "end": {
+        "state": "closed"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "selector": {
+        "manifest_id": "synthetic-go53",
+        "sha256": "dd1d127d1e7828fe30056c0185399194d99240d03bcf702af1d9b455ed1186c1",
+        "provision_id": "SEVENTH SCHEDULE",
+        "part": 1,
+        "parts": 1,
+        "page_start": 3,
+        "page_end": 4,
+        "text_sha256": "7db578b48e318a46c4419bf21fe07c43a2c72e1ffce98b4faabe425039fd7a65"
+      },
+      "provisions": [
+        "TG:ACT:S5/2900#sch7.col1",
+        "TG:ACT:S5/2900#sch7.col8"
+      ],
+      "decision_ref": "LD-904"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "LD-901",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-902",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-903",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-904",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-905",
+      "status": "approved",
+      "subject": "interval rule",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-906",
+      "status": "approved",
+      "subject": "freshness",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    }
+  ]
+}

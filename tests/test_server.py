@@ -48,7 +48,9 @@ class FakeChroma:
         SEARCH_LOG.append(filter)
         state = (filter or {}).get("state")
         docs = [d for d in CORPUS if d.metadata["state"] == state][:k]
-        if FAKE_SEARCH["fn"]:
+        # The server searches each served state (Telangana, then Central). A test's FAKE_SEARCH function stands for the
+        # Telangana search; the Central search just returns the fixture's Central chunks, if it has any.
+        if FAKE_SEARCH["fn"] and state == "Telangana":
             return FAKE_SEARCH["fn"](query, state, docs)
         return [(d, RELEVANT_DISTANCE) for d in docs]
 
@@ -74,6 +76,9 @@ FAKE_LLM = {"fn": lambda prompt: "stub answer"}
 
 # Most tests here exercise the legacy pipeline, which only runs in explicit development mode.
 DEFAULT_TEST_ENV = {"TG_LEGACY_DEV_ANSWERS": "1", "TG_ENVIRONMENT": "development",
+                    # OCI pilot Stage 1: these tests share one server and one client address; the per-IP limit is tested in
+                    # test_api_protection.py (it unsets this), so it must not throttle unrelated behaviour tests here.
+                    "TG_RATE_LIMIT_REQUESTS": "1000",
                     # Stage 25: never the real registry in tests; absent = every source warns "status not recorded"
                     "TG_SOURCE_STATUS_FILE": str(Path(__file__).resolve().parent / "no-source-status.json")}
 STATUS_NOT_RECORDED = "\n\nSource status:\n"  # Stage 25: fixed-template warnings follow the answer text
@@ -180,9 +185,13 @@ class IndexStatusTests(Base):
     def test_unreadable_index_is_reported(self):
         self.assertEqual(srv.inspect_index(FakeStore(error=OSError("disk error")))["index"], "invalid")
 
-    def test_non_telangana_or_untagged_chunks_make_index_invalid(self):
-        for metas in ([{"state": "Telangana"}, {"state": "Central"}], [{"state": "Telangana"}, {"source_file": "x"}]):
+    def test_other_state_untagged_or_central_only_chunks_make_index_invalid(self):
+        # Telangana plus the separately tagged Central chunks is a valid index; any other state, an untagged chunk, or an
+        # index with no Telangana chunk at all is not.
+        for metas in ([{"state": "Telangana"}, {"state": "Gujarat"}], [{"state": "Telangana"}, {"source_file": "x"}],
+                      [{"state": "Central"}]):
             self.assertEqual(srv.inspect_index(FakeStore(metas))["index"], "invalid", metas)
+        self.assertEqual(srv.inspect_index(FakeStore([{"state": "Telangana"}, {"state": "Central"}]))["index"], "ready")
 
     def test_open_store_does_not_create_missing_directory(self):
         missing = Path(__file__).resolve().parent / "no-such-index-dir"
@@ -209,17 +218,26 @@ class IndexStatusTests(Base):
 
 
 class TelanganaRetrievalTests(Base):
-    def test_retrieval_is_always_filtered_to_telangana(self):
+    def test_retrieval_is_always_filtered_to_the_served_states(self):
         self.post("How do I get a learner's licence?")
         self.assertTrue(SEARCH_LOG)
-        self.assertTrue(all(f == {"state": "Telangana"} for f in SEARCH_LOG), SEARCH_LOG)
+        self.assertTrue(all(f in ({"state": "Telangana"}, {"state": "Central"}) for f in SEARCH_LOG), SEARCH_LOG)
+        self.assertEqual({f["state"] for f in SEARCH_LOG}, {"Telangana", "Central"})
 
-    def test_central_chunks_never_reach_the_prompt(self):
-        FAKE_SEARCH["fn"] = lambda q, state, docs: [(CENTRAL_DOC, 0.1)] + [(d, 0.3) for d in docs]
+    def test_other_state_chunks_never_reach_the_prompt(self):
+        other = Document(page_content="184. Driving dangerously.", metadata={"state": "Gujarat", "source_file": CENTRAL_FILE})
+        FAKE_SEARCH["fn"] = lambda q, state, docs: [(other, 0.1)] + [(d, 0.3) for d in docs]
         self.post("How do I get a learner's licence?")
         prompt = self.log["answer"][-1]
         self.assertIn("Learner's licence application", prompt)
         self.assertNotIn("Driving dangerously", prompt)
+
+    def test_central_chunks_are_served_only_under_their_own_central_tag(self):
+        FAKE_SEARCH["fn"] = lambda q, state, docs: [(CENTRAL_DOC, 0.1)] + [(d, 0.3) for d in docs]
+        self.post("How do I get a learner's licence?")
+        prompt = self.log["answer"][-1]
+        self.assertIn("Driving dangerously", prompt)       # a Central chunk is evidence only because it is tagged Central
+        self.assertEqual(CENTRAL_DOC.metadata["state"], "Central")
 
     def test_chunks_flagged_not_answer_eligible_never_reach_the_prompt(self):
         flagged = Document(page_content="Flagged synthetic table text.",
@@ -232,7 +250,7 @@ class TelanganaRetrievalTests(Base):
 
     def test_prompt_says_central_law_is_not_covered(self):
         self.post("How do I get a learner's licence?")
-        self.assertIn("does NOT include the Central Motor Vehicles Act", self.log["answer"][-1])
+        self.assertIn("It does NOT\ninclude the Central Motor Vehicles Rules, 1989", self.log["answer"][-1])
 
 
 class OutOfScopeTests(Base):
@@ -291,11 +309,14 @@ class PenaltyLockTests(Base):
         for q in ("How do I get a learner's licence?", "life tax for a new car", "documents to carry"):
             self.assertFalse(srv.is_penalty_question(q), q)
 
-    def test_penalty_answers_need_the_enable_flag(self):
+    def test_penalty_answers_stay_locked_even_with_the_enable_flag(self):
+        # Changed with the /chat release-gate integration: the Telangana fine gate is locked in code
+        # (release_gates.TELANGANA_LOCKED), so PENALTY_ANSWERS_ENABLED no longer lifts the lock in /chat.
         with mock.patch.object(srv, "PENALTY_ANSWERS_ENABLED", True):
             self.use(answer="grounded answer")
             r = self.post(self.QUESTIONS[0])
-        self.assertEqual(r.json()["kind"], "development")
+        self.assertEqual(r.json()["kind"], "restricted")
+        self.assert_no_model_answer()
 
     def test_penalty_flag_alone_does_not_enable_answers(self):
         with mock.patch.dict(os.environ, {"TG_PENALTY_ANSWERS": "1", "TG_KB_APPROVED": ""}):
@@ -769,7 +790,10 @@ class ResponseShapeTests(Base):
     def test_answer_has_kind_sources_and_approval_flag(self):
         r = self.post("How do I apply for a learner's licence?").json()
         # Changed in Stage 25: additive field source_warnings; existing fields unchanged.
-        self.assertEqual(set(r), {"response", "kind", "sources", "kb_approved", "source_warnings"})
+        # Changed with the /chat release-gate integration: additive offence_date, law_band, notes (null/empty undated).
+        self.assertEqual(set(r), {"response", "kind", "sources", "kb_approved", "source_warnings",
+                                  "offence_date", "law_band", "notes"})
+        self.assertEqual((r["offence_date"], r["law_band"], r["notes"]), (None, None, []))
         self.assertEqual(r["kind"], "development")
         self.assertFalse(r["kb_approved"])
         self.assertEqual([s["file"] for s in r["sources"]], [TG_RULES_FILE, TG_TAX_FILE])
@@ -783,6 +807,11 @@ class ResponseShapeTests(Base):
         with mock.patch.dict(srv.SOURCES, {TG_RULES_SHA: ("The Telangana Motor Vehicles Rules, 1989", "Rules")}):
             r = self.post("How do I apply for a learner's licence?").json()
             prompt = self.log["answer"][-1]
+        passages = r["sources"][0].pop("passages")  # the cited chunk text, for the UI's "View source"
+        files = r["sources"][0].pop("files")  # every file of the row; "file" and "sha256" are the first
+        self.assertEqual([(f["file"], f["sha256"]) for f in files], [(TG_RULES_FILE, TG_RULES_SHA)])
+        self.assertIsNone(r["sources"][0].pop("document_id"))  # these fixture chunks carry no manifest_id
+        self.assertTrue(passages and all(p["label"] and p["text"] for p in passages))
         self.assertEqual(r["sources"][0], {"title": "The Telangana Motor Vehicles Rules, 1989", "instrument": "Rules",
                                            "verified": True, "file": TG_RULES_FILE, "sha256": TG_RULES_SHA,
                                            # Stage 25: approval ("verified") never implies a text status
@@ -988,7 +1017,7 @@ class CentralRuleReferenceTests(Base):
         q = "Why did Telangana notify a Designated Authority under Rule 167A?"
         self.assertEqual(srv.missing_references(q), ([], []))
         self.assertEqual(self.post(q).json()["kind"], "development")
-        self.assertEqual(len(SEARCH_LOG), 1)
+        self.assertEqual(len(SEARCH_LOG), len(srv.SERVED_STATES))      # one filtered search per served state
         q = "Who is the authority under Rule 167A(1) of the Central Motor Vehicles Rules?"
         self.assertEqual(self.post(q, sid="t").json()["kind"], "development")
 
@@ -1101,14 +1130,12 @@ class GroundedAnswerIntegrationTests(Base):
         fields.update(overrides)
         return self.la.ApprovalRecord(**fields)
 
-    def approve(self, state="valid", generator=None, **overrides):
-        rec = self.record(**overrides)
-        status = self.la.ApprovalStatus(state, [], rec)
-        self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded", APPROVAL=status, KB_APPROVED=status.general_answers,
-                   PENALTY_ANSWERS_ENABLED=status.penalty_answers, TRUSTED_KEYS_FILE=Path("trusted-keys.test"),
-                   CORPUS_DIR=Path("corpus.test"), EXPECTED_CORPUS_VERSION="test-v1",
-                   ANSWER_GENERATOR=generator or self.mock, ensure_approval_current=lambda: None,
-                   SOURCE_STATUS=fixture_registry(TG_RULES_SHA, TG_RULES_FILE))
+    def approve(self, generator=None, **_ignored):
+        """Grounded mode with every remaining prerequisite met. No signed approval record exists any more (the gate was
+        removed); the name is kept so existing tests read unchanged."""
+        self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded", PENALTY_ANSWERS_ENABLED=False,
+                   CORPUS_DIR=Path("corpus.test"), ANSWER_GENERATOR=generator or self.mock, _STALE=False,
+                   ensure_approval_current=lambda: None, SOURCE_STATUS=fixture_registry(TG_RULES_SHA, TG_RULES_FILE))
         p = mock.patch.dict(srv.SOURCES, {TG_RULES_SHA: ("Synthetic Motor Rules", "Rules")}, clear=True)
         p.start()
         self.addCleanup(p.stop)
@@ -1139,24 +1166,8 @@ class GroundedAnswerIntegrationTests(Base):
         self.assertEqual((self.mock.calls, self.model_calls), ([], []))
 
     def test_every_missing_prerequisite_blocks_generation(self):
-        cases = {
-            "invalid approval": dict(state="invalid"),
-            "stale approval": dict(state="stale"),
-            "unresolved conditions": dict(unresolved_conditions=1),
-            "general answers not approved": dict(general_answers_approved=False),
-            "penalty approval on": dict(penalty_answers_approved=True),
-            "corpus version mismatch": dict(corpus_version="other"),
-        }
-        for name, overrides in cases.items():
-            with self.subTest(name):
-                mock.patch.stopall()
-                self.approve(**overrides)
-                FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.ELIGIBLE, 0.3)]
-                r = self.ask(sid=name)
-                self.assertEqual(r["kind"], "unavailable", name)
-                self.assertEqual(self.mock.calls, [], name)
-        for attr, value in (("TRUSTED_KEYS_FILE", None), ("CORPUS_DIR", None), ("EXPECTED_CORPUS_VERSION", None),
-                            ("KB_APPROVED", False), ("PENALTY_ANSWERS_ENABLED", True)):
+        for attr, value in (("CORPUS_DIR", None), ("PENALTY_ANSWERS_ENABLED", True), ("_STALE", True),
+                            ("SOURCE_STATUS", srv.source_status.Registry("absent", ["not loaded"]))):
             with self.subTest(attr):
                 mock.patch.stopall()
                 self.approve()
@@ -1166,10 +1177,16 @@ class GroundedAnswerIntegrationTests(Base):
                 self.assertEqual(self.mock.calls, [], attr)
         self.assertEqual(self.model_calls, [])
 
-    def test_gate_reads_live_approval_state(self):
+    def test_no_signed_approval_record_is_required(self):
         self.approve()
         self.assertEqual(srv.grounded_gate_errors(), [])
-        self.patch(APPROVAL=self.la.ApprovalStatus("stale", ["changed"], self.record()), KB_APPROVED=False)
+        self.assertFalse(srv.KB_APPROVED)   # reported to the unchanged UI; never used to allow or block an answer
+        self.assertEqual(self.ask()["kind"], "answer")
+
+    def test_gate_reads_live_staleness(self):
+        self.approve()
+        self.assertEqual(srv.grounded_gate_errors(), [])
+        self.patch(_STALE=True)
         self.assertEqual(self.ask()["kind"], "unavailable")
         self.assertEqual(self.mock.calls, [])
 
@@ -1232,11 +1249,13 @@ class GroundedAnswerIntegrationTests(Base):
             self.assertEqual((r["kind"], r["response"]), ("no_support", srv.NO_SUPPORT_MESSAGE))
         self.assertEqual(self.model_calls, [])
 
-    def test_unapproved_document_never_reaches_the_generator(self):
-        stranger = Document(page_content="Rule 5. Unapproved text.", metadata={
-            **self.ELIGIBLE.metadata, "sha256": "f" * 64, "source_file": "other.pdf"})
+    def test_a_document_the_lifecycle_does_not_serve_never_reaches_the_generator(self):
         self.approve()
-        FAKE_SEARCH["fn"] = lambda q, s, docs: [(stranger, 0.3)]
+        not_served = mock.Mock(enabled=True, ready=lambda: True, servable=lambda h: False, servable_on=lambda h, d: False,
+                               digest=lambda: "lifecycle-test",
+                               health=lambda: {"enabled": True, "state": "ok", "ready": True, "servable_documents": 1})
+        self.patch(LIFECYCLE=not_served)
+        FAKE_SEARCH["fn"] = lambda q, s, docs: [(self.ELIGIBLE, 0.3)]
         self.assertEqual(self.ask()["kind"], "no_support")
         self.assertEqual(self.mock.calls, [])
 
@@ -1309,19 +1328,20 @@ class AnswerModeTests(unittest.TestCase):
         s, client = self.server(TG_GROUNDED_ANSWERS="1")
         gen = __import__("backend.grounded_answer", fromlist=["x"]).MockGenerator("{}")
         s.ANSWER_GENERATOR = gen
-        self.assertEqual((s.ANSWER_MODE, s.APPROVAL.state), ("grounded", "absent"))
+        self.assertEqual(s.ANSWER_MODE, "grounded")
         self.assertIsNone(s.llm)
         self.assert_safe_refusals(s, client)
         self.assertEqual(gen.calls, [])
 
-    def test_grounded_mode_with_invalid_approval(self):
+    def test_malformed_approval_file_is_ignored(self):
         import tempfile
         with tempfile.TemporaryDirectory() as tmp:
             bad = Path(tmp) / "approval.json"
             bad.write_text("{not a record", encoding="utf-8")
             s, client = self.server(TG_GROUNDED_ANSWERS="1", TG_APPROVAL_FILE=str(bad))
-        self.assertEqual(s.APPROVAL.state, "invalid")
-        self.assertTrue(s.grounded_gate_errors())
+        status = client.get("/status").json()
+        self.assertEqual((status["approval"], status["approval_errors"]), ("not_required", []))
+        self.assertFalse(status["kb_approved"])   # the unchanged UI keeps showing "Pending counsel"
         self.assert_safe_refusals(s, client)
 
     def test_legacy_dev_mode_explicitly_enabled_is_labelled(self):
@@ -1457,16 +1477,19 @@ class DeploymentConfigTests(unittest.TestCase):
         s, _ = self.server(self.DEV_DOTENV, TG_ENVIRONMENT="development")
         self.assertEqual((s.ANSWER_MODE, s.llm), ("disabled", None))
 
-    def test_grounded_mode_still_requires_approval(self):
+    def test_grounded_mode_still_requires_its_remaining_prerequisites(self):
         s, client = self.server(TG_GROUNDED_ANSWERS="1", TG_ENVIRONMENT="production")
         self.assertEqual(s.ANSWER_MODE, "grounded")
-        self.assertIn("legal approval is absent", s.grounded_gate_errors())
+        errors = s.grounded_gate_errors()
+        self.assertTrue(errors)
+        self.assertFalse([e for e in errors if "approval" in e])   # no signed approval record is a prerequisite any more
         self.assertEqual(self.post(client)["kind"], "unavailable")
         self.assertEqual(self.calls, [])
 
     # --- entry points ---
     EXPECTED_ROUTES = {("POST", "/chat"), ("POST", "/approval/refresh"), ("GET", "/status"), ("GET", "/health"),
-                       ("GET", "/"), ("MOUNT", "/static")}
+                       ("GET", "/ready"), ("GET", "/"), ("MOUNT", "/static"),
+                       ("GET", "/release-gates")}  # reviewed: read-only, nothing in the answer path reads it
 
     def routes(self, app):
         out = set()

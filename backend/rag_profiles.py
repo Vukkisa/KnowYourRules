@@ -1,6 +1,6 @@
 """Retrieval profiles: how documents are chunked and embedded, and the matching relevance gate.
 
-build_index.py records the profile it used in the Chroma collection's metadata ("rag_profile") and
+build_telangana_index.py records the profile it used in the Chroma collection's metadata ("rag_profile") and
 server.py reads it back at startup, so queries are always embedded the same way as the index. An index
 built before profiles existed has no such metadata and is treated as "baseline".
 

@@ -1,0 +1,80 @@
+{
+ "n_docs": 590,
+ "n_questions": 108,
+ "ollama_vs_stored_docs_cosine": {
+  "min": 1.0,
+  "p01": 1.0,
+  "mean": 1.0,
+  "max": 1.0000001192092896
+ },
+ "ollama_norms": {
+  "min": 0.9999994039535522,
+  "max": 1.0000005960464478
+ },
+ "gguf_blob": "sha256:970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6",
+ "torch_fp32_query_seconds_total": 1.8,
+ "torch_fp32_doc_seconds_total": 73.3,
+ "variants": {
+  "mean_pool_l2 (llama.cpp/Ollama behaviour)": {
+   "docs_vs_ollama_cosine": {
+    "min": 0.9999996423721313,
+    "p01": 0.9999996954202652,
+    "mean": 1.0,
+    "max": 1.0000001192092896
+   },
+   "queries_vs_ollama_cosine": {
+    "min": 0.999999463558197,
+    "p01": 0.9999994677305222,
+    "mean": 0.9999998807907104,
+    "max": 1.0000001192092896
+   },
+   "docs_vs_stored_cosine": {
+    "min": 0.9999996423721313,
+    "p01": 0.9999996954202652,
+    "mean": 1.0,
+    "max": 1.0000001192092896
+   },
+   "docs_max_abs_diff_vs_ollama": 0.00011775176972150803
+  },
+  "layernorm_then_l2 (published ST recipe)": {
+   "docs_vs_ollama_cosine": {
+    "min": 0.9999523162841797,
+    "p01": 0.9999556088447571,
+    "mean": 0.9999758005142212,
+    "max": 0.9999926090240479
+   },
+   "queries_vs_ollama_cosine": {
+    "min": 0.9999265670776367,
+    "p01": 0.9999498450756072,
+    "mean": 0.9999784827232361,
+    "max": 0.999994158744812
+   },
+   "docs_vs_stored_cosine": {
+    "min": 0.9999523162841797,
+    "p01": 0.9999556088447571,
+    "mean": 0.9999758005142212,
+    "max": 0.9999926090240479
+   },
+   "docs_max_abs_diff_vs_ollama": 0.0004230514168739319
+  }
+ },
+ "retrieval": {
+  "mean_pool_l2": {
+   "top1_same": 1.0,
+   "top5_set_same": 0.9907407407407407,
+   "top10_set_same": 1.0,
+   "top5_order_same": 0.9907407407407407
+  },
+  "layernorm_then_l2": {
+   "top1_same": 1.0,
+   "top5_set_same": 0.9907407407407407,
+   "top10_set_same": 1.0,
+   "top5_order_same": 0.9907407407407407
+  }
+ },
+ "token_count_check": {
+  "texts": 226,
+  "mismatches": 0,
+  "examples": []
+ }
+}

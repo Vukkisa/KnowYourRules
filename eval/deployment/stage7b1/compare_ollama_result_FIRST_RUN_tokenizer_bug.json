@@ -1,0 +1,122 @@
+{
+ "n_docs": 590,
+ "n_questions": 108,
+ "ollama_embed_seconds": 84.2,
+ "ollama_vs_stored_docs_cosine": {
+  "min": 1.0,
+  "p01": 1.0,
+  "mean": 1.0,
+  "max": 1.0000001192092896
+ },
+ "ollama_norms": {
+  "min": 0.9999994039535522,
+  "max": 1.0000005960464478
+ },
+ "gguf_blob": "sha256:970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6",
+ "torch_fp32_query_seconds_total": 1.8,
+ "torch_fp32_doc_seconds_total": 70.1,
+ "variants": {
+  "mean_pool_l2 (llama.cpp/Ollama behaviour)": {
+   "docs_vs_ollama_cosine": {
+    "min": 0.273000031709671,
+    "p01": 0.3247503983974457,
+    "mean": 0.42739370465278625,
+    "max": 0.5807862281799316
+   },
+   "queries_vs_ollama_cosine": {
+    "min": 0.324125736951828,
+    "p01": 0.3353984341025352,
+    "mean": 0.43245869874954224,
+    "max": 0.5751317739486694
+   },
+   "docs_vs_stored_cosine": {
+    "min": 0.273000031709671,
+    "p01": 0.3247503983974457,
+    "mean": 0.42739370465278625,
+    "max": 0.5807862281799316
+   },
+   "docs_max_abs_diff_vs_ollama": 0.1837993711233139
+  },
+  "layernorm_then_l2 (published ST recipe)": {
+   "docs_vs_ollama_cosine": {
+    "min": 0.2729965150356293,
+    "p01": 0.32474578231573104,
+    "mean": 0.4273654520511627,
+    "max": 0.580734133720398
+   },
+   "queries_vs_ollama_cosine": {
+    "min": 0.324094295501709,
+    "p01": 0.33534975826740265,
+    "mean": 0.4324219524860382,
+    "max": 0.5750805735588074
+   },
+   "docs_vs_stored_cosine": {
+    "min": 0.2729965150356293,
+    "p01": 0.32474578231573104,
+    "mean": 0.4273654520511627,
+    "max": 0.580734133720398
+   },
+   "docs_max_abs_diff_vs_ollama": 0.18360839784145355
+  }
+ },
+ "retrieval": {
+  "mean_pool_l2": {
+   "top1_same": 0.018518518518518517,
+   "top5_set_same": 0.0,
+   "top10_set_same": 0.0,
+   "top5_order_same": 0.0
+  },
+  "layernorm_then_l2": {
+   "top1_same": 0.018518518518518517,
+   "top5_set_same": 0.0,
+   "top10_set_same": 0.0,
+   "top5_order_same": 0.0
+  }
+ },
+ "token_count_check": {
+  "texts": 226,
+  "mismatches": 138,
+  "examples": [
+   {
+    "text": "search_query: What does Rule 437 of the Telangana Motor Vehicles Rules say?",
+    "ollama": 19,
+    "ours": 18
+   },
+   {
+    "text": "search_query: What does Rule 2 of the TMVR define?",
+    "ollama": 17,
+    "ours": 15
+   },
+   {
+    "text": "search_query: Explain TMVR Rule 371 on taxi-meters.",
+    "ollama": 18,
+    "ours": 15
+   },
+   {
+    "text": "search_query: What is Rule 427 about?",
+    "ollama": 13,
+    "ours": 12
+   },
+   {
+    "text": "search_query: What does TMVR Rule 244 say?",
+    "ollama": 15,
+    "ours": 13
+   },
+   {
+    "text": "search_query: What does Rule 389A provide?",
+    "ollama": 14,
+    "ours": 12
+   },
+   {
+    "text": "search_query: What does Rule 177 say about permits for autorickshaws?",
+    "ollama": 19,
+    "ours": 16
+   },
+   {
+    "text": "search_query: What does Rule 294A say about motor cycle taxis?",
+    "ollama": 17,
+    "ours": 16
+   }
+  ]
+ }
+}

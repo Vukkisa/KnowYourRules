@@ -1,0 +1,3594 @@
+{
+  "schema_version": 1,
+  "name": "Telangana retrieval benchmark",
+  "corpus": "preview index, 20 documents, 586 chunks (09-11-2026)",
+  "labelling": "All expected labels are machine-generated candidates written from provision headings and source text, with passages copied verbatim from the indexed chunks. None is human-confirmed. A reviewer sets reviewer_status to 'human_confirmed' (or 'human_rejected') after checking the case against the original source, and fills reviewed_by and reviewed_on.",
+  "reviewer_status_values": [
+    "pending_human_review",
+    "human_confirmed",
+    "human_rejected"
+  ],
+  "cases": [
+    {
+      "id": "TG-DL-001",
+      "category": "direct_lookup",
+      "question": "What does Rule 437 of the Telangana Motor Vehicles Rules say?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 437"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 437",
+          "chunk_id": "tmvr-1989-chap-8::Rule 437::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#42",
+          "source_passage": "437. Crash helmets to be worn : - The protective headgear under Section 129 shall be a standard one."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-002",
+      "category": "direct_lookup",
+      "question": "What does Rule 2 of the TMVR define?",
+      "expected_documents": [
+        "tmvr-1989-chap-1"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-1::Rule 2"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-1",
+          "provision": "Rule 2",
+          "chunk_id": "tmvr-1989-chap-1::Rule 2::part1of2",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-1.htm#2",
+          "source_passage": "2. Definitions:- (1) In these rules, unless the context otherwise requires,- » ‘Act' means the Motor Vehicles Act, 1988 (Central Act 59 of 1988) ; » ‘Express State Carriage' means:- » a carriage plying on city and town routes ‘non-stop' or "
+        },
+        {
+          "document": "tmvr-1989-chap-1",
+          "provision": "Rule 2",
+          "chunk_id": "tmvr-1989-chap-1::Rule 2::part2of2",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-1.htm#2",
+          "source_passage": "(la) “Sleeper Bus” means a stage carriage constructed or adapted to carry more thank six passengers (excluding driver) with facility of comfortable sleep on a berth, for hire or reward at a separate fare paid by or for individual passenger "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-003",
+      "category": "direct_lookup",
+      "question": "What is Rule 80 on registration marks?",
+      "expected_documents": [
+        "tmvr-1989-chap-4"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-4::Rule 80"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-4",
+          "provision": "Rule 80",
+          "chunk_id": "tmvr-1989-chap-4::Rule 80::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#2",
+          "source_passage": "80. Registration Mark :- The registration mark to be assigned under sub-section (6) of Section 41 by the registering authority specified in the first column of the First Schedule to these rules shall be as set forth in the corresponding ent"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-004",
+      "category": "direct_lookup",
+      "question": "Explain TMVR Rule 371 on taxi-meters.",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 371"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 371",
+          "chunk_id": "tmvr-1989-chap-7::Rule 371::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#63",
+          "source_passage": "371. Taxi-meter: - (1) Every motor cab, Auto-rickshaw unless exempted in this regard by the Regional Transport Authority, shall be fitted with a taxi-meter of a type approved by the State Transport Authority which shall be fixed to and oper"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-005",
+      "category": "direct_lookup",
+      "question": "What is Rule 427 about?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 427"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 427",
+          "chunk_id": "tmvr-1989-chap-8::Rule 427::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#32",
+          "source_passage": "427. Sound signals –Restrictions on use of :- No driver of a motor vehicle shall sound the horn or other device for giving audible warning, with which the motor vehicle is equipped, or shall cause or allow any other person to do so, to an e"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-006",
+      "category": "direct_lookup",
+      "question": "What does TMVR Rule 244 say?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 244"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 244",
+          "chunk_id": "tmvr-1989-chap-5::Rule 244::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#117",
+          "source_passage": "244. Prohibition of Smoking :- No person shall smoke in public service vehicles except the motor cabs and notice bearing words “Smoking Prohibited” in Telugu and English shall be prominently displayed in such vehicles."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-007",
+      "category": "direct_lookup",
+      "question": "What does Rule 389A provide?",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 389A"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 389A",
+          "chunk_id": "tmvr-1989-chap-7::Rule 389A::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#88",
+          "source_passage": "389-A. Carriage of school children in passenger auto-rickshaws: - (a)4-Passenger auto-rickshaws may exclusively carry eight (8) school children below the age of twelve (12) years (excluding driver). (b)3-Passenger auto-rickshaws may exclusi"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-008",
+      "category": "direct_lookup",
+      "question": "What does Rule 191 require?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 191"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 191",
+          "chunk_id": "tmvr-1989-chap-5::Rule 191::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#63",
+          "source_passage": "191. Permit to be carried in vehicle :- The holder of a permit or temporary permit shall cause to be carried in the vehicle, at all times unless it has been sent to the transport authority, in which case, the acknowledgement given by the tr"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-009",
+      "category": "direct_lookup",
+      "question": "What is Rule 18 about the fee for a duplicate licence?",
+      "expected_documents": [
+        "tmvr-1989-chap-2"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 18"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 18",
+          "chunk_id": "tmvr-1989-chap-2::Rule 18::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#16",
+          "source_passage": "18. Fee for duplicate Licence:- The fee for a duplicate Licence issued under Rules 16, shall be rupees fifteen."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-010",
+      "category": "direct_lookup",
+      "question": "What does Rule 37 say about the driver's badge?",
+      "expected_documents": [
+        "tmvr-1989-chap-2"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 37"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 37",
+          "chunk_id": "tmvr-1989-chap-2::Rule 37::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#35",
+          "source_passage": "37. Drivers badge :- (1) The driver of a public service vehicle shall while on duty, display on his left breast a metal badge in the form illustrated in the Second Scheduled to these rules issued by and inscribed with the name of the distri"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-011",
+      "category": "direct_lookup",
+      "question": "What are the duties of conductors under Rule 74?",
+      "expected_documents": [
+        "tmvr-1989-chap-3"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-3::Rule 74"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-3",
+          "provision": "Rule 74",
+          "chunk_id": "tmvr-1989-chap-3::Rule 74::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-3.htm#29",
+          "source_passage": "74. Duties of Conductors :- Every conductor of a stage carriage on duty, (i) shall as far as may reasonably be possible having regard to his duties, be responsible for the due observance of the provisions of Act and of these rules; (ii) sha"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-012",
+      "category": "direct_lookup",
+      "question": "Who issues a certificate of fitness under Rule 107?",
+      "expected_documents": [
+        "tmvr-1989-chap-4"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-4::Rule 107"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-4",
+          "provision": "Rule 107",
+          "chunk_id": "tmvr-1989-chap-4::Rule 107::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#32",
+          "source_passage": "107. Certificate of fitness issuing authority :- A certificate of fitness under Section 56 shall be granted or renewed by the Inspector of Motor Vehicles and also by the authorized testing station as approved under sub-section (2) of Sectio"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-013",
+      "category": "direct_lookup",
+      "question": "What does Rule 177 say about permits for autorickshaws?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 177"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 177",
+          "chunk_id": "tmvr-1989-chap-5::Rule 177::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#49",
+          "source_passage": "177. Grant of permits to Autorickshaws :- The Regional Transport Authority of any one region may grant a permit in respect of an Auto rickshaw and Motor Cycle Taxi to ply as a contract carriage to be valid for an area lying within a radius "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-014",
+      "category": "direct_lookup",
+      "question": "What does Rule 294A say about motor cycle taxis?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 294A"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 294A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 294A::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#167",
+          "source_passage": "294-A. Every Motor Cycle Taxi for which a Contract Carriage permit is granted by the Regional Transport Authority in the twin cities of Hyderabad and Secunderabad shall be painted in yellow colour on mudguards and black colour on the other "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-015",
+      "category": "direct_lookup",
+      "question": "What does Rule 406 say about parking places?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 406"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 406",
+          "chunk_id": "tmvr-1989-chap-8::Rule 406::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#11",
+          "source_passage": "406. Parking places and halting places :- The authority under Section (117) shall be the Regional Transport Authority in the State for the purpose,- (i)to determine places at which motor vehicles may stand either indefinitely or for a perio"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-016",
+      "category": "direct_lookup",
+      "question": "What does Rule 448B say about release of detained vehicles?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 448B"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 448B",
+          "chunk_id": "tmvr-1989-chap-8::Rule 448B::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#55",
+          "source_passage": "448-B. Release of seized and detained vehicles :- (1) An application for release of a vehicle seized and detained under sub-section (1) of Section 207 shall be in the form of a memorandum in duplicate with relevant documents duly enclosing "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-017",
+      "category": "direct_lookup",
+      "question": "What does Rule 451 require about insurance certificates?",
+      "expected_documents": [
+        "tmvr-1989-chap-9"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-9::Rule 451"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-9",
+          "provision": "Rule 451",
+          "chunk_id": "tmvr-1989-chap-9::Rule 451::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-9.htm#1",
+          "source_passage": "451.Insurance Certificate – Requisite condition for issue of permit :- No permit shall be issued in respect of any transport vehicle unless it is covered with a valid certificate of insurance and satisfied the requirements of Chapter XI of "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-018",
+      "category": "direct_lookup",
+      "question": "What does Rule 471 say about judgment and award of compensation?",
+      "expected_documents": [
+        "tmvr-1989-chap-11"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-11::Rule 471"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-11",
+          "provision": "Rule 471",
+          "chunk_id": "tmvr-1989-chap-11::Rule 471::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-11.htm#17",
+          "source_passage": "471. Judgment and award of compensation :- (1) The Claims Tribunal in passing orders shall record concisely in a judgment the findings on each of the issues framed and the reasons for such findings and make an award specifying the amount of"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-019",
+      "category": "direct_lookup",
+      "question": "What does Rule 484 say about issuing Pollution Under Control certificates?",
+      "expected_documents": [
+        "tmvr-1989-chap-12"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-12::Rule 484"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 484",
+          "chunk_id": "tmvr-1989-chap-12::Rule 484::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#8",
+          "source_passage": "484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as defined under Rule 79 of the Telangana Motor Vehicles Rules, 1989 and any other Pollution Testing Stations au"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-020",
+      "category": "direct_lookup",
+      "question": "What powers does Rule 454 give police officers?",
+      "expected_documents": [
+        "tmvr-1989-chap-10"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-10::Rule 454"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-10",
+          "provision": "Rule 454",
+          "chunk_id": "tmvr-1989-chap-10::Rule 454::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-10.htm#1",
+          "source_passage": "454. The powers exercisable by a Police Officer under Section 130 (1), 133, 158 (1) 202 and 203 shall be exercisable also by any officer of the Transport Department not below the rank of an Assistant Inspector of Motor Vehicles."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-021",
+      "category": "direct_lookup",
+      "question": "What does TMVTR Rule 11 say about duplicate licences?",
+      "expected_documents": [
+        "tmvtr-1963"
+      ],
+      "expected_provisions": [
+        "tmvtr-1963::Rule 11"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvtr-1963",
+          "provision": "Rule 11",
+          "chunk_id": "tmvtr-1963::Rule 11::part1of1",
+          "location": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#11",
+          "source_passage": "11. Prohibition of alteration, etc., of Licence, and issue of duplicate Licence : - (1) No person shall alter, deface, mutilate or otherwise tamper with the Licence issued in respect of a motor vehicle, or exhibit it on a motor vehicle othe"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-022",
+      "category": "direct_lookup",
+      "question": "What does Rule 314 say about blue lights?",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 314"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 314",
+          "chunk_id": "tmvr-1989-chap-7::Rule 314::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#5",
+          "source_passage": "314. Restriction on the use of blue light :- No motor vehicle shall show a blue light to the front except in respect of vehicles carrying the Chief Minister, all Ministers, Chairman, Planning and Development Committees, Speaker and Deputy S"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-023",
+      "category": "direct_lookup",
+      "question": "What does Rule 430 say about dazzling lights?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 430"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 430",
+          "chunk_id": "tmvr-1989-chap-8::Rule 430::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#35",
+          "source_passage": "430. Dazzling lights –Restriction of :- (1) The driver of a motor vehicle shall at all times when the lights of the motor vehicle are in use so manipulate them that danger or undue inconvenience is not caused to any person by dazzle and for"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-024",
+      "category": "direct_lookup",
+      "question": "What does Rule 297A cover?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 297A"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 297A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 297A::part1of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#172",
+          "source_passage": "297-A. Special provisions regarding licensing of agents engaged in the sale of tickets or in otherwise soliciting customers for public service vehicles :- (1) In this rule, unless the context otherwise requires: (a) “Agent” means a person w"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 297A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 297A::part2of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#172",
+          "source_passage": "(2)(a) Nothing in this rule shall apply,- (i) to the booking-clerks or conductors employed by the permit holder of a stage carriage, so long as such booking-clerk or conductor sells tickets, issues passes or makes advance reservations at su"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 297A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 297A::part3of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#172",
+          "source_passage": "(4)(a) For ensuring proper compliance with the conditions mentioned in sub-rule (6), the licensing authority shall before the issuing or renewing an agent’s Licence, order the applicant, if he has not already done to furnish a bank-guarante"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 297A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 297A::part4of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#172",
+          "source_passage": "(e) Canvassing or soliciting of customer for travel by the public service vehicle covered by the Licence is permissible, only:- (i) by advertisements in newspapers ; (ii) by exhibiting slides in cinema halls ; (iii) by distributing pamphlet"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 297A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 297A::part5of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#172",
+          "source_passage": "(i) Any failure to file the agreement before the licensing authority or to make it available for inspection in the vehicle as laid down in condition (h) shall be considered to be due to the non-existence of the required agreement. (j) The a"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 297A",
+          "chunk_id": "tmvr-1989-chap-5::Rule 297A::part6of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#172",
+          "source_passage": "(9)(a) Without prejudice to any other action which maybe taken against the agent, the licensing authority may cancel the agent’s Licence or suspend it for such period as he thinks fit, if in his opinion any of the conditions subject to whic"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-DL-025",
+      "category": "direct_lookup",
+      "question": "What does Rule 426 say about carrying dangerous substances?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 426"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 426",
+          "chunk_id": "tmvr-1989-chap-8::Rule 426::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#31",
+          "source_passage": "426. Carriage of dangerous substances :- Except for the fuel and lubricants necessary for the use of the vehicles, no explosive, highly inflammable or otherwise dangerous substances shall be carried on any public service vehicle: Provided t"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-001",
+      "category": "paraphrased",
+      "question": "Do I have to wear a helmet on a two-wheeler in Telangana?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 437"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 437",
+          "chunk_id": "tmvr-1989-chap-8::Rule 437::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#42",
+          "source_passage": "437. Crash helmets to be worn : - The protective headgear under Section 129 shall be a standard one."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-002",
+      "category": "paraphrased",
+      "question": "I lost my driving licence. How do I get a duplicate?",
+      "expected_documents": [
+        "tmvr-1989-chap-2"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 16",
+        "tmvr-1989-chap-2::Rule 14",
+        "tmvr-1989-chap-2::Rule 17",
+        "tmvr-1989-chap-2::Rule 18"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 16",
+          "chunk_id": "tmvr-1989-chap-2::Rule 16::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#14",
+          "source_passage": "16. Issue of Duplicate Licence:- Upon receipt of intimation and application specified in Rule 15 the licensing authority shall, if satisfied after making such enquiries as it thinks fit, that a duplicate Licence may properly be issued, issu"
+        },
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 14",
+          "chunk_id": "tmvr-1989-chap-2::Rule 14::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#12",
+          "source_passage": "14. Duplicate Licence with new photograph:- upon receipt of the copies of the photograph as provided in rule 13, the licensing authority shall return the driving Licence with the new photograph affixed thereto, duly attested after satisfyin"
+        },
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 17",
+          "chunk_id": "tmvr-1989-chap-2::Rule 17::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#15",
+          "source_passage": "17. Photograph for duplicate Licence:- Where a photograph is required to be affixed to a duplicate Licence issued under the provisions of these rules, the holder of the Licence shall furnish the licensing authority with three clear copies o"
+        },
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 18",
+          "chunk_id": "tmvr-1989-chap-2::Rule 18::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#16",
+          "source_passage": "18. Fee for duplicate Licence:- The fee for a duplicate Licence issued under Rules 16, shall be rupees fifteen."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-003",
+      "category": "paraphrased",
+      "question": "How much does a duplicate driving licence cost?",
+      "expected_documents": [
+        "tmvr-1989-chap-2"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 18"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 18",
+          "chunk_id": "tmvr-1989-chap-2::Rule 18::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#16",
+          "source_passage": "18. Fee for duplicate Licence:- The fee for a duplicate Licence issued under Rules 16, shall be rupees fifteen."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-004",
+      "category": "paraphrased",
+      "question": "Can autorickshaws carry school children?",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 389A"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 389A",
+          "chunk_id": "tmvr-1989-chap-7::Rule 389A::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#88",
+          "source_passage": "389-A. Carriage of school children in passenger auto-rickshaws: - (a)4-Passenger auto-rickshaws may exclusively carry eight (8) school children below the age of twelve (12) years (excluding driver). (b)3-Passenger auto-rickshaws may exclusi"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-005",
+      "category": "paraphrased",
+      "question": "Is smoking allowed on buses?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 244"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 244",
+          "chunk_id": "tmvr-1989-chap-5::Rule 244::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#117",
+          "source_passage": "244. Prohibition of Smoking :- No person shall smoke in public service vehicles except the motor cabs and notice bearing words “Smoking Prohibited” in Telugu and English shall be prominently displayed in such vehicles."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-006",
+      "category": "paraphrased",
+      "question": "When am I not allowed to use the horn?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 427",
+        "tmvr-1989-chap-8::Rule 428"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 427",
+          "chunk_id": "tmvr-1989-chap-8::Rule 427::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#32",
+          "source_passage": "427. Sound signals –Restrictions on use of :- No driver of a motor vehicle shall sound the horn or other device for giving audible warning, with which the motor vehicle is equipped, or shall cause or allow any other person to do so, to an e"
+        },
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 428",
+          "chunk_id": "tmvr-1989-chap-8::Rule 428::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#33",
+          "source_passage": "428. Authority to prohibit sound signals :- The Commissioner of Police in the cities of Hyderabad and Secunderabad and elsewhere the Collector may, by notification in the Official Gazette and by the erection in suitable places of appropriat"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-007",
+      "category": "paraphrased",
+      "question": "Where can I get a pollution under control certificate?",
+      "expected_documents": [
+        "tmvr-1989-chap-12"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-12::Rule 484",
+        "tmvr-1989-chap-12::Rule 486"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 484",
+          "chunk_id": "tmvr-1989-chap-12::Rule 484::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#8",
+          "source_passage": "484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as defined under Rule 79 of the Telangana Motor Vehicles Rules, 1989 and any other Pollution Testing Stations au"
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 486",
+          "chunk_id": "tmvr-1989-chap-12::Rule 486::part1of3",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#10",
+          "source_passage": "486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for testing emission levels of gases and smoke as specified under sub-rules (2), (3),(4) and (5) of Rule 115 of th"
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 486",
+          "chunk_id": "tmvr-1989-chap-12::Rule 486::part2of3",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#10",
+          "source_passage": "(3) If after the issue of a duplicate Licence, original is found, the same shall be surrendered forthwith to the licensing authority, by which it was issued. (9) Conditions to be observed by the Holder of Licence :- The holder of a Licence "
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 486",
+          "chunk_id": "tmvr-1989-chap-12::Rule 486::part3of3",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#10",
+          "source_passage": "(3) Appeal:- Any person aggrieved by an order of the licensing authority under sub-rule (6),(7) or (10) may appeal, where the Licensing Authority happens to be the R.T.O. to the Deputy Transport Commissioner and where the Licensing Authorit"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-008",
+      "category": "paraphrased",
+      "question": "Who is allowed to put a blue light on a car?",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 314"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 314",
+          "chunk_id": "tmvr-1989-chap-7::Rule 314::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#5",
+          "source_passage": "314. Restriction on the use of blue light :- No motor vehicle shall show a blue light to the front except in respect of vehicles carrying the Chief Minister, all Ministers, Chairman, Planning and Development Committees, Speaker and Deputy S"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-009",
+      "category": "paraphrased",
+      "question": "Can a taxi driver refuse to start the meter?",
+      "expected_documents": [
+        "tmvr-1989-chap-5",
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 251",
+        "tmvr-1989-chap-7::Rule 379"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 251",
+          "chunk_id": "tmvr-1989-chap-5::Rule 251::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#124",
+          "source_passage": "251. Setting of taxi meter in motion :- The driver of every motor cab provided with a taxi meter shall, as soon as he is hired and no sooner set the taxi meter in motion, and upon the termination of the hiring shall immediately stop the sam"
+        },
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 379",
+          "chunk_id": "tmvr-1989-chap-7::Rule 379::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#71",
+          "source_passage": "379. Cabs fitted with a defective meter not to be used: - (1) No meter which is in any way defective may be fitted to any cab and no cab which is fitted with a defective meter shall be used in any public place. (2)Upon the service of a noti"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-010",
+      "category": "paraphrased",
+      "question": "Do bus passengers have to pay the fare when asked?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 245"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 245",
+          "chunk_id": "tmvr-1989-chap-5::Rule 245::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#118",
+          "source_passage": "245. Passenger’s obligation to pay fares on demand :- Every passenger in a stage carriage shall, unless he is the holder of a ticket in respect of a particular journey, immediately upon demand by the conductor declare the journey he intends"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-011",
+      "category": "paraphrased",
+      "question": "Can a goods vehicle carry people?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 252"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 252",
+          "chunk_id": "tmvr-1989-chap-5::Rule 252::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#125",
+          "source_passage": "252. Carrying of persons in goods vehicle carriage :- (1) No person shall be carried in the cab of a goods vehicle beyond the number for which there is seating accommodation at the rate of 284 nukuneters measure along the seat, excluding th"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-012",
+      "category": "paraphrased",
+      "question": "Can I tow my friend's bicycle or motorbike with my motorcycle?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 418"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 418",
+          "chunk_id": "tmvr-1989-chap-8::Rule 418::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#23",
+          "source_passage": "418. Prohibition of towing motor cyclist or cyclist :- No driver of motor vehicle shall tow a cyclist or motor cyclist and no cyclist or motor cyclist shall allow himself to be towed by such vehicle."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-013",
+      "category": "paraphrased",
+      "question": "My vehicle was seized. How do I get it released?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 448B",
+        "tmvr-1989-chap-8::Rule 448A"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 448B",
+          "chunk_id": "tmvr-1989-chap-8::Rule 448B::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#55",
+          "source_passage": "448-B. Release of seized and detained vehicles :- (1) An application for release of a vehicle seized and detained under sub-section (1) of Section 207 shall be in the form of a memorandum in duplicate with relevant documents duly enclosing "
+        },
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 448A",
+          "chunk_id": "tmvr-1989-chap-8::Rule 448A::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#54",
+          "source_passage": "448-A. Procedure of seizing and detaining a Motor Vehicle :- When a motor vehicle is seized and detained by any officer referred to Rule in 448, he shall take the following steps :- (i)arrangements shall be made for temporary safe custody o"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-014",
+      "category": "paraphrased",
+      "question": "Do I have to keep the permit inside the vehicle?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 191"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 191",
+          "chunk_id": "tmvr-1989-chap-5::Rule 191::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#63",
+          "source_passage": "191. Permit to be carried in vehicle :- The holder of a permit or temporary permit shall cause to be carried in the vehicle, at all times unless it has been sent to the transport authority, in which case, the acknowledgement given by the tr"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-015",
+      "category": "paraphrased",
+      "question": "Can I attach a trailer to my motorcycle?",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 368"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 368",
+          "chunk_id": "tmvr-1989-chap-7::Rule 368::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#60",
+          "source_passage": "368. Trailers prohibited with motorcycles and invalid carriages: - (1) A motorcycle without more than two wheels with or without sidecar shall not draw a trailer; (2)No motorcycle shall draw a trailer exceeding 907 kilograms in weight unlad"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-016",
+      "category": "paraphrased",
+      "question": "Which officers can ask me to show my vehicle's registration certificate?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 400"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 400",
+          "chunk_id": "tmvr-1989-chap-8::Rule 400::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#5",
+          "source_passage": "400. Officers empowered to demand production of registration certificate :- (1) Magistrates, any officer of the Transport Department not below the rank of an Assistant Inspector of Motor Vehicles and Police Officers not below the rank of Su"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-017",
+      "category": "paraphrased",
+      "question": "How do I apply for accident compensation before the Claims Tribunal?",
+      "expected_documents": [
+        "tmvr-1989-chap-11"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-11::Rule 476",
+        "tmvr-1989-chap-11::Rule 455"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-11",
+          "provision": "Rule 476",
+          "chunk_id": "tmvr-1989-chap-11::Rule 476::part1of2",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-11.htm#22",
+          "source_passage": "476. Application for claim :- (1) Every application in the case of claim under Chapter X of the Motor Vehicles Act, 1988; shall be made in Form CWF (Claim Without Fault); Provided that the application shall also be accompanied by an affidav"
+        },
+        {
+          "document": "tmvr-1989-chap-11",
+          "provision": "Rule 476",
+          "chunk_id": "tmvr-1989-chap-11::Rule 476::part2of2",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-11.htm#22",
+          "source_passage": "(9) Payment of compensation of the Claims Tribunal:- The procedure of adjudicating the liability and award of compensation may be set apart from the procedure of disbursement of compensation to the legal heirs in case of death. Where the cl"
+        },
+        {
+          "document": "tmvr-1989-chap-11",
+          "provision": "Rule 455",
+          "chunk_id": "tmvr-1989-chap-11::Rule 455::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-11.htm#1",
+          "source_passage": "455. Applications:- Every application for payment of compensation made under Section 166 shall be made in Form C.I.D. and shall be accompanied by the fee prescribed three for in Rule 475."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-018",
+      "category": "paraphrased",
+      "question": "Do I need an insurance certificate before a permit is issued?",
+      "expected_documents": [
+        "tmvr-1989-chap-9"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-9::Rule 451"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-9",
+          "provision": "Rule 451",
+          "chunk_id": "tmvr-1989-chap-9::Rule 451::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-9.htm#1",
+          "source_passage": "451.Insurance Certificate – Requisite condition for issue of permit :- No permit shall be issued in respect of any transport vehicle unless it is covered with a valid certificate of insurance and satisfied the requirements of Chapter XI of "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-019",
+      "category": "paraphrased",
+      "question": "Can I keep my headlights on high beam in traffic?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 430"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 430",
+          "chunk_id": "tmvr-1989-chap-8::Rule 430::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#35",
+          "source_passage": "430. Dazzling lights –Restriction of :- (1) The driver of a motor vehicle shall at all times when the lights of the motor vehicle are in use so manipulate them that danger or undue inconvenience is not caused to any person by dazzle and for"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-020",
+      "category": "paraphrased",
+      "question": "Is it allowed to jump on or off a bus while it is moving?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 415"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 415",
+          "chunk_id": "tmvr-1989-chap-8::Rule 415::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#20",
+          "source_passage": "415. Prohibition of mounting or dismounting when vehicle is in motion :- No person shall mount or attempt to mount or dismount from any motor vehicle, other than a motor cycle, when the motor vehicle is in motion nor shall the driver or per"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-021",
+      "category": "paraphrased",
+      "question": "Where are vehicles allowed to park or halt?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 406",
+        "tmvr-1989-chap-8::Rule 407"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 406",
+          "chunk_id": "tmvr-1989-chap-8::Rule 406::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#11",
+          "source_passage": "406. Parking places and halting places :- The authority under Section (117) shall be the Regional Transport Authority in the State for the purpose,- (i)to determine places at which motor vehicles may stand either indefinitely or for a perio"
+        },
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 407",
+          "chunk_id": "tmvr-1989-chap-8::Rule 407::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#12",
+          "source_passage": "407. Vehicle in parking place :- If a motor vehicle has been stationery in a duly appointed parking place for a period exceeding that specified by the competent authority in respect of the said place, or if no such period has been specified"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-022",
+      "category": "paraphrased",
+      "question": "Can a goods carriage transport animals?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 253"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 253",
+          "chunk_id": "tmvr-1989-chap-5::Rule 253::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#126",
+          "source_passage": "253. Carrying of animals in goods carriages vehicle :- (1) No animal shall be carried in a goods vehicle unless:- (i) in the case of goats, sheep, deer or a pig, a minimum floor space of 60 cm. X 100 cm. Per head of such animal is provided "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-023",
+      "category": "paraphrased",
+      "question": "What education do I need to get a conductor's licence?",
+      "expected_documents": [
+        "tmvr-1989-chap-3"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-3::Rule 54"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-3",
+          "provision": "Rule 54",
+          "chunk_id": "tmvr-1989-chap-3::Rule 54::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-3.htm#9",
+          "source_passage": "54. Educational Qualifications :- No person shall be granted a conductor's Licence unless he has studied upto and inclusive of III Form or VIII standard. Provided that this rule shall not apply to any person who immediately before these rul"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-024",
+      "category": "paraphrased",
+      "question": "Can passengers travel standing in a stage carriage bus?",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 335"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 335",
+          "chunk_id": "tmvr-1989-chap-7::Rule 335::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#26",
+          "source_passage": "335. Standing passengers in Stage Carriages :- (1) The Transport Authority may impose a condition in the permit of any stage carriage that the vehicle shall in addition to the seated passengers, carry such number of standing passengers as m"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PQ-025",
+      "category": "paraphrased",
+      "question": "What happens to a vehicle left abandoned on the road?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 405"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 405",
+          "chunk_id": "tmvr-1989-chap-8::Rule 405::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#10",
+          "source_passage": "405. Vehicles abandoned on the road :- If any motor vehicle is allowed to stand in any place other than a duly appointed parking place in such way as to cause obstruction to traffic or danger to any person, any Police Officer may, - (i)fort"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-001",
+      "category": "multi_rule",
+      "question": "Compare Rule 437 and Rule 427.",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 437",
+        "tmvr-1989-chap-8::Rule 427"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 437",
+          "chunk_id": "tmvr-1989-chap-8::Rule 437::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#42",
+          "source_passage": "437. Crash helmets to be worn : - The protective headgear under Section 129 shall be a standard one."
+        },
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 427",
+          "chunk_id": "tmvr-1989-chap-8::Rule 427::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#32",
+          "source_passage": "427. Sound signals –Restrictions on use of :- No driver of a motor vehicle shall sound the horn or other device for giving audible warning, with which the motor vehicle is equipped, or shall cause or allow any other person to do so, to an e"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-002",
+      "category": "multi_rule",
+      "question": "What do rules 16 and 18 say about duplicate licences?",
+      "expected_documents": [
+        "tmvr-1989-chap-2"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 16",
+        "tmvr-1989-chap-2::Rule 18"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 16",
+          "chunk_id": "tmvr-1989-chap-2::Rule 16::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#14",
+          "source_passage": "16. Issue of Duplicate Licence:- Upon receipt of intimation and application specified in Rule 15 the licensing authority shall, if satisfied after making such enquiries as it thinks fit, that a duplicate Licence may properly be issued, issu"
+        },
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 18",
+          "chunk_id": "tmvr-1989-chap-2::Rule 18::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#16",
+          "source_passage": "18. Fee for duplicate Licence:- The fee for a duplicate Licence issued under Rules 16, shall be rupees fifteen."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-003",
+      "category": "multi_rule",
+      "question": "Explain rules 371 and 379 on taxi meters.",
+      "expected_documents": [
+        "tmvr-1989-chap-7"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-7::Rule 371",
+        "tmvr-1989-chap-7::Rule 379"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 371",
+          "chunk_id": "tmvr-1989-chap-7::Rule 371::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#63",
+          "source_passage": "371. Taxi-meter: - (1) Every motor cab, Auto-rickshaw unless exempted in this regard by the Regional Transport Authority, shall be fitted with a taxi-meter of a type approved by the State Transport Authority which shall be fixed to and oper"
+        },
+        {
+          "document": "tmvr-1989-chap-7",
+          "provision": "Rule 379",
+          "chunk_id": "tmvr-1989-chap-7::Rule 379::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-7.htm#71",
+          "source_passage": "379. Cabs fitted with a defective meter not to be used: - (1) No meter which is in any way defective may be fitted to any cab and no cab which is fitted with a defective meter shall be used in any public place. (2)Upon the service of a noti"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-004",
+      "category": "multi_rule",
+      "question": "What do rules 448A and 448B say about seizure and release of vehicles?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 448A",
+        "tmvr-1989-chap-8::Rule 448B"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 448A",
+          "chunk_id": "tmvr-1989-chap-8::Rule 448A::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#54",
+          "source_passage": "448-A. Procedure of seizing and detaining a Motor Vehicle :- When a motor vehicle is seized and detained by any officer referred to Rule in 448, he shall take the following steps :- (i)arrangements shall be made for temporary safe custody o"
+        },
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 448B",
+          "chunk_id": "tmvr-1989-chap-8::Rule 448B::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#55",
+          "source_passage": "448-B. Release of seized and detained vehicles :- (1) An application for release of a vehicle seized and detained under sub-section (1) of Section 207 shall be in the form of a memorandum in duplicate with relevant documents duly enclosing "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-005",
+      "category": "multi_rule",
+      "question": "Summarise rules 484 to 486 on pollution certificates.",
+      "expected_documents": [
+        "tmvr-1989-chap-12"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-12::Rule 484",
+        "tmvr-1989-chap-12::Rule 485",
+        "tmvr-1989-chap-12::Rule 486"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 484",
+          "chunk_id": "tmvr-1989-chap-12::Rule 484::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#8",
+          "source_passage": "484. (i) Agency to issue Pollution Under Control Certificate:- Every Registering Authority and Additional Registering Authority as defined under Rule 79 of the Telangana Motor Vehicles Rules, 1989 and any other Pollution Testing Stations au"
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 485",
+          "chunk_id": "tmvr-1989-chap-12::Rule 485::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#9",
+          "source_passage": "485. Fee for testing and issue of Pollution Under Control Certificate :- The following fee is payable in respect of Motor Vehicles for testing or for issue of Pollution Under Control Certificate. Category | Fee 1. Petrol Two Wheelers | ..Rs"
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 486",
+          "chunk_id": "tmvr-1989-chap-12::Rule 486::part1of3",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#10",
+          "source_passage": "486. Pollution Testing Stations and Establishments :- (1) No person shall establish or maintain any Pollution testing station for testing emission levels of gases and smoke as specified under sub-rules (2), (3),(4) and (5) of Rule 115 of th"
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 486",
+          "chunk_id": "tmvr-1989-chap-12::Rule 486::part2of3",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#10",
+          "source_passage": "(3) If after the issue of a duplicate Licence, original is found, the same shall be surrendered forthwith to the licensing authority, by which it was issued. (9) Conditions to be observed by the Holder of Licence :- The holder of a Licence "
+        },
+        {
+          "document": "tmvr-1989-chap-12",
+          "provision": "Rule 486",
+          "chunk_id": "tmvr-1989-chap-12::Rule 486::part3of3",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-12.htm#10",
+          "source_passage": "(3) Appeal:- Any person aggrieved by an order of the licensing authority under sub-rule (6),(7) or (10) may appeal, where the Licensing Authority happens to be the R.T.O. to the Deputy Transport Commissioner and where the Licensing Authorit"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-006",
+      "category": "multi_rule",
+      "question": "What do rules 187 and 188 say about permit conditions?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 187",
+        "tmvr-1989-chap-5::Rule 188"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 187",
+          "chunk_id": "tmvr-1989-chap-5::Rule 187::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#59",
+          "source_passage": "187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of Section 72 shall be attached to every stage carriage permit ; (2) It shall be condition of the permit of eve"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 188",
+          "chunk_id": "tmvr-1989-chap-5::Rule 188::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#60",
+          "source_passage": "188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Section 72 regarding the keeping of reserve vehicles to maintain substituted service in place of regular stag"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-007",
+      "category": "multi_rule",
+      "question": "What are the badge rules for drivers and for conductors?",
+      "expected_documents": [
+        "tmvr-1989-chap-2",
+        "tmvr-1989-chap-3"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 37",
+        "tmvr-1989-chap-3::Rule 66"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 37",
+          "chunk_id": "tmvr-1989-chap-2::Rule 37::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#35",
+          "source_passage": "37. Drivers badge :- (1) The driver of a public service vehicle shall while on duty, display on his left breast a metal badge in the form illustrated in the Second Scheduled to these rules issued by and inscribed with the name of the distri"
+        },
+        {
+          "document": "tmvr-1989-chap-3",
+          "provision": "Rule 66",
+          "chunk_id": "tmvr-1989-chap-3::Rule 66::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-3.htm#21",
+          "source_passage": "66. Conductor's Badge :- (1) The conductor of a stage carriage shall, while on duty, display on his left breast a metal badge of prescribed dimensions as illustrated in the Second Schedule to these rules issued by and inscribed with the nam"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MR-008",
+      "category": "multi_rule",
+      "question": "Who issues medical certificates for drivers and for conductors?",
+      "expected_documents": [
+        "tmvr-1989-chap-2",
+        "tmvr-1989-chap-3"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 43",
+        "tmvr-1989-chap-3::Rule 77"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 43",
+          "chunk_id": "tmvr-1989-chap-2::Rule 43::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#41",
+          "source_passage": "43. Issuing Authority of Medical Certificate :- The Authority to issue a medical certificate under sub-section (3) of Section 8 shall be a State Government Doctor of and above the rank of Assistant Civil Surgeon or as may be authorized by t"
+        },
+        {
+          "document": "tmvr-1989-chap-3",
+          "provision": "Rule 77",
+          "chunk_id": "tmvr-1989-chap-3::Rule 77::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-3.htm#32",
+          "source_passage": "77. Issuing Authority of Medical Certificate :- (1) The Authority to issue a medical certificate under sub-section (3) of Section 30 shall be of and above the rank of Assistant Civil Surgeon or as may be authorized by Government."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-001",
+      "category": "government_order",
+      "question": "Can traffic challans be sent to me by WhatsApp or SMS in Telangana?",
+      "expected_documents": [
+        "go-ms-25-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-25-2026-trb::Order"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-25-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-25-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms25.pdf#page=1 .. goir/2026TRB_Ms25.pdf#page=2",
+          "source_passage": "ORDER: In the circumstances reported by the Transport Commissioner, Telangana in his letter in the reference read above, the Government after careful examination hereby decided to publish Notification, as required under Rule 167 of the Cent"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-002",
+      "category": "government_order",
+      "question": "Do vehicle owners need to update their mobile number and e-mail on the Vahan portal?",
+      "expected_documents": [
+        "go-ms-25-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-25-2026-trb::Order"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-25-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-25-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms25.pdf#page=1 .. goir/2026TRB_Ms25.pdf#page=2",
+          "source_passage": "ORDER: In the circumstances reported by the Transport Commissioner, Telangana in his letter in the reference read above, the Government after careful examination hereby decided to publish Notification, as required under Rule 167 of the Cent"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-003",
+      "category": "government_order",
+      "question": "Who certifies electronic enforcement devices such as speed cameras in Telangana?",
+      "expected_documents": [
+        "go-ms-32-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-32-2026-trb::Paragraph 4",
+        "go-ms-32-2026-trb::Order",
+        "go-ms-32-2026-trb::Paragraph 5"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Paragraph 4",
+          "chunk_id": "go-ms-32-2026-trb::Paragraph 4::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=2",
+          "source_passage": "4. The Government, after careful examination of the proposal of the Transport Commissioner, Telangana, hereby constitute and notify the following multi-departmental authority as the \"Designated Authority\" for the State of Telangana, for the"
+        },
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-32-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=1",
+          "source_passage": "O R D E R: In the reference 1st read above, Rule 167A of the Central Motor Vehicles Rules, 1989, was inserted by the Central Motor Vehicles(Seventeenth Amendment) Rules, 2021, notified vide G.S.R. 575(E) dated 11.08.2021. Sub-rule (1) of Ru"
+        },
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Paragraph 5",
+          "chunk_id": "go-ms-32-2026-trb::Paragraph 5::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=2",
+          "source_passage": "5. The Designated Authority so constituted shall be empowered to: (i) Examine and certify that electronic enforcement devices proposed to be deployed for issuance of challans in the State of Telangana are accurate and operating properly, in"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-004",
+      "category": "government_order",
+      "question": "Who chairs the Designated Authority for electronic enforcement devices?",
+      "expected_documents": [
+        "go-ms-32-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-32-2026-trb::Paragraph 4"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Paragraph 4",
+          "chunk_id": "go-ms-32-2026-trb::Paragraph 4::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=2",
+          "source_passage": "4. The Government, after careful examination of the proposal of the Transport Commissioner, Telangana, hereby constitute and notify the following multi-departmental authority as the \"Designated Authority\" for the State of Telangana, for the"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-005",
+      "category": "government_order",
+      "question": "How often must approval certificates for electronic enforcement devices be renewed?",
+      "expected_documents": [
+        "go-ms-32-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-32-2026-trb::Paragraph 5",
+        "go-ms-32-2026-trb::Order"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Paragraph 5",
+          "chunk_id": "go-ms-32-2026-trb::Paragraph 5::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=2",
+          "source_passage": "5. The Designated Authority so constituted shall be empowered to: (i) Examine and certify that electronic enforcement devices proposed to be deployed for issuance of challans in the State of Telangana are accurate and operating properly, in"
+        },
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-32-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=1",
+          "source_passage": "O R D E R: In the reference 1st read above, Rule 167A of the Central Motor Vehicles Rules, 1989, was inserted by the Central Motor Vehicles(Seventeenth Amendment) Rules, 2021, notified vide G.S.R. 575(E) dated 11.08.2021. Sub-rule (1) of Ru"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-006",
+      "category": "government_order",
+      "question": "When did the Telangana Motor Vehicles Taxation (Amendment) Act, 2026 come into force?",
+      "expected_documents": [
+        "go-ms-10-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-10-2026-trb::Order"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-10-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-10-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms10.pdf#page=1",
+          "source_passage": "O R D E R: The following Notification shall be published in the Extra-ordinary issue of the Telangana State Gazette, dated 01.03.2026. NOTIFICATION In exercise of the powers conferred by sections 3 and 17 of the Telangana Motor Vehicles Tax"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-007",
+      "category": "government_order",
+      "question": "Which 2025 G.O. finally amended Rule 81 on reservation of special registration numbers?",
+      "expected_documents": [
+        "go-ms-77-2025-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-77-2025-trb::Order",
+        "go-ms-77-2025-trb::Paragraph 2",
+        "go-ms-77-2025-trb::Paragraph 3",
+        "go-ms-77-2025-trb::Paragraph 4"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-77-2025-trb::Order::part1of1",
+          "location": "goir/2025TRB_Ms77.pdf#page=1",
+          "source_passage": "ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to enhance the fee for reservation of special numbers and the same was published in the Telangana "
+        },
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Paragraph 2",
+          "chunk_id": "go-ms-77-2025-trb::Paragraph 2::part1of1",
+          "location": "goir/2025TRB_Ms77.pdf#page=1",
+          "source_passage": "2. Whereas no objections or suggestions have been received from the general public within the period specified, in respect of the preliminary notification and after due compliance with the procedure prescribed under the law, the Government "
+        },
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Paragraph 3",
+          "chunk_id": "go-ms-77-2025-trb::Paragraph 3::part1of2",
+          "location": "goir/2025TRB_Ms77.pdf#page=1 .. goir/2025TRB_Ms77.pdf#page=3",
+          "source_passage": "3. Accordingly, the following notification shall be published in an extraordinary issue of the Telangana Gazette, dated:15.11.2025. NOTIFICATION In exercise of the powers conferred by section 65 of the Motor Vehicles Act, 1988 (Central Act "
+        },
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Paragraph 3",
+          "chunk_id": "go-ms-77-2025-trb::Paragraph 3::part2of2",
+          "location": "goir/2025TRB_Ms77.pdf#page=3",
+          "source_passage": "(iii) Ten percent of the reservation fee for special numbers shall not be refunded to the unsuccessful bidders. (iv) The bid amount offered shall not be less than the fees referred to in clause (i),(ii),(iii),(iv),(v),(vi) and (vii) of sub-"
+        },
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Paragraph 4",
+          "chunk_id": "go-ms-77-2025-trb::Paragraph 4::part1of1",
+          "location": "goir/2025TRB_Ms77.pdf#page=3",
+          "source_passage": "4. For sub-rule (6) the following shall be substituted, namely:- “The number reserved under sub rules (3) (i), (ii), (iii), (iv),(v),(vi),(vii) shall be allotted on production of the vehicle and registered as per the procedure prescribed in"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-008",
+      "category": "government_order",
+      "question": "Were any objections received to the preliminary notification amending Rule 81?",
+      "expected_documents": [
+        "go-ms-77-2025-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-77-2025-trb::Paragraph 2",
+        "go-ms-77-2025-trb::Order"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Paragraph 2",
+          "chunk_id": "go-ms-77-2025-trb::Paragraph 2::part1of1",
+          "location": "goir/2025TRB_Ms77.pdf#page=1",
+          "source_passage": "2. Whereas no objections or suggestions have been received from the general public within the period specified, in respect of the preliminary notification and after due compliance with the procedure prescribed under the law, the Government "
+        },
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-77-2025-trb::Order::part1of1",
+          "location": "goir/2025TRB_Ms77.pdf#page=1",
+          "source_passage": "ORDER: Government vide G.O 9th read above, had issued a preliminary notification to amend Rule 81 of the Telangana Motor Vehicles Rules, 1989 to enhance the fee for reservation of special numbers and the same was published in the Telangana "
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-009",
+      "category": "government_order",
+      "question": "Which earlier G.O.s are read in G.O.Ms.No. 77 of 2025?",
+      "expected_documents": [
+        "go-ms-77-2025-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-77-2025-trb::References"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-77-2025-trb",
+          "provision": "References",
+          "chunk_id": "go-ms-77-2025-trb::References::part1of1",
+          "location": "goir/2025TRB_Ms77.pdf#page=1",
+          "source_passage": "Read the following: 1. G.O.Ms.No.216, Transport, Roads and Buildings (Transport-II) Dept., Dated:07.08.1989. 2. G.O.Ms.No.02, Transport, Roads and Buildings (Transport-I) Dept., Dated:17.06.2014. 3. G.O.Ms.No.41, Transport, Roads and Buildi"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-010",
+      "category": "government_order",
+      "question": "What did G.O.Ms.No. 16 of 2026 change in the vehicle tax schedules?",
+      "expected_documents": [
+        "go-ms-16-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-16-2026-trb::Preamble"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-16-2026-trb",
+          "provision": "Preamble",
+          "chunk_id": "go-ms-16-2026-trb::Preamble::part1of1",
+          "location": "goir/2026TRB_Ms16.pdf#page=1",
+          "source_passage": "GOVRNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles – Taxation – Amendment to the"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-011",
+      "category": "government_order",
+      "question": "What is G.O.Ms.No. 53 of 2025 about?",
+      "expected_documents": [
+        "go-ms-53-2025-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-53-2025-trb::Preamble",
+        "go-ms-53-2025-trb::Paragraph 1"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "Preamble",
+          "chunk_id": "go-ms-53-2025-trb::Preamble::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=1",
+          "source_passage": "GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles – Taxation – Amendment to the Third, Sixth and Seventh Schedules under section 3 of Telangana Motor Vehicles Taxation Act, 1963 (Act No.5 of 1963) for Enhancement of lif"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "Paragraph 1",
+          "chunk_id": "go-ms-53-2025-trb::Paragraph 1::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=1",
+          "source_passage": "1. For the Third Schedule, the following shall be substituted, namely:-"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GO-012",
+      "category": "government_order",
+      "question": "Why did Telangana notify a Designated Authority under Rule 167A?",
+      "expected_documents": [
+        "go-ms-32-2026-trb"
+      ],
+      "expected_provisions": [
+        "go-ms-32-2026-trb::Order",
+        "go-ms-32-2026-trb::Paragraph 2",
+        "go-ms-32-2026-trb::Preamble"
+      ],
+      "expected_chunks": [
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-32-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=1",
+          "source_passage": "O R D E R: In the reference 1st read above, Rule 167A of the Central Motor Vehicles Rules, 1989, was inserted by the Central Motor Vehicles(Seventeenth Amendment) Rules, 2021, notified vide G.S.R. 575(E) dated 11.08.2021. Sub-rule (1) of Ru"
+        },
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Paragraph 2",
+          "chunk_id": "go-ms-32-2026-trb::Paragraph 2::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=1",
+          "source_passage": "2. In the reference 2nd & 3rd read above, the Hon'ble Supreme Court of India, in W.P.(C) No. 295 of 2012 (S. Rajaseekaran v. Union of India),vide its orders dated 02.09.2024 and 07.10.2025 has directed all State Governments to immediately t"
+        },
+        {
+          "document": "go-ms-32-2026-trb",
+          "provision": "Preamble",
+          "chunk_id": "go-ms-32-2026-trb::Preamble::part1of1",
+          "location": "goir/2026TRB_Ms32.pdf#page=1",
+          "source_passage": "GOVERNMENT OF TELANGANA ABSTRACT TR&B Department – Road Safety - Electronic Monitoring and Enforcement System (EMES) – Notification of Designated Authority, under Rule 167A(1) of the Central Motor Vehicles Rules, 1989, in compliance with di"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-001",
+      "category": "missing_provision",
+      "question": "What does Rule 186 say?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule 186 is listed in the chapter contents but absent from the source text.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-002",
+      "category": "missing_provision",
+      "question": "Explain TMVR rule 186.",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule 186 is listed in the chapter contents but absent from the source text.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-003",
+      "category": "missing_provision",
+      "question": "What are the conditions in Rule 186 of the Telangana Motor Vehicles Rules?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule 186 is listed in the chapter contents but absent from the source text.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-004",
+      "category": "missing_provision",
+      "question": "Compare rules 185, 186 and 187.",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule 186 is listed in the chapter contents but absent from the source text.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-005",
+      "category": "missing_provision",
+      "question": "What do rules 186 and 188 say?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule 186 is listed in the chapter contents but absent from the source text.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-006",
+      "category": "missing_provision",
+      "question": "What is rule 999 of the Telangana Motor Vehicles Rules?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule number not present in the index.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-007",
+      "category": "missing_provision",
+      "question": "What does TMVTR rule 99 say?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule number not present in the index.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-MP-008",
+      "category": "missing_provision",
+      "question": "Explain Rule 600 of the TMVR.",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "missing_provision",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_missing_provision_no_substitution",
+      "notes": "Rule number not present in the index.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GC-001",
+      "category": "guard_control",
+      "question": "What does Rule 188 say?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 188"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 188",
+          "chunk_id": "tmvr-1989-chap-5::Rule 188::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#60",
+          "source_passage": "188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Section 72 regarding the keeping of reserve vehicles to maintain substituted service in place of regular stag"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GC-002",
+      "category": "guard_control",
+      "question": "What does Rule 185 say?",
+      "expected_documents": [
+        "tmvr-1989-chap-5"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-5::Rule 185"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 185",
+          "chunk_id": "tmvr-1989-chap-5::Rule 185::part1of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+          "source_passage": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each. (a) Conditions Common to all "
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 185",
+          "chunk_id": "tmvr-1989-chap-5::Rule 185::part2of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+          "source_passage": "(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ; (xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ; (xv) The vehicle"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 185",
+          "chunk_id": "tmvr-1989-chap-5::Rule 185::part3of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+          "source_passage": "(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course "
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 185",
+          "chunk_id": "tmvr-1989-chap-5::Rule 185::part4of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+          "source_passage": "(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle; (xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 185",
+          "chunk_id": "tmvr-1989-chap-5::Rule 185::part5of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+          "source_passage": "(d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with black background and white letters. The dimension of each letter written shall not be less than 3 mm. in le"
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 185",
+          "chunk_id": "tmvr-1989-chap-5::Rule 185::part6of6",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+          "source_passage": "(h) the Luxury Tourist Cab permit shall be deemed to be invalid from the date from which the motor vehicle covered by permit, completes five (5) years of age; (i) should provide minimum four (4) magazines, (2) in English and (2) in local la"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GC-003",
+      "category": "guard_control",
+      "question": "What does TMVTR rule 13A say?",
+      "expected_documents": [
+        "tmvtr-1963"
+      ],
+      "expected_provisions": [
+        "tmvtr-1963::Rule 13A"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvtr-1963",
+          "provision": "Rule 13A",
+          "chunk_id": "tmvtr-1963::Rule 13A::part1of1",
+          "location": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#15",
+          "source_passage": "13-A. Manner of payment of tax : - Payment of every amount due under the Act shall be made by way of cash upto the value of Rs.300 or a demand draft or a pay order obtainable from any bank mentioned in the Second Schedule to the Reserve Ban"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-GC-004",
+      "category": "guard_control",
+      "question": "helmet rule for 2 wheeler riders",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 437"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 437",
+          "chunk_id": "tmvr-1989-chap-8::Rule 437::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#42",
+          "source_passage": "437. Crash helmets to be worn : - The protective headgear under Section 129 shall be a standard one."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "retrieve",
+      "expected_answer_eligible": true,
+      "expected_behaviour": "answer_from_sources",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-001",
+      "category": "excluded_material",
+      "question": "Who are the redressal authorities for contested challans in Hyderabad?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Preamble",
+          "chunk_id": "go-ms-24-2026-trb::Preamble::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles – Challans under Rule 167 of the Central Motor Vehicles Rules, 1989, as amended vide G.S.R. 48(E) dated 20th January, 2026 issued by the Ministry of Road Transport & Hig"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "References",
+          "chunk_id": "go-ms-24-2026-trb::References::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "Read the following:- From the Transport Commissioner, Telangana, Hyderabad, Letter No. 755 / RSC / 2024, dated:20-03-2026 ******"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-24-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "ORDER: In the circumstances reported by the Transport Commissioner, Telangana in his letter in the reference read above, the Government after careful examination hereby decided to publish the draft Notification, as required under Rule 167 o"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 1",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 1::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1 .. goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "1. Redressal Authority The following officers shall function as the Authority for Redressal within their respective territorial jurisdiction for the purpose of disposal of challans contested on the designated portal under Rule 167(5) of Cen"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 2",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 2::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "2. Jurisdiction The Redressal Authority shall exercise jurisdiction within the territorial limits assigned to them under the Motor Vehicles Act, 1988 and the rules framed thereunder."
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 3",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 3::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "3. Mode of Filing and Disposal 1. All applications for contesting a challan shall be filed electronically through the portal along with documentary evidence. 2. The Redressal Authority shall dispose of such applications by passing a reasone"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 4",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 4::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2 .. goir/2026TRB_Ms24.pdf#page=3",
+          "source_passage": "4. Challan Issuance System The Transport and Police Departments shall migrate to e-challan system of Sarathi & Vahan in a maximum period of (6) months from the date of this notification. Thereafter all challans from Transport & Police Depar"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 5",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 5::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=3",
+          "source_passage": "5. Commencement This Notification shall come into force from the date of its publication in the Telangana Gazette. (BY ORDER AND IN THE NAME OF THE GOVERNOR OF TELANGANA) VIKAS RAJ SPECIAL CHIEF SECRETARY TO GOVERNMENT To The Commissioner o"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-002",
+      "category": "excluded_material",
+      "question": "What does G.O.Ms.No. 24 of 2026 say?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Preamble",
+          "chunk_id": "go-ms-24-2026-trb::Preamble::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles – Challans under Rule 167 of the Central Motor Vehicles Rules, 1989, as amended vide G.S.R. 48(E) dated 20th January, 2026 issued by the Ministry of Road Transport & Hig"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "References",
+          "chunk_id": "go-ms-24-2026-trb::References::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "Read the following:- From the Transport Commissioner, Telangana, Hyderabad, Letter No. 755 / RSC / 2024, dated:20-03-2026 ******"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-24-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "ORDER: In the circumstances reported by the Transport Commissioner, Telangana in his letter in the reference read above, the Government after careful examination hereby decided to publish the draft Notification, as required under Rule 167 o"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 1",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 1::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1 .. goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "1. Redressal Authority The following officers shall function as the Authority for Redressal within their respective territorial jurisdiction for the purpose of disposal of challans contested on the designated portal under Rule 167(5) of Cen"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 2",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 2::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "2. Jurisdiction The Redressal Authority shall exercise jurisdiction within the territorial limits assigned to them under the Motor Vehicles Act, 1988 and the rules framed thereunder."
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 3",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 3::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "3. Mode of Filing and Disposal 1. All applications for contesting a challan shall be filed electronically through the portal along with documentary evidence. 2. The Redressal Authority shall dispose of such applications by passing a reasone"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 4",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 4::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2 .. goir/2026TRB_Ms24.pdf#page=3",
+          "source_passage": "4. Challan Issuance System The Transport and Police Departments shall migrate to e-challan system of Sarathi & Vahan in a maximum period of (6) months from the date of this notification. Thereafter all challans from Transport & Police Depar"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 5",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 5::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=3",
+          "source_passage": "5. Commencement This Notification shall come into force from the date of its publication in the Telangana Gazette. (BY ORDER AND IN THE NAME OF THE GOVERNOR OF TELANGANA) VIKAS RAJ SPECIAL CHIEF SECRETARY TO GOVERNMENT To The Commissioner o"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-003",
+      "category": "excluded_material",
+      "question": "Within how many months must Transport and Police migrate to the Sarathi and Vahan e-challan system?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Preamble",
+          "chunk_id": "go-ms-24-2026-trb::Preamble::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles – Challans under Rule 167 of the Central Motor Vehicles Rules, 1989, as amended vide G.S.R. 48(E) dated 20th January, 2026 issued by the Ministry of Road Transport & Hig"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "References",
+          "chunk_id": "go-ms-24-2026-trb::References::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "Read the following:- From the Transport Commissioner, Telangana, Hyderabad, Letter No. 755 / RSC / 2024, dated:20-03-2026 ******"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Order",
+          "chunk_id": "go-ms-24-2026-trb::Order::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1",
+          "source_passage": "ORDER: In the circumstances reported by the Transport Commissioner, Telangana in his letter in the reference read above, the Government after careful examination hereby decided to publish the draft Notification, as required under Rule 167 o"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 1",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 1::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=1 .. goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "1. Redressal Authority The following officers shall function as the Authority for Redressal within their respective territorial jurisdiction for the purpose of disposal of challans contested on the designated portal under Rule 167(5) of Cen"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 2",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 2::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "2. Jurisdiction The Redressal Authority shall exercise jurisdiction within the territorial limits assigned to them under the Motor Vehicles Act, 1988 and the rules framed thereunder."
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 3",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 3::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2",
+          "source_passage": "3. Mode of Filing and Disposal 1. All applications for contesting a challan shall be filed electronically through the portal along with documentary evidence. 2. The Redressal Authority shall dispose of such applications by passing a reasone"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 4",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 4::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=2 .. goir/2026TRB_Ms24.pdf#page=3",
+          "source_passage": "4. Challan Issuance System The Transport and Police Departments shall migrate to e-challan system of Sarathi & Vahan in a maximum period of (6) months from the date of this notification. Thereafter all challans from Transport & Police Depar"
+        },
+        {
+          "document": "go-ms-24-2026-trb",
+          "provision": "Paragraph 5",
+          "chunk_id": "go-ms-24-2026-trb::Paragraph 5::part1of1",
+          "location": "goir/2026TRB_Ms24.pdf#page=3",
+          "source_passage": "5. Commencement This Notification shall come into force from the date of its publication in the Telangana Gazette. (BY ORDER AND IN THE NAME OF THE GOVERNOR OF TELANGANA) VIKAS RAJ SPECIAL CHIEF SECRETARY TO GOVERNMENT To The Commissioner o"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-004",
+      "category": "excluded_material",
+      "question": "What is the life tax rate for a new car under G.O.Ms.No. 53?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "THIRD SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::THIRD SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=1 .. goir/13082025TRB_MS53.PDF#page=2",
+          "source_passage": "THE THIRD SCHEDULE (See Second Proviso to sub-section (2) of section -3) Motor Cycles including Tri-Cycles, Motor Scooters and Motor Cycles with or without attachment at the rates specified below on the Cost of Vehicles. Sl. | Period/ Class"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SIXTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SIXTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=2 .. goir/13082025TRB_MS53.PDF#page=3",
+          "source_passage": "SIXTH SCHEDULE (see fourth proviso to sub-section (2) of Section 3) Three or Four wheeler motor vehicles including Motor Cars, Jeeps coming under non-transport category, omnibuses upto a seating S.No. Period/Class of capacity of ten(10) per"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=3 .. goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "SEVENTH SCHEDULE (see fifth proviso to sub-section (2) of Section 3) Non-Transport vehicles meant for carrying persons, owned by Companies/Institutions/Societies/Organizations upto a seating capacity of Sl. Period/Clas (10) ten in all and s"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "Schedule and Sixth"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5",
+          "source_passage": "Schedule at the time of registration of new vehicles only. 2. If the vehicle is already registered and its age from the month of registration is: (1) Not 14% 15% 19% 21% 24% more than 2 years (2) More 13.5% 14.5% 18.5% 20.5% 23.5% than 2 ye"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-005",
+      "category": "excluded_material",
+      "question": "Is there an additional 2% tax on a second personal vehicle?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-16-2026-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-16-2026-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/2026TRB_Ms16.pdf#page=1 .. goir/2026TRB_Ms16.pdf#page=2",
+          "source_passage": "Seventh Schedule under section 3 of Telangana Motor Vehicles Taxation Act,1963 (Act No.5 of 1963) – Notification – Orders – Issued. ======================================= TRANSPORT, ROADS & BUILDINGS (Tr.I) DEPARTMENT G.O.Ms.No. 16 Dated: "
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=3 .. goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "SEVENTH SCHEDULE (see fifth proviso to sub-section (2) of Section 3) Non-Transport vehicles meant for carrying persons, owned by Companies/Institutions/Societies/Organizations upto a seating capacity of Sl. Period/Clas (10) ten in all and s"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "Schedule and Sixth"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5",
+          "source_passage": "Schedule at the time of registration of new vehicles only. 2. If the vehicle is already registered and its age from the month of registration is: (1) Not 14% 15% 19% 21% 24% more than 2 years (2) More 13.5% 14.5% 18.5% 20.5% 23.5% than 2 ye"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "THIRD SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::THIRD SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=1 .. goir/13082025TRB_MS53.PDF#page=2",
+          "source_passage": "THE THIRD SCHEDULE (See Second Proviso to sub-section (2) of section -3) Motor Cycles including Tri-Cycles, Motor Scooters and Motor Cycles with or without attachment at the rates specified below on the Cost of Vehicles. Sl. | Period/ Class"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SIXTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SIXTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=2 .. goir/13082025TRB_MS53.PDF#page=3",
+          "source_passage": "SIXTH SCHEDULE (see fourth proviso to sub-section (2) of Section 3) Three or Four wheeler motor vehicles including Motor Cars, Jeeps coming under non-transport category, omnibuses upto a seating S.No. Period/Class of capacity of ten(10) per"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=3 .. goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "SEVENTH SCHEDULE (see fifth proviso to sub-section (2) of Section 3) Non-Transport vehicles meant for carrying persons, owned by Companies/Institutions/Societies/Organizations upto a seating capacity of Sl. Period/Clas (10) ten in all and s"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "Schedule and Sixth"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5",
+          "source_passage": "Schedule at the time of registration of new vehicles only. 2. If the vehicle is already registered and its age from the month of registration is: (1) Not 14% 15% 19% 21% 24% more than 2 years (2) More 13.5% 14.5% 18.5% 20.5% 23.5% than 2 ye"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-006",
+      "category": "excluded_material",
+      "question": "What does the Seventh Schedule of the Telangana Motor Vehicles Taxation Act say after 2026?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-16-2026-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-16-2026-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/2026TRB_Ms16.pdf#page=1 .. goir/2026TRB_Ms16.pdf#page=2",
+          "source_passage": "Seventh Schedule under section 3 of Telangana Motor Vehicles Taxation Act,1963 (Act No.5 of 1963) – Notification – Orders – Issued. ======================================= TRANSPORT, ROADS & BUILDINGS (Tr.I) DEPARTMENT G.O.Ms.No. 16 Dated: "
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=3 .. goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "SEVENTH SCHEDULE (see fifth proviso to sub-section (2) of Section 3) Non-Transport vehicles meant for carrying persons, owned by Companies/Institutions/Societies/Organizations upto a seating capacity of Sl. Period/Clas (10) ten in all and s"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "Schedule and Sixth"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5",
+          "source_passage": "Schedule at the time of registration of new vehicles only. 2. If the vehicle is already registered and its age from the month of registration is: (1) Not 14% 15% 19% 21% 24% more than 2 years (2) More 13.5% 14.5% 18.5% 20.5% 23.5% than 2 ye"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-007",
+      "category": "excluded_material",
+      "question": "What is the life tax for an already registered vehicle by age?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "THIRD SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::THIRD SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=1 .. goir/13082025TRB_MS53.PDF#page=2",
+          "source_passage": "THE THIRD SCHEDULE (See Second Proviso to sub-section (2) of section -3) Motor Cycles including Tri-Cycles, Motor Scooters and Motor Cycles with or without attachment at the rates specified below on the Cost of Vehicles. Sl. | Period/ Class"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SIXTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SIXTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=2 .. goir/13082025TRB_MS53.PDF#page=3",
+          "source_passage": "SIXTH SCHEDULE (see fourth proviso to sub-section (2) of Section 3) Three or Four wheeler motor vehicles including Motor Cars, Jeeps coming under non-transport category, omnibuses upto a seating S.No. Period/Class of capacity of ten(10) per"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=3 .. goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "SEVENTH SCHEDULE (see fifth proviso to sub-section (2) of Section 3) Non-Transport vehicles meant for carrying persons, owned by Companies/Institutions/Societies/Organizations upto a seating capacity of Sl. Period/Clas (10) ten in all and s"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "Schedule and Sixth"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5",
+          "source_passage": "Schedule at the time of registration of new vehicles only. 2. If the vehicle is already registered and its age from the month of registration is: (1) Not 14% 15% 19% 21% 24% more than 2 years (2) More 13.5% 14.5% 18.5% 20.5% 23.5% than 2 ye"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-EX-008",
+      "category": "excluded_material",
+      "question": "What are the Third Schedule and Sixth Schedule life tax rates?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "THIRD SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::THIRD SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=1 .. goir/13082025TRB_MS53.PDF#page=2",
+          "source_passage": "THE THIRD SCHEDULE (See Second Proviso to sub-section (2) of section -3) Motor Cycles including Tri-Cycles, Motor Scooters and Motor Cycles with or without attachment at the rates specified below on the Cost of Vehicles. Sl. | Period/ Class"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SIXTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SIXTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=2 .. goir/13082025TRB_MS53.PDF#page=3",
+          "source_passage": "SIXTH SCHEDULE (see fourth proviso to sub-section (2) of Section 3) Three or Four wheeler motor vehicles including Motor Cars, Jeeps coming under non-transport category, omnibuses upto a seating S.No. Period/Class of capacity of ten(10) per"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SEVENTH SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SEVENTH SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=3 .. goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "SEVENTH SCHEDULE (see fifth proviso to sub-section (2) of Section 3) Non-Transport vehicles meant for carrying persons, owned by Companies/Institutions/Societies/Organizations upto a seating capacity of Sl. Period/Clas (10) ten in all and s"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4",
+          "source_passage": "Schedule and Sixth"
+        },
+        {
+          "document": "go-ms-53-2025-trb",
+          "provision": "SCHEDULE",
+          "chunk_id": "go-ms-53-2025-trb::SCHEDULE::part1of1",
+          "location": "goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5",
+          "source_passage": "Schedule at the time of registration of new vehicles only. 2. If the vehicle is already registered and its age from the month of registration is: (1) Not 14% 15% 19% 21% 24% more than 2 years (2) More 13.5% 14.5% 18.5% 20.5% 23.5% than 2 ye"
+        }
+      ],
+      "expected_retrieval_outcome": "excluded_no_context",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "never_use_excluded_chunks",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PN-001",
+      "category": "penalty",
+      "question": "What is the fine for not wearing a helmet in Telangana?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "restricted",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "penalty_locked_no_model_call",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PN-002",
+      "category": "penalty",
+      "question": "How much is the penalty for drunk driving?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "restricted",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "penalty_locked_no_model_call",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PN-003",
+      "category": "penalty",
+      "question": "What is the fine for overspeeding?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "restricted",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "penalty_locked_no_model_call",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PN-004",
+      "category": "penalty",
+      "question": "What is the challan amount for jumping a red signal?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "restricted",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "penalty_locked_no_model_call",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PN-005",
+      "category": "penalty",
+      "question": "What is the fine under Rule 186?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "restricted",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "penalty_locked_no_model_call",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-PN-006",
+      "category": "penalty",
+      "question": "How much do I have to pay if I am caught driving without a licence?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "restricted",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "penalty_locked_no_model_call",
+      "notes": null,
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-OS-001",
+      "category": "out_of_scope_central",
+      "question": "What does Section 185 of the Motor Vehicles Act, 1988 say?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "out_of_scope",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_not_in_corpus",
+      "notes": "Central law is not in the Telangana corpus; any retrieved chunk is at best indirectly related.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-OS-002",
+      "category": "out_of_scope_central",
+      "question": "Is FASTag mandatory under the Central Motor Vehicles Rules?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "out_of_scope",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_not_in_corpus",
+      "notes": "Central law is not in the Telangana corpus; any retrieved chunk is at best indirectly related.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-OS-003",
+      "category": "out_of_scope_central",
+      "question": "What are the Bharat Stage VI emission norms?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "out_of_scope",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_not_in_corpus",
+      "notes": "Central law is not in the Telangana corpus; any retrieved chunk is at best indirectly related.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-OS-004",
+      "category": "out_of_scope_central",
+      "question": "How do I apply for an International Driving Permit?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "out_of_scope",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_not_in_corpus",
+      "notes": "Central law is not in the Telangana corpus; any retrieved chunk is at best indirectly related.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-OS-005",
+      "category": "out_of_scope_central",
+      "question": "What did the Motor Vehicles (Amendment) Act, 2019 change?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "out_of_scope",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_not_in_corpus",
+      "notes": "Central law is not in the Telangana corpus; any retrieved chunk is at best indirectly related.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-OS-006",
+      "category": "out_of_scope_central",
+      "question": "How is a national permit for goods carriages granted under the Central Motor Vehicles Rules?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "out_of_scope",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "refuse_not_in_corpus",
+      "notes": "Central law is not in the Telangana corpus; any retrieved chunk is at best indirectly related.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-AM-001",
+      "category": "ambiguous",
+      "question": "What does Rule 10 say?",
+      "expected_documents": [
+        "tmvr-1989-chap-2",
+        "tmvtr-1963"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 10",
+        "tmvtr-1963::Rule 10"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 10",
+          "chunk_id": "tmvr-1989-chap-2::Rule 10::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#8",
+          "source_passage": "10. Appeal against refusal of authorization :- Any person aggrieved by an order of the licensing authority, refusing to grant an authorization to drive a transport vehicle may, within thirty days of the receipt of the order of refusal, appe"
+        },
+        {
+          "document": "tmvtr-1963",
+          "provision": "Rule 10",
+          "chunk_id": "tmvtr-1963::Rule 10::part1of1",
+          "location": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#10",
+          "source_passage": "10. Seizure and detention of motor vehicles by certain officers : - Any Officer of the Transport Department not below the rank of an Assistant Inspector of Motor Vehicles or any Officer of the Commercial Tax Department not below the rank of"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "clarification_required",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "ask_clarifying_question",
+      "notes": "Several provisions or instruments match; the assistant should ask which one is meant.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-AM-002",
+      "category": "ambiguous",
+      "question": "What does Rule 1 say?",
+      "expected_documents": [
+        "tmvr-1989-chap-1",
+        "tmvtr-1963"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-1::Rule 1",
+        "tmvtr-1963::Rule 1"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-1",
+          "provision": "Rule 1",
+          "chunk_id": "tmvr-1989-chap-1::Rule 1::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-1.htm#1",
+          "source_passage": "1. Short title, application and commencement:- (1) These rules may be called the Telangana Motor Vehicles Rules, 1989. » They extend to the whole of the State of Telangana . » They shall come into force on such date as the State Government "
+        },
+        {
+          "document": "tmvtr-1963",
+          "provision": "Rule 1",
+          "chunk_id": "tmvtr-1963::Rule 1::part1of1",
+          "location": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#1",
+          "source_passage": "1. Title, extent and commencement : - (1) These rules may be called the Telangana Motor Vehicles Taxation Rules, 1963. (2)They extend to the whole of the State of Telangana. (3)They shall come to the force on the 1st April 1963."
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "clarification_required",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "ask_clarifying_question",
+      "notes": "Several provisions or instruments match; the assistant should ask which one is meant.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-AM-003",
+      "category": "ambiguous",
+      "question": "Tell me about the badge.",
+      "expected_documents": [
+        "tmvr-1989-chap-2",
+        "tmvr-1989-chap-3"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 37",
+        "tmvr-1989-chap-3::Rule 66"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 37",
+          "chunk_id": "tmvr-1989-chap-2::Rule 37::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#35",
+          "source_passage": "37. Drivers badge :- (1) The driver of a public service vehicle shall while on duty, display on his left breast a metal badge in the form illustrated in the Second Scheduled to these rules issued by and inscribed with the name of the distri"
+        },
+        {
+          "document": "tmvr-1989-chap-3",
+          "provision": "Rule 66",
+          "chunk_id": "tmvr-1989-chap-3::Rule 66::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-3.htm#21",
+          "source_passage": "66. Conductor's Badge :- (1) The conductor of a stage carriage shall, while on duty, display on his left breast a metal badge of prescribed dimensions as illustrated in the Second Schedule to these rules issued by and inscribed with the nam"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "clarification_required",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "ask_clarifying_question",
+      "notes": "Several provisions or instruments match; the assistant should ask which one is meant.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-AM-004",
+      "category": "ambiguous",
+      "question": "How do I get a duplicate?",
+      "expected_documents": [
+        "tmvr-1989-chap-2",
+        "tmvr-1989-chap-3",
+        "tmvr-1989-chap-4",
+        "tmvr-1989-chap-5",
+        "tmvtr-1963"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-2::Rule 16",
+        "tmvr-1989-chap-3::Rule 59",
+        "tmvr-1989-chap-4::Rule 99",
+        "tmvr-1989-chap-4::Rule 120",
+        "tmvr-1989-chap-5::Rule 228",
+        "tmvtr-1963::Rule 11"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-2",
+          "provision": "Rule 16",
+          "chunk_id": "tmvr-1989-chap-2::Rule 16::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-2.htm#14",
+          "source_passage": "16. Issue of Duplicate Licence:- Upon receipt of intimation and application specified in Rule 15 the licensing authority shall, if satisfied after making such enquiries as it thinks fit, that a duplicate Licence may properly be issued, issu"
+        },
+        {
+          "document": "tmvr-1989-chap-3",
+          "provision": "Rule 59",
+          "chunk_id": "tmvr-1989-chap-3::Rule 59::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-3.htm#14",
+          "source_passage": "59. Duplicate Licence :- The provisions of rules as applicable shall so far as may be, apply in relation to driving Licence. Provided that the fee for the issue of duplicate conductor's Licence shall be ten rupees only."
+        },
+        {
+          "document": "tmvr-1989-chap-4",
+          "provision": "Rule 99",
+          "chunk_id": "tmvr-1989-chap-4::Rule 99::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#24",
+          "source_passage": "99. Issue of duplicate :- (1) On receipt of an application under Rule 53 of the Central Motor Vehicle Rules, 1989 with prescribed fee the registering authority shall cause necessary enquiries to be made as to the reasons for loss, genuinene"
+        },
+        {
+          "document": "tmvr-1989-chap-4",
+          "provision": "Rule 120",
+          "chunk_id": "tmvr-1989-chap-4::Rule 120::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-4.htm#45",
+          "source_passage": "120. Duplicate – Issue of :- Upon receipt of an application and the fee referred to in Rule 119 the authority shall furnish the owner with a duplicate copy of the certificate duly stamped ‘DUPLICATE' in red."
+        },
+        {
+          "document": "tmvr-1989-chap-5",
+          "provision": "Rule 228",
+          "chunk_id": "tmvr-1989-chap-5::Rule 228::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#101",
+          "source_passage": "228. Issue of duplicate :- The Transport Authority shall, upon receipt of an application in accordance with Rule 227, issue of a permit, and to the extent that it is able to verify the facts may endorse thereon certified copies of any endor"
+        },
+        {
+          "document": "tmvtr-1963",
+          "provision": "Rule 11",
+          "chunk_id": "tmvtr-1963::Rule 11::part1of1",
+          "location": "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#11",
+          "source_passage": "11. Prohibition of alteration, etc., of Licence, and issue of duplicate Licence : - (1) No person shall alter, deface, mutilate or otherwise tamper with the Licence issued in respect of a motor vehicle, or exhibit it on a motor vehicle othe"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "clarification_required",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "ask_clarifying_question",
+      "notes": "Several provisions or instruments match; the assistant should ask which one is meant.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-AM-005",
+      "category": "ambiguous",
+      "question": "What is the fee?",
+      "expected_documents": [],
+      "expected_provisions": [],
+      "expected_chunks": [],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "clarification_required",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "ask_clarifying_question",
+      "notes": "Several provisions or instruments match; the assistant should ask which one is meant.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    {
+      "id": "TG-AM-006",
+      "category": "ambiguous",
+      "question": "Can I park there?",
+      "expected_documents": [
+        "tmvr-1989-chap-8"
+      ],
+      "expected_provisions": [
+        "tmvr-1989-chap-8::Rule 406",
+        "tmvr-1989-chap-8::Rule 407"
+      ],
+      "expected_chunks": [
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 406",
+          "chunk_id": "tmvr-1989-chap-8::Rule 406::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#11",
+          "source_passage": "406. Parking places and halting places :- The authority under Section (117) shall be the Regional Transport Authority in the State for the purpose,- (i)to determine places at which motor vehicles may stand either indefinitely or for a perio"
+        },
+        {
+          "document": "tmvr-1989-chap-8",
+          "provision": "Rule 407",
+          "chunk_id": "tmvr-1989-chap-8::Rule 407::part1of1",
+          "location": "html-snapshots/tmvr-1989/middle-main-chap-8.htm#12",
+          "source_passage": "407. Vehicle in parking place :- If a motor vehicle has been stationery in a duly appointed parking place for a period exceeding that specified by the competent authority in respect of the said place, or if no such period has been specified"
+        }
+      ],
+      "excluded_chunks": [],
+      "expected_retrieval_outcome": "clarification_required",
+      "expected_answer_eligible": false,
+      "expected_behaviour": "ask_clarifying_question",
+      "notes": "Several provisions or instruments match; the assistant should ask which one is meant.",
+      "label_source": "machine_candidate",
+      "reviewer_status": "pending_human_review",
+      "reviewed_by": null,
+      "reviewed_on": null
+    }
+  ]
+}

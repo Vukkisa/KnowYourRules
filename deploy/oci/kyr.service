@@ -1,0 +1,71 @@
+# KnowYourRules API on an OCI Always Free A1 VM. NOT installed or enabled by anything in this repository.
+# Install:  sudo cp deploy/oci/kyr.service /etc/systemd/system/kyr.service && sudo systemctl daemon-reload
+# See eval/deployment/OCI-DEPLOYMENT-READINESS-AUDIT.md ("Setup") for the full order of steps. Paths assume /opt/kyr/app (code, owned by
+# root, read-only to the service), /opt/kyr/venv (virtualenv) and /srv/kyr (the persistent block volume, mounted via /etc/fstab).
+#
+# Why these choices:
+#  - Listens on 127.0.0.1 only; Caddy is the only public listener. --no-proxy-headers: uvicorn must not rewrite the client address,
+#    because the application decides that itself from TG_TRUSTED_PROXIES (Caddy's address), so the two mechanisms cannot disagree.
+#  - ONE worker: sessions, rate limits and the embedding model are per process, and a second worker would double resident memory.
+#  - RequiresMountsFor needs the mount to be a systemd mount unit: put /srv/kyr in /etc/fstab (with nofail, so a missing volume stops
+#    this service instead of the whole boot). AssertPathIsMountPoint is a second, independent guard that FAILS the unit (a Condition would
+#    skip it silently). scripts/check_cloud_env.py is the third: it refuses a snapshot directory that is not on the mounted volume.
+#  - ProtectSystem=full, not strict, on purpose: with strict, ReadWritePaths=/srv/kyr would bind-mount that path inside the service's
+#    namespace, and an unmounted plain directory would then look like a mount point to the validator.
+#  - Not set, because they can break Python/numpy/Chroma and cannot be tested without the VM: MemoryDenyWriteExecute, SystemCallFilter.
+[Unit]
+Description=KnowYourRules API (FastAPI, one worker, localhost only)
+Documentation=file:///opt/kyr/app/eval/deployment/OCI-DEPLOYMENT-READINESS-AUDIT.md
+After=network-online.target
+Wants=network-online.target
+RequiresMountsFor=/srv/kyr
+AssertPathIsMountPoint=/srv/kyr
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=kyr
+Group=kyr
+WorkingDirectory=/opt/kyr/app
+# Mandatory (no leading "-"): a missing file stops the start. Owner root, mode 0600; systemd reads it before dropping privileges.
+EnvironmentFile=/etc/kyr/kyr.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=MALLOC_ARENA_MAX=2
+# Refuses to start on any unsafe or incomplete configuration, including a missing or unmounted snapshot volume.
+ExecStartPre=/opt/kyr/venv/bin/python /opt/kyr/app/scripts/check_cloud_env.py
+ExecStart=/opt/kyr/venv/bin/uvicorn backend.server:app --host 127.0.0.1 --port 8000 --workers 1 --no-server-header --no-proxy-headers --timeout-graceful-shutdown 20
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=180
+TimeoutStopSec=30
+KillSignal=SIGTERM
+UMask=0077
+MemoryMax=4G
+TasksMax=256
+LimitNOFILE=4096
+
+# Hardening that does not touch the volume, the model file or Chroma's working files.
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target

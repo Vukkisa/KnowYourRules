@@ -1,0 +1,344 @@
+{
+ "stage": 25,
+ "flow": [
+  {
+   "layer": "registry",
+   "code": "backend/source_status.py",
+   "detail": "lookup(sha256, provision_id) -> Status; provision override wins"
+  },
+  {
+   "layer": "retrieval",
+   "code": "backend/server.py retrieve() -> with_text_status()",
+   "detail": "returns copies with metadata.text_status; stored chunks unchanged; chunk_key unchanged; same in exact and HNSW"
+  },
+  {
+   "layer": "grounded context",
+   "code": "backend/grounded_answer.py Evidence.text_status, build_prompt",
+   "detail": "header text_status for the model only; not relied on for user safety"
+  },
+  {
+   "layer": "citations",
+   "code": "backend/server.py source_entries()",
+   "detail": "each source gets text_status (most cautious status among its cited chunks), independent of 'verified'"
+  },
+  {
+   "layer": "API",
+   "code": "backend/server.py SourceWarning, ChatResponse.source_warnings",
+   "detail": "additive field; one warning per (source, override, status) with citation numbers; text from fixed TEMPLATES; also appended to 'response' as a 'Source status:' block so old clients show it"
+  },
+  {
+   "layer": "frontend",
+   "code": "frontend/index.html TEXT_STATUS_LABELS",
+   "detail": "second badge beside the approval badge, textContent only; warning text visible in the answer body"
+  },
+  {
+   "layer": "legacy_dev",
+   "code": "backend/server.py answer_question",
+   "detail": "same warnings after DEV_OUTPUT_BANNER"
+  }
+ ],
+ "approval_independence": "verified (approval) and text_status are separate fields; approval removes no warning; verified_current is silent only when a valid approval binds this exact registry, otherwise it shows 'verified_current_not_approved'",
+ "stage23_questions_real_index_copy": {
+  "modes_identical": true,
+  "current_configuration": {
+   "answer_mode": "disabled",
+   "approval_state": "absent",
+   "server_loaded_state": "valid",
+   "server_registry_bound": false
+  },
+  "questions": {
+   "Q1_direct": {
+    "retrieved": [
+     [
+      "go-ms-77-2025-trb",
+      "Order",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 81",
+      "known_amendments_unresolved"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 81",
+      "known_amendments_unresolved"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Preamble",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Paragraph 4",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "tmvr-1989-chap-5",
+      "Rule 195",
+      "unverified_snapshot"
+     ]
+    ],
+    "source_warnings": [
+     {
+      "status": "official_text_commencement_unconfirmed",
+      "provision_id": null,
+      "citations": [
+       1,
+       4,
+       5
+      ],
+      "text": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77: the official order is held, but its Gazette publication and commencement have not been confirmed."
+     },
+     {
+      "status": "known_amendments_unresolved",
+      "provision_id": "Rule 81",
+      "citations": [
+       2,
+       3
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989, Rule 81: the text shown is an older unofficial web copy. G.O.Ms.No. 77, TR&B, 15-11-2025 contains amendments to this provision; their commencement and the current consolidated wording have not been established, so this answer cannot confirm the current law."
+     },
+     {
+      "status": "unverified_snapshot",
+      "provision_id": null,
+      "citations": [
+       6
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989: this text comes from an unofficial web copy of unknown date. It may not include later amendments, so check the official text before relying on it."
+     }
+    ],
+    "sources": [
+     [
+      "2025TRB_Ms77.pdf",
+      false,
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "middle-main-chap-4.htm",
+      false,
+      "known_amendments_unresolved"
+     ],
+     [
+      "middle-main-chap-5.htm",
+      false,
+      "unverified_snapshot"
+     ]
+    ]
+   },
+   "Q2_current": {
+    "retrieved": [
+     [
+      "tmvr-1989-chap-4",
+      "Rule 81",
+      "known_amendments_unresolved"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 81",
+      "known_amendments_unresolved"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 80",
+      "unverified_snapshot"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 88",
+      "unverified_snapshot"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 80A",
+      "unverified_snapshot"
+     ],
+     [
+      "tmvr-1989-chap-8",
+      "Rule 433",
+      "unverified_snapshot"
+     ]
+    ],
+    "source_warnings": [
+     {
+      "status": "known_amendments_unresolved",
+      "provision_id": "Rule 81",
+      "citations": [
+       1,
+       2
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989, Rule 81: the text shown is an older unofficial web copy. G.O.Ms.No. 77, TR&B, 15-11-2025 contains amendments to this provision; their commencement and the current consolidated wording have not been established, so this answer cannot confirm the current law."
+     },
+     {
+      "status": "unverified_snapshot",
+      "provision_id": null,
+      "citations": [
+       3,
+       4,
+       5
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989: this text comes from an unofficial web copy of unknown date. It may not include later amendments, so check the official text before relying on it."
+     },
+     {
+      "status": "unverified_snapshot",
+      "provision_id": null,
+      "citations": [
+       6
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989: this text comes from an unofficial web copy of unknown date. It may not include later amendments, so check the official text before relying on it."
+     }
+    ],
+    "sources": [
+     [
+      "middle-main-chap-4.htm",
+      false,
+      "known_amendments_unresolved"
+     ],
+     [
+      "middle-main-chap-8.htm",
+      false,
+      "unverified_snapshot"
+     ]
+    ]
+   },
+   "Q3_go77": {
+    "retrieved": [
+     [
+      "go-ms-77-2025-trb",
+      "Paragraph 3",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 81",
+      "known_amendments_unresolved"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Paragraph 3",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Order",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Preamble",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "References",
+      "official_text_commencement_unconfirmed"
+     ]
+    ],
+    "source_warnings": [
+     {
+      "status": "official_text_commencement_unconfirmed",
+      "provision_id": null,
+      "citations": [
+       1,
+       3,
+       4,
+       5,
+       6
+      ],
+      "text": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77: the official order is held, but its Gazette publication and commencement have not been confirmed."
+     },
+     {
+      "status": "known_amendments_unresolved",
+      "provision_id": "Rule 81",
+      "citations": [
+       2
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989, Rule 81: the text shown is an older unofficial web copy. G.O.Ms.No. 77, TR&B, 15-11-2025 contains amendments to this provision; their commencement and the current consolidated wording have not been established, so this answer cannot confirm the current law."
+     }
+    ],
+    "sources": [
+     [
+      "2025TRB_Ms77.pdf",
+      false,
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "middle-main-chap-4.htm",
+      false,
+      "known_amendments_unresolved"
+     ]
+    ]
+   },
+   "Q4_both": {
+    "retrieved": [
+     [
+      "go-ms-77-2025-trb",
+      "Order",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "tmvr-1989-chap-4",
+      "Rule 81",
+      "known_amendments_unresolved"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Paragraph 4",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Preamble",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "References",
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "go-ms-77-2025-trb",
+      "Paragraph 3",
+      "official_text_commencement_unconfirmed"
+     ]
+    ],
+    "source_warnings": [
+     {
+      "status": "official_text_commencement_unconfirmed",
+      "provision_id": null,
+      "citations": [
+       1,
+       3,
+       4,
+       5,
+       6
+      ],
+      "text": "Amendment to Rule 81 of the Telangana Motor Vehicles Rules, 1989 - Final Notification, G.O.Ms.No. 77: the official order is held, but its Gazette publication and commencement have not been confirmed."
+     },
+     {
+      "status": "known_amendments_unresolved",
+      "provision_id": "Rule 81",
+      "citations": [
+       2
+      ],
+      "text": "Telangana Motor Vehicles Rules, 1989, Rule 81: the text shown is an older unofficial web copy. G.O.Ms.No. 77, TR&B, 15-11-2025 contains amendments to this provision; their commencement and the current consolidated wording have not been established, so this answer cannot confirm the current law."
+     }
+    ],
+    "sources": [
+     [
+      "2025TRB_Ms77.pdf",
+      false,
+      "official_text_commencement_unconfirmed"
+     ],
+     [
+      "middle-main-chap-4.htm",
+      false,
+      "known_amendments_unresolved"
+     ]
+    ]
+   }
+  }
+ },
+ "note": "Warnings above are computed on retrieved docs as the API would attach them to cited docs; real answers remain disabled (no approval). Groq not called."
+}

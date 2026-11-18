@@ -22,6 +22,84 @@ def check(claim, passage, kind="direct", uncited=None, definitive=True):
                                           strip=ga.strip_identifiers, definitive=definitive)]
 
 
+def ref_check(claim, passage, siblings=()):
+    return [c for c, _m in mc.check_claim(claim, "direct", {"E1": passage}, {}, strip=ga.strip_identifiers,
+                                          definitive=True, siblings=siblings, id_fn=ga.identifiers)]
+
+
+class OmittedReferences(unittest.TestCase):
+    """Stage 3D: reference_omitted, per reference kind. Quantities and qualifiers keep their own checks."""
+    CASES = [("Synthetic Rule 900. Every rider shall wear protective headgear conforming to Section 129.",
+              "Every rider shall wear protective headgear."),
+             ("Synthetic Rule 900. A person exempted under sub-rule (2) need not wear protective headgear.",
+              "A person exempted need not wear protective headgear."),
+             ("Synthetic Rule 900. The registering authority shall issue the certificate in accordance with Rule 81.",
+              "The registering authority shall issue the certificate."),
+             ("Synthetic Rule 900. The application for renewal shall be made in Form 25.",
+              "The application for renewal shall be made."),
+             ("Synthetic Rule 900. The tax shall be levied at the rates specified in the Second Schedule.",
+              "The tax shall be levied at the rates specified."),
+             ("Synthetic Rule 900. The amended fee shall come into force from 01-04-2026.",
+              "The amended fee shall come into force.")]
+
+    def test_each_omitted_reference_flagged(self):
+        for passage, claim in self.CASES:
+            self.assertIn("reference_omitted", ref_check(claim, passage), claim)
+
+    def test_kept_references_pass(self):
+        kept = ["Every rider shall wear protective headgear conforming to Section 129.",
+                "A person exempted under Rule 900(2) need not wear protective headgear.",
+                "The registering authority shall issue the certificate in accordance with Rule 81.",
+                "The application for renewal shall be made in Form 25.",
+                "The tax shall be levied at the rates specified in the Second Schedule.",
+                "The amended fee shall come into force from 1 April 2026."]
+        for (passage, _), claim in zip(self.CASES, kept):
+            self.assertEqual(ref_check(claim, passage), [], claim)
+
+    def test_reference_stated_by_a_sibling_citing_the_same_passage(self):
+        passage, claim = self.CASES[0]
+        self.assertNotIn("reference_omitted", ref_check(claim, passage, (("The headgear must conform to Section 129.",
+                                                                          ("E1",)),)))
+        self.assertIn("reference_omitted", ref_check(claim, passage, (("The headgear must conform to Section 129.",
+                                                                       ("E2",)),)))
+
+    def test_resolved_sub_rule_pointer_may_be_inlined(self):
+        # the existing cross-reference checks require the referent itself; repeating "sub-rule (2)" is not needed
+        self.assertEqual(ref_check("Every rider of a two-wheeler shall wear protective headgear, except a Sikh "
+                                   "wearing a turban.", HELMET), [])
+        self.assertIn("qualifier_omitted", ref_check("Every rider of a two-wheeler shall wear protective headgear.",
+                                                     HELMET))
+
+    def test_off_without_identifier_function(self):
+        passage, claim = self.CASES[0]
+        self.assertNotIn("reference_omitted", check(claim, passage))
+
+
+class FusedHeadingComparison(unittest.TestCase):
+    """Stage 3C: _quoted_heading_body separates a title-like heading only, and only for an exact quotation."""
+    FUSED = "Crash helmets to be worn : - The protective headgear under Section 129 shall be a standard one."
+    BODY = "The protective headgear under Section 129 shall be a standard one."
+
+    def test_exact_body_separated(self):
+        self.assertEqual(mc._quoted_heading_body(self.BODY, self.FUSED), self.BODY)
+        self.assertEqual(mc._quoted_heading_body(self.BODY.upper(), self.FUSED), self.BODY)
+        self.assertEqual(check(self.BODY, self.FUSED), [])
+
+    def test_no_separation_for_anything_but_an_exact_quotation(self):
+        for claim in ("The protective headgear shall be a standard one.",
+                      "The protective headgear under Section 128 shall be a standard one.",
+                      "The headgear under Section 129 shall be a standard one.",
+                      self.BODY + " Riders must also wear gloves."):
+            self.assertIsNone(mc._quoted_heading_body(claim, self.FUSED), claim)
+            self.assertIn("unverifiable_direct", check(claim, self.FUSED), claim)
+
+    def test_no_separation_without_a_title_like_heading(self):
+        follows = "The fee shall be as follows : - Rs. 500 for a motor cycle."
+        self.assertIsNone(mc._quoted_heading_body("Rs. 500 for a motor cycle.", follows))  # strong modal: not a title
+        self.assertIsNone(mc._quoted_heading_body(self.BODY, self.BODY))                  # nothing fused
+        self.assertIsNone(mc._quoted_heading_body(self.BODY, "Crash helmets: " + self.BODY))  # plain colon, no dash
+
+
 class FaithfulParaphrasesPass(unittest.TestCase):
     """False-positive controls: none of these should be rejected."""
 

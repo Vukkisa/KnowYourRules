@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "fixture": true,
+  "note": "SYNTHETIC TEST FIXTURE. Every name, number, date and approval here is invented. Not legal data.",
+  "instruments": [
+    {
+      "key": "IN:ACT:S8/2899",
+      "kind": "ACT",
+      "jurisdiction": "IN",
+      "manifest_ids": [
+        "synthetic-central-8"
+      ]
+    },
+    {
+      "key": "TG:ACT:S8/2899",
+      "kind": "ACT",
+      "jurisdiction": "TG",
+      "manifest_ids": [
+        "synthetic-telangana-8"
+      ]
+    }
+  ],
+  "provisions": [
+    {
+      "key": "IN:ACT:S8/2899#s1"
+    },
+    {
+      "key": "TG:ACT:S8/2899#s1"
+    }
+  ],
+  "operations": [
+    {
+      "id": "OP-CEN-1",
+      "type": "insert",
+      "source": "IN:ACT:S8/2899",
+      "targets": [
+        "IN:ACT:S8/2899#s1"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 28991201,
+        "date": 28991201,
+        "decision_ref": "LD-901"
+      },
+      "decision_ref": "LD-901"
+    },
+    {
+      "id": "OP-TG-1",
+      "type": "insert",
+      "source": "TG:ACT:S8/2899",
+      "targets": [
+        "TG:ACT:S8/2899#s1"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 28990301,
+        "date": 28990301,
+        "decision_ref": "LD-902"
+      },
+      "decision_ref": "LD-902"
+    }
+  ],
+  "versions": [
+    {
+      "key": "IN:ACT:S8/2899#s1@1",
+      "provision": "IN:ACT:S8/2899#s1",
+      "text": "held",
+      "created_by_op": "OP-CEN-1",
+      "end": {
+        "state": "continuing_verified",
+        "checked_through": 29000101,
+        "decision_ref": "LD-903"
+      }
+    },
+    {
+      "key": "TG:ACT:S8/2899#s1@1",
+      "provision": "TG:ACT:S8/2899#s1",
+      "text": "held",
+      "created_by_op": "OP-TG-1",
+      "end": {
+        "state": "continuing_verified",
+        "checked_through": 29000101,
+        "decision_ref": "LD-903"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "selector": {
+        "manifest_id": "synthetic-central-8",
+        "sha256": "dd1d127d1e7828fe30056c0185399194d99240d03bcf702af1d9b455ed1186c1",
+        "provision_id": "SECTION 1",
+        "part": 1,
+        "parts": 1,
+        "page_start": 3,
+        "page_end": 4,
+        "text_sha256": "6f3080e82245cfd1a9c1406a5520949ef54828054e9c26a2534fecdf43d41a55"
+      },
+      "provisions": [
+        "IN:ACT:S8/2899#s1"
+      ],
+      "decision_ref": "LD-904"
+    },
+    {
+      "selector": {
+        "manifest_id": "synthetic-telangana-8",
+        "sha256": "dd1d127d1e7828fe30056c0185399194d99240d03bcf702af1d9b455ed1186c1",
+        "provision_id": "SECTION 1",
+        "part": 1,
+        "parts": 1,
+        "page_start": 3,
+        "page_end": 4,
+        "text_sha256": "cad7354743f58f55b91b509f4b1c91089fa5702153448d0073384c92fd0dde84"
+      },
+      "provisions": [
+        "TG:ACT:S8/2899#s1"
+      ],
+      "decision_ref": "LD-904"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "LD-901",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-902",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-903",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-904",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    }
+  ]
+}

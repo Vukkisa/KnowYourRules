@@ -1,0 +1,45 @@
+{
+ "model_file": "sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6",
+ "model_mb": 261.6,
+ "threads": 1,
+ "session_load_s": 0.08,
+ "first_query_s": 0.966,
+ "query_latency_ms": {
+  "p50": 395.5,
+  "p95": 431.7,
+  "max": 608.3
+ },
+ "long_input_tokens": 804,
+ "long_input_s": 4.76,
+ "rss_mb": {
+  "python+numpy+psutil": 34.0,
+  "after import tokenizers+onnxruntime": 44.5,
+  "after session load": 73.7,
+  "after first query": 315.4,
+  "after 108 single queries": 307.6,
+  "after longest input": 477.9,
+  "after 197 documents": 391.9
+ },
+ "ru_maxrss_mb": 556.7,
+ "queries_vs_ollama_cosine": {
+  "min": 0.9999994,
+  "p01": 0.9999995,
+  "mean": 0.9999999
+ },
+ "docs_vs_ollama_cosine_sample197": {
+  "min": 0.9999996,
+  "p01": 0.9999998,
+  "mean": 0.9999998
+ },
+ "docs_vs_stored_cosine_sample197": {
+  "min": 0.9999996,
+  "p01": 0.9999998,
+  "mean": 0.9999998
+ },
+ "retrieval_vs_ollama": {
+  "top1_same": 1.0,
+  "top5_set_same": 0.9907407407407407,
+  "top10_set_same": 1.0
+ },
+ "unit_norm_ok": true
+}

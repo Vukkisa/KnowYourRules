@@ -1,0 +1,110 @@
+{
+ "hybrid_exact_pipeline": {
+  "cases": 79,
+  "bge_worse": [
+   {
+    "id": "TG-PQ-002",
+    "category": "paraphrased",
+    "nomic_first_relevant_rank": 3,
+    "bge_first_relevant_rank": 4
+   },
+   {
+    "id": "TG-PQ-007",
+    "category": "paraphrased",
+    "nomic_first_relevant_rank": 1,
+    "bge_first_relevant_rank": 2
+   },
+   {
+    "id": "TG-PQ-020",
+    "category": "paraphrased",
+    "nomic_first_relevant_rank": 3,
+    "bge_first_relevant_rank": null
+   },
+   {
+    "id": "TG-MR-008",
+    "category": "multi_rule",
+    "nomic_first_relevant_rank": 1,
+    "bge_first_relevant_rank": 2
+   },
+   {
+    "id": "TG-GO-012",
+    "category": "government_order",
+    "nomic_first_relevant_rank": 3,
+    "bge_first_relevant_rank": 5
+   }
+  ],
+  "bge_better": [
+   {
+    "id": "TG-PQ-021",
+    "category": "paraphrased",
+    "nomic_first_relevant_rank": 2,
+    "bge_first_relevant_rank": 1
+   },
+   {
+    "id": "TG-PQ-023",
+    "category": "paraphrased",
+    "nomic_first_relevant_rank": 4,
+    "bge_first_relevant_rank": 3
+   },
+   {
+    "id": "TG-GO-003",
+    "category": "government_order",
+    "nomic_first_relevant_rank": 3,
+    "bge_first_relevant_rank": 1
+   },
+   {
+    "id": "TG-GO-007",
+    "category": "government_order",
+    "nomic_first_relevant_rank": 2,
+    "bge_first_relevant_rank": 1
+   },
+   {
+    "id": "TG-GO-009",
+    "category": "government_order",
+    "nomic_first_relevant_rank": 3,
+    "bge_first_relevant_rank": 2
+   }
+  ],
+  "missing_from_top5": {
+   "nomic": [],
+   "bge": [
+    "TG-PQ-020"
+   ]
+  }
+ },
+ "relevance_gate": {
+  "profile_gate_squared_l2_calibrated_on_nomic": 0.8,
+  "answerable_cases": 79,
+  "out_of_scope_or_missing_cases": 9,
+  "nomic": {
+   "top1_distance_answerable": {
+    "min": 0.239,
+    "median": 0.462,
+    "max": 0.877
+   },
+   "top1_distance_out_of_scope": {
+    "min": 0.318,
+    "median": 0.612,
+    "max": 0.686
+   },
+   "answerable_passing_the_nomic_gate": "77/79",
+   "out_of_scope_passing_the_nomic_gate": "9/9",
+   "auroc_answerable_vs_out_of_scope": 0.678
+  },
+  "bge": {
+   "top1_distance_answerable": {
+    "min": 0.258,
+    "median": 0.469,
+    "max": 0.918
+   },
+   "top1_distance_out_of_scope": {
+    "min": 0.368,
+    "median": 0.561,
+    "max": 0.748
+   },
+   "answerable_passing_the_nomic_gate": "78/79",
+   "out_of_scope_passing_the_nomic_gate": "9/9",
+   "auroc_answerable_vs_out_of_scope": 0.713
+  }
+ }
+}

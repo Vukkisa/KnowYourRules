@@ -1,0 +1,60 @@
+{
+  "stage": 26,
+  "scope": "Independent audit of Stage 25 source-status warning propagation. Read-only except added tests.",
+  "verdict": "No path in grounded (production) mode returns legal text without its source-status warning. Two low-severity defects in legacy development mode only.",
+  "paths": [
+    {"path": "retrieval", "code": "backend/server.py retrieve() -> with_text_status()", "result": "pass",
+     "note": "Every returned chunk is a copy annotated with text_status; stored chunk untouched; same in exact and HNSW."},
+    {"path": "grounded context", "code": "backend/grounded_answer.py Evidence.text_status", "result": "pass",
+     "note": "Status reaches the model prompt as context only; user warnings never depend on it."},
+    {"path": "grounded answer", "code": "grounded_answer_question kind=answer", "result": "pass",
+     "note": "Warnings built from cited_docs with citation numbers; status block appended to text; source_warnings field set."},
+    {"path": "grounded conflict", "code": "grounded_answer_question kind=conflict", "result": "pass",
+     "note": "Same path as answer. Previously untested at API level; Stage 26 test added."},
+    {"path": "grounded clarification", "code": "GroundedResult('clarification', clarification_question)", "result": "pass_with_note",
+     "note": "Model-written question without warnings, but validated to contain no identifiers absent from question and evidence, and no evidence passage. Not legal text."},
+    {"path": "no_support / unavailable / restricted / out_of_scope / missing_provision / server clarification", "result": "pass",
+     "note": "Fixed backend messages only; no evidence text, no sources, empty source_warnings."},
+    {"path": "generator failure", "result": "pass", "note": "no_support with fixed message; Stage 26 test added."},
+    {"path": "exception while building warnings", "result": "pass",
+     "note": "Exception propagates to chat(), which returns HTTP 503 with PROVIDER_ERROR only; answer withheld. Stage 26 test added."},
+    {"path": "penalty note", "result": "pass", "note": "with_penalty_note appends after the status block; does not remove it."},
+    {"path": "legacy development output", "code": "answer_question legacy_dev", "result": "pass_with_defects",
+     "note": "Warnings for all retrieved chunks; see D1, D2."},
+    {"path": "frontend", "code": "frontend/index.html", "result": "pass_with_note",
+     "note": "Warnings are visible via the 'Source status:' block in the answer text (rendered by renderAssistantMarkdown) and a per-source status badge built with textContent. The structured source_warnings field is not rendered separately (no warning panel as proposed in Stage 24). Browser rendering not tested."}
+  ],
+  "index_check": {
+    "method": "read-only sqlite on a scratchpad copy of chroma_telangana_preview_s11",
+    "rule81_chunks": {"83": "Rule 81 (part 1)", "84": "Rule 81 (part 2)"},
+    "both_override_matched": true,
+    "neighbours": {"81": "Rule 80", "82": "Rule 80A", "85": "Rule 82"},
+    "finding": "No other chunk of middle-main-chap-4.htm carries Rule 81 text under another provision_id."
+  },
+  "defects": [
+    {"id": "D1", "severity": "low", "mode": "legacy_dev only",
+     "summary": "Chunks with no sha256 metadata from different files collapse into one 'not recorded' warning that names only the first file.",
+     "evidence": "collect_warnings(invalid registry, [x.pdf, y.pdf] without sha256) -> one warning 'x.pdf: ...' citations [1, 2]",
+     "impact": "Every citation is still covered; label is incomplete. Unreachable in grounded mode (approved chunks must have a hash in SOURCES).",
+     "fixed": false},
+    {"id": "D2", "severity": "low", "mode": "legacy_dev only",
+     "summary": "Registry edits are not reloaded until /approval/refresh or restart. ensure_approval_current marks a present approval stale but never reloads SOURCE_STATUS; with no approval file the fingerprint change is absorbed silently.",
+     "evidence": "by inspection: server.py ensure_approval_current()",
+     "impact": "Development output may show warnings from the previously loaded registry. Grounded mode blocks (stale approval fails the gate).",
+     "fixed": false}
+  ],
+  "tests_added": [
+    "test_conflict_response_carries_warnings_after_approval",
+    "test_multiple_chunks_of_one_approved_snapshot_give_one_warning",
+    "test_generator_failure_returns_no_legal_text",
+    "test_warning_failure_withholds_the_answer",
+    "test_snapshot_chunk_missing_from_registry_warns_after_approval"
+  ],
+  "already_covered_by_stage25": [
+    "approved but unverified source (test_rule81_style_warning_persists_after_simulated_approval)",
+    "provision override (test_provision_override_applies_only_to_that_provision)",
+    "incorrect hash (test_hash_mismatch_with_index, test_hash_mismatch_with_corpus_file_and_missing_file)",
+    "registry tampering (test_changed_registry_invalidates_a_correctly_signed_record, test_server_binds_registry_and_goes_stale_when_it_changes)",
+    "exact and HNSW (test_retrieval_annotation_keeps_chunk_identity_in_both_vector_modes, full suite in both modes)"
+  ]
+}

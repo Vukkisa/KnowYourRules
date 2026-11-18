@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "flags": [
+    {
+      "match": {
+        "manifest_id": "mva-1988-india-code-extract",
+        "provision_id": "Preamble"
+      },
+      "warning": "Provenance note describing how this extract was made; it is not text of the Act and is never used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 1
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 1 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 2
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 2 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 3
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 3 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 4
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 4 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 5
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 5 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 6
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 6 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 7
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 7 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 8
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 8 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 9
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 9 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 10
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 10 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 11
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 11 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 12
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 12 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 13
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 13 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 14
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 14 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 15
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 15 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2017-gsr-634e",
+        "provision_id": "Preamble",
+        "part": 16
+      },
+      "warning": "Hindi text of the Gazette notification in a legacy font that does not extract as readable text (part 16 of 17 of the front matter). Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2020-amendment-gsr-586e",
+        "provision_id": "Preamble"
+      },
+      "warning": "Hindi front matter in a partly garbled extraction plus the English enacting words; the operative text is in the later chunks. Not used to answer.",
+      "answer_eligible": false
+    },
+    {
+      "match": {
+        "manifest_id": "mvdr-2020-amendment-gsr-586e",
+        "provision_id": "Regulation 37"
+      },
+      "warning": "This is the text of the 2020 amending regulations (paragraph 2 amends regulation 37 and paragraph 3 amends regulation 38 of the 2017 Regulations), not the text of those regulations; the 'Regulation 37' label only shows where the text begins.",
+      "answer_eligible": true
+    }
+  ]
+}

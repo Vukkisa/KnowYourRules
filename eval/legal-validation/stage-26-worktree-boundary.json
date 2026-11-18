@@ -1,0 +1,69 @@
+{
+  "stage": 26,
+  "head": "f944466 (pushed to mine/feature/telangana-assistant)",
+  "method": "Each Stage 25 backup compared with git HEAD; earlier-stage backups compared with HEAD; file mtimes vs stage report times.",
+  "files": {
+    "stage_25": {
+      "modified": ["backend/legal_approval.py", "backend/grounded_answer.py", "frontend/index.html",
+                   "tests/test_server.py", "tests/test_legal_approval.py"],
+      "modified_mixed": {"backend/server.py": "Stage 25 hunks plus earlier exact-vector hunks (pre-Stage-25 backup differs from HEAD by the exact_vector import, VECTOR_SEARCH, _build_exact_index, vector_search)"},
+      "new": ["backend/source_status.py", "legal-status/source-status.json", "tests/test_source_status.py (includes 5 Stage 26 tests)"],
+      "deliverables": ["eval/legal-validation/STAGE-25-REPORT.md", "eval/legal-validation/stage-25-source-status-validation.json",
+                       "eval/legal-validation/stage-25-warning-propagation.json", "eval/legal-validation/stage-25-approval-integrity.json",
+                       "eval/legal-validation/stage-25-originals/"]
+    },
+    "earlier_intentional": {
+      "backend/server.py (exact-vector hunks)": "Stages 15-16 exact vector search",
+      "backend/exact_vector.py": "Stages 15-16 (new)",
+      "tests/test_exact_vector.py": "Stages 15-16 (new)",
+      "backend/hybrid_retrieval.py": "Stage 17 plural folding (pre-Stage-17 backup == HEAD)",
+      "tests/test_bm25_plural.py": "Stage 17 (new)",
+      "eval/telangana-retrieval-benchmark.json": "Stage 14 (pre-Stage-14 backup == HEAD; mtime 15:07, before Stage 22)",
+      "eval/telangana-retrieval-review.csv": "Stage 14 (pre-Stage-14 backup == HEAD)",
+      "eval/telangana-chunk-references.json": "Stages 13-14 (pre-Stage-13 backup == HEAD; 586 -> 590 chunks)",
+      "tests/test_review_import.py": "Stage 14 (counts 586 -> 590)",
+      "tests/test_benchmark_integrity.py": "Stage 14 (new)",
+      "backend/source_compare.py": "Stages 9-11 (new; referenced by those reports)",
+      "chroma_telangana_preview_s11/": "Stage 11 preview index (binary; should not be committed)",
+      "eval/legal-validation/ (Stages 8-24 reports, JSON, *-originals)": "earlier deliverables and backups"
+    },
+    "stage_26": ["eval/legal-validation/STAGE-26-REPORT.md", "eval/legal-validation/stage-26-*.json",
+                 "eval/legal-validation/stage-26-originals/", "tests/test_source_status.py (+5 tests)"],
+    "unrelated_or_unexplained": []
+  },
+  "benchmark_csv_hybrid_untouched_by_stage25": true,
+  "commit_boundary": {
+    "problem": "Working-copy server.py imports backend/exact_vector.py (untracked) and test_source_status patches srv.VECTOR_SEARCH, so Stage 25 files alone on HEAD would fail to import.",
+    "recommended": [
+      {"commit": "A (earlier work: exact vector search)",
+       "files": ["backend/exact_vector.py", "tests/test_exact_vector.py",
+                 "backend/server.py with the content of eval/legal-validation/stage-25-originals/server.py.pre-stage-25"]},
+      {"commit": "B (Stage 25 + Stage 26 tests)",
+       "files": ["backend/source_status.py", "legal-status/source-status.json", "backend/legal_approval.py",
+                 "backend/grounded_answer.py", "backend/server.py (working copy)", "frontend/index.html",
+                 "tests/test_server.py", "tests/test_legal_approval.py", "tests/test_source_status.py"],
+       "optional": ["Stage 25/26 reports and JSON deliverables (not the *-originals backups)"]}
+    ],
+    "simulation": {
+      "where": "git archive HEAD into the scratchpad, sibling KnowYourRules-repo symlinked; real worktree untouched",
+      "HEAD": "1 failure (test_real_groq_eval validator git-state check; needs a git checkout)",
+      "HEAD+A": "same 1 failure, 1 skip (Stage 15 record absent)",
+      "HEAD+A+B exact": "681 run, same 1 failure, 2 skips (+ decision register absent)",
+      "HEAD+A+B hnsw": "681 run, same 1 failure, 2 skips",
+      "conclusion": "The split introduces no failures; the one failure is environmental and present at HEAD."
+    },
+    "not_in_commit_B": ["backend/hybrid_retrieval.py", "tests/test_bm25_plural.py", "eval/telangana-retrieval-benchmark.json",
+                        "eval/telangana-retrieval-review.csv", "eval/telangana-chunk-references.json",
+                        "tests/test_review_import.py", "tests/test_benchmark_integrity.py", "backend/source_compare.py",
+                        "chroma_telangana_preview_s11/", "eval/legal-validation/*-originals/"]
+  },
+  "portability_defect": {
+    "id": "D3", "severity": "low",
+    "summary": "Corrected: the source-hash test already skipped when sources were absent (the original 'no skip' claim was a grep error). Real gap: it and the LD-register test skip silently in a clean clone/CI.",
+    "fix": "TG_LEGAL_SOURCES_DIR overrides the sources path (default sibling checkout); KYR_REQUIRE_LEGAL_DATA=1 turns the skips into failures.",
+    "verified": {"present": "OK", "missing": "skipped=1", "missing_strict": "FAILED (failures=1)", "full_suite_exact": "719 OK", "full_suite_hnsw": "719 OK"},
+    "backup": "eval/legal-validation/stage-26-originals/test_source_status.py.pre-d3-fix",
+    "fixed": true
+  },
+  "staged_or_committed_in_stage_26": false
+}

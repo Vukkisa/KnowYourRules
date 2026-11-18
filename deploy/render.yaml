@@ -1,0 +1,62 @@
+# Render Blueprint for the FastAPI backend. NOT applied by anything in this repository: deploying is a manual operator step
+# (Render dashboard -> New -> Blueprint -> point at this file). Free-tier limits change; verify them on render.com/docs/free first.
+#   - Free web services: 512 MB RAM, 0.1 CPU, an ephemeral disk, spin-down after 15 minutes without traffic, about a minute to start
+#     again, 750 free instance hours per workspace per month. The index snapshot is therefore downloaded from R2 on EVERY start.
+#   - Measured memory (eval/deployment/STAGE-7A-REPORT.md, STAGE-7B-REPORT.md) leaves a margin that is unverified on Linux.
+# Values marked `sync: false` are asked for in the dashboard on the first Blueprint sync; they are never stored in this file.
+# EMBEDDINGS ARE BLOCKED: no zero-cost provider of the index's exact model is verified, so EMBEDDING_* have NO default here. Until an
+# approved provider is configured the service starts, reports corpus_ready=false and answers 503 (never an Ollama fallback).
+services:
+  - type: web
+    name: kyr-api
+    runtime: python
+    plan: free
+    region: oregon
+    autoDeployTrigger: "off"
+    buildCommand: pip install --no-cache-dir -r requirements-cloud.txt
+    # check_cloud_env.py: offline validation of this environment; a mis-set service must fail its deploy, not run half-configured.
+    # exec: uvicorn becomes the main process, so Render's SIGTERM reaches it and in-flight requests finish (20 s) before exit.
+    # One worker: a second process doubles resident memory. Chat handlers are synchronous and run in the server's thread pool.
+    startCommand: python scripts/check_cloud_env.py && exec uvicorn backend.server:app --host 0.0.0.0 --port $PORT --workers 1 --no-server-header --timeout-graceful-shutdown 20
+    # READINESS, not liveness: GET /ready is 200 only when the R2 snapshot was restored and verified (manifest, checksums, pin, index,
+    # lifecycle registry and audit chain, embeddings). Render (docs checked in Stage 7C) gates a deploy on this check for up to 15 minutes
+    # (the old instance keeps serving if it never passes) and restarts a running instance whose check fails for 60 s, which retries the
+    # restore. GET /health stays a pure liveness probe and says nothing about the corpus. A check slower than 5 s counts as failed: /ready makes no outbound calls.
+    healthCheckPath: /ready
+    envVars:
+      - {key: PYTHON_VERSION, value: 3.11.9}
+      - {key: PYTHONUNBUFFERED, value: "1"}
+      - {key: MALLOC_ARENA_MAX, value: "2"}           # fewer glibc arenas: lower resident memory for a threaded Python process
+      - {key: TG_ENVIRONMENT, value: production}
+      # answers: grounded, and served only from approved, active documents in the lifecycle registry; no signed record or trusted-keys file is used
+      - {key: TG_GROUNDED_ANSWERS, value: "1"}
+      - {key: TG_SOURCE_STATUS_FILE, value: legal-status/source-status.json}
+      # generation: Groq -> Gemini -> safe unavailable. Ollama is a local-development fallback only.
+      - {key: OLLAMA_ENABLED, value: "false"}
+      - {key: GROQ_API_KEY, sync: false}
+      - {key: GEMINI_API_KEY, sync: false}
+      # query embeddings: hosted, independent of generation, never Ollama. NO DEFAULTS (see the header): the operator sets these
+      # only after a zero-cost provider of nomic-embed-text v1.5 has been verified (eval/deployment/STAGE-7B-REPORT.md).
+      - {key: EMBEDDING_PROVIDER, sync: false}        # nomic_atlas | openai_compatible
+      - {key: EMBEDDING_MODEL, sync: false}
+      - {key: EMBEDDING_API_KEY, sync: false}
+      - {key: EMBEDDING_API_URL, sync: false}         # openai_compatible only
+      # EMBEDDING_PROVIDER=inprocess_nomic runs the index's own model inside this process (one worker, weights memory-mapped from a file)
+      - {key: EMBEDDING_MODEL_FILE, sync: false}      # inprocess_nomic only: path of the nomic-embed-text-v1.5 GGUF on the instance
+      - {key: EMBEDDING_MODEL_SHA256, sync: false}    # inprocess_nomic only: MANDATORY SHA-256 of that file
+      # index + lifecycle registry come from ONE verified R2 snapshot; TG_DB_DIR / TG_LIFECYCLE_DIR must stay unset
+      - {key: TG_SNAPSHOT_STORE, value: r2}
+      - {key: TG_SNAPSHOT_PREFIX, value: kyr/}
+      - {key: R2_ACCOUNT_ID, sync: false}
+      - {key: R2_BUCKET, sync: false}
+      - {key: R2_ACCESS_KEY_ID, sync: false}          # a READ-ONLY R2 API token scoped to this bucket
+      - {key: R2_SECRET_ACCESS_KEY, sync: false}
+      - {key: TG_SNAPSHOT_PIN_SHA256, sync: false}    # MANDATORY in production: sha256 of the manifest you reviewed (python -m backend.index_snapshot pin)
+      - {key: TG_SNAPSHOT_EXPECT_FAMILY, value: nomic-embed-text-v1.5}   # the snapshot's embedding family must be this one
+      # restore at start: bounded retries (exponential back-off) for an unreachable store only; an integrity failure is never retried
+      - {key: TG_SNAPSHOT_STARTUP_TIMEOUT_SECONDS, value: "60"}
+      - {key: TG_SNAPSHOT_RETRY_MAX_DELAY_SECONDS, value: "15"}
+      # browser access from the GitHub Pages site (exact origin, no path)
+      - {key: TG_CORS_ORIGINS, sync: false}           # MANDATORY in production; exact https origin(s), no path, no wildcard, no localhost
+      - {key: RAG_VECTOR_SEARCH, value: exact}
+      - {key: ANONYMIZED_TELEMETRY, value: "False"}

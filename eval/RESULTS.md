@@ -29,7 +29,7 @@ On the dev split, used for choosing the configuration, the chosen setup scored 0
 
 ## What was implemented
 
-Implemented in `backend/rag_profiles.py`, `backend/build_index.py` and `backend/server.py`.
+Implemented in `backend/rag_profiles.py`, `backend/build_index.py` (the legacy multi-state builder, retired and archived in `archive/legacy-multistate-builder/`; the Telangana builder `backend/build_telangana_index.py` now applies the structured profile) and `backend/server.py`.
 
 | Profile | Chunking | Embedding input | Default relevance gate |
 |---|---|---|---|
@@ -44,12 +44,12 @@ Implemented in `backend/rag_profiles.py`, `backend/build_index.py` and `backend/
 
 **Gate threshold.** Task prefixes compress distances. With the gate left at 0.88, correct refusals of unanswerable synthetic questions fell from 50% to 12.5%. At 0.80 the structured profile wrongly refuses 6% of answerable questions and correctly refuses 38% of unanswerable ones; the baseline at 0.88 does 9% and 50%. Neither separates answerable from unanswerable questions well, because the AUROC is about 0.87–0.90. **Recalibrate on an approved real corpus before relying on it.**
 
-**Parity.** Running the real build and retrieval code on the synthetic corpus (`eval/verify_pipeline.py`, throwaway Chroma) reproduces the benchmark: baseline 0.917 / 0.818 and structured 0.969 / 0.872 (dev / test). Structured dev differs from the benchmark's 0.984 because the implementation merges a document's title line into its first section.
+**Parity.** Running the real build and retrieval code on the synthetic corpus (`verify_pipeline.py`, throwaway Chroma; now archived in `archive/legacy-multistate-builder/eval/`) reproduces the benchmark: baseline 0.917 / 0.818 and structured 0.969 / 0.872 (dev / test). Structured dev differs from the benchmark's 0.984 because the implementation merges a document's title line into its first section.
 
 ## Rollback
 
 There are two ways back:
-- **Rebuild with the old profile:** `RAG_PROFILE=baseline python backend/build_index.py`. The server picks the profile up from the index after a restart.
+- **Rebuild with the old profile:** no longer available. It ran through the legacy multi-state builder (`RAG_PROFILE=baseline python backend/build_index.py`), which was retired on 2026-11-16 together with the multi-state corpus; the Telangana builder always builds the structured profile, and the owner confirmed the baseline rollback is not required. The server still reads the profile from any index it opens (an index with no record is treated as `baseline`).
 - **Keep the existing index:** an index built before this change already runs as `baseline`.
 
 ## Failure cases and limitations
@@ -61,12 +61,13 @@ There are two ways back:
 - **Heading detection is unvalidated on real PDFs.** It is built for headings at the start of a line ("Section 12.", "Rule 5.", "184. …"). It has not been run on real extracted text, where `unstructured` may join lines. The fallback to fixed chunks limits the damage, but check chunk counts and sample chunks when the real corpus is rebuilt.
 - **Answer correctness and citation support were not measured.** That needs the production LLM, and the Groq key was revoked, so this benchmark measures retrieval only.
 - **Latency and memory figures** come from an M1 with 8 GB of RAM, measured in one process. Embedder order affects warm-up timings.
-- **Live effect needs a rebuild.** The change takes effect only after the production index is rebuilt with the new profile, and that rebuild is blocked by the Gujarat legal-source sign-off.
+- **Live effect needs a rebuild.** The change takes effect only after the production index is rebuilt with the new profile, and that rebuild is gated by the signed Telangana approval record (`legal/telangana-approval.json`). The earlier Gujarat sign-off no longer applies: Gujarat work was abandoned and archived (`archive/abandoned-gujarat/`).
 
 ## Reproduce
 
 ```bash
 python3 -m unittest discover -s tests                       # 83 offline tests
 python3 eval/rag_bench.py --tag v1 && python3 eval/analyze.py eval/results/run_v1.json
-python3 eval/verify_pipeline.py                             # needs Ollama + nomic-embed-text
+# archived with the retired legacy builder (needs Ollama + nomic-embed-text and backend/build_index.py restored):
+# python3 archive/legacy-multistate-builder/eval/verify_pipeline.py
 ```

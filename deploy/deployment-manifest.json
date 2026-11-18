@@ -1,0 +1,307 @@
+{
+ "schema_version": 1,
+ "note": "Derived by scripts/deployment_manifest.py from the import graph of the entry points. Evidence (eval/), the index (chroma_*), the lifecycle registry (legal/), secrets (.env, approval and key files) and tests other than the two Pages-workflow tests are NOT part of a deployment. Render clones the repository; this lists what must be COMMITTED for the start command and the Pages workflow to work.",
+ "entry_points": {
+  "backend/server.py": "uvicorn target (deploy/render.yaml startCommand)",
+  "scripts/check_cloud_env.py": "run before uvicorn by the start command",
+  "scripts/build_pages.py": "run by .github/workflows/pages.yml"
+ },
+ "excluded": {
+  "prefixes": [
+   "eval/",
+   "chroma_",
+   "legal/",
+   "build/",
+   ".env",
+   "docs/",
+   "research/",
+   "notebooks/",
+   "data/",
+   "reference/"
+  ],
+  "secret_file_names": [
+   ".env",
+   "telangana-approval.json",
+   "trusted-keys.json",
+   "approval.sig"
+  ]
+ },
+ "files": {
+  ".github/workflows/pages.yml": {
+   "category": "ci",
+   "purpose": "manual GitHub Pages deployment workflow",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/answer_cache.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/api_protection.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/benign_wording.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/build_telangana_index.py": {
+   "category": "operator-only-code",
+   "purpose": "imported lazily by operator paths (ingest, lifecycle CLI); not used while serving",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/chat_guards.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/document_identity.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/document_lifecycle.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/eligibility_status.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/embedding_provider.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/evidence_manifest.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/exact_vector.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "committed"
+  },
+  "backend/grounded_answer.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/hybrid_retrieval.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/index_snapshot.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/index_validity.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/ledger_acceptance.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/legal_approval.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "committed"
+  },
+  "backend/meaning_checks.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/nomic_local.py": {
+   "category": "runtime-code",
+   "purpose": "the in-process nomic-embed-text-v1.5 engine; imported when EMBEDDING_PROVIDER=inprocess_nomic",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/offence_date.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/providers.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/provision_validity.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/provision_validity_runtime.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/rag_profiles.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/release_gates.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "backend/runtime_config.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/server.py": {
+   "category": "runtime-code",
+   "purpose": "uvicorn target (deploy/render.yaml startCommand)",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/source_status.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/tg_ingest.py": {
+   "category": "operator-only-code",
+   "purpose": "imported lazily by operator paths (ingest, lifecycle CLI); not used while serving",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/tg_manifest.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "backend/validity_decisions.py": {
+   "category": "runtime-code",
+   "purpose": "imported at start by the backend",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "deploy/cloud.env.example": {
+   "category": "config",
+   "purpose": "placeholders only: the variables the operator sets in the Render dashboard",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "deploy/deployment-manifest.json": {
+   "category": "config",
+   "purpose": "this manifest",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "deploy/render.yaml": {
+   "category": "config",
+   "purpose": "Render Blueprint (set the Blueprint Path to deploy/render.yaml in the Render dashboard)",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "frontend/index.html": {
+   "category": "runtime-data",
+   "purpose": "the page; served by the API and copied by the Pages build",
+   "exists": true,
+   "git_state": "modified"
+  },
+  "frontend/render.js": {
+   "category": "runtime-data",
+   "purpose": "sanitising Markdown renderer for the page",
+   "exists": true,
+   "git_state": "committed"
+  },
+  "legal-status/source-status.json": {
+   "category": "runtime-data",
+   "purpose": "text-currency status of each source (unverified until independently confirmed)",
+   "exists": true,
+   "git_state": "committed"
+  },
+  "requirements-cloud.txt": {
+   "category": "config",
+   "purpose": "the only dependency list Render installs (no torch, no notebooks)",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "scripts/build_pages.py": {
+   "category": "runtime-code",
+   "purpose": "run by .github/workflows/pages.yml",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "scripts/check_cloud_env.py": {
+   "category": "runtime-code",
+   "purpose": "run before uvicorn by the start command",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "scripts/deployment_manifest.py": {
+   "category": "operator-tool",
+   "purpose": "this tool",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "scripts/verify_runtime_config.py": {
+   "category": "operator-tool",
+   "purpose": "offline check of the Render blueprint, env names, requirements and wheels",
+   "exists": true,
+   "git_state": "untracked"
+  },
+  "tests/frontend/sanitize_test.html": {
+   "category": "ci",
+   "purpose": "browser test page referenced by tests/test_frontend.py",
+   "exists": true,
+   "git_state": "committed"
+  },
+  "tests/test_frontend.py": {
+   "category": "ci",
+   "purpose": "run by the Pages workflow before the build",
+   "exists": true,
+   "git_state": "committed"
+  },
+  "tests/test_pages_build.py": {
+   "category": "ci",
+   "purpose": "run by the Pages workflow before the build",
+   "exists": true,
+   "git_state": "untracked"
+  }
+ }
+}

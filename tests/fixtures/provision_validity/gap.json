@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "fixture": true,
+  "note": "SYNTHETIC TEST FIXTURE. Every name, number, date and approval here is invented. Not legal data.",
+  "instruments": [
+    {
+      "key": "TG:ACT:S9/2900",
+      "kind": "ACT",
+      "jurisdiction": "TG",
+      "manifest_ids": [
+        "synthetic-s9"
+      ]
+    }
+  ],
+  "provisions": [
+    {
+      "key": "TG:ACT:S9/2900#s1"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "LD-901",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-902",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-903",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    },
+    {
+      "decision_id": "LD-904",
+      "status": "approved",
+      "subject": "synthetic",
+      "prepared_by": "Synthetic Preparer (fixture)",
+      "reviewer": {
+        "name": "Synthetic Reviewer (fixture)"
+      }
+    }
+  ],
+  "interval_rule": {
+    "rule": "day_before_successor_start",
+    "decision_ref": "LD-904"
+  },
+  "operations": [
+    {
+      "id": "OP-A",
+      "type": "insert",
+      "source": "TG:ACT:S9/2900",
+      "targets": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 28990101,
+        "date": 28990101,
+        "decision_ref": "LD-901"
+      },
+      "decision_ref": "LD-901"
+    },
+    {
+      "id": "OP-B",
+      "type": "delete",
+      "source": "TG:ACT:S9/2900",
+      "targets": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 29010101,
+        "date": 29010101,
+        "decision_ref": "LD-902"
+      },
+      "decision_ref": "LD-902"
+    },
+    {
+      "id": "OP-C",
+      "type": "insert",
+      "source": "TG:ACT:S9/2900",
+      "targets": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "effective_from": {
+        "state": "approved",
+        "kind": "commencement",
+        "candidate": 29010301,
+        "date": 29010301,
+        "decision_ref": "LD-903"
+      },
+      "decision_ref": "LD-903"
+    }
+  ],
+  "versions": [
+    {
+      "key": "TG:ACT:S9/2900#s1@1",
+      "provision": "TG:ACT:S9/2900#s1",
+      "text": "held",
+      "created_by_op": "OP-A",
+      "closed_by_op": "OP-B",
+      "end": {
+        "state": "closed"
+      }
+    },
+    {
+      "key": "TG:ACT:S9/2900#s1@2",
+      "provision": "TG:ACT:S9/2900#s1",
+      "text": "held",
+      "created_by_op": "OP-C",
+      "end": {
+        "state": "continuing_verified",
+        "checked_through": 29100101,
+        "decision_ref": "LD-903"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "selector": {
+        "manifest_id": "synthetic-s9",
+        "sha256": "dd1d127d1e7828fe30056c0185399194d99240d03bcf702af1d9b455ed1186c1",
+        "provision_id": "SECTION 1",
+        "part": 1,
+        "parts": 1,
+        "page_start": 3,
+        "page_end": 4,
+        "text_sha256": "b364c5040032f324d4d67071658a05a2adcba1cbd0ca9124c020c2d5d7ae8dac"
+      },
+      "provisions": [
+        "TG:ACT:S9/2900#s1"
+      ],
+      "decision_ref": "LD-904"
+    }
+  ]
+}

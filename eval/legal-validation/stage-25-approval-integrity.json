@@ -1,0 +1,31 @@
+{
+ "stage": 25,
+ "mechanism": {
+  "record_field": "source_status_sha256 (optional in the record format)",
+  "check": "backend/legal_approval.py source_status_errors(), called by evaluate(source_status_file=...)",
+  "server": "backend/server.py _full_validation always passes SOURCE_STATUS_FILE; approval_fingerprint includes the registry digest (any edit -> 'stale' until refresh, then 'invalid' unless re-signed); grounded_gate_errors requires a valid registry whose sha256 equals the record's binding"
+ },
+ "signature": "source_status_sha256 is inside the signed record bytes, so changing the binding breaks the Ed25519 signature, and changing the registry breaks the hash match",
+ "backward_compatibility": {
+  "decision": "fail closed",
+  "detail": "records without source_status_sha256 still parse, but evaluate(source_status_file=...) rejects them ('re-approval required'). No real record exists, so nothing currently valid is lost. No weakened checks."
+ },
+ "tests": [
+  "bound record valid",
+  "registry edit invalidates a correctly signed record",
+  "pre-Stage-25 record rejected",
+  "missing registry rejected",
+  "editing binding breaks signature",
+  "malformed binding rejected by parser",
+  "server: registry edit -> stale -> invalid after refresh",
+  "server: record without binding invalid",
+  "gate blocks unbound or invalid registry"
+ ],
+ "not_created": [
+  "signing key",
+  "approval record",
+  "signature"
+ ],
+ "registry_sha256_current": "5a174820fbd2a3567c98d3e1dc0ad86391bd8f2012ee675d2ccd56437afaf1cf",
+ "operator_note": "A future approval record must include source_status_sha256 equal to the SHA-256 of legal-status/source-status.json at signing time; LEGAL-REVIEW-HANDOFF section 5 and docs/approval-trust-model.md do not yet mention this field (untracked docs, not edited)."
+}

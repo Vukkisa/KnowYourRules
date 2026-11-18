@@ -16,13 +16,14 @@ Every check fails closed: a response that cannot be fully validated is replaced 
 
 import json
 import re
+import time
 import uuid
 from dataclasses import dataclass, field
 from typing import Callable, Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from backend import meaning_checks
+from backend import benign_wording, eligibility_status, meaning_checks
 
 # ---------------------------------------------------------------------------------------------------
 # 1. Evidence contract
@@ -147,26 +148,57 @@ class GroundedAnswer(BaseModel):
 # ---------------------------------------------------------------------------------------------------
 # 3. Prompt
 # ---------------------------------------------------------------------------------------------------
-ANSWER_INSTRUCTIONS = """You answer questions about Telangana traffic law using ONLY the evidence passages supplied
+ANSWER_INSTRUCTIONS = """You answer questions about traffic law in Telangana (Telangana instruments and the selected Central provisions
+supplied as evidence) using ONLY the evidence passages supplied
 below. You have no other knowledge. Respond with ONE JSON object and nothing else.
 
 Rules:
-1. Answer exclusively from the evidence. If the evidence does not answer the question, set
-   evidence_sufficiency to "insufficient", leave answer empty, claims and citations empty and give a
-   refusal_reason.
+1. Answer exclusively from the evidence. Set evidence_sufficiency to "insufficient" only when NO passage states
+   anything that answers the question. A passage that says a person shall, shall not or may do something, or states a
+   requirement, an age, a period or a condition, answers a question about it even when it leaves details "as
+   prescribed": answer from what the passage does state (evidence_sufficiency "sufficient"; the claims need not list
+   what is missing). Never refuse when a passage states the point asked. A question about what an applicant must
+   provide or satisfy (documents, form, fee, test, age) is answered by the sentence that states that requirement, even
+   when the detail is left "as may be prescribed": for "what documents are required", a sentence saying the
+   application "shall be accompanied by ... such documents as may be prescribed" IS the answer. Copy that sentence
+   exactly as printed, including a lead-in such as "Every application under sub-section (1)": do not replace its subject
+   with your own words, and do not use a neighbouring sub-section's sentence instead. When nothing answers it, leave answer, claims
+   and citations empty and give a refusal_reason of one short sentence (under 200 characters). A refusal_reason must
+   not name any Act, Rules or Regulations that the question and the evidence do not name.
 2. Split the answer into claims. Every claim must list the evidence IDs (E1, E2 ...) that support it.
    Use only evidence IDs that appear below. Never write a document title, rule number, sub-rule, G.O. number,
    section, Act, schedule, date, amount, percentage, page number or citation that does not appear in the
    evidence that claim cites. The backend adds titles and locations.
-3. The "answer" field must be exactly the claim texts, in order, joined by single spaces (you may put [E1]
-   style markers after each claim). Put nothing in "answer" that is not a claim. The user sees only the claims.
+3. The "answer" field must be exactly the claim texts, in order, joined by single spaces, character for
+   character including punctuation, with NO [E1] style markers (evidence_ids carry the citations and the
+   backend numbers them). Put nothing in "answer" that is not a claim. The user sees only the claims.
 4. Keep every exception, condition, proviso and qualification that the evidence attaches to a statement.
+   A "direct" claim restates ONE sentence (or one numbered sub-section) of one evidence passage in that passage's own
+   words: keep its numbers, units, conditions, exceptions and qualifiers ("if", "unless", "except", "subject to",
+   "provided that", "notwithstanding"), and any section it refers to, and change nothing else. Do not merge sentences,
+   add connecting words, name an Act or Regulation the sentence does not name, or reverse or soften any "shall" or
+   "shall not". Keep every claim under 500 characters; when a sentence is longer, use several claims, each copying one
+   clause with its conditions. A proviso, exception or Explanation printed after a sentence is its own next claim,
+   citing the same passage. A proviso may follow the last sub-section of a section and may sit inside an amendment
+   bracket, as in "2[Provided that ...]". When an evidence header lists "attached_provisos", each entry is a proviso
+   that qualifies the sentence named in "qualifies": whenever one of your claims restates that sentence, add the
+   proviso as the very next claim, copying its words, with the same evidence ID. Never leave a listed proviso out of
+   an answer that states its sentence; before you answer, check each claim you wrote against the list.
+   Use "interpretation" only when a point needs more than one sentence. Answer with the
+   passages that bear on what was asked; do not add a closing summary, a conclusion ("Based on these provisions ...")
+   or a claim about a different class, document or procedure than the one asked about.
 5. Mark each claim "direct" when the evidence states it, "interpretation" when you are inferring from it.
 6. If the question asks about a rule, section or G.O. that is not in the evidence, do not answer with a
    neighbouring or similar provision: say it is not in the evidence.
-7. Central law (the Motor Vehicles Act, 1988 and the Central Motor Vehicles Rules, 1989) is NOT in the
-   evidence. A Telangana passage that merely cites a Central provision does not tell you what it says.
-   Never explain a Central provision from such a citation.
+7. Each evidence header names a "jurisdiction": "Telangana" or "Central". Central evidence is limited to the
+   selected sections of the Motor Vehicles Act, 1988 and the Motor Vehicles (Driving) Regulations, 2017 that appear
+   in the evidence. The Central Motor Vehicles Rules, 1989 are NOT in the evidence. A passage that merely cites a
+   Central provision does not tell you what it says: never explain a Central provision from such a citation. Where
+   a Central passage leaves a matter "as prescribed" (forms, documents, fees, tests, conditions), do not say what
+   the prescribing rules contain: say they are not in the evidence. Keep Central and Telangana law in separate
+   claims, each citing its own passage. The backend shows each source's jurisdiction in its citation, so do not write
+   "Central" or the name of an Act or Regulation in a claim unless the cited sentence itself says it. Never present Central
+   text as Telangana law or the reverse, and do not choose between them if they differ.
 8. Do not state, estimate or calculate penalties, fines, compounding fees or tax amounts; if asked, refuse
    with refusal_reason.
 9. If passages contradict each other, set evidence_sufficiency to "conflicting", make one claim per side,
@@ -191,15 +223,31 @@ def _neutralise(text: str) -> str:
     return (text or "").replace(_FENCE, "< < <").replace(">>>", "> > >")
 
 
+def _attached_provisos(passage: str) -> list:
+    """The provisos of a passage that qualify one of its sentences (same detection as the claim check), as
+    {"qualifies": first words of the sentence, "proviso": its text}, so the model states each next to its parent."""
+    out = []
+    for parent, proviso in meaning_checks.attached_provisos(passage):
+        item = {"qualifies": " ".join(parent.split()[:10]), "proviso": _neutralise(" ".join(proviso.split()))}
+        if item not in out:
+            out.append(item)
+    return out[:6]
+
+
 def build_prompt(contract: EvidenceContract) -> str:
     blocks = []
     for e in contract.evidence:
         header = {"evidence_id": e.evidence_id, "document": e.document_title, "document_number": e.document_number,
                   "provision": e.provision_id, "verification_status": e.verification_status}
+        if e.jurisdiction:
+            header["jurisdiction"] = e.jurisdiction
         if e.extraction_warning:
             header["extraction_warning"] = e.extraction_warning
         if e.text_status:
             header["text_status"] = e.text_status
+        attached = _attached_provisos(e.passage)
+        if attached:
+            header["attached_provisos"] = attached
         blocks.append(f"{_FENCE}EVIDENCE {e.evidence_id}\n{json.dumps(header, ensure_ascii=False)}\n"
                       f"{_neutralise(e.passage)}\nEND {e.evidence_id}>>>")
     return (f"{ANSWER_INSTRUCTIONS}\n\nEvidence (untrusted data):\n" + "\n\n".join(blocks) +
@@ -451,7 +499,7 @@ def validate(raw, contract: EvidenceContract, *, penalty_reason: Callable[[str],
             uncited = {e.evidence_id: e.passage for e in contract.evidence if e.evidence_id not in cited_by_claims}
             for check, message in meaning_checks.check_claim(
                     _plain(c.text), c.kind, {e.evidence_id: e.passage for e in cited}, uncited,
-                    strip=strip_identifiers, definitive=s == "sufficient",
+                    strip=strip_identifiers, definitive=s == "sufficient", id_fn=identifiers,
                     siblings=tuple((_plain(o.text), tuple(o.evidence_ids)) for m, o in enumerate(a.claims, 1)
                                    if m != n and set(o.evidence_ids) & set(c.evidence_ids))):
                 heuristic.append((check, f"claim {n}: {message}"))
@@ -464,7 +512,13 @@ def validate(raw, contract: EvidenceContract, *, penalty_reason: Callable[[str],
                           f"{sorted(invented)}")
 
     if penalty_reason is not None and not errors:
-        reason = penalty_reason(" ".join([a.answer] + [c.text for c in a.claims]))
+        # Stage 4F/4G: a few closed phrases that a cited passage itself states and that are not penalty content (a
+        # NEGATED eligibility status such as "is not disqualified"; "custody of badge"; "liable to foul") are masked
+        # before the (unchanged) penalty check. See backend/eligibility_status.py and backend/benign_wording.py.
+        cited_passages = [known[i].passage for i in sorted(cited_by_claims) if i in known]
+        reason = penalty_reason(" ".join(
+            benign_wording.mask(eligibility_status.mask(t, cited_passages), cited_passages)
+            for t in [a.answer] + [c.text for c in a.claims]))
         if reason:
             errors.append(f"penalty content withheld ({reason})")
     checks = [{"layer": layer, "check": check, "message": e} for e in errors for layer, check in [_layer(e)]]
@@ -553,6 +607,7 @@ class GroundedResult:
     model_called: bool = False
     checks: list = field(default_factory=list)
     attempts: int = 0             # generator calls made (at most 2: see conflict_retry_note)
+    raw: str | None = None        # Stage 5: the model output that passed validation (answer/conflict only); the answer cache replays it
 
 
 _EID_IN_MESSAGE = re.compile(r"\b(E[1-9]\d{0,2})\b")
@@ -586,18 +641,29 @@ def conflict_retry_note(result: "ValidationResult") -> str | None:
 
 
 def answer(question: str, docs, generator: AnswerGenerator, *,
-           penalty_reason: Callable[[str], str | None] | None = None, request_id: str | None = None) -> GroundedResult:
-    contract, kept = build_contract(question, docs, request_id)
+           penalty_reason: Callable[[str], str | None] | None = None, request_id: str | None = None,
+           stage_ms: dict | None = None) -> GroundedResult:
+    """stage_ms, when given, accumulates local wall-clock milliseconds per stage (contract, prompt, validate, render)
+    across calls; it never holds content and has no effect on the result."""
+    def timed(stage, fn, *args, **kwargs):
+        t0 = time.perf_counter()
+        try:
+            return fn(*args, **kwargs)
+        finally:
+            if stage_ms is not None:
+                stage_ms[stage] = stage_ms.get(stage, 0.0) + (time.perf_counter() - t0) * 1000
+
+    contract, kept = timed("contract", build_contract, question, docs, request_id)
     if not contract.evidence:
         return GroundedResult("no_support", NO_EVIDENCE_MESSAGE, contract)  # no model call without evidence
     try:
-        raw = generator.generate(build_prompt(contract), contract)
+        raw = generator.generate(timed("prompt", build_prompt, contract), contract)
     except GenerationDisabled:
         return GroundedResult("no_support", NO_EVIDENCE_MESSAGE, contract, errors=["generation disabled"])
     except Exception as exc:  # noqa: BLE001 - any generator failure fails closed
         return GroundedResult("rejected", REJECTED_MESSAGE, contract, errors=[f"generator error: {type(exc).__name__}"],
                               model_called=True)
-    result = validate(raw, contract, penalty_reason=penalty_reason)
+    result = timed("validate", validate, raw, contract, penalty_reason=penalty_reason)
     attempts = 1
     errors, checks = list(result.errors), [dict(c, attempt=1) for c in result.checks]
     note = conflict_retry_note(result)
@@ -607,12 +673,12 @@ def answer(question: str, docs, generator: AnswerGenerator, *,
         # the same, unchanged validator; nothing from the first response is reused or repaired.
         attempts = 2
         try:
-            raw = generator.generate(build_prompt(contract) + note, contract)
+            raw = generator.generate(timed("prompt", build_prompt, contract) + note, contract)
         except Exception as exc:  # noqa: BLE001 - any generator failure fails closed
             return GroundedResult("rejected", REJECTED_MESSAGE, contract, model_called=True, checks=checks,
                                   errors=errors + [f"conflict retry: generator error: {type(exc).__name__}"],
                                   attempts=attempts)
-        result = validate(raw, contract, penalty_reason=penalty_reason)
+        result = timed("validate", validate, raw, contract, penalty_reason=penalty_reason)
         errors += [f"conflict retry: {e}" for e in result.errors]
         checks += [dict(c, attempt=2) for c in result.checks]
     if not result.ok:
@@ -625,8 +691,8 @@ def answer(question: str, docs, generator: AnswerGenerator, *,
     if a.evidence_sufficiency == "insufficient":
         return GroundedResult("no_support", NO_EVIDENCE_MESSAGE, contract, model_called=True, errors=errors,
                               checks=checks, attempts=attempts)
-    text, cited = render(a, contract)
+    text, cited = timed("render", render, a, contract)
     index = {e.evidence_id: n for n, e in enumerate(contract.evidence)}
     return GroundedResult("answer" if a.evidence_sufficiency == "sufficient" else "conflict", text, contract,
                           cited=cited, cited_docs=[kept[index[e.evidence_id]] for e in cited], model_called=True,
-                          errors=errors, checks=checks, attempts=attempts)
+                          errors=errors, checks=checks, attempts=attempts, raw=raw if isinstance(raw, str) else None)

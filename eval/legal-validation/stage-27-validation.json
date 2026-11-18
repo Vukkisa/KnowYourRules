@@ -1,0 +1,92 @@
+{
+  "stage": 27,
+  "scope": "Test portability fix and commit-readiness check. No Groq/network calls, approvals, staging, commits or pushes.",
+  "changes": {
+    "modified": ["tests/test_source_status.py"],
+    "new": ["tests/fixtures/legal-data-snapshot.json"],
+    "backup": "eval/legal-validation/stage-27-originals/test_source_status.py.pre-stage-27",
+    "production_code_changed": false
+  },
+  "portability_fix": {
+    "fixture": {
+      "file": "tests/fixtures/legal-data-snapshot.json",
+      "contents": "63 SHA256SUMS entries, 20 manifest {sha256, source_class}, LD-001/LD-002 {status, decision, reviewer, review_date}; hashes and status only, no legal text",
+      "pinned_from_sha256": {
+        "SHA256SUMS": "recorded in fixture.pinned_from",
+        "manifest": "recorded in fixture.pinned_from",
+        "decision_register": "a853ccde67f8e929fb940ad713345a83511294a83f698e1031e80ffd0580206e"
+      }
+    },
+    "tests": {
+      "test_every_hash_matches_sha256sums_and_draft_manifest": "now runs everywhere against the fixture; same assertions plus a new check that each registry status matches the manifest source_class",
+      "test_ld001_ld002_still_unresolved_in_the_register": "now runs everywhere against the fixture; stronger: status, decision, review_date and full reviewer must be unset, and every decision_ref in the registry must be a pinned decision",
+      "test_pinned_snapshot_matches_live_legal_sources": "new: live SHA256SUMS and manifest bytes must hash to the pinned values; skips when absent, fails under KYR_REQUIRE_LEGAL_DATA=1",
+      "test_pinned_snapshot_matches_live_decision_register": "new: live LD-001/LD-002 fields must equal the pinned values; skips when absent, fails under KYR_REQUIRE_LEGAL_DATA=1"
+    },
+    "assertions_removed_or_weakened": false,
+    "tamper_check": "Setting LD-001 status to 'approved' in the fixture fails both test_ld001_ld002_still_unresolved_in_the_register and test_pinned_snapshot_matches_live_decision_register; fixture restored byte-identical."
+  },
+  "tests": {
+    "worktree": {"exact": "721 OK", "hnsw": "721 OK"},
+    "affected_standalone": {"test_source_status": "49 OK", "test_server": "131 OK", "test_legal_approval": "64 OK", "test_exact_vector": "24 OK"},
+    "fresh_clone_simulation": {
+      "method": "local git clone of HEAD f944466 into the scratchpad (no network); files overlaid; no sibling repo, no eval/legal-validation",
+      "HEAD": {"exact": "610 OK", "hnsw": "610 OK"},
+      "HEAD+A": {"exact": "634 OK (1 skipped)", "hnsw": "634 OK (1 skipped)"},
+      "HEAD+A+B": {"exact": "683 OK (3 skipped)", "hnsw": "683 OK (3 skipped)"},
+      "skips_in_clone": [
+        "test_exact_vector.test_stage15_record_agrees_with_squared_l2 (Stage 15 record in untracked eval/legal-validation; earlier work, out of scope)",
+        "test_source_status.test_pinned_snapshot_matches_live_decision_register (live drift check only)",
+        "test_source_status.test_pinned_snapshot_matches_live_legal_sources (live drift check only)"
+      ],
+      "strict_mode_in_clone": "KYR_REQUIRE_LEGAL_DATA=1 turns both live drift checks into failures, as intended"
+    }
+  },
+  "legal_checks": {
+    "checksums": "63/63 OK",
+    "registry": {"state": "valid", "errors": [], "sha256": "5a174820fbd2a3567c98d3e1dc0ad86391bd8f2012ee675d2ccd56437afaf1cf",
+                 "against": "Stage 26 scratchpad copy of chroma_telangana_preview_s11 (590 chunks, 20 documents) and the corpus files"},
+    "rule81": {"chunks": {"83": "known_amendments_unresolved", "84": "known_amendments_unresolved"}},
+    "LD-001": {"status": "evidence_incomplete", "decision": null},
+    "LD-002": {"status": "evidence_incomplete", "decision": null},
+    "approval_record_present": false,
+    "signature_or_key_created": false,
+    "preview_index_byte_identical_to_stage23_copy": true
+  },
+  "d1_d2": "Unchanged: both affect legacy development mode only (Stage 26); grounded mode blocks instead.",
+  "worktree": {
+    "staged_files": 0,
+    "tracked_diff": "11 files, 685 insertions, 191 deletions (unchanged since Stage 26)",
+    "new_since_stage_26": ["tests/fixtures/legal-data-snapshot.json"],
+    "stage26_correction": "tests/test_source_compare.py (untracked, mtime 2026-11-11 11:03) was missing from the Stage 26 classification; it belongs with backend/source_compare.py (Stages 9-11, earlier intentional work) and is not part of commit A or B.",
+    "earlier_work_preserved": true
+  },
+  "commit_plan": {
+    "executed": false,
+    "A": {
+      "title": "Exact vector search (earlier work)",
+      "paths": ["backend/exact_vector.py", "tests/test_exact_vector.py",
+                "backend/server.py <- eval/legal-validation/stage-25-originals/server.py.pre-stage-25 (index only)"],
+      "server_diff_vs_HEAD": "34 insertions, 4 deletions",
+      "safe": true
+    },
+    "B": {
+      "title": "Hash-bound legal source-status warnings (Stage 25) with Stage 26/27 tests",
+      "paths": ["backend/server.py", "backend/source_status.py", "backend/legal_approval.py", "backend/grounded_answer.py",
+                "frontend/index.html", "legal-status/source-status.json", "tests/test_server.py",
+                "tests/test_legal_approval.py", "tests/test_source_status.py", "tests/fixtures/legal-data-snapshot.json"],
+      "server_diff_vs_A": "99 insertions, 9 deletions",
+      "depends_on": "A (server.py imports backend.exact_vector; test_source_status patches srv.VECTOR_SEARCH)",
+      "safe": true
+    },
+    "risks": [
+      "B committed without A fails to import backend.exact_vector.",
+      "numpy is used by backend/exact_vector.py but not listed in requirements.txt; it is installed transitively by chromadb. Low risk.",
+      "Must not use 'git add backend/server.py' for A: that would stage the Stage 25 version."
+    ],
+    "excluded": ["backend/hybrid_retrieval.py", "tests/test_bm25_plural.py", "eval/telangana-retrieval-benchmark.json",
+                 "eval/telangana-retrieval-review.csv", "eval/telangana-chunk-references.json", "tests/test_review_import.py",
+                 "tests/test_benchmark_integrity.py", "backend/source_compare.py", "tests/test_source_compare.py",
+                 "chroma_telangana_preview_s11/", "eval/legal-validation/ (reports optional; never *-originals)"]
+  }
+}

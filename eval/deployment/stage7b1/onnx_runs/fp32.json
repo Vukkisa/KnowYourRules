@@ -1,0 +1,45 @@
+{
+ "model_file": "nomic_v1_5_fp32.onnx",
+ "model_mb": 521.7,
+ "threads": 1,
+ "session_load_s": 1.0,
+ "first_query_s": 0.12,
+ "query_latency_ms": {
+  "p50": 79.9,
+  "p95": 113.4,
+  "max": 148.1
+ },
+ "long_input_tokens": 804,
+ "long_input_s": 3.738,
+ "rss_mb": {
+  "python+numpy+psutil": 34.6,
+  "after import tokenizers+onnxruntime": 45.2,
+  "after session load": 863.6,
+  "after first query": 796.5,
+  "after 108 single queries": 525.7,
+  "after longest input": 616.8,
+  "after 197 documents": 529.4
+ },
+ "ru_maxrss_mb": 918.3,
+ "queries_vs_ollama_cosine": {
+  "min": 0.9999995,
+  "p01": 0.9999995,
+  "mean": 0.9999999
+ },
+ "docs_vs_ollama_cosine_sample197": {
+  "min": 0.9999996,
+  "p01": 0.9999996,
+  "mean": 0.9999998
+ },
+ "docs_vs_stored_cosine_sample197": {
+  "min": 0.9999996,
+  "p01": 0.9999996,
+  "mean": 0.9999998
+ },
+ "retrieval_vs_ollama": {
+  "top1_same": 1.0,
+  "top5_set_same": 0.9907407407407407,
+  "top10_set_same": 1.0
+ },
+ "unit_norm_ok": true
+}

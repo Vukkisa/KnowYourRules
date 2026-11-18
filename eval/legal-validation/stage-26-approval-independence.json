@@ -1,0 +1,36 @@
+{
+  "stage": 26,
+  "approval_record_created": false,
+  "signature_or_key_created": false,
+  "approval_file_present": false,
+  "checks": [
+    {"claim": "Approval does not change source status", "result": "pass",
+     "evidence": "Registry.lookup takes only (sha256, provision_id); no approval input. source_entries computes text_status separately from 'verified'."},
+    {"claim": "Approval cannot remove warnings", "result": "pass",
+     "evidence": "warning_text returns None only for verified_current with trust_verified=True; every other status always yields a template. Tests: test_approval_never_removes_a_non_current_warning, test_rule81_style_warning_persists_after_simulated_approval, Stage 26 conflict and multi-chunk tests."},
+    {"claim": "Registry hash change invalidates the signature binding", "result": "pass",
+     "evidence": "source_status_sha256 is inside the signed bytes; evaluate() compares it with the file on disk; server fingerprint includes the registry. Tests: test_changed_registry_invalidates_a_correctly_signed_record, test_binding_cannot_be_edited_without_breaking_the_signature, test_server_binds_registry_and_goes_stale_when_it_changes."},
+    {"claim": "Missing or malformed registry fails safely", "result": "pass",
+     "evidence": "load() never raises; absent/invalid -> every chunk UNRECORDED (warns) and grounded gate blocks. Tests: test_load_fails_closed, test_missing_registry_fails_closed, test_invalid_registry_blocks_grounded_answers, test_pre_stage25_record_fails_closed."},
+    {"claim": "No verified_current without human review", "result": "pass_with_limitation",
+     "evidence": "parse requires a complete review block and decision reference; verified_current still warns unless a valid approval binds this exact registry.",
+     "limitation": "Code checks completeness, not that the reviewer is authorised; authorisation rests on the signed approval binding the registry."},
+    {"claim": "Rule 81 remains known_amendments_unresolved", "result": "pass",
+     "evidence": "Shipped registry override on middle-main-chap-4.htm 'Rule 81', decision_refs LD-001/LD-002, G.O.Ms.No. 77; both index chunks (83, 84) resolve to it on the index copy."}
+  ],
+  "registry": {
+    "file": "legal-status/source-status.json",
+    "sha256": "5a174820fbd2a3567c98d3e1dc0ad86391bd8f2012ee675d2ccd56437afaf1cf",
+    "state_against_index_copy_and_corpus": "valid",
+    "entries": 20,
+    "status_counts": {"unverified_snapshot": 13, "official_text_commencement_unconfirmed": 7, "verified_current": 0},
+    "overrides": [{"file": "html-snapshots/tmvr-1989/middle-main-chap-4.htm", "provision": "Rule 81",
+                   "status": "known_amendments_unresolved", "decision_refs": ["LD-001", "LD-002"]}]
+  },
+  "decision_register": {
+    "file": "eval/legal-validation/stage-22-legal-decision-register.json",
+    "sha256": "a853ccde67f8e929fb940ad713345a83511294a83f698e1031e80ffd0580206e",
+    "LD-001": {"status": "evidence_incomplete", "decision": null},
+    "LD-002": {"status": "evidence_incomplete", "decision": null}
+  }
+}

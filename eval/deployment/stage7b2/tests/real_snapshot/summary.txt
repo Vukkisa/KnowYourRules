@@ -1,0 +1,4 @@
+exact test_stage7b1_numpy_real rc=0 Ran 7 tests in 20.427s OK 
+exact test_cloud_embedding_real rc=0 Ran 12 tests in 131.513s OK 
+hnsw test_stage7b1_numpy_real rc=0 Ran 7 tests in 19.385s OK 
+hnsw test_cloud_embedding_real rc=0 Ran 12 tests in 150.731s OK 

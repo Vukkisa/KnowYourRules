@@ -123,7 +123,10 @@ class ManifestTests(Workspace):
     def test_mixed_jurisdiction_is_rejected(self):
         self.reject([self.entries_raw[0], dict(self.entries_raw[1], jurisdiction="Andhra Pradesh")],
                     "mixed jurisdictions")
-        self.reject([], "manifest jurisdiction", top=dict(manifest(*self.entries_raw), jurisdiction="Central"))
+        # A manifest is single-jurisdiction: a Central manifest cannot hold Telangana documents, and only Telangana or
+        # Central manifests exist at all.
+        self.reject([], "mixed jurisdictions", top=dict(manifest(*self.entries_raw), jurisdiction="Central"))
+        self.reject([], "manifest jurisdiction must be one of", top=dict(manifest(*self.entries_raw), jurisdiction="Andhra Pradesh"))
 
     def test_duplicate_files_are_rejected(self):
         twin = dict(self.entries_raw[0], id="twin", file="html/copy.htm")
@@ -473,15 +476,10 @@ class BuilderTests(Workspace):
         self.assertEqual(rc, 1)
         self.assertIn("shared index directory", out)
 
-    def test_no_approval_is_refused_and_preview_needs_separate_directory(self):
+    def test_no_approval_record_is_needed_to_build(self):
         rc, out = self.build(approval=None)
-        self.assertEqual(rc, 1)
-        self.assertIn("no approval record", out)
-        with unittest.mock.patch.object(bt, "DEFAULT_DB_DIR", self.db):
-            rc, out = self.build(approval=None, allow_unapproved=True)
-        self.assertEqual(rc, 1)
-        self.assertIn("separate preview directory", out)
-        rc, out = self.build(approval=None, allow_unapproved=True, db=self.root / "preview_db")
+        self.assertEqual(rc, 0, out)
+        rc, out = self.build(approval=None, allow_unapproved=True, db=self.root / "preview_db")   # the old flag is accepted and ignored
         self.assertEqual(rc, 0, out)
 
     def test_unapproved_or_extra_documents_are_rejected(self):
@@ -541,15 +539,15 @@ class BuilderTests(Workspace):
         before = sorted(self.live()[1].get()["ids"])
         real = ti.chunk_document
 
-        def mislabelled(blocks, entry):
-            docs = real(blocks, entry)
-            docs[0].metadata["state"] = "Central"
+        def mislabelled(blocks, entry, *args):  # Stage 28: prepare also passes the snapshot chapter
+            docs = real(blocks, entry, *args)
+            docs[0].metadata["state"] = "Gujarat"
             return docs
 
         with unittest.mock.patch.object(ti, "chunk_document", mislabelled):
             rc, out = self.build()
         self.assertEqual(rc, 1)
-        self.assertIn("mixed jurisdictions", out)
+        self.assertIn("not tagged with its document's", out)
         self.assertEqual(sorted(self.live()[1].get()["ids"]), before)
 
     def test_verify_staging_rejects_missing_hash_and_missing_documents(self):
@@ -574,6 +572,55 @@ class BuilderTests(Workspace):
         live.modify(name=bt.PREVIOUS)  # interrupted between the two renames
         bt.recover(client)
         self.assertEqual(sorted(client.get_collection(bt.COLLECTION).get()["ids"]), before)
+
+    # Ported from the retired legacy multi-state builder's tests (archive/legacy-multistate-builder/):
+    # a build that produces nothing must never replace a live index. The embedding-failure case is
+    # test_failed_staging_build_keeps_previous_index above (it also asserts staging was removed).
+    def _assert_live_unchanged(self, before, rc, out):
+        self.assertEqual(rc, 1, out)
+        self.assertIn("Build FAILED", out)
+        client, live = self.live()
+        self.assertEqual(sorted(live.get()["ids"]), before)
+        self.assertEqual({c.name for c in client.list_collections()}, {bt.COLLECTION})  # no staging or previous left
+
+    def test_verify_staging_rejects_staging_without_profile_record(self):
+        client = chromadb.PersistentClient(path=str(self.db))
+        chunks = [ti.chunk_document(ti.load_html(self.html, "html/rules.htm"), self.entries()[0])[0]]
+        client.create_collection(bt.STAGING).add(  # no rag_profile recorded on the collection
+            ids=["x"], embeddings=[[0.1] * 16], documents=["x"], metadatas=[chunks[0].metadata])
+        with self.assertRaisesRegex(bt.BuildError, "does not record rag_profile"):
+            bt.verify_staging(client, chunks, {chunks[0].metadata["sha256"]})
+
+    def test_zero_chunks_cannot_replace_live_index(self):
+        rc, out = self.build()
+        self.assertEqual(rc, 0, out)
+        before = sorted(self.live()[1].get()["ids"])
+        with unittest.mock.patch.object(ti, "chunk_document", lambda *a, **k: []):
+            rc, out = self.build()
+        self._assert_live_unchanged(before, rc, out)
+        self.assertIn("no chunks were produced", out)
+
+    def test_verify_staging_rejects_zero_chunks(self):
+        client = chromadb.PersistentClient(path=str(self.db))
+        client.create_collection(bt.STAGING, metadata={"rag_profile": "structured"})
+        with self.assertRaisesRegex(bt.BuildError, "no chunks to index"):
+            bt.verify_staging(client, [], set())
+
+    def test_empty_source_file_list_cannot_replace_live_index(self):
+        rc, out = self.build()
+        self.assertEqual(rc, 0, out)
+        before = sorted(self.live()[1].get()["ids"])
+        self.manifest_path = self.write_manifest([])  # a manifest that lists no source files
+        rc, out = self.build()
+        self._assert_live_unchanged(before, rc, out)
+
+    def test_empty_source_file_list_cannot_create_an_index(self):
+        self.manifest_path = self.write_manifest([])
+        rc, out = self.build()
+        self.assertEqual(rc, 1, out)
+        if self.db.exists():
+            names = {c.name for c in chromadb.PersistentClient(path=str(self.db)).list_collections()}
+            self.assertNotIn(bt.COLLECTION, names)
 
 
 import unittest.mock  # noqa: E402

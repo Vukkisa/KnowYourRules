@@ -188,14 +188,16 @@ class ServerIntegrationTests(unittest.TestCase):
 
     def test_exact_index_is_used_when_available(self):
         srv = self.ts.srv
-        fake = make([[0.0, 0.0], [1.0, 0.0]], metas=[meta(0), meta(1, state="Central")], table={"q": [0.0, 0.0]})
+        fake = make([[0.0, 0.0], [1.0, 0.0], [2.0, 0.0]],
+                    metas=[meta(0), meta(1, state="Central"), meta(2, state="Gujarat")], table={"q": [0.0, 0.0]})
         original = srv.EXACT_INDEX
         try:
             srv.EXACT_INDEX = fake
             out = srv.vector_search("q")
         finally:
             srv.EXACT_INDEX = original
-        self.assertEqual([d.id for d, _ in out], ["id0"])  # Telangana filter applied
+        # Telangana and the separately tagged Central chunks are served; any other state is filtered out
+        self.assertEqual([d.id for d, _ in out], ["id0", "id1"])
 
     def test_unsupported_filter_falls_back(self):
         srv = self.ts.srv

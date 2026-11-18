@@ -1,0 +1,2470 @@
+{
+ "stage": 16,
+ "vector_search_default": "exact (RAG_VECTOR_SEARCH=hnsw restores Chroma HNSW)",
+ "index": "copy of chroma_telangana_preview_s11, 590 chunks",
+ "tests": {
+  "default_exact": "666 OK",
+  "RAG_VECTOR_SEARCH=hnsw": "666 OK",
+  "new": "tests/test_exact_vector.py, 24 tests"
+ },
+ "validate": "OK: 0 reviewed, 108 unreviewed, 0 errors",
+ "retrieval_reported_by_evaluator": {
+  "scored_cases": 79,
+  "hit@5": 1.0,
+  "recall@1": 0.6856540084388186,
+  "recall@3": 0.9166666666666667,
+  "recall@5": 0.9556962025316454,
+  "precision@5": 0.2531645569620251,
+  "mrr": 0.8812236286919832,
+  "failure_rate": 0.0
+ },
+ "guard": {
+  "cases": 12,
+  "correct": 12,
+  "accuracy": 1.0
+ },
+ "leakage": {
+  "retrieved_chunks": 626,
+  "excluded_chunks_retrieved": 0,
+  "rate": 0.0,
+  "cases_with_leak": []
+ },
+ "model_calls": {},
+ "remaining_recall_below_1": [
+  {
+   "id": "TG-PQ-002",
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 15",
+    "tmvr-1989-chap-4::Rule 119",
+    "tmvtr-1963::Rule 11"
+   ],
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 17",
+    "tmvr-1989-chap-2::Rule 18"
+   ]
+  },
+  {
+   "id": "TG-PQ-017",
+   "ranked": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 458",
+    "tmvr-1989-chap-11::Rule 462",
+    "tmvr-1989-chap-11::Rule 474"
+   ],
+   "relevant": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 455"
+   ]
+  },
+  {
+   "id": "TG-PQ-021",
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 180",
+    "tmvr-1989-chap-5::Rule 256",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-8::Rule 407"
+   ],
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-8::Rule 407"
+   ]
+  },
+  {
+   "id": "TG-MR-008",
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 76",
+    "tmvr-1989-chap-3::Rule 77"
+   ],
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-3::Rule 77"
+   ]
+  },
+  {
+   "id": "TG-GO-003",
+   "ranked": [
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7"
+   ],
+   "relevant": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 5"
+   ]
+  },
+  {
+   "id": "TG-GO-007",
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "relevant": [
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "go-ms-77-2025-trb::Paragraph 4"
+   ]
+  },
+  {
+   "id": "TG-GO-012",
+   "ranked": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7",
+    "tmvr-1989-chap-5::Rule 173"
+   ],
+   "relevant": [
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 2",
+    "go-ms-32-2026-trb::Preamble"
+   ]
+  }
+ ],
+ "retained": {
+  "TG-MR-008": "Rule 77 at provision rank 6 (ranking)",
+  "TG-GO-007": "outdated Rule 81 first via structured lookup; no amendment metadata",
+  "Rule 12-B": "shares 12-A anchor #13"
+ },
+ "rows": [
+  {
+   "id": "TG-DL-001",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 437"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 433",
+    "tmvr-1989-chap-7::Rule 389",
+    "tmvr-1989-chap-8::Rule 417",
+    "tmvr-1989-chap-5::Rule 164",
+    "tmvr-1989-chap-8::Rule 436"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.16485887500311946
+  },
+  {
+   "id": "TG-DL-002",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-1::Rule 2"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-1::Rule 2",
+    "tmvtr-1963::Rule 2",
+    "tmvr-1989-chap-7::Rule 393",
+    "tmvr-1989-chap-5::Rule 143",
+    "tmvr-1989-chap-5::Rule 222"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03864770799918915
+  },
+  {
+   "id": "TG-DL-003",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-4::Rule 80"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 80",
+    "tmvr-1989-chap-4::Rule 88",
+    "tmvr-1989-chap-8::Rule 433",
+    "tmvr-1989-chap-4::Rule 80A",
+    "tmvr-1989-chap-8::Rule 432",
+    "tmvr-1989-chap-5::Rule 179"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03445491700040293
+  },
+  {
+   "id": "TG-DL-004",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 371"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 372",
+    "tmvr-1989-chap-7::Rule 380",
+    "tmvr-1989-chap-5::Rule 270",
+    "tmvr-1989-chap-7::Rule 373"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03248525000162772
+  },
+  {
+   "id": "TG-DL-005",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 427"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-8::Rule 424",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-8::Rule 423",
+    "tmvr-1989-chap-5::Rule 297A"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.029240332998597296
+  },
+  {
+   "id": "TG-DL-006",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 244"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 244",
+    "go-ms-32-2026-trb::Paragraph 2",
+    "tmvr-1989-chap-5::Rule 288A",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 254"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.0464347919987631
+  },
+  {
+   "id": "TG-DL-007",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 389A"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 389A",
+    "tmvr-1989-chap-7::Rule 359",
+    "tmvr-1989-chap-12::Rule 482",
+    "tmvr-1989-chap-4::Rule 109",
+    "tmvr-1989-chap-5::Rule 291",
+    "tmvr-1989-chap-8::Rule 409"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.04138395900008618
+  },
+  {
+   "id": "TG-DL-008",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 191"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 191",
+    "tmvr-1989-chap-5::Rule 221",
+    "tmvr-1989-chap-6::Rule 301",
+    "tmvr-1989-chap-11::Rule 463",
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-8::Rule 396"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.04241083300075843
+  },
+  {
+   "id": "TG-DL-009",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 18"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 20",
+    "tmvtr-1963::Rule 11",
+    "tmvr-1989-chap-2::Rule 14"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08627504199830582
+  },
+  {
+   "id": "TG-DL-010",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 37"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-2::Rule 39",
+    "tmvr-1989-chap-2::Rule 41",
+    "tmvr-1989-chap-3::Rule 67",
+    "tmvr-1989-chap-2::Rule 38",
+    "tmvr-1989-chap-3::Rule 66"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08317704200089793
+  },
+  {
+   "id": "TG-DL-011",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-3::Rule 74"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-3::Rule 74",
+    "tmvr-1989-chap-3::Rule 72",
+    "tmvr-1989-chap-3::Rule 76",
+    "tmvr-1989-chap-2::Rule 32",
+    "tmvr-1989-chap-5::Rule 277",
+    "tmvr-1989-chap-2::Rule 33"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07074275000195485
+  },
+  {
+   "id": "TG-DL-012",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-4::Rule 107"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 107",
+    "tmvr-1989-chap-4::Rule 116",
+    "tmvr-1989-chap-4::Rule 115",
+    "tmvr-1989-chap-4::Rule 125",
+    "tmvr-1989-chap-11::Rule 469",
+    "tmvr-1989-chap-4::Rule 122"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05224924999856739
+  },
+  {
+   "id": "TG-DL-013",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 177"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 177",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-5::Rule 176"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.051139916002284735
+  },
+  {
+   "id": "TG-DL-014",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 294A"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 294A",
+    "tmvr-1989-chap-7::Rule 324",
+    "tmvr-1989-chap-8::Rule 443",
+    "tmvr-1989-chap-5::Rule 297A",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08485283299887669
+  },
+  {
+   "id": "TG-DL-015",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 406"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-8::Rule 407",
+    "tmvr-1989-chap-5::Rule 257",
+    "tmvr-1989-chap-8::Rule 405",
+    "tmvr-1989-chap-7::Rule 389",
+    "tmvr-1989-chap-7::Rule 333"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.18006116700053099
+  },
+  {
+   "id": "TG-DL-016",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 448B"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvtr-1963::Rule 13B",
+    "tmvr-1989-chap-8::Rule 448",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-8::Rule 408"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.1981990419990325
+  },
+  {
+   "id": "TG-DL-017",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-9::Rule 451"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-9::Rule 451",
+    "tmvr-1989-chap-9::Rule 452",
+    "tmvr-1989-chap-5::Rule 207",
+    "tmvr-1989-chap-9::Rule 453",
+    "tmvr-1989-chap-4::Rule 83A",
+    "tmvr-1989-chap-2::Rule 44"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06321129099887912
+  },
+  {
+   "id": "TG-DL-018",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-11::Rule 471"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 474",
+    "tmvr-1989-chap-11::Rule 472",
+    "tmvr-1989-chap-11::Rule 475"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.10096079100185307
+  },
+  {
+   "id": "TG-DL-019",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-12::Rule 484"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-4::Rule 107"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08763337499840418
+  },
+  {
+   "id": "TG-DL-020",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-10::Rule 454"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-10::Rule 454",
+    "tmvr-1989-chap-8::Rule 449",
+    "tmvr-1989-chap-8::Rule 448",
+    "tmvr-1989-chap-5::Rule 189",
+    "tmvr-1989-chap-8::Rule 424",
+    "tmvtr-1963::Rule 10"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06493145800050115
+  },
+  {
+   "id": "TG-DL-021",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvtr-1963::Rule 11"
+   ],
+   "ranked": [
+    "tmvtr-1963::Rule 11",
+    "tmvr-1989-chap-2::Rule 21",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-8::Rule 425",
+    "tmvr-1989-chap-3::Rule 59"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.0625377500000468
+  },
+  {
+   "id": "TG-DL-022",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 314"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 314",
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-7::Rule 310",
+    "tmvr-1989-chap-7::Rule 350",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-8::Rule 431"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07628920799834304
+  },
+  {
+   "id": "TG-DL-023",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 430"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-7::Rule 350",
+    "tmvr-1989-chap-8::Rule 431",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-8::Rule 432",
+    "tmvr-1989-chap-7::Rule 310"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.052704665999044664
+  },
+  {
+   "id": "TG-DL-024",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 297A"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 297A",
+    "tmvr-1989-chap-9::Rule 453"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05668149999837624
+  },
+  {
+   "id": "TG-DL-025",
+   "category": "direct_lookup",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 426"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 426",
+    "tmvr-1989-chap-7::Rule 349",
+    "tmvr-1989-chap-5::Rule 295A",
+    "tmvr-1989-chap-7::Rule 317",
+    "tmvr-1989-chap-8::Rule 440",
+    "tmvr-1989-chap-2::Rule 14"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.21828837499924703
+  },
+  {
+   "id": "TG-PQ-001",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 437"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 378",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-5::Rule 194",
+    "tmvr-1989-chap-5::Rule 294A",
+    "tmvr-1989-chap-4::Rule 81",
+    "tmvr-1989-chap-2::Rule 37"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.060347333001118386
+  },
+  {
+   "id": "TG-PQ-002",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 17",
+    "tmvr-1989-chap-2::Rule 18"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 15",
+    "tmvr-1989-chap-4::Rule 119",
+    "tmvtr-1963::Rule 11"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05532612500246614
+  },
+  {
+   "id": "TG-PQ-003",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 18"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 19",
+    "tmvr-1989-chap-5::Rule 231"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.2139909159996023
+  },
+  {
+   "id": "TG-PQ-004",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 389A"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 389A",
+    "tmvr-1989-chap-5::Rule 247",
+    "tmvr-1989-chap-5::Rule 177",
+    "tmvr-1989-chap-5::Rule 152",
+    "tmvr-1989-chap-7::Rule 388",
+    "tmvr-1989-chap-3::Rule 72"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07069570900057442
+  },
+  {
+   "id": "TG-PQ-005",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 244"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 244",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-6::Rule 307",
+    "tmvr-1989-chap-7::Rule 355",
+    "tmvr-1989-chap-5::Rule 196"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.042296042000089074
+  },
+  {
+   "id": "TG-PQ-006",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-8::Rule 428"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 428",
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-7::Rule 391",
+    "tmvr-1989-chap-4::Rule 114",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-7::Rule 379"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.09938341599990963
+  },
+  {
+   "id": "TG-PQ-007",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 486"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-4::Rule 107"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06107754199911142
+  },
+  {
+   "id": "TG-PQ-008",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 314"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 314",
+    "tmvr-1989-chap-7::Rule 313",
+    "tmvr-1989-chap-7::Rule 350",
+    "tmvr-1989-chap-12::Rule 481",
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-2::Rule 37"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.12204750000091735
+  },
+  {
+   "id": "TG-PQ-009",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 379"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-7::Rule 372",
+    "tmvr-1989-chap-7::Rule 379",
+    "tmvr-1989-chap-7::Rule 373",
+    "tmvr-1989-chap-2::Rule 32"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08160404199952609
+  },
+  {
+   "id": "TG-PQ-010",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 245"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 245",
+    "tmvr-1989-chap-5::Rule 249",
+    "tmvr-1989-chap-5::Rule 250",
+    "tmvr-1989-chap-3::Rule 74",
+    "tmvr-1989-chap-3::Rule 73",
+    "tmvr-1989-chap-5::Rule 246"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08185450000019046
+  },
+  {
+   "id": "TG-PQ-011",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 252"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 252",
+    "tmvr-1989-chap-2::Rule 36",
+    "tmvr-1989-chap-7::Rule 328",
+    "tmvr-1989-chap-5::Rule 285",
+    "tmvr-1989-chap-3::Rule 73",
+    "tmvr-1989-chap-5::Rule 253"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07489041599910706
+  },
+  {
+   "id": "TG-PQ-012",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 418"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 324",
+    "tmvr-1989-chap-8::Rule 418",
+    "tmvr-1989-chap-7::Rule 368",
+    "tmvr-1989-chap-8::Rule 420",
+    "tmvr-1989-chap-5::Rule 277",
+    "tmvr-1989-chap-8::Rule 416"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.10257529199952842
+  },
+  {
+   "id": "TG-PQ-013",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvr-1989-chap-8::Rule 448A"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvr-1989-chap-8::Rule 429",
+    "tmvr-1989-chap-5::Rule 264",
+    "tmvr-1989-chap-7::Rule 342",
+    "tmvr-1989-chap-5::Rule 214"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.07167866599775152
+  },
+  {
+   "id": "TG-PQ-014",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 191"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 246",
+    "tmvr-1989-chap-5::Rule 191",
+    "tmvr-1989-chap-5::Rule 288",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 286",
+    "tmvr-1989-chap-5::Rule 214"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.053899041002296144
+  },
+  {
+   "id": "TG-PQ-015",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 368"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 368",
+    "tmvr-1989-chap-7::Rule 324",
+    "tmvr-1989-chap-8::Rule 438",
+    "tmvr-1989-chap-8::Rule 439",
+    "tmvr-1989-chap-5::Rule 285",
+    "tmvr-1989-chap-7::Rule 312"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.044316499999695225
+  },
+  {
+   "id": "TG-PQ-016",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 400"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 400",
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvtr-1963::Rule 3",
+    "tmvr-1989-chap-4::Rule 97",
+    "tmvr-1989-chap-7::Rule 322",
+    "tmvr-1989-chap-4::Rule 83A"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.04543862499849638
+  },
+  {
+   "id": "TG-PQ-017",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 455"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-11::Rule 476",
+    "tmvr-1989-chap-11::Rule 471",
+    "tmvr-1989-chap-11::Rule 458",
+    "tmvr-1989-chap-11::Rule 462",
+    "tmvr-1989-chap-11::Rule 474"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08336454100208357
+  },
+  {
+   "id": "TG-PQ-018",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-9::Rule 451"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-9::Rule 451",
+    "tmvr-1989-chap-9::Rule 452",
+    "tmvr-1989-chap-4::Rule 109",
+    "tmvtr-1963::Rule 13A",
+    "tmvr-1989-chap-5::Rule 209",
+    "tmvr-1989-chap-3::Rule 49"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05425854200075264
+  },
+  {
+   "id": "TG-PQ-019",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 430"
+   ],
+   "ranked": [
+    "tmvtr-1963::Rule 14A",
+    "tmvr-1989-chap-8::Rule 430",
+    "tmvr-1989-chap-5::Rule 158",
+    "tmvr-1989-chap-7::Rule 339",
+    "tmvr-1989-chap-8::Rule 443",
+    "tmvr-1989-chap-8::Rule 431"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.20749841600263608
+  },
+  {
+   "id": "TG-PQ-020",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 415"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 263",
+    "tmvr-1989-chap-7::Rule 358",
+    "tmvr-1989-chap-8::Rule 415",
+    "tmvr-1989-chap-7::Rule 351A",
+    "tmvr-1989-chap-5::Rule 189",
+    "tmvr-1989-chap-8::Rule 417"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.3024164579983335
+  },
+  {
+   "id": "TG-PQ-021",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-8::Rule 407"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 180",
+    "tmvr-1989-chap-5::Rule 256",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-8::Rule 407"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06747683299909113
+  },
+  {
+   "id": "TG-PQ-022",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 253"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 253",
+    "tmvr-1989-chap-5::Rule 201",
+    "tmvr-1989-chap-5::Rule 252",
+    "tmvr-1989-chap-5::Rule 204",
+    "tmvr-1989-chap-5::Rule 202",
+    "tmvr-1989-chap-5::Rule 203"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07203704100174946
+  },
+  {
+   "id": "TG-PQ-023",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-3::Rule 54"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 54",
+    "tmvr-1989-chap-3::Rule 53",
+    "tmvr-1989-chap-3::Rule 56",
+    "tmvr-1989-chap-12::Rule 477",
+    "tmvr-1989-chap-3::Rule 69"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.38928670800305554
+  },
+  {
+   "id": "TG-PQ-024",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 335"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 335",
+    "tmvr-1989-chap-5::Rule 246",
+    "tmvr-1989-chap-5::Rule 189",
+    "tmvr-1989-chap-3::Rule 72",
+    "tmvr-1989-chap-7::Rule 334",
+    "tmvr-1989-chap-5::Rule 201"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08833537499958766
+  },
+  {
+   "id": "TG-PQ-025",
+   "category": "paraphrased",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 405"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 405",
+    "tmvr-1989-chap-5::Rule 248",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-8::Rule 431",
+    "tmvr-1989-chap-4::Rule 112",
+    "tmvr-1989-chap-5::Rule 227"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.09733358300218242
+  },
+  {
+   "id": "TG-MR-001",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 427"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 427",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 424",
+    "tmvr-1989-chap-7::Rule 389",
+    "tmvr-1989-chap-8::Rule 423",
+    "go-ms-25-2026-trb::Preamble"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.04708662500343053
+  },
+  {
+   "id": "TG-MR-002",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 18"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-2::Rule 21"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.04821300000185147
+  },
+  {
+   "id": "TG-MR-003",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-7::Rule 379"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 371",
+    "tmvr-1989-chap-7::Rule 379",
+    "tmvr-1989-chap-5::Rule 251",
+    "tmvr-1989-chap-7::Rule 372",
+    "tmvr-1989-chap-7::Rule 380",
+    "tmvr-1989-chap-7::Rule 373"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08732741600033478
+  },
+  {
+   "id": "TG-MR-004",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvr-1989-chap-8::Rule 448B"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 448A",
+    "tmvr-1989-chap-8::Rule 448B",
+    "tmvtr-1963::Rule 10",
+    "tmvr-1989-chap-8::Rule 448",
+    "tmvtr-1963::Rule 15",
+    "tmvr-1989-chap-8::Rule 447"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.22937174999970011
+  },
+  {
+   "id": "TG-MR-005",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-12::Rule 486"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-12::Rule 484",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-4::Rule 83A"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05403991699859034
+  },
+  {
+   "id": "TG-MR-006",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 187",
+    "tmvr-1989-chap-5::Rule 188"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 187",
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 217"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07369020799887949
+  },
+  {
+   "id": "TG-MR-007",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-3::Rule 66"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-3::Rule 71",
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-3::Rule 66",
+    "tmvr-1989-chap-3::Rule 67",
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-3::Rule 76"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.325746665999759
+  },
+  {
+   "id": "TG-MR-008",
+   "category": "multi_rule",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-3::Rule 77"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 337",
+    "tmvr-1989-chap-2::Rule 43",
+    "tmvr-1989-chap-5::Rule 239",
+    "tmvr-1989-chap-3::Rule 47",
+    "tmvr-1989-chap-3::Rule 76",
+    "tmvr-1989-chap-3::Rule 77"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05612729200220201
+  },
+  {
+   "id": "TG-GO-001",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-25-2026-trb::Order"
+   ],
+   "ranked": [
+    "go-ms-25-2026-trb::Order",
+    "go-ms-25-2026-trb::Preamble",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieved_chunks": 3,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.25122962499881396
+  },
+  {
+   "id": "TG-GO-002",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-25-2026-trb::Order"
+   ],
+   "ranked": [
+    "go-ms-25-2026-trb::Order",
+    "tmvr-1989-chap-7::Rule 362",
+    "tmvr-1989-chap-3::Rule 65",
+    "tmvr-1989-chap-2::Rule 30",
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 278"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.5994873749987164
+  },
+  {
+   "id": "TG-GO-003",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 5"
+   ],
+   "ranked": [
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06593016599799739
+  },
+  {
+   "id": "TG-GO-004",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-32-2026-trb::Paragraph 4"
+   ],
+   "ranked": [
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Preamble"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.10221062499840627
+  },
+  {
+   "id": "TG-GO-005",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Order"
+   ],
+   "ranked": [
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 3",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "tmvr-1989-chap-4::Rule 108",
+    "go-ms-32-2026-trb::Preamble"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.3146957499993732
+  },
+  {
+   "id": "TG-GO-006",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-10-2026-trb::Order"
+   ],
+   "ranked": [
+    "go-ms-10-2026-trb::Order",
+    "go-ms-10-2026-trb::Preamble",
+    "go-ms-10-2026-trb::References",
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-16-2026-trb::Preamble",
+    "tmvtr-1963::Rule 1"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.048276874997100094
+  },
+  {
+   "id": "TG-GO-007",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "go-ms-77-2025-trb::Paragraph 4"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 4",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.24121537499740953
+  },
+  {
+   "id": "TG-GO-008",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Order"
+   ],
+   "ranked": [
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "tmvr-1989-chap-4::Rule 81",
+    "go-ms-77-2025-trb::Preamble"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.14831066700207884
+  },
+  {
+   "id": "TG-GO-009",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-77-2025-trb::References"
+   ],
+   "ranked": [
+    "go-ms-77-2025-trb::Preamble",
+    "go-ms-77-2025-trb::Order",
+    "go-ms-77-2025-trb::References",
+    "go-ms-32-2026-trb::Order",
+    "go-ms-77-2025-trb::Paragraph 2",
+    "go-ms-77-2025-trb::Paragraph 3"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06887095799902454
+  },
+  {
+   "id": "TG-GO-010",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-16-2026-trb::Preamble"
+   ],
+   "ranked": [
+    "go-ms-16-2026-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-10-2026-trb::Order",
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-10-2026-trb::References",
+    "go-ms-10-2026-trb::Preamble"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.3454174590006005
+  },
+  {
+   "id": "TG-GO-011",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1"
+   ],
+   "ranked": [
+    "go-ms-53-2025-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1",
+    "tmvr-1989-chap-2::Rule 14",
+    "tmvr-1989-chap-5::Rule 185"
+   ],
+   "retrieved_chunks": 4,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.0737114580006164
+  },
+  {
+   "id": "TG-GO-012",
+   "category": "government_order",
+   "outcome": "retrieve",
+   "relevant": [
+    "go-ms-32-2026-trb::Order",
+    "go-ms-32-2026-trb::Paragraph 2",
+    "go-ms-32-2026-trb::Preamble"
+   ],
+   "ranked": [
+    "go-ms-32-2026-trb::Paragraph 4",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "go-ms-32-2026-trb::Preamble",
+    "go-ms-32-2026-trb::Paragraph 6",
+    "go-ms-32-2026-trb::Paragraph 7",
+    "tmvr-1989-chap-5::Rule 173"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06007875000068452
+  },
+  {
+   "id": "TG-MP-001",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 188",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 183",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.07587804200011306
+  },
+  {
+   "id": "TG-MP-002",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 188",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 181",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.1035396250008489
+  },
+  {
+   "id": "TG-MP-003",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 187"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03695962500205496
+  },
+  {
+   "id": "TG-MP-004",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 187"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 187",
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03567254100198625
+  },
+  {
+   "id": "TG-MP-005",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 188"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-5::Rule 217A",
+    "tmvr-1989-chap-3::Rule 67"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.042349625000497326
+  },
+  {
+   "id": "TG-MP-006",
+   "category": "missing_provision",
+   "outcome": "missing_provision",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 81",
+    "tmvr-1989-chap-4::Rule 100",
+    "go-ms-77-2025-trb::Paragraph 3",
+    "tmvr-1989-chap-3::Rule 62",
+    "tmvr-1989-chap-5::Rule 164",
+    "tmvr-1989-chap-4::Rule 111"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": true,
+   "missing": [
+    "Rule 999"
+   ],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.12313062499742955
+  },
+  {
+   "id": "TG-MP-007",
+   "category": "missing_provision",
+   "outcome": "missing_provision",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvr-1989-chap-6::Rule 298",
+    "tmvr-1989-chap-4::Rule 87",
+    "tmvr-1989-chap-6::Rule 303",
+    "tmvr-1989-chap-4::Rule 92",
+    "tmvr-1989-chap-4::Rule 81"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": true,
+   "missing": [
+    "Rule 99"
+   ],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.10458887500135461
+  },
+  {
+   "id": "TG-MP-008",
+   "category": "missing_provision",
+   "outcome": "missing_provision",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 200",
+    "tmvr-1989-chap-3::Rule 75",
+    "tmvr-1989-chap-5::Rule 198",
+    "tmvr-1989-chap-5::Rule 264",
+    "tmvr-1989-chap-5::Rule 197",
+    "tmvr-1989-chap-5::Rule 234"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": true,
+   "missing": [
+    "Rule 600"
+   ],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.16324758299742825
+  },
+  {
+   "id": "TG-GC-001",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 188"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 188",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-5::Rule 173",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 183",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06488191700191237
+  },
+  {
+   "id": "TG-GC-002",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-5::Rule 185"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 185",
+    "tmvr-1989-chap-5::Rule 235"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.0643196250020992
+  },
+  {
+   "id": "TG-GC-003",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvtr-1963::Rule 13A"
+   ],
+   "ranked": [
+    "tmvtr-1963::Rule 13A",
+    "tmvr-1989-chap-4::Rule 87",
+    "tmvr-1989-chap-5::Rule 297",
+    "tmvr-1989-chap-5::Rule 221",
+    "go-ms-25-2026-trb::Preamble",
+    "tmvtr-1963::Rule 12A"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05795441700320225
+  },
+  {
+   "id": "TG-GC-004",
+   "category": "guard_control",
+   "outcome": "retrieve",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 437"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-7::Rule 378",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 444",
+    "tmvr-1989-chap-4::Rule 81",
+    "tmvr-1989-chap-5::Rule 294A",
+    "tmvtr-1963::Rule 2"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.1260153330003959
+  },
+  {
+   "id": "TG-EX-001",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 218"
+   ],
+   "retrieved_chunks": 1,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.05219383400253719
+  },
+  {
+   "id": "TG-EX-002",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "go-ms-10-2026-trb::References",
+    "go-ms-10-2026-trb::Order"
+   ],
+   "retrieved_chunks": 2,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.058143666999967536
+  },
+  {
+   "id": "TG-EX-003",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "go-ms-25-2026-trb::Order",
+    "tmvr-1989-chap-5::Rule 218",
+    "tmvr-1989-chap-12::Rule 479",
+    "go-ms-32-2026-trb::References",
+    "go-ms-25-2026-trb::References"
+   ],
+   "retrieved_chunks": 5,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.06790079200072796
+  },
+  {
+   "id": "TG-EX-004",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-53-2025-trb::Preamble",
+    "tmvtr-1963::Rule 5",
+    "tmvtr-1963::Rule 13"
+   ],
+   "retrieved_chunks": 4,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05509704100040835
+  },
+  {
+   "id": "TG-EX-005",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "tmvtr-1963::Rule 5",
+    "tmvtr-1963::Rule 16",
+    "tmvtr-1963::Rule 12B",
+    "tmvtr-1963::Rule 6",
+    "tmvr-1989-chap-5::Rule 205",
+    "tmvtr-1963::Rule 3"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05934887500188779
+  },
+  {
+   "id": "TG-EX-006",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "go-ms-16-2026-trb::Preamble",
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-10-2026-trb::Order",
+    "go-ms-10-2026-trb::References",
+    "go-ms-10-2026-trb::Preamble"
+   ],
+   "retrieved_chunks": 5,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.04496683400066104
+  },
+  {
+   "id": "TG-EX-007",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "tmvtr-1963::Rule 12A",
+    "tmvtr-1963::Rule 12",
+    "tmvtr-1963::Rule 13",
+    "tmvtr-1963::Rule 5",
+    "tmvtr-1963::Rule 12B",
+    "tmvr-1989-chap-4::Rule 104"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.08260537500245846
+  },
+  {
+   "id": "TG-EX-008",
+   "category": "excluded_material",
+   "outcome": "excluded_no_context",
+   "relevant": [],
+   "ranked": [
+    "go-ms-53-2025-trb::Paragraph 1",
+    "go-ms-53-2025-trb::Preamble"
+   ],
+   "retrieved_chunks": 2,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.045538166999904206
+  },
+  {
+   "id": "TG-PN-001",
+   "category": "penalty",
+   "outcome": "restricted",
+   "relevant": [],
+   "ranked": [
+    "tmvtr-1963::Rule 17",
+    "tmvr-1989-chap-5::Rule 288A",
+    "tmvr-1989-chap-8::Rule 437",
+    "tmvr-1989-chap-8::Rule 408",
+    "tmvr-1989-chap-5::Rule 214",
+    "tmvr-1989-chap-2::Rule 38"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.04090979099782999
+  },
+  {
+   "id": "TG-PN-002",
+   "category": "penalty",
+   "outcome": "restricted",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 450",
+    "tmvtr-1963::Rule 13",
+    "tmvtr-1963::Rule 12",
+    "tmvtr-1963::Rule 13B",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvtr-1963::Rule 17"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.040409458000794984
+  },
+  {
+   "id": "TG-PN-003",
+   "category": "penalty",
+   "outcome": "restricted",
+   "relevant": [],
+   "ranked": [
+    "tmvtr-1963::Rule 17",
+    "tmvr-1989-chap-5::Rule 288A",
+    "tmvr-1989-chap-5::Rule 217",
+    "tmvr-1989-chap-8::Rule 408",
+    "tmvr-1989-chap-8::Rule 450",
+    "tmvr-1989-chap-5::Rule 214"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.04829441699985182
+  },
+  {
+   "id": "TG-PN-004",
+   "category": "penalty",
+   "outcome": "restricted",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 218",
+    "tmvr-1989-chap-7::Rule 313",
+    "go-ms-25-2026-trb::References",
+    "tmvr-1989-chap-7::Rule 325",
+    "tmvr-1989-chap-4::Rule 94",
+    "tmvr-1989-chap-7::Rule 311"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.0358312919997843
+  },
+  {
+   "id": "TG-PN-005",
+   "category": "penalty",
+   "outcome": "restricted",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 186",
+    "tmvtr-1963::Rule 17",
+    "tmvr-1989-chap-5::Rule 288A",
+    "tmvr-1989-chap-5::Rule 217A",
+    "tmvr-1989-chap-5::Rule 216"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.03480383299756795
+  },
+  {
+   "id": "TG-PN-006",
+   "category": "penalty",
+   "outcome": "restricted",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-2::Rule 25",
+    "tmvr-1989-chap-2::Rule 24",
+    "tmvr-1989-chap-12::Rule 477",
+    "tmvr-1989-chap-2::Rule 18",
+    "tmvr-1989-chap-2::Rule 7"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": true,
+   "leaked": [],
+   "seconds": 0.03996125000048778
+  },
+  {
+   "id": "TG-OS-001",
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 185",
+    "go-ms-77-2025-trb::Order",
+    "tmvr-1989-chap-5::Rule 254",
+    "tmvr-1989-chap-1::Rule 2",
+    "go-ms-32-2026-trb::Paragraph 2",
+    "tmvr-1989-chap-5::Rule 143"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.041995083000074374
+  },
+  {
+   "id": "TG-OS-002",
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-4::Rule 83",
+    "tmvr-1989-chap-4::Rule 83A",
+    "go-ms-32-2026-trb::References",
+    "go-ms-32-2026-trb::Paragraph 5",
+    "tmvr-1989-chap-7::Rule 316",
+    "go-ms-32-2026-trb::Order"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05208241599757457
+  },
+  {
+   "id": "TG-OS-003",
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-6::Rule 309",
+    "tmvr-1989-chap-12::Rule 485",
+    "tmvr-1989-chap-5::Rule 179",
+    "tmvr-1989-chap-12::Rule 486",
+    "tmvr-1989-chap-5::Rule 246",
+    "tmvr-1989-chap-7::Rule 377"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06177354200190166
+  },
+  {
+   "id": "TG-OS-004",
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-8::Rule 434",
+    "tmvr-1989-chap-2::Rule 8",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-5::Rule 171",
+    "tmvr-1989-chap-2::Rule 25",
+    "tmvr-1989-chap-5::Rule 186"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.11272820799786132
+  },
+  {
+   "id": "TG-OS-005",
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "relevant": [],
+   "ranked": [
+    "go-ms-16-2026-trb::Preamble",
+    "tmvr-1989-chap-5::Rule 280",
+    "go-ms-10-2026-trb::Preamble",
+    "go-ms-32-2026-trb::References",
+    "go-ms-10-2026-trb::References",
+    "go-ms-32-2026-trb::Paragraph 2"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.05764016700049979
+  },
+  {
+   "id": "TG-OS-006",
+   "category": "out_of_scope_central",
+   "outcome": "out_of_scope",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 295A",
+    "tmvr-1989-chap-5::Rule 176",
+    "tmvr-1989-chap-5::Rule 295",
+    "tmvr-1989-chap-5::Rule 184",
+    "tmvr-1989-chap-5::Rule 220",
+    "tmvr-1989-chap-5::Rule 179"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.11861225000029663
+  },
+  {
+   "id": "TG-AM-001",
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 10",
+    "tmvtr-1963::Rule 10"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 10",
+    "tmvtr-1963::Rule 10",
+    "tmvr-1989-chap-4::Rule 106",
+    "tmvr-1989-chap-4::Rule 109",
+    "tmvr-1989-chap-6::Rule 309",
+    "go-ms-32-2026-trb::Paragraph 2"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.056503166000766214
+  },
+  {
+   "id": "TG-AM-002",
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "relevant": [
+    "tmvr-1989-chap-1::Rule 1",
+    "tmvtr-1963::Rule 1"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-10::Rule 454",
+    "tmvr-1989-chap-4::Rule 111",
+    "tmvtr-1963::Rule 1",
+    "tmvr-1989-chap-5::Rule 221",
+    "tmvr-1989-chap-1::Rule 1",
+    "tmvr-1989-chap-3::Rule 62"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.041009915999893565
+  },
+  {
+   "id": "TG-AM-003",
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 37",
+    "tmvr-1989-chap-3::Rule 66"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 40",
+    "tmvr-1989-chap-3::Rule 70",
+    "tmvr-1989-chap-2::Rule 39",
+    "tmvr-1989-chap-2::Rule 38",
+    "tmvr-1989-chap-3::Rule 68",
+    "tmvr-1989-chap-3::Rule 66"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03807895799764083
+  },
+  {
+   "id": "TG-AM-004",
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "relevant": [
+    "tmvr-1989-chap-2::Rule 16",
+    "tmvr-1989-chap-3::Rule 59",
+    "tmvr-1989-chap-4::Rule 99",
+    "tmvr-1989-chap-4::Rule 120",
+    "tmvr-1989-chap-5::Rule 228",
+    "tmvtr-1963::Rule 11"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-2::Rule 21",
+    "tmvr-1989-chap-4::Rule 120",
+    "tmvr-1989-chap-2::Rule 17",
+    "tmvr-1989-chap-7::Rule 342",
+    "tmvr-1989-chap-5::Rule 228",
+    "tmvr-1989-chap-5::Rule 231"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.03962770799989812
+  },
+  {
+   "id": "TG-AM-005",
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "relevant": [],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 199",
+    "tmvtr-1963::Rule 15B",
+    "tmvr-1989-chap-11::Rule 475",
+    "tmvr-1989-chap-12::Rule 480",
+    "tmvr-1989-chap-12::Rule 482",
+    "tmvr-1989-chap-5::Rule 231"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.06560183300098288
+  },
+  {
+   "id": "TG-AM-006",
+   "category": "ambiguous",
+   "outcome": "clarification_required",
+   "relevant": [
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-8::Rule 407"
+   ],
+   "ranked": [
+    "tmvr-1989-chap-5::Rule 297A",
+    "tmvr-1989-chap-8::Rule 407",
+    "tmvr-1989-chap-8::Rule 406",
+    "tmvr-1989-chap-5::Rule 257",
+    "tmvr-1989-chap-8::Rule 405"
+   ],
+   "retrieved_chunks": 6,
+   "guard_blocked": false,
+   "missing": [],
+   "penalty_locked": false,
+   "leaked": [],
+   "seconds": 0.035771290997217875
+  }
+ ]
+}

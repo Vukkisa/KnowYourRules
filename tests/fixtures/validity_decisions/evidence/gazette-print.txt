@@ -1,0 +1,1 @@
+SYNTHETIC gazette print stand-in for tests. Not a legal source.

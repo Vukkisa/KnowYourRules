@@ -198,6 +198,20 @@ class FixtureTests(unittest.TestCase):
             r, gen = run("anything", docs, response(claims=[(SUPPORTED, "direct", ["E1"])]))
             self.assertEqual((r.kind, gen.calls, r.model_called), ("no_support", [], False))
 
+    def test_stage_ms_is_optional_and_accumulates(self):
+        raw = response(claims=[(SUPPORTED, "direct", ["E1"])])
+        plain = ga.answer("helmet?", [HELMET], ga.MockGenerator(raw), request_id="req-1")
+        stages: dict = {}
+        timed = ga.answer("helmet?", [HELMET], ga.MockGenerator(raw), request_id="req-1", stage_ms=stages)
+        self.assertEqual((timed.kind, timed.text), (plain.kind, plain.text))  # timing never changes the result
+        self.assertEqual(set(stages), {"contract", "prompt", "validate", "render"})
+        before = dict(stages)
+        ga.answer("helmet?", [HELMET], ga.MockGenerator(raw), request_id="req-1", stage_ms=stages)
+        self.assertTrue(all(stages[k] >= before[k] for k in before))
+        empty: dict = {}
+        ga.answer("anything", [], ga.MockGenerator(raw), stage_ms=empty)
+        self.assertEqual(set(empty), {"contract"})  # no evidence: no prompt, model or validation
+
     def test_generator_exception_fails_closed(self):
         gen = ga.MockGenerator(fn=lambda p, c: (_ for _ in ()).throw(TimeoutError()))
         r = ga.answer("helmet?", [HELMET], gen)
@@ -336,6 +350,141 @@ class ValidatorEdgeTests(unittest.TestCase):
         claims = [(SUPPORTED, "direct", ["E1"])]
         self.assertFalse(ga.validate(response(claims=claims, citations=["E1", "E1"]), self.contract).ok)
         self.assertFalse(ga.validate(response(claims=claims, citations=["E1", "E2"]), self.contract).ok)
+
+
+# Stage 3C: the stored Rule 437 chunk (text copied exactly from the index) fuses the rule heading into the sentence.
+FUSED_TEXT = ("Telangana Motor Vehicles Rules, 1989 - Rule 437 - Crash helmets to be worn\n437. Crash helmets to be "
+              "worn : - The protective headgear under Section 129 shall be a standard one.")
+FUSED = chunk("tmvr-1989-chap-8", "Rule 437", FUSED_TEXT)
+FUSED_SPEED = chunk("tmvr-1989-chap-8", "Rule 421", "421. Speed of towing vehicle : - No vehicle shall tow another "
+                    "vehicle at a speed exceeding 24 kilometres per hour, except on a national highway.")
+UNRELATED = chunk("tmvr-1989-chap-2", "Rule 7", "7. An applicant for a learner's licence shall pass a test of "
+                  "preliminary knowledge.")
+SUBSTANTIVE = "The protective headgear under Section 129 shall be a standard one."
+SPEED_BODY = ("No vehicle shall tow another vehicle at a speed exceeding 24 kilometres per hour, except on a national "
+              "highway.")
+
+
+class FusedHeadingTests(unittest.TestCase):
+    """An exact quotation of the substantive sentence is accepted although the stored sentence starts with its
+    rule heading; nothing else is relaxed."""
+
+    def setUp(self):
+        self.contract, _ = ga.build_contract("helmet?", [FUSED, FUSED_SPEED, UNRELATED], "r")
+
+    def ok(self, claims, **kw):
+        return ga.validate(response(claims=claims, **kw), self.contract)
+
+    def test_exact_substantive_quotation_accepted(self):
+        result, _ = run("What are the helmet requirements?", [FUSED], response(claims=[(SUBSTANTIVE, "direct", ["E1"])]))
+        self.assertEqual(result.kind, "answer", result.errors)
+        self.assertIn(SUBSTANTIVE, result.text)
+        self.assertEqual([(e.document_id, e.provision_id, e.chunk_id) for e in result.cited],
+                         [("tmvr-1989-chap-8", "Rule 437", result.contract.evidence[0].chunk_id)])
+        self.assertEqual(result.contract.evidence[0].passage, FUSED_TEXT)  # stored evidence unchanged
+        self.assertEqual(FUSED.page_content, FUSED_TEXT)
+
+    def test_quotation_with_heading_and_spacing_still_accepted(self):
+        self.assertTrue(self.ok([("Crash helmets to be worn : - " + SUBSTANTIVE, "direct", ["E1"])]).ok)
+        self.assertTrue(self.ok([("The protective  headgear under Section 129 shall be a standard one.", "direct",
+                                  ["E1"])]).ok)
+        self.assertTrue(self.ok([(SPEED_BODY, "direct", ["E2"])]).ok)
+
+    def test_changed_legal_requirement_rejected(self):
+        for text in ("The protective headgear under Section 129 need not be a standard one.",
+                     "The protective headgear under Section 129 shall be a branded one.",
+                     "No vehicle shall tow another vehicle at a speed exceeding 24 kilometres per hour."):
+            self.assertFalse(self.ok([(text, "direct", ["E1" if "headgear" in text else "E2"])]).ok, text)
+
+    def test_omitted_substantive_condition_rejected(self):
+        for text, eid in (("The protective headgear shall be a standard one.", "E1"),
+                          ("No vehicle shall tow another vehicle at a speed exceeding 24 kilometres per hour.", "E2")):
+            self.assertFalse(self.ok([(text, "direct", [eid])]).ok, text)
+
+    def test_unsupported_claim_appended_rejected(self):
+        self.assertFalse(self.ok([(SUBSTANTIVE + " Riders must also wear gloves.", "direct", ["E1"])]).ok)
+        self.assertFalse(self.ok([(SUBSTANTIVE, "direct", ["E1"]),
+                                  ("Riders must also wear gloves.", "direct", ["E1"])]).ok)
+        self.assertFalse(self.ok([(SUBSTANTIVE[:-1] + " approved by the police.", "direct", ["E1"])]).ok)
+
+    def test_changed_numerical_value_rejected(self):
+        self.assertFalse(self.ok([(SUBSTANTIVE.replace("129", "128"), "direct", ["E1"])]).ok)
+        self.assertFalse(self.ok([(SPEED_BODY.replace("24", "40"), "direct", ["E2"])]).ok)
+
+    def test_quotation_attributed_to_unrelated_evidence_rejected(self):
+        self.assertFalse(self.ok([(SUBSTANTIVE, "direct", ["E3"])]).ok)
+        self.assertFalse(self.ok([(SUBSTANTIVE, "direct", ["E2"])]).ok)
+        self.assertFalse(self.ok([(SPEED_BODY, "direct", ["E1"])]).ok)
+
+
+# Stage 3D: the real Groq paraphrase of Rule 437 (gpt-oss-120b, Stage 3C live run) dropped "under Section 129".
+GROQ_437 = "Crash helmets must be worn and the protective headgear shall be a standard one."
+GROQ_437_KEPT = "Crash helmets must be worn and the protective headgear under Section 129 shall be a standard one."
+COMMENCE = chunk("go-ms-10-2026-trb", "Order", "The amended fee shall come into force from 01-04-2026.",
+                 title="Synthetic Order", document_number="G.O.Ms.No. 10")
+
+
+class OmittedReferenceTests(unittest.TestCase):
+    """A claim that restates a sentence must keep its legal references (section, rule, sub-rule, schedule, form,
+    date): they are stripped before the lexical checks, so word overlap alone never showed they were dropped."""
+
+    def setUp(self):
+        self.contract, _ = ga.build_contract("helmet?", [FUSED, FUSED_SPEED, UNRELATED, COMMENCE], "r")
+
+    def result(self, *claims):
+        return ga.validate(response(claims=list(claims)), self.contract)
+
+    def assertRejectedFor(self, check, *claims):
+        r = self.result(*claims)
+        self.assertFalse(r.ok, claims)
+        self.assertIn(check, {c["check"] for c in r.checks}, r.errors)
+
+    def test_exact_rule_437_quote_accepted(self):
+        self.assertTrue(self.result((SUBSTANTIVE, "direct", ["E1"])).ok)
+        self.assertTrue(self.result(("Crash helmets to be worn : - " + SUBSTANTIVE, "direct", ["E1"])).ok)
+
+    def test_groq_paraphrase_omitting_section_129_rejected(self):
+        self.assertRejectedFor("reference_omitted", (GROQ_437, "direct", ["E1"]))
+        self.assertRejectedFor("reference_omitted", (GROQ_437, "interpretation", ["E1"]))
+        result, _ = run("What are the helmet requirements?", [FUSED], response(claims=[(GROQ_437, "direct", ["E1"])]))
+        self.assertEqual(result.kind, "rejected")
+        self.assertNotIn("standard one", result.text)
+
+    def test_paraphrase_keeping_section_129_accepted_only_if_nothing_else_changes(self):
+        self.assertTrue(self.result((GROQ_437_KEPT, "direct", ["E1"])).ok)
+        for changed in (GROQ_437_KEPT.replace("shall be", "need not be"),
+                        GROQ_437_KEPT.replace("a standard one", "a standard one, unless riding in a village"),
+                        GROQ_437_KEPT.replace("Section 129", "Section 128")):
+            self.assertFalse(self.result((changed, "direct", ["E1"])).ok, changed)
+
+    def test_changed_section_number_rejected(self):
+        r = self.result((SUBSTANTIVE.replace("129", "128"), "direct", ["E1"]))
+        self.assertFalse(r.ok)
+        self.assertIn("identifier", {c["check"] for c in r.checks})  # Section 128 is not in the evidence
+        self.assertFalse(self.result((GROQ_437.replace("headgear", "headgear under Section 128"), "direct", ["E1"])).ok)
+
+    def test_omitted_except_condition_rejected(self):
+        self.assertRejectedFor("qualifier_omitted", ("No vehicle shall tow another vehicle at a speed exceeding 24 "
+                                                     "kilometres per hour.", "direct", ["E2"]))
+
+    def test_omitted_threshold_or_date_rejected(self):
+        self.assertRejectedFor("numeric_omitted", ("No vehicle shall tow another vehicle at a speed exceeding "
+                                                   "kilometres per hour, except on a national highway.", "direct",
+                                                   ["E2"]))
+        self.assertRejectedFor("reference_omitted", ("The amended fee shall come into force.", "direct", ["E4"]))
+        self.assertTrue(self.result(("The amended fee shall come into force from 1 April 2026.", "direct",
+                                     ["E4"])).ok)
+
+    def test_stage_3c_exact_helmet_quote_still_accepted(self):
+        result, _ = run("What are the helmet requirements?", [FUSED], response(claims=[(SUBSTANTIVE, "direct", ["E1"])]))
+        self.assertEqual(result.kind, "answer", result.errors)
+        self.assertEqual([(e.document_id, e.provision_id) for e in result.cited], [("tmvr-1989-chap-8", "Rule 437")])
+        self.assertEqual(result.contract.evidence[0].passage, FUSED_TEXT)
+
+    def test_unrelated_evidence_rejected(self):
+        for claim in ((GROQ_437_KEPT, "direct", ["E3"]), (SUBSTANTIVE, "direct", ["E3"]),
+                      (GROQ_437, "interpretation", ["E3"])):
+            self.assertFalse(self.result(claim).ok, claim)
 
 
 if __name__ == "__main__":

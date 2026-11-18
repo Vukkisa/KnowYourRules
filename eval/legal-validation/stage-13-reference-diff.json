@@ -1,0 +1,348 @@
+{
+ "old_file": "eval/legal-validation/stage-13-originals/telangana-chunk-references.pre-stage-13.json",
+ "new_file_candidate": "eval/legal-validation/stage-13-telangana-chunk-references.candidate.json",
+ "counts": {
+  "old": 586,
+  "new": 590,
+  "removed": 8,
+  "added": 12,
+  "changed_same_ref": 0,
+  "unchanged": 578
+ },
+ "affected_provisions": {
+  "tmvr-1989-chap-5::Rule 185": "Stage 9 parser fix: Rule 186 split out of Rule 185 (185 re-chunked 6->5 parts)",
+  "tmvr-1989-chap-5::Rule 186": "Stage 9 parser fix: new provision (heading without full stop)",
+  "tmvr-1989-chap-5::Rule 295": "Stage 9 parser fix: Rule 295-A split out of Rule 295",
+  "tmvr-1989-chap-5::Rule 295A": "Stage 9 parser fix: new provision",
+  "tmvtr-1963::Rule 12A": "Stage 9 parser fix: Rule 12-B and 13 split out of Rule 12-A",
+  "tmvtr-1963::Rule 12B": "Stage 9 parser fix: new provision",
+  "tmvtr-1963::Rule 13": "Stage 9 parser fix: new provision (previously folded into 12-A)"
+ },
+ "unexplained_provisions": [],
+ "removed": [
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part1of6@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:6a1dff0614a7",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part2of6@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:dc7b7ad3b2c2",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part3of6@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:3763eeb3b57f",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part4of6@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:96a10b66cade",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part5of6@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#58|text:306221742c19",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part6of6@html-snapshots/tmvr-1989/middle-main-chap-5.htm#58|text:72ea2e604907",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 295::part1of1@html-snapshots/tmvr-1989/middle-main-chap-5.htm#168 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#169|text:79ff58f628c7",
+   "provision": "tmvr-1989-chap-5::Rule 295",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvtr-1963::Rule 12A::part1of1@html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#13 .. html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#14|text:a5cc250e63c1",
+   "provision": "tmvtr-1963::Rule 12A",
+   "answer_eligible": true
+  }
+ ],
+ "added": [
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part1of5@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:d3983dc072e7",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part2of5@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:f99eeea5bd26",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part3of5@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:a0a39109a2f6",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part4of5@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:0e65139cd7e9",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 185::part5of5@html-snapshots/tmvr-1989/middle-main-chap-5.htm#57|text:f471b970181e",
+   "provision": "tmvr-1989-chap-5::Rule 185",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 186::part1of2@html-snapshots/tmvr-1989/middle-main-chap-5.htm#58|text:58de60d02a3e",
+   "provision": "tmvr-1989-chap-5::Rule 186",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 186::part2of2@html-snapshots/tmvr-1989/middle-main-chap-5.htm#58|text:785b6a9952ec",
+   "provision": "tmvr-1989-chap-5::Rule 186",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 295::part1of1@html-snapshots/tmvr-1989/middle-main-chap-5.htm#168|text:d813bdfb3698",
+   "provision": "tmvr-1989-chap-5::Rule 295",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvr-1989-chap-5::Rule 295A::part1of1@html-snapshots/tmvr-1989/middle-main-chap-5.htm#169|text:bab6036d093e",
+   "provision": "tmvr-1989-chap-5::Rule 295A",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvtr-1963::Rule 12A::part1of1@html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#13|text:89becb3d8581",
+   "provision": "tmvtr-1963::Rule 12A",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvtr-1963::Rule 12B::part1of1@html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#13|text:2d44ad670367",
+   "provision": "tmvtr-1963::Rule 12B",
+   "answer_eligible": true
+  },
+  {
+   "ref": "tmvtr-1963::Rule 13::part1of1@html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#14|text:9e167b924552",
+   "provision": "tmvtr-1963::Rule 13",
+   "answer_eligible": true
+  }
+ ],
+ "changed_same_ref": [],
+ "duplicate_chunk_ids": {
+  "old": {
+   "go-ms-53-2025-trb::SCHEDULE::part1of1": [
+    "go-ms-53-2025-trb::SCHEDULE::part1of1@goir/13082025TRB_MS53.PDF#page=4|text:8e812087f555",
+    "go-ms-53-2025-trb::SCHEDULE::part1of1@goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5|text:1d592f3c0c56"
+   ]
+  },
+  "new": {
+   "go-ms-53-2025-trb::SCHEDULE::part1of1": [
+    "go-ms-53-2025-trb::SCHEDULE::part1of1@goir/13082025TRB_MS53.PDF#page=4|text:8e812087f555",
+    "go-ms-53-2025-trb::SCHEDULE::part1of1@goir/13082025TRB_MS53.PDF#page=4 .. goir/13082025TRB_MS53.PDF#page=5|text:1d592f3c0c56"
+   ]
+  }
+ },
+ "checks": {
+  "index_chunks": 590,
+  "new_refs": 590,
+  "old_refs": 586,
+  "refs_unique": true,
+  "every_ref_resolves_to_real_chunk": true,
+  "every_index_chunk_has_ref": true,
+  "all_fields_match_index_metadata": true,
+  "format_keys_identical_to_old": true,
+  "rule185_five_parts": true,
+  "rule185_no_186_text": true,
+  "rule186_own_parts": true,
+  "rule186_starts_with_186_heading": true,
+  "rule186_no_185_heading_text": true,
+  "rule12B_exists_separately": true,
+  "rule12B_text_not_in_12A_chunks": true,
+  "rule12B_first_text_starts_12-B": true,
+  "rule12B_anchor_limitation_shared_with_12A": true,
+  "all_unaffected_old_refs_identical_in_new": true,
+  "unaffected_ref_count": 578
+ },
+ "identities": {
+  "tmvr-1989-chap-5::Rule 185": {
+   "new_parts": [
+    "1of5",
+    "2of5",
+    "3of5",
+    "4of5",
+    "5of5"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [
+    "1of6",
+    "2of6",
+    "3of6",
+    "4of6",
+    "5of6",
+    "6of6"
+   ],
+   "old_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58"
+   ],
+   "first_text": "Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits"
+  },
+  "tmvr-1989-chap-5::Rule 186": {
+   "new_parts": [
+    "1of2",
+    "2of2"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [],
+   "old_locations": [],
+   "first_text": "Telangana Motor Vehicles Rules, 1989 - Rule 186 - Conditions of permit in respect of a lux"
+  },
+  "tmvr-1989-chap-5::Rule 187": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#59"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [
+    "1of1"
+   ],
+   "old_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#59"
+   ],
+   "first_text": "Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of co"
+  },
+  "tmvr-1989-chap-5::Rule 188": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#60"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [
+    "1of1"
+   ],
+   "old_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#60"
+   ],
+   "first_text": "Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Re"
+  },
+  "tmvr-1989-chap-5::Rule 295": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#168"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [
+    "1of1"
+   ],
+   "old_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#168 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#169"
+   ],
+   "first_text": "Telangana Motor Vehicles Rules, 1989 - Rule 295 - Painting of goods Carriages\n295. Paintin"
+  },
+  "tmvr-1989-chap-5::Rule 295A": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvr-1989/middle-main-chap-5.htm#169"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [],
+   "old_locations": [],
+   "first_text": "Telangana Motor Vehicles Rules, 1989 - Rule 295A - Painting of goods carriages carrying da"
+  },
+  "tmvtr-1963::Rule 12A": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#13"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [
+    "1of1"
+   ],
+   "old_locations": [
+    "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#13 .. html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#14"
+   ],
+   "first_text": "Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12A - Liability for payment of tax in"
+  },
+  "tmvtr-1963::Rule 12B": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#13"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [],
+   "old_locations": [],
+   "first_text": "Telangana Motor Vehicles Taxation Rules, 1963 - Rule 12B\n12-B : - Whereby a notification u"
+  },
+  "tmvtr-1963::Rule 13": {
+   "new_parts": [
+    "1of1"
+   ],
+   "new_locations": [
+    "html-snapshots/tmvtr-1963/middle-ap-mv-tr-1963-main.htm#14"
+   ],
+   "answer_eligible": [
+    true
+   ],
+   "old_parts": [],
+   "old_locations": [],
+   "first_text": "Telangana Motor Vehicles Taxation Rules, 1963 - Rule 13 - Rates of penalty\n13 Rates of pen"
+  }
+ },
+ "provenance": {
+  "command": "python3 -m backend.review_import build-refs --db-dir <copy of chroma_telangana_preview_s11> --out <scratch>",
+  "why_copy": "Chroma rewrites chroma.sqlite3/data_level0.bin on open; the copy's document set hashed identical to chroma_telangana_preview_s11 (read-only SQLite, sha256 72e4cf91be15...)",
+  "index": "chroma_telangana_preview_s11 (590 chunks)",
+  "generator": "backend/review_import.py build_references (unchanged, reused)",
+  "source_commits": {
+   "stage9_parser_fix": "14450cf295790689917f01811ddfa3af479e8ed5",
+   "stage10_metadata": "f944466fc6c1a61a61ea79921b4f91e66f2faa82",
+   "HEAD": "f944466fc6c1a61a61ea79921b4f91e66f2faa82"
+  },
+  "generated_at_utc": "2026-11-11T09:34:49Z",
+  "reproducible": "two independent runs on two separate copies -> byte-identical output, sha256 2e06f8ed2608a281...",
+  "output_contains_no_timestamp": true,
+  "candidate_file": "eval/legal-validation/stage-13-telangana-chunk-references.candidate.json",
+  "live_file_unchanged": "eval/telangana-chunk-references.json (sha256 31dd5e8faa56..., 586 chunks)",
+  "baseline_backup": "eval/legal-validation/stage-13-originals/telangana-chunk-references.pre-stage-13.json"
+ },
+ "answer_eligible_counts": {
+  "old": 572,
+  "new": 576
+ },
+ "notes": {
+  "rule12B_anchor": "Rule 12B cites #13, 12-A's anchor, because the source gives 12-B no anchor of its own. It is a separate provision with its own text (starts '12-B : -'); 12-A's chunk no longer contains 12-B. Location is shared, identity is not. Unresolved source limitation.",
+  "rule295A": "Rule 295A (#169) is split from Rule 295 (#168) in tmvr-1989-chap-5.",
+  "sqlite_bool_note": "answer_eligible compared after decoding SQLite 0/1 values"
+ }
+}

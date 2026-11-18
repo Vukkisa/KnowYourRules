@@ -40,7 +40,7 @@ CLAIM_SHARE = 0.25
 CONFLICT_MIN_SHARED = 3
 CONFLICT_SHARED_RATIO = 0.5
 
-_NEG_RE = re.compile(r"\b(?:not|no|never|none|nor|neither|cannot|nobody|nothing|nowhere)\b|n't\b", _I)
+_NEG_RE = re.compile(r"\b(?:not|no|never|none|nor|neither|cannot|nobody|nothing|nowhere)\b|n['’]t\b", _I)  # Stage 4G: curly apostrophe (n’t) is the same negation as n't
 _PROHIBIT_RE = re.compile(r"\b(?:prohibit(?:s|ed|ion)?|forbid(?:s|den)?|banned|bans?|barred|disallow(?:s|ed)?|"
                           r"impermissible)\b", _I)
 _OBLIG_RE = re.compile(r"\b(?:shall|must|required|requires?|mandatory|compulsory|obligatory|obliged|"
@@ -136,15 +136,45 @@ def _blocks(text: str) -> list[str]:
     return blocks
 
 
+# "Heading words.—(1)": a capitalised title of at most ~20 words ending in a full stop and an em/en dash, then "(".
+# No modal verb may appear in it, so a sentence such as "... shall be paid.—(1)" is never taken for a title.
+_ACT_HEADING = re.compile(r"^([A-Z](?:(?!\b(?:shall|must|may)\b)[^.;:()\n]){2,150}?)\.\s?[—–]\s*(?=\()")
+
+
+_AMENDMENT_OMITTED = re.compile(r"(?<![\w.])\d{1,2}(?:\s*\*){3,}")   # "4***", "6* * * * *": India Code's marker for omitted text
+_AMENDMENT_OPEN = re.compile(r"(?<![\w.])\d{1,2}\[")                  # "5[Provided further ...]": footnote number + opening bracket
+
+
+def _without_amendment_marks(text: str) -> str:
+    """India Code prints amendments as "N[new text]" and omitted text as "N***". The marker and its closing bracket are
+    not words of the provision; left in, "station.] 2[(2) The ..." never splits into sentences, so a proviso stays fused
+    to its parent and a claim quoting either cannot be matched. When a passage carries any "N[" marker its "]" go too (the
+    bracket may close on a later line). The stored passage and the text shown are not changed: this is for comparison only."""
+    text = _AMENDMENT_OMITTED.sub(" ", text or "")
+    if _AMENDMENT_OPEN.search(text):
+        text = _AMENDMENT_OPEN.sub("", text).replace("]", "")
+    return text
+
+
 def sentences(text: str) -> list[str]:
-    parts = [p for b in _blocks(text) for p in re.split(r"(?<=[.;])\s+(?=[(A-Z\"'])", b)]
+    # a proviso on the same line as its parent ("... accordingly: Provided that ...") is its own sentence, as it is
+    # when stored on its own line
+    parts = [p for b in _blocks(_without_amendment_marks(text))
+             for p in re.split(r"(?<=[.;])\s+(?=[(A-Z\"'])|(?<=:)\s+(?=Provided\s+(?:further\s+|also\s+)?that\b|"
+                               r"Except\s+that\b)", b)]
     out = []
     for p in parts:
         if out and _ABBREV_END.search(out[-1]):
             out[-1] += " " + p
         else:
             out.append(p)
-    return [s for s in out if words(s)]
+    # An Act section heading fused to its first sub-section ("Age limit in connection with driving.—(1) No person ...")
+    # is a title, not part of the sentence: left fused, its words count against a claim that quotes the sub-section.
+    split = []
+    for s in out:
+        m = _ACT_HEADING.match(s)
+        split.extend([m.group(1), s[m.end():]] if m else [s])
+    return [s for s in split if words(s)]
 
 
 @dataclass
@@ -249,13 +279,23 @@ def _restates(claim_words: set, s: Sentence) -> bool:
             and len(claim_words & _all_words(s)) >= CLAIM_SHARE * len(claim_words))
 
 
-def _restated(claim_words: set, ev: list) -> list:
+def _same_text(a: str, b: str) -> bool:
+    return " ".join(a.split()).casefold() == " ".join(b.split()).casefold()
+
+
+def _restated(claim_words: set, ev: list, claim_text: str = "") -> list:
     """Restated sentences. When some sentence matches the claim almost exactly, only those count, so a verbatim
-    claim is not also held to its near-identical siblings (e.g. other items of the same list)."""
+    claim is not also held to its near-identical siblings (e.g. other items of the same list).
+
+    Number words are not content words, so list items that differ only in a number ("Within one month ...",
+    "Within two months ...") all match "almost exactly". A claim that IS one of them, character for character
+    apart from spacing and case, restates that one only; otherwise it would be rejected for dropping the value
+    of a sibling it never restated. A claim that differs from every sentence in any other way is unaffected."""
     found = [s for s in ev if _restates(claim_words, s)]
     jac = lambda s: len(claim_words & _all_words(s)) / len(claim_words | _all_words(s) or {""})  # noqa: E731
     exact = [s for s in found if jac(s) >= 0.9]
-    return exact or found
+    verbatim = [s for s in exact if claim_text and _same_text(claim_text, s.text)]
+    return verbatim or exact or found
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -297,6 +337,18 @@ def _strip_title(text: str) -> str:
     follows:- ..." is not a title)."""
     m = _TITLE_PREFIX_RE.match(text)
     return text[m.end():] if m and not _STRONG_MODAL_RE.search(m.group(0)) else text
+
+
+def _quoted_heading_body(claim_raw: str, sentence_raw: str) -> "str | None":
+    """The substantive part of a source sentence with a rule heading fused in front of it ("Crash helmets to be
+    worn : - The protective headgear ... shall be a standard one."), when the claim quotes exactly that part.
+
+    Comparison only: the stored passage is never changed. Narrow by design - the heading must be title-like
+    (_strip_title), and the claim must equal the remaining text character for character apart from spacing and
+    case, BEFORE identifiers are stripped (so a changed section or rule number is not equal). Anything else -
+    a paraphrase, an omitted or added condition, a changed value - gets no special treatment."""
+    body = _strip_title(sentence_raw)
+    return body if body != sentence_raw and _same_text(claim_raw, body) else None
 
 
 _ADVERBIAL = frozenset({"time", "times", "clearly", "duly", "further", "thereafter", "therein", "thereof"})
@@ -641,28 +693,199 @@ def _subject_pronoun_accounts_for(missing: set, source_text: str, claim_clause: 
     return pronouns[0] in _PLURAL_PRONOUNS if head[1] else True
 
 
+# Legal references a restated sentence makes, which strip() hides from the lexical checks above: the provision a
+# requirement is made under or refers to, a sub-rule, schedule or form, a dated commencement. Amounts, percentages,
+# ages and periods are not here: they are quantities and numeric_omitted already covers them. Act names are not here
+# either: a claim may name an Act differently ("the Act", "MV Act"), and the identifier layer rejects a wrong one.
+REFERENCE_KINDS = frozenset({"section", "rule", "subrule", "schedule", "date", "go", "act_no", "form"})
+_FORM_RE = re.compile(r"\bform\s+(\d{1,3}[a-z]?)\b", _I)
+
+
+def _references(text: str, ids) -> set:
+    found = {x for x in ids(text) if x[0] in REFERENCE_KINDS}
+    return found | {("form", m.group(1).upper()) for m in _FORM_RE.finditer(text)}
+
+
+def _resolved_pointers(raw: str, resolved_markers) -> set:
+    """("subrule", n) references inside a qualifier clause that _cross_references RESOLVED to a sentence of the same
+    passage. The qualifier checks already require the claim to keep that clause or state its referent in full, so
+    inlining the referent instead of repeating "sub-rule (n)" is not an omission."""
+    found = set()
+    for m in _CLAUSE_START.finditer(raw):
+        marker = next((k for k in CLAUSE_MARKERS if _MARKER_RES[k].match(m.group(0))), None)
+        if marker not in resolved_markers:
+            continue
+        end = _CLAUSE_END.search(raw, m.end())
+        found |= {("subrule", x.group(1).lower())
+                  for x in _XREF_RE.finditer(raw, m.end(), end.start() if end else len(raw))}
+    return found
+
+
+def _reference_stated(ref: tuple, have: set) -> bool:
+    """A sub-rule may be stated as the rule's own sub-rule ("sub-rule (2)" == "Rule 437(2)"), and vice versa."""
+    if ref in have:
+        return True
+    kind, value = ref
+    if kind == "subrule":
+        return any(k == "rule" and v.endswith(f"({value})") for k, v in have)
+    if kind == "rule" and "(" in value:
+        return ("subrule", value[value.rindex("(") + 1:-1]) in have
+    return False
+
+
+# --- provisos: a qualification stated in its OWN sentence, connected to an enacting sentence of the same passage ----
+# Stored chunks keep a proviso as a separate sentence, normally right after the sentence it qualifies, inside the same
+# numbered sub-rule ("(1) ... . Provided that ... . (2) ..."). The association below is structural and conservative:
+# whenever the parent is not clear from the text, the proviso is associated with NOTHING (no new finding).
+_PROVISO_RE = re.compile(r"^\W*(?:\(\s*\d{1,3}[A-Z]?\s*\)\s*)?(?:(provided\s+(?:further\s+|also\s+)?that|except\s+that)"
+                         r"|(notwithstanding))\b", _I)
+_UNIT_START_RE = re.compile(r"^\W*\(\s*(\d{1,3}[A-Z]?)\s*\)")          # "(2) ..." opens sub-rule 2
+_ITEM_START_RE = re.compile(r"^\W*\(\s*([a-z]{1,4})\s*\)", _I)          # "(b) ...", "(ii) ..." - a list item
+_HEADER_RE = re.compile(r"\s[-–]\s(?:Rule|Section|Paragraph|Order|Preamble|References)\b")
+# an explicit target: "the provisions of sub-rule (1)", "nothing in clause (b)", "clause (b) shall not apply"
+_TARGET_RE = re.compile(r"(?:provisions?\s+of|anything\s+(?:contained\s+)?in|nothing\s+(?:contained\s+)?in)\s+"
+                        r"(sub-?\s*rule|clause|item)\s*\(\s*([0-9a-z]{1,4})\s*\)"
+                        r"|(sub-?\s*rule|clause|item)\s*\(\s*([0-9a-z]{1,4})\s*\)\s+shall\s+not\s+apply", _I)
+_PAREN_REF_RE = re.compile(r"\(\s*[0-9a-z]{1,4}\s*\)", _I)
+# any wording that targets sub-rules / clauses, including forms _TARGET_RE does not resolve ("sub-rules (2)(ii) and
+# (3) shall not apply", "nothing in this Clause"): when present but not resolved to one target, no association
+_TARGET_HINT_RE = re.compile(r"\b(?:sub-?\s*rules?|clauses?|items?)\s*\([^.]*?\bshall\s+not\s+apply\b"
+                             r"|(?:provisions?\s+of|anything\s+(?:contained\s+)?in|nothing\s+(?:contained\s+)?in)\s+"
+                             r"(?:the\s+|this\s+)?(?:sub-?\s*rules?|clauses?|items?)\b", _I)
+
+
+_CONNECTIVE_RE = re.compile(r"^(\W*(?:\(\s*\d{1,3}[A-Z]?\s*\)\s*)?)(?:provided\s+(?:further\s+|also\s+)?that|except\s+that)"
+                            r"\s*,?\s*", _I)
+
+
+def _connective_free(text: str) -> str:
+    """A proviso sentence without its leading connective ("Provided [further|also] that", "Except that"), for
+    comparison only. The connective links the sentence to its parent; left in, the clause splitter reads the whole
+    proviso as one 'provided' qualifier and a faithful restatement ("The vehicle need not be produced if ...") as
+    omitting it. Applied to evidence and claim sentences alike; a mid-sentence "provided that" is untouched."""
+    return _CONNECTIVE_RE.sub(r"\1", text, count=1)
+
+
+def _proviso_parents(passage_sentences: list) -> dict:
+    """{proviso index: (parent sentence indices, ...)} for one passage's sentences (from sentences()).
+
+    A sentence opening "Provided [further|also] that" / "Except that" / "Notwithstanding" is a proviso. Its parent:
+    1. Explicit target - it names exactly one sub-rule or clause as overridden or not applying ("the provisions of
+       sub-rule (1)", "Clause (b) shall not apply") and contains no other parenthesised reference: the enacting
+       sentences of that sub-rule, or the sentence opening with that clause in the proviso's own sub-rule.
+    2. Otherwise a "Notwithstanding" sentence has NO parent: its scope ("these rules", "this rule", an Act) is not one
+       sentence of this passage.
+    3. Otherwise, directly after another proviso: that proviso's parent (a contiguous "Provided further" chain).
+    4. Otherwise (a plain "Provided that" / "Except that") the directly preceding sentence, when it is an enacting
+       sentence of the same sub-rule: not the chunk header and not a list item (the proviso may then qualify the
+       whole list). A "Provided further" whose chain is broken is left unassociated.
+    Anything else - a missing, ambiguous or unresolvable parent - is left unassociated."""
+    def unit_start(s):  # "(2) ..." or a fused heading "Signing device :- (1) ..."
+        return _UNIT_START_RE.match(s) or _UNIT_START_RE.match(_strip_title(s))
+
+    units, unit = [], None
+    for s in passage_sentences:
+        m = unit_start(s)
+        unit = m.group(1) if m else unit
+        units.append(unit)
+    # "Provided ... that" / "Except that" sentences only qualify; a "Notwithstanding" sentence also enacts (its own
+    # provisos attach to it)
+    is_proviso = [bool((m := _PROVISO_RE.match(s)) and m.group(1)) for s in passage_sentences]
+
+    def enacting(k):
+        return not is_proviso[k] and not (k == 0 and _HEADER_RE.search(passage_sentences[k]))
+
+    parents = {}
+    for k, s in enumerate(passage_sentences):
+        m = _PROVISO_RE.match(s)
+        if not m:
+            continue
+        targets = list(_TARGET_RE.finditer(s))
+        own = 1 if unit_start(s) else 0
+        if targets or _TARGET_HINT_RE.search(s):
+            if len(targets) != 1 or len(_PAREN_REF_RE.findall(s)) != 1 + own:
+                continue  # several or compound targets ("sub-rules (2)(ii) and (3)"): not resolved
+            t = targets[0]
+            kind_, num = (t.group(1) or t.group(3)).lower(), (t.group(2) or t.group(4)).lower()
+            if kind_.startswith("sub"):
+                found = tuple(j for j, u in enumerate(units) if u and u.lower() == num and j != k and enacting(j))
+            else:
+                found = tuple(j for j, x in enumerate(passage_sentences)
+                              if j != k and units[j] == units[k] and (mi := _ITEM_START_RE.match(x))
+                              and mi.group(1).lower() == num)
+            if found and (len(found) == 1 or kind_.startswith("sub")):
+                parents[k] = found
+            continue
+        if m.group(2):  # Notwithstanding without a resolvable target
+            continue
+        if k and is_proviso[k - 1]:
+            if (k - 1) in parents and not unit_start(s):
+                parents[k] = parents[k - 1]
+            continue
+        if re.match(r"^\W*provided\s+(?:further|also)\b", s, _I):
+            continue  # a "further" proviso whose chain is broken: its parent is not clear
+        prev = k - 1
+        # (the enacting sentence before a proviso conventionally ends with ':' - that is not a list lead-in)
+        if prev < 0 or not enacting(prev) or units[prev] != units[k] or unit_start(s) \
+                or _ITEM_START_RE.match(passage_sentences[prev]) and not _UNIT_START_RE.match(passage_sentences[prev]):
+            continue
+        parents[k] = (prev,)
+    return parents
+
+
+def attached_provisos(passage: str) -> list[tuple[str, str]]:
+    """[(parent sentence, proviso sentence)] of one passage, found by the same parent rules check_claim applies
+    (_proviso_parents). Read-only: it only reports what the claim check will require, so the prompt can name each
+    proviso a claim restating its parent must also state. It changes no check."""
+    raw = sentences(passage or "")
+    return [(raw[j], raw[k]) for k, parent_ids in sorted(_proviso_parents(raw).items()) for j in parent_ids]
+
+
 def check_claim(claim_text: str, kind: str, cited: dict, uncited: dict, *, strip, definitive: bool,
-                siblings: tuple = ()) -> list:
+                siblings: tuple = (), id_fn=None) -> list:
     """cited/uncited: {evidence_id: passage text}. strip: removes legal identifiers (rule numbers, dates ...) so
     their digits are not read as quantities. definitive: the response claims sufficiency (not a conflict).
     siblings: ((text, evidence IDs), ...) - the other claims of the same answer. A qualifier is not omitted when a
     sibling that cites the qualifier's own passage states all of it with the same negation (the user sees every
-    claim); a clause that only points to a sub-rule must be stated by its referent."""
+    claim); a clause that only points to a sub-rule must be stated by its referent.
+    id_fn: text -> {(kind, value)} legal identifiers (grounded_answer.identifiers). When given, every legal reference
+    (REFERENCE_KINDS) of a restated sentence must be stated by the claim, or by a sibling citing that passage."""
     findings = []
-    ev, xrefs, pointer_markers = [], {}, {}
+    ev, xrefs, pointer_markers, ev_raw, raw_of, provisos_of = [], {}, {}, [], {}, {}
     for i, p in cited.items():
         raw_sentences = sentences(p)
+        analysed = []
         for raw in raw_sentences:
-            a = analyse(i, strip(raw))
+            a = analyse(i, strip(_connective_free(raw)))
             ev.append(a)
+            analysed.append(a)
+            ev_raw.append((i, raw, a))
+            raw_of[id(a)] = raw
             refs, pointers = _cross_references(raw, raw_sentences, strip)
             xrefs[id(a)] = {k: [(_referent_words(t), t) for t in v] for k, v in refs.items()}
             pointer_markers[id(a)] = pointers
+        for k, parent_ids in _proviso_parents(raw_sentences).items():
+            for j in parent_ids:
+                provisos_of.setdefault(id(analysed[j]), []).append((analysed[k], raw_sentences[k]))
     sibs = [(strip(t), frozenset(ids)) for t, ids in siblings]
+    claim_sentence_texts = [strip(_connective_free(x)) for x in sentences(claim_text) or [claim_text]]
     for cs in sentences(claim_text) or [claim_text]:
-        c = analyse("claim", strip(cs))
+        c = analyse("claim", strip(_connective_free(cs)))
         cw = words(c.text)
-        restated = _restated(cw, ev)
+        restated = _restated(cw, ev, c.text)
+        if not restated:
+            # An exact quotation of a cited sentence minus its fused rule heading restates that sentence's
+            # substantive part. That part (same evidence ID) becomes the anchor, so every check below still runs
+            # against it.
+            for i, raw, a in ev_raw:
+                body = _quoted_heading_body(cs, raw)
+                if body is not None:
+                    b = analyse(i, strip(body))
+                    xrefs[id(b)], pointer_markers[id(b)] = xrefs[id(a)], pointer_markers[id(a)]
+                    raw_of[id(b)] = body
+                    if id(a) in provisos_of:
+                        provisos_of[id(b)] = provisos_of[id(a)]
+                    restated.append(b)
         if restated:
             anchors = restated
         else:
@@ -720,6 +943,15 @@ def check_claim(claim_text: str, kind: str, cited: dict, uncited: dict, *, strip
                                  and all(_negations(_split_qualifiers(c.text)[1].get(marker, "")) == _negations(rt)
                                          for _rw, rt in referents)):
                     findings.append(("qualifier_altered", f"claim keeps '{marker}' but changes its clause"))
+                elif not referents and _negations(claim_clauses.get(marker, "")) != _negations(" ".join(
+                        _split_qualifiers(r.text)[1].get(marker, "") for r in restated)):
+                    # same words, opposite polarity inside the condition ("if the owner proposes not to renew" ->
+                    # "if the owner proposes to renew"). Same-marker clauses are concatenated by _split_qualifiers,
+                    # so the claim's are compared with those of every sentence it restates together (a claim joining
+                    # a provision and its proviso carries both of their 'if' clauses). A clause that points to a
+                    # sub-rule is compared via its referent above.
+                    findings.append(("qualifier_altered", f"claim keeps '{marker}' but reverses the negation of "
+                                     "its clause"))
             for marker in ("before", "after"):
                 if marker in s.markers and marker not in c.markers:
                     findings.append(("qualifier_omitted", f"claim omits the '{marker}' sequence of the sentence it "
@@ -756,6 +988,35 @@ def check_claim(claim_text: str, kind: str, cited: dict, uncited: dict, *, strip
                 attached = not post or len(cw & post) >= RESTATE_COVERAGE * len(post)
                 if attached and q not in claim_qs:
                     findings.append(("numeric_omitted", f"claim drops value {q} of the sentence it restates"))
+        # legal references of the restated sentence (hidden from the lexical checks by strip)
+        if id_fn is not None and restated:
+            for s in restated:
+                have = _references(cs, id_fn).union(*(_references(t, id_fn) for t, sib_ids in siblings
+                                                      if s.evidence_id in sib_ids))
+                raw_s = raw_of.get(id(s), "")
+                inlined = _resolved_pointers(raw_s, xrefs.get(id(s), {}))
+                for ref in sorted(_references(raw_s, id_fn) - inlined):
+                    if not _reference_stated(ref, have):
+                        findings.append(("reference_omitted", f"claim omits {ref[0]} {ref[1]} stated in the "
+                                         "sentence it restates"))
+        # provisos in their own sentence (see _proviso_parents): a claim restating the parent must also restate each
+        # connected proviso - in one of its own sentences, or in a sibling claim citing the same passage. "Restate"
+        # means the proviso is one of the sentences that claim sentence is anchored to (_restated, which prefers an
+        # exact match - so quoting one proviso never counts as stating a similar-worded other one), and being an
+        # anchor, the deontic, qualifier, numeric and reference checks above apply to it there.
+        def restates_proviso(text, p):
+            return any(p is r for r in _restated(words(text), ev, text))
+        for s in restated:
+            for p, p_raw in provisos_of.get(id(s), ()):
+                if p in restated:
+                    continue
+                stated = any(restates_proviso(x, p) for x in claim_sentence_texts) or any(
+                    restates_proviso(strip(_connective_free(x)), p) for t, sib_ids in siblings
+                    if s.evidence_id in sib_ids for x in sentences(t) or [t])
+                if not stated:
+                    lead = " ".join(p_raw.split()[:4])
+                    findings.append(("proviso_omitted", f"claim omits the qualification ('{lead} ...') that the "
+                                     "cited passage attaches to the sentence it restates"))
         # uncited contradictory or qualifying evidence
         if definitive:
             findings += _uncited_findings(c, strip(cs), uncited, strip)

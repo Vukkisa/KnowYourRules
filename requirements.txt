@@ -1,44 +1,20 @@
-# Spreadsheet generation (used for research/ deliverables)
-openpyxl
+# KnowYourRules: the active Telangana application (local development, index builds, tests).
+# The server's runtime pins live in requirements-cloud.txt. This file layers build, ingest and test tools on top of it,
+# so a shared package can never be listed twice with different versions. Notebook and research tools: requirements-notebooks.txt.
+-r requirements-cloud.txt
 
-# Document extraction (scripts/extract_documents.py)
-requests
-beautifulsoup4
-pypdf
+# Index build and ingest (backend/build_telangana_index.py, backend/tg_ingest.py, backend/document_lifecycle.py)
+beautifulsoup4==4.14.3
+pypdf==6.14.2
+langchain-ollama==0.3.10          # OllamaEmbeddings for local builds and lifecycle tools; the cloud server uses its HTTP providers
+langchain-text-splitters==0.3.11  # imported by tests and eval; installed transitively by langchain, listed so it cannot be dropped silently
 
-# Notebook execution
-jupyter
-ipykernel
-nbconvert
+# Tests and operator scripts
+httpx==0.28.1                     # fastapi TestClient
+pyyaml==6.0.3                     # tests, scripts/verify_runtime_config.py
+packaging==25.0                   # scripts/verify_runtime_config.py
+psutil==7.0.0                     # tests/test_stage7b1_audit.py loads eval/deployment/stage7b1/measure_controlled.py
 
-# Core (matches reference/ notebooks)
-python-dotenv
-numpy
-tiktoken
-huggingface_hub
-transformers
-
-# Backend API
-cryptography==50.0.2  # Ed25519 verification of legal approval records
-fastapi
-uvicorn[standard]
-
-# LangChain ecosystem
-langchain
-langchain-community
-langchain-core
-langchain-text-splitters
-langchain-experimental
-langchain-ollama
-langchain-chroma
-langchain-groq
-langgraph
-
-# Vector store / retrieval
-faiss-cpu
-rank_bm25
-sentence-transformers
-
-# PDF loading with OCR (UnstructuredPDFLoader, hi_res strategy)
-unstructured[pdf]
-unstructured-inference  # layout detection model for hi_res strategy - not pulled in by unstructured[pdf] alone
+# Optional evaluation clients (imported lazily by backend/answer_quality_eval.py, retrieval_eval.py, real_groq_eval.py)
+langchain-groq==0.3.8
+groq==0.37.1

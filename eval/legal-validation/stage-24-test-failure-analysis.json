@@ -1,0 +1,30 @@
+{
+ "stage": 24,
+ "reported_failure": "python3 -m unittest tests.test_exact_vector tests.test_bm25_plural -> FAILED (errors=2)",
+ "error": "ImportError: ModuleNotFoundError: No module named 'tests.test_exact_vector' / 'tests.test_bm25_plural'",
+ "exact_cause": "Invocation error, not a test failure. tests/ has no __init__.py, so the dotted names 'tests.<module>' cannot be imported; no test code ran (Ran 2 tests = 2 _FailedTest loaders). From inside tests/, 'from backend import ...' fails instead, because the repo root is not on sys.path.",
+ "standalone_correct_invocation": "python3 -m unittest discover -s tests -p '<module>.py' (run from repo root)",
+ "standalone_results": {
+  "exact": {
+   "test_exact_vector": "24 OK",
+   "test_bm25_plural": "6 OK"
+  },
+  "hnsw": {
+   "test_exact_vector": "24 OK",
+   "test_bm25_plural": "6 OK"
+  }
+ },
+ "full_suite": {
+  "exact": "672 OK",
+  "hnsw": "672 OK"
+ },
+ "checks": {
+  "test_order_dependence": "none observed: standalone and full-suite both pass",
+  "shared_or_mutated_state": "none implicated; failure occurs before import",
+  "environment_variables": "RAG_VECTOR_SEARCH does not change the outcome",
+  "fixture_setup_teardown": "not reached",
+  "index_or_ollama": "not reached; these tests use in-memory fixtures",
+  "nondeterminism": "none: error reproduced identically"
+ },
+ "test_changes": "none"
+}

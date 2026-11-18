@@ -1,0 +1,30 @@
+{
+ "stage": 18,
+ "code_changes": null,
+ "decision": "No retrieval change: no failure showed a narrowly fixable retrieval defect.",
+ "baseline": "Stage 17 (unchanged)",
+ "retrieval_79": {
+  "scored_cases": 79,
+  "recall@1": 0.7046413502109705,
+  "recall@3": 0.9040084388185654,
+  "recall@5": 0.9725738396624471,
+  "hit@5": 1.0,
+  "precision@5": 0.2607594936708859,
+  "mrr": 0.8907172995780591,
+  "failure_rate": 0.0
+ },
+ "guard": {
+  "cases": 12,
+  "correct": 12,
+  "accuracy": 1.0
+ },
+ "ranking_signature": "0716ecd7... (Stage 17)",
+ "tests": "see report",
+ "file_sha256": {
+  "backend/hybrid_retrieval.py": "9d1b2c0aee4cd60f8d2057191b6cd315ff44cb457ba69474aa2973a6d03efa99",
+  "eval/telangana-retrieval-benchmark.json": "f186027c9f2e73ae2311d7259e72c059b09e770541e682ea1fbd6eece0d98106",
+  "eval/telangana-retrieval-review.csv": "361ad6957636fbae523260998395f91fa2fcee0c44aae5f8662c304641771fd5",
+  "eval/telangana-chunk-references.json": "2e06f8ed2608a281a4aa6f2a0eab5f68c05c3b4ce0ed0462bd34537a11c6f6ae"
+ },
+ "model_calls": 0
+}

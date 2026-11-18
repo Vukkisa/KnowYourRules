@@ -1,0 +1,63 @@
+{
+ "label": "queries_single_thread",
+ "threads_env": {
+  "VECLIB_MAXIMUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": null
+ },
+ "rss_mb": {
+  "python+numpy start": 48.0,
+  "after model load": 65.1,
+  "after 108 queries": 305.4,
+  "after documents (longest chunk 3681 chars)": 306.6,
+  "after concurrency": 357.1
+ },
+ "load_seconds": 0.07,
+ "blob": "sha256:970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6",
+ "queries_vs_ollama_cosine": {
+  "n": 108,
+  "min": 0.9999992847442627,
+  "mean": 0.9999998377429115
+ },
+ "query_latency_ms": {
+  "p50": 393.0,
+  "p95": 426.5,
+  "max": 516.0
+ },
+ "cpu_seconds_per_query": 0.395,
+ "concurrent_4_requests": [
+  {
+   "wall_ms": 653.4,
+   "per_request_ms": [
+    653.2,
+    645.7,
+    612.3,
+    645.6
+   ]
+  },
+  {
+   "wall_ms": 580.9,
+   "per_request_ms": [
+    561.7,
+    580.7,
+    563.0,
+    543.5
+   ]
+  },
+  {
+   "wall_ms": 604.0,
+   "per_request_ms": [
+    603.8,
+    603.3,
+    582.5,
+    582.3
+   ]
+  }
+ ],
+ "ru_maxrss_mb": 357.3,
+ "machine": {
+  "cpu": "Apple M1",
+  "logical_cpus": 8,
+  "note": "macOS: no cgroup / 0.1 CPU limit is possible here"
+ }
+}

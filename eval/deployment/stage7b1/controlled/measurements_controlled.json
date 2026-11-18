@@ -1,0 +1,988 @@
+{
+ "machine": {
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "python": "3.11.2",
+  "cpus": 8,
+  "ram_gb": 8.0,
+  "loadavg_at_start": [
+   2.09,
+   2.04,
+   2.88
+  ],
+  "single_session_precheck": "no other measure/test/uvicorn process found at start",
+  "top_cpu_processes_at_start": [
+   [
+    "kernel_task",
+    null
+   ],
+   [
+    "launchd",
+    null
+   ],
+   [
+    "logd",
+    null
+   ],
+   [
+    "UserEventAgent",
+    null
+   ]
+  ],
+  "note": "a developer laptop, not a 0.1-CPU / 512 MB container: absolute times are optimistic"
+ },
+ "publish": {
+  "seconds": 4.92,
+  "version": "20261113T174738Z-140cd20089",
+  "index_archive_mb": 4.12,
+  "index_unpacked_mb": 9.96,
+  "lifecycle_archive_mb": 0.21,
+  "lifecycle_unpacked_mb": 1.47,
+  "chunks": 590,
+  "dimensions": 768
+ },
+ "components_full": {
+  "chunks": 590,
+  "exact_matrix_mb": 3.46,
+  "bm25_python_objects_mb": 5.99,
+  "exact_python_objects_mb": 6.63,
+  "marks": {
+   "python+psutil": {
+    "rss_mb": 17.8,
+    "peak_mb": 18.0,
+    "t": 0.02
+   },
+   "import chromadb": {
+    "rss_mb": 98.7,
+    "peak_mb": 99.2,
+    "t": 2.13
+   },
+   "import langchain_chroma": {
+    "rss_mb": 120.7,
+    "peak_mb": 120.7,
+    "t": 2.55
+   },
+   "import exact_vector+hybrid_retrieval": {
+    "rss_mb": 120.7,
+    "peak_mb": 120.7,
+    "t": 2.56
+   },
+   "open Chroma collection (hnsw loaded lazily)": {
+    "rss_mb": 134.8,
+    "peak_mb": 134.8,
+    "t": 2.62
+   },
+   "read all embeddings+documents+metadatas": {
+    "rss_mb": 168.6,
+    "peak_mb": 179.6,
+    "t": 2.78
+   },
+   "build ExactVectorIndex (float64 matrix)": {
+    "rss_mb": 179.0,
+    "peak_mb": 191.4,
+    "t": 2.9
+   },
+   "build LexicalIndex (BM25 + provision lookup)": {
+    "rss_mb": 180.1,
+    "peak_mb": 191.4,
+    "t": 3.13
+   }
+  },
+  "wall_seconds": 3.49,
+  "loadavg_after": [
+   2.0,
+   2.02,
+   2.86
+  ]
+ },
+ "components_cloud_requirements": {
+  "chunks": 590,
+  "exact_matrix_mb": 3.46,
+  "bm25_python_objects_mb": 5.99,
+  "exact_python_objects_mb": 6.63,
+  "marks": {
+   "python+psutil": {
+    "rss_mb": 17.9,
+    "peak_mb": 18.0,
+    "t": 0.02
+   },
+   "import chromadb": {
+    "rss_mb": 104.2,
+    "peak_mb": 104.7,
+    "t": 1.66
+   },
+   "import langchain_chroma": {
+    "rss_mb": 123.3,
+    "peak_mb": 123.3,
+    "t": 1.98
+   },
+   "import exact_vector+hybrid_retrieval": {
+    "rss_mb": 123.3,
+    "peak_mb": 123.3,
+    "t": 1.99
+   },
+   "open Chroma collection (hnsw loaded lazily)": {
+    "rss_mb": 137.8,
+    "peak_mb": 137.8,
+    "t": 2.04
+   },
+   "read all embeddings+documents+metadatas": {
+    "rss_mb": 177.7,
+    "peak_mb": 189.2,
+    "t": 2.21
+   },
+   "build ExactVectorIndex (float64 matrix)": {
+    "rss_mb": 184.6,
+    "peak_mb": 194.6,
+    "t": 2.32
+   },
+   "build LexicalIndex (BM25 + provision lookup)": {
+    "rss_mb": 170.4,
+    "peak_mb": 194.6,
+    "t": 2.56
+   }
+  },
+  "wall_seconds": 2.91,
+  "loadavg_after": [
+   1.92,
+   2.0,
+   2.85
+  ]
+ },
+ "server_runs": {
+  "full_environment": [
+   {
+    "vector_search": "exact",
+    "snapshot": {
+     "enabled": true,
+     "state": "ready",
+     "ready": true,
+     "version": "20261113T174738Z-140cd20089",
+     "stale": false,
+     "problems": [],
+     "chunks": 590,
+     "created_at": "2026-11-13T17:47:39Z",
+     "seconds": {
+      "download_and_verify": 0.008,
+      "extract_and_verify": 0.06,
+      "validate": 0.242,
+      "total": 0.312
+     }
+    },
+    "embedding_state": "ok",
+    "modules_loaded": {
+     "torch": true,
+     "transformers": true,
+     "langchain_ollama": false,
+     "boto3": false
+    },
+    "status": {
+     "index": "ready",
+     "chunks": 590,
+     "corpus_ready": false
+    },
+    "sequential_ms": {
+     "p50": 27,
+     "p95": 60,
+     "max": 82
+    },
+    "concurrency": {
+     "1": {
+      "requests": 6,
+      "ok": 6,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.24,
+      "p50_ms": 40,
+      "p95_ms": 41,
+      "peak_mb": 373.4,
+      "rss_mb": 329.9
+     },
+     "4": {
+      "requests": 24,
+      "ok": 24,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.21,
+      "p50_ms": 13,
+      "p95_ms": 69,
+      "peak_mb": 373.4,
+      "rss_mb": 354.4
+     },
+     "8": {
+      "requests": 48,
+      "ok": 48,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.4,
+      "p50_ms": 34,
+      "p95_ms": 88,
+      "peak_mb": 395.3,
+      "rss_mb": 391.1
+     },
+     "16": {
+      "requests": 96,
+      "ok": 96,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.95,
+      "p50_ms": 40,
+      "p95_ms": 207,
+      "peak_mb": 412.3,
+      "rss_mb": 339.0
+     }
+    },
+    "numpy_in_process_ok": true,
+    "marks": {
+     "python+psutil": {
+      "rss_mb": 17.8,
+      "peak_mb": 18.0,
+      "t": 0.02
+     },
+     "import chromadb": {
+      "rss_mb": 97.8,
+      "peak_mb": 98.3,
+      "t": 1.98
+     },
+     "import fastapi/langchain/langchain_chroma": {
+      "rss_mb": 124.8,
+      "peak_mb": 124.8,
+      "t": 2.41
+     },
+     "server_import_seconds": 5.05,
+     "import backend.server (snapshot+store+exact+bm25)": {
+      "rss_mb": 361.0,
+      "peak_mb": 373.4,
+      "t": 7.46
+     },
+     "TestClient + /status": {
+      "rss_mb": 361.7,
+      "peak_mb": 373.4,
+      "t": 7.47
+     },
+     "after 40 sequential retrievals (embed+exact+BM25+fusion)": {
+      "rss_mb": 332.4,
+      "peak_mb": 373.4,
+      "t": 8.79
+     },
+     "after concurrency 1/4/8/16": {
+      "rss_mb": 339.0,
+      "peak_mb": 412.3,
+      "t": 10.58
+     },
+     "backend + numpy embedder constructed (weights mmapped, untouched)": {
+      "rss_mb": 333.0,
+      "peak_mb": 412.3,
+      "t": 10.71
+     },
+     "backend + numpy embedder after 40 queries embedded in-process": {
+      "rss_mb": 325.6,
+      "peak_mb": 455.3,
+      "t": 35.53
+     }
+    },
+    "wall_seconds": 36.54,
+    "loadavg_after": [
+     5.81,
+     2.95,
+     3.16
+    ],
+    "cold_start": true
+   },
+   {
+    "vector_search": "exact",
+    "snapshot": {
+     "enabled": true,
+     "state": "ready",
+     "ready": true,
+     "version": "20261113T174738Z-140cd20089",
+     "stale": false,
+     "problems": [],
+     "chunks": 590,
+     "created_at": "2026-11-13T17:47:39Z",
+     "seconds": {
+      "download_and_verify": 0.005,
+      "extract_and_verify": 0.064,
+      "validate": 0.338,
+      "total": 0.41
+     }
+    },
+    "embedding_state": "ok",
+    "modules_loaded": {
+     "torch": true,
+     "transformers": true,
+     "langchain_ollama": false,
+     "boto3": false
+    },
+    "status": {
+     "index": "ready",
+     "chunks": 590,
+     "corpus_ready": false
+    },
+    "sequential_ms": {
+     "p50": 33,
+     "p95": 47,
+     "max": 51
+    },
+    "concurrency": {
+     "1": {
+      "requests": 6,
+      "ok": 6,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.24,
+      "p50_ms": 41,
+      "p95_ms": 43,
+      "peak_mb": 372.5,
+      "rss_mb": 366.4
+     },
+     "4": {
+      "requests": 24,
+      "ok": 24,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.2,
+      "p50_ms": 12,
+      "p95_ms": 64,
+      "peak_mb": 391.3,
+      "rss_mb": 389.2
+     },
+     "8": {
+      "requests": 48,
+      "ok": 48,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.37,
+      "p50_ms": 23,
+      "p95_ms": 94,
+      "peak_mb": 430.7,
+      "rss_mb": 427.1
+     },
+     "16": {
+      "requests": 96,
+      "ok": 96,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.98,
+      "p50_ms": 31,
+      "p95_ms": 229,
+      "peak_mb": 433.6,
+      "rss_mb": 290.4
+     }
+    },
+    "numpy_in_process_ok": true,
+    "marks": {
+     "python+psutil": {
+      "rss_mb": 17.4,
+      "peak_mb": 17.6,
+      "t": 0.02
+     },
+     "import chromadb": {
+      "rss_mb": 103.9,
+      "peak_mb": 104.4,
+      "t": 1.91
+     },
+     "import fastapi/langchain/langchain_chroma": {
+      "rss_mb": 121.9,
+      "peak_mb": 121.9,
+      "t": 2.47
+     },
+     "server_import_seconds": 5.02,
+     "import backend.server (snapshot+store+exact+bm25)": {
+      "rss_mb": 359.8,
+      "peak_mb": 372.5,
+      "t": 7.49
+     },
+     "TestClient + /status": {
+      "rss_mb": 360.6,
+      "peak_mb": 372.5,
+      "t": 7.5
+     },
+     "after 40 sequential retrievals (embed+exact+BM25+fusion)": {
+      "rss_mb": 365.9,
+      "peak_mb": 372.5,
+      "t": 8.86
+     },
+     "after concurrency 1/4/8/16": {
+      "rss_mb": 290.4,
+      "peak_mb": 433.6,
+      "t": 10.64
+     },
+     "backend + numpy embedder constructed (weights mmapped, untouched)": {
+      "rss_mb": 290.2,
+      "peak_mb": 433.6,
+      "t": 10.8
+     },
+     "backend + numpy embedder after 40 queries embedded in-process": {
+      "rss_mb": 354.1,
+      "peak_mb": 433.6,
+      "t": 34.95
+     }
+    },
+    "wall_seconds": 35.98,
+    "loadavg_after": [
+     11.2,
+     4.63,
+     3.76
+    ],
+    "cold_start": false
+   },
+   {
+    "vector_search": "exact",
+    "snapshot": {
+     "enabled": true,
+     "state": "ready",
+     "ready": true,
+     "version": "20261113T174738Z-140cd20089",
+     "stale": false,
+     "problems": [],
+     "chunks": 590,
+     "created_at": "2026-11-13T17:47:39Z",
+     "seconds": {
+      "download_and_verify": 0.006,
+      "extract_and_verify": 0.073,
+      "validate": 0.323,
+      "total": 0.405
+     }
+    },
+    "embedding_state": "ok",
+    "modules_loaded": {
+     "torch": true,
+     "transformers": true,
+     "langchain_ollama": false,
+     "boto3": false
+    },
+    "status": {
+     "index": "ready",
+     "chunks": 590,
+     "corpus_ready": false
+    },
+    "sequential_ms": {
+     "p50": 42,
+     "p95": 65,
+     "max": 84
+    },
+    "concurrency": {
+     "1": {
+      "requests": 6,
+      "ok": 6,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.67,
+      "p50_ms": 52,
+      "p95_ms": 71,
+      "peak_mb": 369.8,
+      "rss_mb": 190.3
+     },
+     "4": {
+      "requests": 24,
+      "ok": 24,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.26,
+      "p50_ms": 23,
+      "p95_ms": 65,
+      "peak_mb": 369.8,
+      "rss_mb": 216.4
+     },
+     "8": {
+      "requests": 48,
+      "ok": 48,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.43,
+      "p50_ms": 32,
+      "p95_ms": 88,
+      "peak_mb": 369.8,
+      "rss_mb": 199.2
+     },
+     "16": {
+      "requests": 96,
+      "ok": 96,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 1.12,
+      "p50_ms": 42,
+      "p95_ms": 281,
+      "peak_mb": 369.8,
+      "rss_mb": 171.3
+     }
+    },
+    "numpy_in_process_ok": true,
+    "marks": {
+     "python+psutil": {
+      "rss_mb": 18.4,
+      "peak_mb": 18.6,
+      "t": 0.03
+     },
+     "import chromadb": {
+      "rss_mb": 97.1,
+      "peak_mb": 97.6,
+      "t": 2.08
+     },
+     "import fastapi/langchain/langchain_chroma": {
+      "rss_mb": 125.8,
+      "peak_mb": 125.8,
+      "t": 2.64
+     },
+     "server_import_seconds": 5.17,
+     "import backend.server (snapshot+store+exact+bm25)": {
+      "rss_mb": 352.8,
+      "peak_mb": 369.8,
+      "t": 7.81
+     },
+     "TestClient + /status": {
+      "rss_mb": 353.3,
+      "peak_mb": 369.8,
+      "t": 7.82
+     },
+     "after 40 sequential retrievals (embed+exact+BM25+fusion)": {
+      "rss_mb": 341.3,
+      "peak_mb": 369.8,
+      "t": 9.55
+     },
+     "after concurrency 1/4/8/16": {
+      "rss_mb": 171.4,
+      "peak_mb": 369.8,
+      "t": 12.03
+     },
+     "backend + numpy embedder constructed (weights mmapped, untouched)": {
+      "rss_mb": 187.3,
+      "peak_mb": 369.8,
+      "t": 12.16
+     },
+     "backend + numpy embedder after 40 queries embedded in-process": {
+      "rss_mb": 311.0,
+      "peak_mb": 445.8,
+      "t": 38.3
+     }
+    },
+    "wall_seconds": 39.49,
+    "loadavg_after": [
+     11.26,
+     5.41,
+     4.08
+    ],
+    "cold_start": false
+   }
+  ],
+  "cloud_requirements": [
+   {
+    "vector_search": "exact",
+    "snapshot": {
+     "enabled": true,
+     "state": "ready",
+     "ready": true,
+     "version": "20261113T174738Z-140cd20089",
+     "stale": false,
+     "problems": [],
+     "chunks": 590,
+     "created_at": "2026-11-13T17:47:39Z",
+     "seconds": {
+      "download_and_verify": 0.01,
+      "extract_and_verify": 0.064,
+      "validate": 0.318,
+      "total": 0.395
+     }
+    },
+    "embedding_state": "ok",
+    "modules_loaded": {
+     "torch": false,
+     "transformers": false,
+     "langchain_ollama": false,
+     "boto3": false
+    },
+    "status": {
+     "index": "ready",
+     "chunks": 590,
+     "corpus_ready": false
+    },
+    "sequential_ms": {
+     "p50": 29,
+     "p95": 42,
+     "max": 45
+    },
+    "concurrency": {
+     "1": {
+      "requests": 6,
+      "ok": 6,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.21,
+      "p50_ms": 34,
+      "p95_ms": 34,
+      "peak_mb": 225.6,
+      "rss_mb": 223.4
+     },
+     "4": {
+      "requests": 24,
+      "ok": 24,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.19,
+      "p50_ms": 10,
+      "p95_ms": 62,
+      "peak_mb": 238.3,
+      "rss_mb": 227.7
+     },
+     "8": {
+      "requests": 48,
+      "ok": 48,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.38,
+      "p50_ms": 20,
+      "p95_ms": 106,
+      "peak_mb": 282.1,
+      "rss_mb": 278.0
+     },
+     "16": {
+      "requests": 96,
+      "ok": 96,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.84,
+      "p50_ms": 33,
+      "p95_ms": 171,
+      "peak_mb": 332.2,
+      "rss_mb": 321.2
+     }
+    },
+    "numpy_in_process_ok": true,
+    "marks": {
+     "python+psutil": {
+      "rss_mb": 17.5,
+      "peak_mb": 17.7,
+      "t": 0.02
+     },
+     "import chromadb": {
+      "rss_mb": 96.8,
+      "peak_mb": 97.3,
+      "t": 2.09
+     },
+     "import fastapi/langchain/langchain_chroma": {
+      "rss_mb": 124.4,
+      "peak_mb": 124.4,
+      "t": 2.61
+     },
+     "server_import_seconds": 1.59,
+     "import backend.server (snapshot+store+exact+bm25)": {
+      "rss_mb": 205.7,
+      "peak_mb": 213.7,
+      "t": 4.2
+     },
+     "TestClient + /status": {
+      "rss_mb": 205.9,
+      "peak_mb": 213.7,
+      "t": 4.21
+     },
+     "after 40 sequential retrievals (embed+exact+BM25+fusion)": {
+      "rss_mb": 223.4,
+      "peak_mb": 225.6,
+      "t": 5.46
+     },
+     "after concurrency 1/4/8/16": {
+      "rss_mb": 321.2,
+      "peak_mb": 332.2,
+      "t": 7.07
+     },
+     "backend + numpy embedder constructed (weights mmapped, untouched)": {
+      "rss_mb": 325.2,
+      "peak_mb": 332.2,
+      "t": 7.19
+     },
+     "backend + numpy embedder after 40 queries embedded in-process": {
+      "rss_mb": 366.6,
+      "peak_mb": 507.8,
+      "t": 30.03
+     }
+    },
+    "wall_seconds": 30.53,
+    "loadavg_after": [
+     10.88,
+     5.86,
+     4.29
+    ],
+    "cold_start": true
+   },
+   {
+    "vector_search": "exact",
+    "snapshot": {
+     "enabled": true,
+     "state": "ready",
+     "ready": true,
+     "version": "20261113T174738Z-140cd20089",
+     "stale": false,
+     "problems": [],
+     "chunks": 590,
+     "created_at": "2026-11-13T17:47:39Z",
+     "seconds": {
+      "download_and_verify": 0.006,
+      "extract_and_verify": 0.059,
+      "validate": 0.244,
+      "total": 0.313
+     }
+    },
+    "embedding_state": "ok",
+    "modules_loaded": {
+     "torch": false,
+     "transformers": false,
+     "langchain_ollama": false,
+     "boto3": false
+    },
+    "status": {
+     "index": "ready",
+     "chunks": 590,
+     "corpus_ready": false
+    },
+    "sequential_ms": {
+     "p50": 29,
+     "p95": 40,
+     "max": 41
+    },
+    "concurrency": {
+     "1": {
+      "requests": 6,
+      "ok": 6,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.2,
+      "p50_ms": 34,
+      "p95_ms": 36,
+      "peak_mb": 225.1,
+      "rss_mb": 210.4
+     },
+     "4": {
+      "requests": 24,
+      "ok": 24,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.18,
+      "p50_ms": 9,
+      "p95_ms": 53,
+      "peak_mb": 236.7,
+      "rss_mb": 236.5
+     },
+     "8": {
+      "requests": 48,
+      "ok": 48,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.4,
+      "p50_ms": 24,
+      "p95_ms": 96,
+      "peak_mb": 279.3,
+      "rss_mb": 279.1
+     },
+     "16": {
+      "requests": 96,
+      "ok": 96,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.97,
+      "p50_ms": 34,
+      "p95_ms": 206,
+      "peak_mb": 318.2,
+      "rss_mb": 308.8
+     }
+    },
+    "numpy_in_process_ok": true,
+    "marks": {
+     "python+psutil": {
+      "rss_mb": 18.0,
+      "peak_mb": 18.2,
+      "t": 0.02
+     },
+     "import chromadb": {
+      "rss_mb": 104.4,
+      "peak_mb": 104.9,
+      "t": 1.8
+     },
+     "import fastapi/langchain/langchain_chroma": {
+      "rss_mb": 130.1,
+      "peak_mb": 130.1,
+      "t": 2.29
+     },
+     "server_import_seconds": 1.53,
+     "import backend.server (snapshot+store+exact+bm25)": {
+      "rss_mb": 206.5,
+      "peak_mb": 225.1,
+      "t": 3.82
+     },
+     "TestClient + /status": {
+      "rss_mb": 206.6,
+      "peak_mb": 225.1,
+      "t": 3.82
+     },
+     "after 40 sequential retrievals (embed+exact+BM25+fusion)": {
+      "rss_mb": 210.1,
+      "peak_mb": 225.1,
+      "t": 5.07
+     },
+     "after concurrency 1/4/8/16": {
+      "rss_mb": 308.8,
+      "peak_mb": 318.2,
+      "t": 6.82
+     },
+     "backend + numpy embedder constructed (weights mmapped, untouched)": {
+      "rss_mb": 316.2,
+      "peak_mb": 318.2,
+      "t": 6.94
+     },
+     "backend + numpy embedder after 40 queries embedded in-process": {
+      "rss_mb": 380.4,
+      "peak_mb": 526.6,
+      "t": 30.62
+     }
+    },
+    "wall_seconds": 31.13,
+    "loadavg_after": [
+     20.74,
+     8.48,
+     5.28
+    ],
+    "cold_start": false
+   },
+   {
+    "vector_search": "exact",
+    "snapshot": {
+     "enabled": true,
+     "state": "ready",
+     "ready": true,
+     "version": "20261113T174738Z-140cd20089",
+     "stale": false,
+     "problems": [],
+     "chunks": 590,
+     "created_at": "2026-11-13T17:47:39Z",
+     "seconds": {
+      "download_and_verify": 0.005,
+      "extract_and_verify": 0.059,
+      "validate": 0.299,
+      "total": 0.366
+     }
+    },
+    "embedding_state": "ok",
+    "modules_loaded": {
+     "torch": false,
+     "transformers": false,
+     "langchain_ollama": false,
+     "boto3": false
+    },
+    "status": {
+     "index": "ready",
+     "chunks": 590,
+     "corpus_ready": false
+    },
+    "sequential_ms": {
+     "p50": 34,
+     "p95": 61,
+     "max": 239
+    },
+    "concurrency": {
+     "1": {
+      "requests": 6,
+      "ok": 6,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.21,
+      "p50_ms": 35,
+      "p95_ms": 37,
+      "peak_mb": 234.3,
+      "rss_mb": 169.5
+     },
+     "4": {
+      "requests": 24,
+      "ok": 24,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.21,
+      "p50_ms": 13,
+      "p95_ms": 67,
+      "peak_mb": 234.3,
+      "rss_mb": 195.1
+     },
+     "8": {
+      "requests": 48,
+      "ok": 48,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.37,
+      "p50_ms": 22,
+      "p95_ms": 82,
+      "peak_mb": 234.3,
+      "rss_mb": 201.8
+     },
+     "16": {
+      "requests": 96,
+      "ok": 96,
+      "errors": [],
+      "n_errors": 0,
+      "wall_s": 0.97,
+      "p50_ms": 39,
+      "p95_ms": 194,
+      "peak_mb": 238.5,
+      "rss_mb": 212.4
+     }
+    },
+    "numpy_in_process_ok": true,
+    "marks": {
+     "python+psutil": {
+      "rss_mb": 17.9,
+      "peak_mb": 18.1,
+      "t": 0.02
+     },
+     "import chromadb": {
+      "rss_mb": 97.9,
+      "peak_mb": 98.4,
+      "t": 1.96
+     },
+     "import fastapi/langchain/langchain_chroma": {
+      "rss_mb": 125.3,
+      "peak_mb": 125.3,
+      "t": 2.47
+     },
+     "server_import_seconds": 1.65,
+     "import backend.server (snapshot+store+exact+bm25)": {
+      "rss_mb": 207.7,
+      "peak_mb": 224.1,
+      "t": 4.12
+     },
+     "TestClient + /status": {
+      "rss_mb": 207.4,
+      "peak_mb": 224.1,
+      "t": 4.13
+     },
+     "after 40 sequential retrievals (embed+exact+BM25+fusion)": {
+      "rss_mb": 181.5,
+      "peak_mb": 234.3,
+      "t": 5.8
+     },
+     "after concurrency 1/4/8/16": {
+      "rss_mb": 212.4,
+      "peak_mb": 238.5,
+      "t": 7.56
+     },
+     "backend + numpy embedder constructed (weights mmapped, untouched)": {
+      "rss_mb": 210.0,
+      "peak_mb": 238.5,
+      "t": 7.69
+     },
+     "backend + numpy embedder after 40 queries embedded in-process": {
+      "rss_mb": 312.9,
+      "peak_mb": 403.8,
+      "t": 32.66
+     }
+    },
+    "wall_seconds": 33.22,
+    "loadavg_after": [
+     16.36,
+     8.69,
+     5.48
+    ],
+    "cold_start": false
+   }
+  ]
+ },
+ "real_index_and_registry_unchanged": true,
+ "real_index_tree_digest": "140cd2008980f7e64858a8089d81f0346f758db1eda4d8c5c390418eac0ebe29",
+ "real_registry_tree_digest": "5f4094d88cf9b770b7210749fdadddfeea4d4c0cfd168c39bb3b905767bbdbe3"
+}

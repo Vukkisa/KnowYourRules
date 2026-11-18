@@ -1,4 +1,4 @@
-"""Offline tests for backend/legal_approval.py, hash metadata in backend/build_index.py, and the server's
+"""Offline tests for backend/legal_approval.py and the server's
 use of the approval record.
 
 All records, reviewers, dates and hashes here are SYNTHETIC fixtures. Nothing here is, or may be used as,
@@ -22,13 +22,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fastapi.testclient import TestClient  # noqa: E402
 from langchain_core.documents import Document  # noqa: E402
-from langchain_core.embeddings import DeterministicFakeEmbedding  # noqa: E402
 
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey  # noqa: E402
 
 from backend import legal_approval as la  # noqa: E402
-import backend.build_index as bi  # noqa: E402
-import test_build_index as tbi  # noqa: E402
 import test_server as ts  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
@@ -272,68 +269,6 @@ class IndexValidationTests(unittest.TestCase):
             self.assertFalse(la.evaluate(path, INDEX_OK[:1], TODAY, U).penalty_answers)  # mismatch blocks it
 
 
-class BuildIndexHashTests(tbi.BuildIndexTests):
-    """Hash metadata and approval checks in the builder (reuses the builder test fixtures)."""
-
-    def test_loaded_documents_carry_file_sha256(self):
-        docs, errors = bi.load_documents(self.files, self.corpus, tbi.FakeLoader)
-        self.assertEqual(errors, [])
-        for d in docs:
-            self.assertEqual(d.metadata["sha256"], la.sha256_file(self.corpus / "state" / d.metadata["source_file"]))
-
-    def test_indexed_chunks_carry_sha256(self):
-        rc, out = self.run_build()
-        self.assertEqual(rc, 0, out)
-        metas = self.client.get_collection(bi.COLLECTION).get(include=["metadatas"])["metadatas"]
-        self.assertTrue(all(la.SHA256_RE.match(m["sha256"]) for m in metas))
-
-    def test_verify_rejects_chunks_without_sha256(self):
-        staging = self.client.create_collection(bi.STAGING)
-        staging.add(ids=["s1"], embeddings=[[0.1] * 16], documents=["x"],
-                    metadatas=[{"state": "Delhi", "source_file": "d.pdf"}])
-        splits = [Document(page_content="x", metadata={"state": "Delhi", "source_file": "d.pdf"})]
-        with self.assertRaisesRegex(bi.BuildError, "valid sha256"):
-            bi.verify_staging(self.client, splits)
-
-    def approval_for(self, rels):
-        docs = [{"file": Path(r).name, "sha256": la.sha256_file(self.corpus / r), "title": f"Synthetic {r}",
-                 "instrument": "Rules"} for r in rels]
-        return la.parse_record(synthetic_record(documents=docs), TODAY)
-
-    def run_with_approval(self, record):
-        import io
-        from contextlib import redirect_stdout
-        out = io.StringIO()
-        with redirect_stdout(out):
-            rc = bi.main(self.corpus, self.db, self.files, loader_cls=tbi.FakeLoader,
-                         embeddings=DeterministicFakeEmbedding(size=16), approval_record=record)
-        return rc, out.getvalue()
-
-    def test_build_with_matching_approval_succeeds(self):
-        rc, out = self.run_with_approval(self.approval_for([f for f, _ in self.files]))
-        self.assertEqual(rc, 0, out)
-
-    def test_build_with_changed_document_fails_and_keeps_live(self):
-        record = self.approval_for([f for f, _ in self.files])
-        self.write("state/delhi.pdf", tbi.LONG_TEXT + " amended")
-        rc, out = self.run_with_approval(record)
-        self.assertEqual(rc, 1)
-        self.assertIn("'delhi.pdf' has changed since approval", out)
-        self.assert_live_untouched()
-
-    def test_build_with_unapproved_document_fails_and_keeps_live(self):
-        rc, out = self.run_with_approval(self.approval_for(["state/central.pdf"]))
-        self.assertEqual(rc, 1)
-        self.assertIn("unapproved document: delhi.pdf", out)
-        self.assert_live_untouched()
-
-
-# Inherited builder tests already run in test_build_index; skip the copies here.
-for _name in [n for n in dir(tbi.BuildIndexTests) if n.startswith("test_")]:
-    if _name not in BuildIndexHashTests.__dict__:
-        setattr(BuildIndexHashTests, _name, None)
-
-
 class ServerApprovalTests(unittest.TestCase):
     """The real server module (with offline fakes) started against a synthetic approval record."""
 
@@ -365,51 +300,45 @@ class ServerApprovalTests(unittest.TestCase):
         ts.FAKE_LLM["fn"] = ts.fake_llm(answer="grounded answer")
         return srv, TestClient(srv.app)
 
-    def test_no_record_means_not_approved(self):
+    def chat(self, client, message, sid="x"):
+        return client.post("/chat", json={"message": message, "session_id": sid}).json()
+
+    def test_no_record_is_not_a_blocker_and_nothing_is_verified(self):
         srv, client = self.start()
         s = client.get("/status").json()
-        self.assertEqual((s["approval"], s["kb_approved"], s["penalty_answers"]), ("absent", False, False))
-        self.assertEqual(srv.SOURCES, {})
+        self.assertEqual((s["approval"], s["approval_errors"], s["kb_approved"], s["penalty_answers"]),
+                         ("not_required", [], False, False))
+        self.assertEqual(srv.SOURCES, {})   # no signed record, so no source can be labelled verified
 
-    def test_valid_record_approves_general_answers_with_hash_verified_sources(self):
-        srv, client = self.start(synthetic_record())
+    def test_a_signed_record_is_ignored_by_the_server(self):
+        srv, client = self.start(synthetic_record(penalty_answers_approved=True))
         s = client.get("/status").json()
-        self.assertEqual((s["approval"], s["kb_approved"], s["penalty_answers"]), ("valid", True, False))
-        self.assertEqual(s["corpus_version"], "synthetic-corpus-1")
-        r = client.post("/chat", json={"message": "How do I apply for a learner's licence?", "session_id": "x"}).json()
-        self.assertTrue(r["kb_approved"])
-        self.assertEqual({(x["title"], x["verified"]) for x in r["sources"]},
-                         {("Synthetic Rules Fixture", True), ("Synthetic G.O. Fixture", True)})
+        self.assertEqual((s["approval"], s["kb_approved"], s["penalty_answers"], s["corpus_version"]),
+                         ("not_required", False, False, None))
+        self.assertEqual(srv.SOURCES, {})
+        r = self.chat(client, "How do I apply for a learner's licence?")
+        self.assertFalse(r["kb_approved"])
+        self.assertTrue(all(not x["verified"] for x in r["sources"]))
 
-    def test_general_approval_does_not_enable_penalty_answers(self):
-        srv, client = self.start(synthetic_record())
-        r = client.post("/chat", json={"message": "What is the fine for no helmet?", "session_id": "x"}).json()
-        self.assertEqual(r["kind"], "restricted")
-
-    def test_separate_penalty_approval_is_required_and_sufficient(self):
-        srv, _ = self.start(synthetic_record(penalty_answers_approved=True))
-        self.assertTrue(srv.PENALTY_ANSWERS_ENABLED)
+    def test_a_record_cannot_enable_penalty_answers(self):
+        srv, client = self.start(synthetic_record(penalty_answers_approved=True))
+        self.assertFalse(srv.PENALTY_ANSWERS_ENABLED)
+        self.assertEqual(self.chat(client, "What is the fine for no helmet?")["kind"], "restricted")
 
     def test_env_flags_cannot_approve_anything(self):
         srv = ts._import_server_with_fakes({"TG_KB_APPROVED": "1", "TG_PENALTY_ANSWERS": "1"})
         self.assertFalse(srv.KB_APPROVED)
         self.assertFalse(srv.PENALTY_ANSWERS_ENABLED)
 
-    def test_malformed_record_fails_closed(self):
+    def test_malformed_or_mismatched_records_are_ignored_not_trusted(self):
+        docs = synthetic_record()["documents"]
+        docs[1]["sha256"] = SHA_C
         for raw in ("{", json.dumps(synthetic_record(reviewer={"name": "____", "designation": "____"})),
-                    json.dumps(synthetic_record(penalty_answers_approved="true"))):
+                    json.dumps(synthetic_record(documents=docs))):
             srv, client = self.start(raw=raw)
             s = client.get("/status").json()
-            self.assertEqual((s["approval"], s["kb_approved"], s["penalty_answers"]), ("invalid", False, False), raw)
-            self.assertTrue(s["approval_errors"])
-
-    def test_hash_mismatch_with_index_fails_closed(self):
-        docs = synthetic_record()["documents"]
-        docs[1]["sha256"] = SHA_C  # the record approves different bytes than the index holds
-        srv, client = self.start(synthetic_record(documents=docs, penalty_answers_approved=True))
-        s = client.get("/status").json()
-        self.assertEqual((s["approval"], s["kb_approved"], s["penalty_answers"]), ("invalid", False, False))
-        self.assertEqual(srv.SOURCES, {})
+            self.assertEqual((s["approval"], s["approval_errors"], s["kb_approved"]), ("not_required", [], False), raw)
+            self.assertEqual(srv.SOURCES, {})
 
     def test_status_does_not_expose_reviewer_details(self):
         srv, client = self.start(synthetic_record())
@@ -418,7 +347,7 @@ class ServerApprovalTests(unittest.TestCase):
     def test_model_citations_cannot_create_verified_status(self):
         srv, client = self.start()
         ts.FAKE_LLM["fn"] = ts.fake_llm(answer="Source: Synthetic Rules Fixture (Rules) - VERIFIED. sha256 " + SHA_A)
-        r = client.post("/chat", json={"message": "How do I apply for a learner's licence?", "session_id": "x"}).json()
+        r = self.chat(client, "How do I apply for a learner's licence?")
         self.assertEqual(r["kind"], "development")
         self.assertTrue(r["sources"])
         self.assertTrue(all(not x["verified"] and x["title"] == "Unverified source" for x in r["sources"]))
@@ -430,16 +359,6 @@ class ServerApprovalTests(unittest.TestCase):
             genuine = Document(page_content="y", metadata=meta(ts.TG_RULES_FILE, SHA_A))
             entries = srv.source_entries([impostor, genuine])
         self.assertEqual([(e["sha256"], e["verified"]) for e in entries], [(SHA_C, False), (SHA_A, True)])
-
-    def test_approved_mode_drops_chunks_from_unapproved_documents(self):
-        srv, client = self.start(synthetic_record())
-        rogue = Document(page_content="Rogue fixture text.", metadata=meta("rogue.pdf", SHA_C))
-        ts.FAKE_SEARCH["fn"] = lambda q, state, docs: [(rogue, 0.1)] + [(d, 0.3) for d in docs]
-        log = {}
-        ts.FAKE_LLM["fn"] = ts.fake_llm(log=log)
-        r = client.post("/chat", json={"message": "How do I apply for a learner's licence?", "session_id": "x"}).json()
-        self.assertNotIn("Rogue fixture text.", log["answer"][-1])
-        self.assertNotIn("rogue.pdf", [x["file"] for x in r["sources"]])
 
 
 class SignatureTests(unittest.TestCase):
@@ -596,87 +515,47 @@ class LifecycleTests(ServerApprovalTests):
     def status(self, client):
         return client.get("/status").json()
 
-    def assert_unapproved(self, srv, client, state):
-        s = self.status(client)
-        self.assertEqual((s["approval"], s["kb_approved"], s["penalty_answers"]), (state, False, False))
+    def assert_stale(self, srv, client):
+        self.assertEqual(self.status(client)["approval"], "not_required")   # nothing to approve; staleness only stops grounded answers
+        self.assertTrue(srv._STALE)
+        self.assertIn("source inputs changed since the last validation; revalidation required", srv.grounded_gate_errors())
         self.assertEqual(srv.SOURCES, {})
-        r = client.post("/chat", json={"message": "How do I apply for a learner's licence?", "session_id": "z"}).json()
-        self.assertFalse(r["kb_approved"])
-        self.assertTrue(all(not x["verified"] for x in r["sources"]))
         p = client.post("/chat", json={"message": "What is the fine for no helmet?", "session_id": "z2"}).json()
         self.assertEqual(p["kind"], "restricted")
 
-    def test_changed_approval_record_invalidates_until_refresh(self):
-        srv, client = self.start(synthetic_record(penalty_answers_approved=True))
-        self.assertTrue(self.status(client)["penalty_answers"])
-        self.record_path.write_text(self.record_path.read_text().replace("synthetic-corpus-1", "synthetic-corpus-2"))
-        self.assert_unapproved(srv, client, "stale")
-        refreshed = client.post("/approval/refresh").json()
-        self.assertEqual((refreshed["approval"], refreshed["penalty_answers"]), ("invalid", False))
-        self.assertIn("approval record signature is invalid", refreshed["approval_errors"])
-
-    def test_corpus_version_change_resigned_needs_explicit_revalidation(self):
-        srv, client = self.start(synthetic_record())
-        # Changed in Stage 25: a re-signed record must also bind the source-status registry.
-        write_signed(self.tmpdir, synthetic_record(corpus_version="synthetic-corpus-2",
-                                                   source_status_sha256=la.sha256_file(self.registry_path)),
-                     self.key, "test-key-1")
-        self.assertEqual(self.status(client)["approval"], "stale")
-        self.assertEqual(self.status(client)["approval"], "stale")  # stays stale: no silent re-approval
-        client.post("/approval/refresh")
-        s = self.status(client)
-        self.assertEqual((s["approval"], s["corpus_version"]), ("valid", "synthetic-corpus-2"))
-
-    def test_changed_index_after_startup_invalidates(self):
-        srv, client = self.start(synthetic_record(penalty_answers_approved=True))
+    def test_changed_index_after_startup_marks_stale_until_refresh(self):
+        srv, client = self.start()
+        self.assertFalse(srv._STALE)
         ts.CORPUS.append(Document(page_content="Added later.", metadata=meta("added.pdf", SHA_C)))
-        self.assert_unapproved(srv, client, "stale")
-        refreshed = client.post("/approval/refresh").json()
-        self.assertEqual(refreshed["approval"], "invalid")
-        self.assertIn("unapproved document in index: added.pdf", refreshed["approval_errors"])
+        self.assert_stale(srv, client)
+        self.assertEqual(self.status(client)["approval"], "not_required")
+        self.assertTrue(srv._STALE)                         # stays stale: no silent revalidation
+        client.post("/approval/refresh")
+        self.assertFalse(srv._STALE)
 
-    def test_hash_changed_in_place_is_caught_by_refresh_and_periodic_check(self):
-        srv, client = self.start(synthetic_record(penalty_answers_approved=True))
-        ts.CORPUS[1].metadata["sha256"] = SHA_C  # same chunk count: the cheap fingerprint cannot see it
-        self.assertEqual(self.status(client)["approval"], "valid")
-        srv._LAST_FULL_CHECK = -1e9  # the periodic full check is due
-        self.assert_unapproved(srv, client, "invalid")
-        self.assertFalse(client.post("/approval/refresh").json()["penalty_answers"])
+    def test_changed_source_status_registry_marks_stale(self):
+        srv, client = self.start()
+        self.registry_path.write_text(self.registry_path.read_text() + "\n")
+        self.assert_stale(srv, client)
+        client.post("/approval/refresh")
+        self.assertFalse(srv._STALE)
 
-    def test_changed_corpus_after_startup_invalidates(self):
+    def test_changed_corpus_after_startup_marks_stale(self):
         corpus = Path(tempfile.mkdtemp())
         self.addCleanup(lambda: [p.unlink() for p in corpus.iterdir()] and None or corpus.rmdir())
-        a, b = corpus / ts.TG_RULES_FILE, corpus / ts.TG_TAX_FILE
-        a.write_text("synthetic rules bytes")
-        b.write_text("synthetic tax bytes")
-        ha, hb = la.sha256_file(a), la.sha256_file(b)
-        ts.CORPUS[0].metadata["sha256"], ts.CORPUS[1].metadata["sha256"] = ha, hb
-        docs = synthetic_record()["documents"]
-        docs[0]["sha256"], docs[1]["sha256"] = ha, hb
-        srv, client = self.start(synthetic_record(documents=docs, penalty_answers_approved=True),
-                                 extra_env={"TG_CORPUS_DIR": str(corpus)})
-        self.assertEqual(self.status(client)["approval"], "valid")
-        b.write_text("synthetic tax bytes, amended")
-        self.assert_unapproved(srv, client, "stale")
-        refreshed = client.post("/approval/refresh").json()
-        self.assertIn(f"{ts.TG_TAX_FILE!r} has changed since approval", refreshed["approval_errors"])
-        b.write_text("synthetic tax bytes")
-        (corpus / "extra.pdf").write_text("unapproved")
-        refreshed = client.post("/approval/refresh").json()
-        self.assertIn("unapproved document: extra.pdf", refreshed["approval_errors"])
-        self.assertFalse(refreshed["penalty_answers"])
+        (corpus / ts.TG_RULES_FILE).write_text("synthetic rules bytes")
+        srv, client = self.start(extra_env={"TG_CORPUS_DIR": str(corpus)})
+        self.assertFalse(srv._STALE)
+        (corpus / ts.TG_RULES_FILE).write_text("synthetic rules bytes, amended")
+        self.assert_stale(srv, client)
 
-    def test_changed_trusted_keys_invalidates(self):
+    def test_a_changed_approval_record_or_key_file_does_not_matter(self):
         srv, client = self.start(synthetic_record())
+        self.record_path.write_text(self.record_path.read_text() + "\n")
         write_keys(self.tmpdir, key_entry(self.key, "test-key-1", "revoked"))
-        self.assertEqual(self.status(client)["approval"], "stale")
-        self.assertIn("revoked", " ".join(client.post("/approval/refresh").json()["approval_errors"]))
-
-    def test_unchanged_inputs_stay_valid_without_full_rescan(self):
-        srv, client = self.start(synthetic_record())
-        with unittest.mock.patch.object(srv, "_full_validation", side_effect=AssertionError("full scan")):
-            for _ in range(3):
-                self.assertEqual(self.status(client)["approval"], "valid")
+        for _ in range(3):
+            self.assertEqual(self.status(client)["approval"], "not_required")
+        self.assertFalse(srv._STALE)
 
 
 # LifecycleTests reuses start() only; do not rerun the ServerApprovalTests cases under its name.

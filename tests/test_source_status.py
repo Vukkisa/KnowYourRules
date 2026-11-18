@@ -261,15 +261,32 @@ class ShippedRegistryTests(unittest.TestCase):
 
     def test_every_hash_matches_sha256sums_and_draft_manifest(self):
         listed = SNAPSHOT["sha256sums"]
-        for e in self.data["entries"]:
+        # Central sources are kept apart from the pinned Telangana snapshot: own manifest, own SHA256SUMS, own folder.
+        telangana = [e for e in self.data["entries"] if not e["file"].startswith("central/")]
+        central = [e for e in self.data["entries"] if e["file"].startswith("central/")]
+        for e in telangana:
             self.assertEqual(listed.get(e["file"]), e["sha256"], e["file"])
         man = {f: d["sha256"] for f, d in SNAPSHOT["manifest"].items()}
-        self.assertEqual({e["file"]: e["sha256"] for e in self.data["entries"]}, man)
+        self.assertEqual({e["file"]: e["sha256"] for e in telangana}, man)
         # Statuses follow the manifest class: snapshots never appear as official, official never as current.
-        for e in self.data["entries"]:
+        for e in telangana:
             expected = {"unverified_snapshot": "unverified_snapshot",
                         "official": "official_text_commencement_unconfirmed"}[SNAPSHOT["manifest"][e["file"]]["source_class"]]
             self.assertEqual(e["status"], expected, e["file"])
+        central_dir = ROOT / "docs" / "legal-sources" / "telangana-traffic"   # the checkout's own Central files
+        central_manifest = central_dir / "CENTRAL-manifest.json"
+        central_sums = central_dir / "source-documents" / "central" / "SHA256SUMS"
+        self.assertTrue(not central or (central_manifest.is_file() and central_sums.is_file()), "Central sources need their manifest and SHA256SUMS")
+        if central:
+            cman = {d["file"]: d for d in json.loads(central_manifest.read_text(encoding="utf-8"))["documents"]}
+            csums = {line.split("  ./", 1)[1]: line.split("  ./", 1)[0] for line in central_sums.read_text().splitlines() if "  ./" in line}
+            self.assertEqual({e["file"]: e["sha256"] for e in central}, {f: d["sha256"] for f, d in cman.items()})
+            for e in central:
+                self.assertEqual(csums.get(e["file"].split("/", 1)[1]), e["sha256"], e["file"])
+                self.assertEqual(cman[e["file"]]["jurisdiction"], "Central", e["file"])
+                # Central text is official but its currency is unconfirmed: never "verified_current".
+                self.assertEqual(e["status"], "official_text_commencement_unconfirmed", e["file"])
+                self.assertEqual(e["review"]["decision"], None, e["file"])
 
     def test_pinned_snapshot_matches_live_legal_sources(self):
         sums = SOURCES_DIR / "source-documents" / "SHA256SUMS"
@@ -357,18 +374,20 @@ class ApprovalBindingTests(unittest.TestCase):
 class ServerRegistryLifecycleTests(unittest.TestCase):
     start = tla.ServerApprovalTests.start  # borrowed helper only; the parent's tests are not re-run
 
-    def test_server_binds_registry_and_goes_stale_when_it_changes(self):
+    def test_server_goes_stale_when_the_registry_changes_until_refreshed(self):
         srv, client = self.start(tla.synthetic_record())
-        self.assertEqual(client.get("/status").json()["approval"], "valid")
+        self.assertFalse(srv._STALE)
         self.registry_path.write_text(self.registry_path.read_text() + "\n")
-        self.assertEqual(client.get("/status").json()["approval"], "stale")
+        client.get("/status")
+        self.assertTrue(srv._STALE)
+        self.assertIn("source inputs changed since the last validation; revalidation required", srv.grounded_gate_errors())
         client.post("/approval/refresh")
-        s = client.get("/status").json()
-        self.assertEqual((s["approval"], s["kb_approved"]), ("invalid", False))
+        self.assertFalse(srv._STALE)
+        self.assertFalse(client.get("/status").json()["kb_approved"])
 
-    def test_server_rejects_record_without_binding(self):
+    def test_server_needs_no_registry_binding_in_any_record(self):
         srv, client = self.start(tla.synthetic_record(source_status_sha256=None))
-        self.assertEqual(client.get("/status").json()["approval"], "invalid")
+        self.assertEqual(client.get("/status").json()["approval"], "not_required")
 
 
 class WarningPropagationTests(ts.Base):
@@ -403,9 +422,8 @@ class WarningPropagationTests(ts.Base):
             documents=(la.ApprovedDocument(ts.TG_RULES_FILE, ts.TG_RULES_SHA, "Synthetic Motor Rules", "Rules"),),
             source_status_sha256=reg.sha256 if bind else None)
         status = la.ApprovalStatus("valid", [], record)
-        self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded", APPROVAL=status, KB_APPROVED=True,
-                   PENALTY_ANSWERS_ENABLED=False, TRUSTED_KEYS_FILE=Path("k"), CORPUS_DIR=Path("c"),
-                   EXPECTED_CORPUS_VERSION="test-v1", ANSWER_GENERATOR=self.mock,
+        self.patch(GROUNDED_ANSWERS_ENABLED=True, ANSWER_MODE="grounded",
+                   PENALTY_ANSWERS_ENABLED=False, CORPUS_DIR=Path("c"), ANSWER_GENERATOR=self.mock, _STALE=False,
                    ensure_approval_current=lambda: None, SOURCE_STATUS=reg)
         p = mock.patch.dict(ts.srv.SOURCES, {ts.TG_RULES_SHA: ("Synthetic Motor Rules", "Rules")}, clear=True)
         p.start()
@@ -417,7 +435,7 @@ class WarningPropagationTests(ts.Base):
     def test_rule81_style_warning_persists_after_simulated_approval(self):
         self.approve(self.snapshot_with_override())
         r = self.post("How do I apply for a learner's licence?").json()
-        self.assertEqual((r["kind"], r["kb_approved"]), ("answer", True))
+        self.assertEqual((r["kind"], r["kb_approved"]), ("answer", False))
         [w] = r["source_warnings"]
         self.assertEqual((w["status"], w["provision_id"], w["citations"]), ("known_amendments_unresolved", "Rule 5", [1]))
         self.assertEqual(w["decision_refs"], ["LD-001", "LD-002"])
@@ -437,24 +455,19 @@ class WarningPropagationTests(ts.Base):
         self.post("How do I apply for a learner's licence?")
         self.assertIn('"text_status": "known_amendments_unresolved"', self.mock.calls[0])
 
-    def test_unbound_registry_blocks_grounded_answers(self):
-        self.approve(self.snapshot_with_override(), bind=False)
-        r = self.post("How do I apply for a learner's licence?").json()
-        self.assertEqual(r["kind"], "unavailable")
-        self.assertIn("approval does not bind the source-status registry in use", ts.srv.grounded_gate_errors())
-        self.assertEqual(self.mock.calls, [])
-
     def test_invalid_registry_blocks_grounded_answers(self):
         self.approve(self.snapshot_with_override())
         self.patch(SOURCE_STATUS=ss.Registry("invalid", ["x"]))
         self.assertEqual(self.post("How do I apply for a learner's licence?").json()["kind"], "unavailable")
 
-    def test_bound_verified_current_has_no_warning(self):
+    def test_verified_current_in_the_registry_is_not_trusted_without_approval(self):
         self.approve(registry(entry(sha=ts.TG_RULES_SHA, file=ts.TG_RULES_FILE, status="verified_current")))
         r = self.post("How do I apply for a learner's licence?").json()
-        self.assertEqual((r["kind"], r["source_warnings"]), ("answer", []))
-        self.assertNotIn("Source status:", r["response"])
-        self.assertEqual(r["sources"][0]["text_status"], "verified_current")
+        self.assertEqual(r["kind"], "answer")
+        [w] = r["source_warnings"]       # never promoted to a clean "verified" label by the registry alone
+        self.assertEqual(w["status"], ss.UNCONFIRMED_CURRENT)
+        self.assertIn("Source status:", r["response"])
+        self.assertEqual(r["sources"][0]["text_status"], ss.UNCONFIRMED_CURRENT)
 
     def test_legacy_dev_answers_carry_warnings_and_old_fields(self):
         r = self.post("How do I apply for a learner's licence?").json()
@@ -495,7 +508,7 @@ class WarningPropagationTests(ts.Base):
         self.approve(self.snapshot_with_override())
         self.two_chunks_same_source("conflicting")
         r = self.post("How do I apply for a learner's licence?").json()
-        self.assertEqual((r["kind"], r["kb_approved"]), ("conflict", True))
+        self.assertEqual((r["kind"], r["kb_approved"]), ("conflict", False))
         self.assertEqual([(w["status"], w["provision_id"], w["citations"]) for w in r["source_warnings"]],
                          [("known_amendments_unresolved", "Rule 5", [1]), ("unverified_snapshot", None, [2])])
         for w in r["source_warnings"]:

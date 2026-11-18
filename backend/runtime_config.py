@@ -16,6 +16,7 @@ public legal-answer traffic under any circumstances.
 """
 
 import os
+import re
 from pathlib import Path
 
 from dotenv import dotenv_values
@@ -47,3 +48,55 @@ def load_local_env(path=None, environ=None) -> list[str]:
         environ[key] = value
         added.append(key)
     return added
+
+
+PRODUCTION_LIKE = frozenset({"production", "staging"})
+_HOST_OK = re.compile(r"^(?:[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?)(?:\.[A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])?)*$|^[0-9a-fA-F:]+$")
+
+
+def is_production_like(environ=None) -> bool:
+    """A deployed environment (TG_ENVIRONMENT production or staging): CORS, the snapshot pin and the embedding checks are strict there."""
+    return deployment_environment(environ) in PRODUCTION_LIKE
+
+
+def cors_origins(environ=None) -> tuple[list[str], list[str]]:
+    """TG_CORS_ORIGINS: comma-separated browser origins allowed to call the API from another site (e.g. the GitHub Pages site,
+    https://<user>.github.io). Exact origins only: scheme://host[:port], no path, no wildcard, https (http only for localhost, and
+    localhost only outside production/staging). Returns (accepted, rejected); rejected entries are dropped, so a typo can only close
+    CORS, never open it. Empty = no CORS. Whether "empty" is acceptable is cors_problems()' business."""
+    from urllib.parse import urlparse
+    environ = os.environ if environ is None else environ
+    strict = is_production_like(environ)
+    accepted, rejected = [], []
+    for raw in (environ.get("TG_CORS_ORIGINS") or "").split(","):
+        item = raw.strip().rstrip("/")
+        if not item:
+            continue
+        p = urlparse(item)
+        host = (p.hostname or "")
+        local = host in ("localhost", "127.0.0.1", "::1") or host.endswith(".localhost")
+        try:
+            port = p.port
+        except ValueError:
+            port = None
+        ok = (item != "*" and "*" not in item and host and _HOST_OK.match(host) and not p.path and not p.query and not p.fragment
+              and not p.username and (p.scheme == "https" or (p.scheme == "http" and local)) and port != 0
+              and not (strict and local))                       # production never trusts a page served from the operator's own machine
+        target = accepted if ok else rejected
+        if item not in target:
+            target.append(item)
+    return accepted, rejected
+
+
+def cors_problems(environ=None) -> list[str]:
+    """Configuration errors for CORS. In production/staging an explicit, non-empty, valid TG_CORS_ORIGINS is mandatory (the browser
+    frontend is a different origin); in development nothing is required. Messages name the variable, never a value."""
+    environ = os.environ if environ is None else environ
+    problems = []
+    accepted, rejected = cors_origins(environ)
+    if rejected:
+        problems.append(f"{len(rejected)} TG_CORS_ORIGINS entr{'y is' if len(rejected) == 1 else 'ies are'} not an exact https origin "
+                        "(scheme://host, no path, no wildcard, no localhost in production)")
+    if is_production_like(environ) and not accepted:
+        problems.append("TG_CORS_ORIGINS is required in production: set it to the exact origin of the frontend (https://<owner>.github.io)")
+    return problems

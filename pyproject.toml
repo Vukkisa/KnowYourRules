@@ -1,0 +1,33 @@
+# Vercel deployment manifest (see eval/deployment/VERCEL-PILOT-READINESS.md). Nothing else in the repository reads this file.
+# The dependency list is requirements-cloud.txt, pin for pin (tests/test_vercel_pilot.py fails if they drift). It is repeated here
+# because the research requirements.txt (jupyter, transformers/torch, ...) must NEVER be installed on Vercel: .vercelignore keeps that
+# file out of the upload, so pyproject.toml is the only dependency manifest the build sees.
+[project]
+name = "knowyourrules-api"
+version = "0.0.0"
+# Exactly 3.12 (Vercel's default): numpy==1.26.4 publishes a Linux wheel only for Python 3.12, so 3.13/3.14 would need a source build.
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi==0.136.1",
+    "uvicorn==0.46.0",
+    "langchain==0.3.30",
+    "langchain-core==0.3.86",
+    "langchain-chroma==0.2.6",
+    "chromadb==1.5.9",
+    "numpy==1.26.4",
+    "requests==2.32.5",
+    "python-dotenv==1.2.3",
+    "pydantic==2.12.4",
+    "tokenizers==0.23.2",
+    "cryptography==50.0.2",
+]
+
+[tool.vercel]
+entrypoint = "backend.vercel_app:app"
+
+# This is an application, not an installable package: no build backend should try to package the repository's top-level folders.
+[tool.uv]
+package = false
+
+[tool.setuptools]
+packages = []

@@ -1,0 +1,737 @@
+{
+ "status": "PROPOSED, NOT APPLIED, NOT APPROVED. Applying requires explicit human approval of each correction and D1-D7.",
+ "base": {
+  "benchmark": "eval/telangana-retrieval-benchmark.json sha256 80061e7544d95ef8...",
+  "review_csv": "eval/telangana-retrieval-review.csv sha256 e6ddfdd8a1857fd6...",
+  "commit": "f944466"
+ },
+ "requires_references": "eval/legal-validation/stage-13-telangana-chunk-references.candidate.json installed at eval/telangana-chunk-references.json in the same change",
+ "conventions_verified": {
+  "expected_chunks": "all parts of every expected provision are listed (102/102 retrieve-provisions, incl. multi_rule TG-MR-005 Rule 486 with 3 parts)",
+  "source_passage": "first 240 chars of the chunk body (title line dropped); verified against TG-GC-001",
+  "csv_machine_expected_locations": "'; '.join('doc :: provision (location)') per expected chunk; 108/108 rows match",
+  "csv_machine_supporting_passage": "'\n---\n'.join(source_passage.strip()); 108/108 rows match"
+ },
+ "guard_control_semantics": "backend/retrieval_eval.py:105-106: guard set = outcome=='missing_provision' OR category=='guard_control'; a case is correct iff guard_blocked == (outcome=='missing_provision'). guard_control+retrieve therefore means 'guard must NOT block' and the row is also scored for retrieval (line 104). Pinned by tests/test_retrieval_eval.py:29. review_import does not use category beyond the drift check.",
+ "benchmark_patch": [
+  {
+   "id": "TG-MP-001",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "expected_documents": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5"
+     ]
+    },
+    "expected_provisions": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5::Rule 186"
+     ]
+    },
+    "expected_chunks": {
+     "current": [],
+     "proposed": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part1of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part2of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+      }
+     ]
+    },
+    "expected_retrieval_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "expected_answer_eligible": {
+     "current": false,
+     "proposed": true
+    },
+    "expected_behaviour": {
+     "current": "refuse_missing_provision_no_substitution",
+     "proposed": "answer_from_sources"
+    },
+    "notes": {
+     "current": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified.",
+     "proposed": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified. Stage 13 proposal (NOT APPLIED until approved): Rule 186 exists as its own provision in the Stage 11 preview index (chroma_telangana_preview_s11, built at f944466); the row changes from a missing-provision guard case to a guard_control retrieval case. Labels remain machine candidates. Not legally verified."
+    }
+   },
+   "unchanged_preserved": {
+    "label_source": "machine_candidate",
+    "reviewer_status": "pending_human_review",
+    "reviewed_by": null,
+    "reviewed_on": null
+   }
+  },
+  {
+   "id": "TG-MP-002",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "expected_documents": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5"
+     ]
+    },
+    "expected_provisions": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5::Rule 186"
+     ]
+    },
+    "expected_chunks": {
+     "current": [],
+     "proposed": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part1of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part2of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+      }
+     ]
+    },
+    "expected_retrieval_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "expected_answer_eligible": {
+     "current": false,
+     "proposed": true
+    },
+    "expected_behaviour": {
+     "current": "refuse_missing_provision_no_substitution",
+     "proposed": "answer_from_sources"
+    },
+    "notes": {
+     "current": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified.",
+     "proposed": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified. Stage 13 proposal (NOT APPLIED until approved): Rule 186 exists as its own provision in the Stage 11 preview index (chroma_telangana_preview_s11, built at f944466); the row changes from a missing-provision guard case to a guard_control retrieval case. Labels remain machine candidates. Not legally verified."
+    }
+   },
+   "unchanged_preserved": {
+    "label_source": "machine_candidate",
+    "reviewer_status": "pending_human_review",
+    "reviewed_by": null,
+    "reviewed_on": null
+   }
+  },
+  {
+   "id": "TG-MP-003",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "expected_documents": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5"
+     ]
+    },
+    "expected_provisions": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5::Rule 186"
+     ]
+    },
+    "expected_chunks": {
+     "current": [],
+     "proposed": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part1of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part2of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+      }
+     ]
+    },
+    "expected_retrieval_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "expected_answer_eligible": {
+     "current": false,
+     "proposed": true
+    },
+    "expected_behaviour": {
+     "current": "refuse_missing_provision_no_substitution",
+     "proposed": "answer_from_sources"
+    },
+    "notes": {
+     "current": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified.",
+     "proposed": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified. Stage 13 proposal (NOT APPLIED until approved): Rule 186 exists as its own provision in the Stage 11 preview index (chroma_telangana_preview_s11, built at f944466); the row changes from a missing-provision guard case to a guard_control retrieval case. Labels remain machine candidates. Not legally verified."
+    }
+   },
+   "unchanged_preserved": {
+    "label_source": "machine_candidate",
+    "reviewer_status": "pending_human_review",
+    "reviewed_by": null,
+    "reviewed_on": null
+   }
+  },
+  {
+   "id": "TG-MP-004",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "expected_documents": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5"
+     ]
+    },
+    "expected_provisions": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5::Rule 185",
+      "tmvr-1989-chap-5::Rule 186",
+      "tmvr-1989-chap-5::Rule 187"
+     ]
+    },
+    "expected_chunks": {
+     "current": [],
+     "proposed": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part1of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each.\n(a) Conditions Common to all "
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part2of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ;\n(xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ;\n(xv) The vehicle"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part3of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course "
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part4of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle;\n(xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part5of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(5)\n(vi) It shall be a condition of every permit of contract carriage motor cab and autorickshaw, that the vehicle shall not be allowed or caused to be allowed to participate in a strike or withdraw from service causing inconvenience to the"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part1of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part2of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 187",
+       "chunk_id": "tmvr-1989-chap-5::Rule 187::part1of1",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#59",
+       "source_passage": "187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of Section 72 shall be attached to every stage carriage permit ;\n(2) It shall be condition of the permit of eve"
+      }
+     ]
+    },
+    "expected_retrieval_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "expected_answer_eligible": {
+     "current": false,
+     "proposed": true
+    },
+    "expected_behaviour": {
+     "current": "refuse_missing_provision_no_substitution",
+     "proposed": "answer_from_sources"
+    },
+    "notes": {
+     "current": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified.",
+     "proposed": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified. Stage 13 proposal (NOT APPLIED until approved): Rule 186 exists as its own provision in the Stage 11 preview index (chroma_telangana_preview_s11, built at f944466); the row changes from a missing-provision guard case to a guard_control retrieval case. Labels remain machine candidates. Not legally verified."
+    }
+   },
+   "unchanged_preserved": {
+    "label_source": "machine_candidate",
+    "reviewer_status": "pending_human_review",
+    "reviewed_by": null,
+    "reviewed_on": null
+   }
+  },
+  {
+   "id": "TG-MP-005",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "expected_documents": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5"
+     ]
+    },
+    "expected_provisions": {
+     "current": [],
+     "proposed": [
+      "tmvr-1989-chap-5::Rule 186",
+      "tmvr-1989-chap-5::Rule 188"
+     ]
+    },
+    "expected_chunks": {
+     "current": [],
+     "proposed": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part1of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 186",
+       "chunk_id": "tmvr-1989-chap-5::Rule 186::part2of2",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 188",
+       "chunk_id": "tmvr-1989-chap-5::Rule 188::part1of1",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#60",
+       "source_passage": "188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Section 72 regarding the keeping of reserve vehicles to maintain substituted service in place of regular stag"
+      }
+     ]
+    },
+    "expected_retrieval_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "expected_answer_eligible": {
+     "current": false,
+     "proposed": true
+    },
+    "expected_behaviour": {
+     "current": "refuse_missing_provision_no_substitution",
+     "proposed": "answer_from_sources"
+    },
+    "notes": {
+     "current": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified.",
+     "proposed": "Corrected 11-11-2026 (Stage 10): Rule 186 is present in the chapter 5 source text (anchor #58, heading printed without a full stop after the number). The original note read 'Rule 186 is listed in the chapter contents but absent from the source text.', a finding caused by a parser defect fixed in Stage 9. The preview index was built before that fix and has no Rule 186 provision, so this row's machine label (missing_provision) is unchanged and awaits human review; see eval/legal-validation/STAGE-10-REPORT.md. Not legally verified. Stage 13 proposal (NOT APPLIED until approved): Rule 186 exists as its own provision in the Stage 11 preview index (chroma_telangana_preview_s11, built at f944466); the row changes from a missing-provision guard case to a guard_control retrieval case. Labels remain machine candidates. Not legally verified."
+    }
+   },
+   "unchanged_preserved": {
+    "label_source": "machine_candidate",
+    "reviewer_status": "pending_human_review",
+    "reviewed_by": null,
+    "reviewed_on": null
+   }
+  },
+  {
+   "id": "TG-GC-002",
+   "changes": {
+    "expected_chunks": {
+     "current": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part1of6",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each. (a) Conditions Common to all "
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part2of6",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ; (xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ; (xv) The vehicle"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part3of6",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course "
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part4of6",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle; (xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part5of6",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with black background and white letters. The dimension of each letter written shall not be less than 3 mm. in le"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part6of6",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#58",
+       "source_passage": "(h) the Luxury Tourist Cab permit shall be deemed to be invalid from the date from which the motor vehicle covered by permit, completes five (5) years of age; (i) should provide minimum four (4) magazines, (2) in English and (2) in local la"
+      }
+     ],
+     "proposed": [
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part1of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each.\n(a) Conditions Common to all "
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part2of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ;\n(xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ;\n(xv) The vehicle"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part3of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course "
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part4of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle;\n(xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma"
+      },
+      {
+       "document": "tmvr-1989-chap-5",
+       "provision": "Rule 185",
+       "chunk_id": "tmvr-1989-chap-5::Rule 185::part5of5",
+       "location": "html-snapshots/tmvr-1989/middle-main-chap-5.htm#57",
+       "source_passage": "(5)\n(vi) It shall be a condition of every permit of contract carriage motor cab and autorickshaw, that the vehicle shall not be allowed or caused to be allowed to participate in a strike or withdraw from service causing inconvenience to the"
+      }
+     ]
+    }
+   },
+   "unchanged_preserved": {
+    "label_source": "machine_candidate",
+    "reviewer_status": "pending_human_review",
+    "reviewed_by": null,
+    "reviewed_on": null
+   }
+  }
+ ],
+ "review_csv_patch": [
+  {
+   "id": "TG-MP-001",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "machine_expected_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "machine_expected_provisions": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5::Rule 186"
+    },
+    "machine_expected_locations": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58)"
+    },
+    "machine_supporting_passage": {
+     "current": "",
+     "proposed": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h\n---\n(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+    }
+   },
+   "not_regenerated_stale_run_columns": {
+    "machine_retrieved_top5": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 6) (d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with bl\n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. go-ms-25-2026-trb::Preamble | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles –\n4. tmvr-1989-chap-5::Rule 183 | Telangana Motor Vehicles Rules, 1989 - Rule 183 - Maintenance of history sheet in respect of a contract carriage 183. Maintenance of history sheet in respect of a contract carriage :- Every transport authority shall maintain a history sheet\n5. go-ms-25-2026-trb::References | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - References Read the following:- From the Transport Commissioner, Telangana, Hyder",
+    "machine_retrieval_result": "n/a (missing_provision; see safety guard)",
+    "machine_first_relevant_rank": "",
+    "machine_recall_at_5": ""
+   },
+   "human_and_reviewer_columns_unchanged": true
+  },
+  {
+   "id": "TG-MP-002",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "machine_expected_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "machine_expected_provisions": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5::Rule 186"
+    },
+    "machine_expected_locations": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58)"
+    },
+    "machine_supporting_passage": {
+     "current": "",
+     "proposed": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h\n---\n(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+    }
+   },
+   "not_regenerated_stale_run_columns": {
+    "machine_retrieved_top5": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 6) (d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with bl\n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. go-ms-25-2026-trb::Preamble | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - Preamble GOVERNMENT OF TELANGANA ABSTRACT Transport Department – Motor Vehicles –\n4. tmvr-1989-chap-5::Rule 181 | Telangana Motor Vehicles Rules, 1989 - Rule 181 - Grant or refusal of additional trips or change of timings 181. Grant or refusal of additional trips or change of timings :- In granting additional trips or change of timings the transport au\n5. go-ms-25-2026-trb::References | Challans under Rule 167 of the Central Motor Vehicles Rules, 1989 - Electronic means of Challans issued under sub-rule (1) or (2) of Rule 167 - Notification - References Read the following:- From the Transport Commissioner, Telangana, Hyder",
+    "machine_retrieval_result": "n/a (missing_provision; see safety guard)",
+    "machine_first_relevant_rank": "",
+    "machine_recall_at_5": ""
+   },
+   "human_and_reviewer_columns_unchanged": true
+  },
+  {
+   "id": "TG-MP-003",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "machine_expected_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "machine_expected_provisions": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5::Rule 186"
+    },
+    "machine_expected_locations": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58)"
+    },
+    "machine_supporting_passage": {
+     "current": "",
+     "proposed": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h\n---\n(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig"
+    }
+   },
+   "not_regenerated_stale_run_columns": {
+    "machine_retrieved_top5": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n3. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S\n4. tmvr-1989-chap-3::Rule 72 | Telangana Motor Vehicles Rules, 1989 - Rule 72 - Stage carriage to carry conductors 72. Stage carriage to carry conductors :- No stage carriage shall be used in a public place unless it carries in addition to the driver a conductor. Provide",
+    "machine_retrieval_result": "n/a (missing_provision; see safety guard)",
+    "machine_first_relevant_rank": "",
+    "machine_recall_at_5": ""
+   },
+   "human_and_reviewer_columns_unchanged": true
+  },
+  {
+   "id": "TG-MP-004",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "machine_expected_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "machine_expected_provisions": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5::Rule 185; tmvr-1989-chap-5::Rule 186; tmvr-1989-chap-5::Rule 187"
+    },
+    "machine_expected_locations": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 187 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#59)"
+    },
+    "machine_supporting_passage": {
+     "current": "",
+     "proposed": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each.\n(a) Conditions Common to all\n---\n(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ;\n(xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ;\n(xv) The vehicle\n---\n(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course\n---\n(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle;\n(xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma\n---\n(5)\n(vi) It shall be a condition of every permit of contract carriage motor cab and autorickshaw, that the vehicle shall not be allowed or caused to be allowed to participate in a strike or withdraw from service causing inconvenience to the\n---\n186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h\n---\n(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig\n---\n187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of Section 72 shall be attached to every stage carriage permit ;\n(2) It shall be condition of the permit of eve"
+    }
+   },
+   "not_regenerated_stale_run_columns": {
+    "machine_retrieved_top5": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose \n2. tmvr-1989-chap-5::Rule 187 | Telangana Motor Vehicles Rules, 1989 - Rule 187 - Conditions of permit – Maintenance of continuous service 187. Conditions of permit – Maintenance of continuous service :- (1) The conditions specified in Clause (iii) of sub-section (2) of S",
+    "machine_retrieval_result": "n/a (missing_provision; see safety guard)",
+    "machine_first_relevant_rank": "",
+    "machine_recall_at_5": ""
+   },
+   "human_and_reviewer_columns_unchanged": true
+  },
+  {
+   "id": "TG-MP-005",
+   "changes": {
+    "category": {
+     "current": "missing_provision",
+     "proposed": "guard_control"
+    },
+    "machine_expected_outcome": {
+     "current": "missing_provision",
+     "proposed": "retrieve"
+    },
+    "machine_expected_provisions": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5::Rule 186; tmvr-1989-chap-5::Rule 188"
+    },
+    "machine_expected_locations": {
+     "current": "",
+     "proposed": "tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 186 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 188 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#60)"
+    },
+    "machine_supporting_passage": {
+     "current": "",
+     "proposed": "186 (1) Conditions of permit in respect of a luxury tourist cab :- The following conditions shall be attached to the permit in respect of a Luxury Tourist cab :\n(a) the driver’s uniform shall be safari suit in white colour;\n(b) the permit h\n---\n(3) Conditions of permit in respect of a Motor Cab :- The following conditions shall be attached to the permit in respect of a Motor Cab:\n(a) the driver’s uniform shall be in Khaki colour;\n(b) the hood of the vehicle shall be painted in hig\n---\n188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Section 72 regarding the keeping of reserve vehicles to maintain substituted service in place of regular stag"
+    }
+   },
+   "not_regenerated_stale_run_columns": {
+    "machine_retrieved_top5": "1. tmvr-1989-chap-5::Rule 188 | Telangana Motor Vehicles Rules, 1989 - Rule 188 - Conditions of permit – Maintenance of Reserve Vehicles 188. Conditions of permit – Maintenance of Reserve Vehicles :- (1) The conditions specified in Clause (xvii) of sub-section (2) of Sect\n2. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 5 of 6) (d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with bl\n3. tmvr-1989-chap-5::Rule 217 | Telangana Motor Vehicles Rules, 1989 - Rule 217 - Compounding offences – Procedures 217. Compounding offences – Procedures :- The Transport Authority shall in determining the sum of money to be recovered in lieu of cancellation or suspensio\n4. tmvr-1989-chap-5::Rule 217A | Telangana Motor Vehicles Rules, 1989 - Rule 217A - Compounding Offences Partial Condonation 217-A. Compounding Offences Partial Condonation :- Where the Transport Authority is of the view that an offence requires to be condoned partially, t\n5. tmvr-1989-chap-5::Rule 183 | Telangana Motor Vehicles Rules, 1989 - Rule 183 - Maintenance of history sheet in respect of a contract carriage 183. Maintenance of history sheet in respect of a contract carriage :- Every transport authority shall maintain a history sheet",
+    "machine_retrieval_result": "n/a (missing_provision; see safety guard)",
+    "machine_first_relevant_rank": "",
+    "machine_recall_at_5": ""
+   },
+   "human_and_reviewer_columns_unchanged": true
+  },
+  {
+   "id": "TG-GC-002",
+   "changes": {
+    "machine_expected_locations": {
+     "current": "tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57 .. html-snapshots/tmvr-1989/middle-main-chap-5.htm#58); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#58)",
+     "proposed": "tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57); tmvr-1989-chap-5 :: Rule 185 (html-snapshots/tmvr-1989/middle-main-chap-5.htm#57)"
+    },
+    "machine_supporting_passage": {
+     "current": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each. (a) Conditions Common to all\n---\n(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ; (xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ; (xv) The vehicle\n---\n(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course\n---\n(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle; (xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma\n---\n(d) Tariff of the fare. The plate mentioned above shall have dimension of not less than 20 cms., in length and 20 cms, in width with black background and white letters. The dimension of each letter written shall not be less than 3 mm. in le\n---\n(h) the Luxury Tourist Cab permit shall be deemed to be invalid from the date from which the motor vehicle covered by permit, completes five (5) years of age; (i) should provide minimum four (4) magazines, (2) in English and (2) in local la",
+     "proposed": "185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose in the various categories of permits the conditions specified against each.\n(a) Conditions Common to all\n---\n(xiii) The vehicle shall not be driven at a speed exceeding the speed permitted under the Act ;\n(xiv) The fares and freights fixed by the notification under Section 67 shall be observed other than private service vehicles ;\n(xv) The vehicle\n---\n(iv) No corpse of person who is or is believed to be suffering or has been suffering from any infectious or contagious disease shall be caused or allowed to enter into or to be placed or carried in the vehicle or vehicles in regular course\n---\n(xii) Duties and conduct of drivers and conductors shall be exhibited in the vehicle;\n(xiii) A complaint book with pages numbered serially and providing for the name, address, ticket number and signature of the complainant and complaints ma\n---\n(5)\n(vi) It shall be a condition of every permit of contract carriage motor cab and autorickshaw, that the vehicle shall not be allowed or caused to be allowed to participate in a strike or withdraw from service causing inconvenience to the"
+    }
+   },
+   "not_regenerated_stale_run_columns": {
+    "machine_retrieved_top5": "1. tmvr-1989-chap-5::Rule 185 | Telangana Motor Vehicles Rules, 1989 - Rule 185 - Conditions to be attached to all permits (part 1 of 6) 185. Conditions to be attached to all permits :- (1) The Transport Authority or its Secretary acting under delegated powers may impose ",
+    "machine_retrieval_result": "PASS",
+    "machine_first_relevant_rank": "1",
+    "machine_recall_at_5": "1.0"
+   },
+   "human_and_reviewer_columns_unchanged": true
+  }
+ ],
+ "dry_runs": {
+  "current_state_new_refs": {
+   "ok": true,
+   "errors": [],
+   "n_errors": 0
+  },
+  "proposed_state_new_refs": {
+   "ok": true,
+   "errors": [],
+   "n_errors": 0
+  },
+  "proposed_benchmark_old_csv": {
+   "ok": false,
+   "errors": [
+    "template TG-MP-001: category differs from the benchmark",
+    "template TG-MP-001: machine_expected_outcome differs from the benchmark",
+    "template TG-MP-001: machine_expected_provisions differs from the benchmark",
+    "template TG-MP-002: category differs from the benchmark",
+    "template TG-MP-002: machine_expected_outcome differs from the benchmark",
+    "template TG-MP-002: machine_expected_provisions differs from the benchmark",
+    "template TG-MP-003: category differs from the benchmark",
+    "template TG-MP-003: machine_expected_outcome differs from the benchmark",
+    "template TG-MP-003: machine_expected_provisions differs from the benchmark",
+    "template TG-MP-004: category differs from the benchmark",
+    "template TG-MP-004: machine_expected_outcome differs from the benchmark",
+    "template TG-MP-004: machine_expected_provisions differs from the benchmark",
+    "template TG-MP-005: category differs from the benchmark",
+    "template TG-MP-005: machine_expected_outcome differs from the benchmark",
+    "template TG-MP-005: machine_expected_provisions differs from the benchmark"
+   ],
+   "n_errors": 15
+  },
+  "proposed_state_old_refs": {
+   "ok": true,
+   "errors": [],
+   "n_errors": 0
+  },
+  "rule186_nameable_by_reviewer_new_refs": true,
+  "chunks_not_resolving_uniquely_new_refs": {
+   "current": [
+    [
+     "TG-GC-002",
+     "tmvr-1989-chap-5::Rule 185::part1of6"
+    ],
+    [
+     "TG-GC-002",
+     "tmvr-1989-chap-5::Rule 185::part2of6"
+    ],
+    [
+     "TG-GC-002",
+     "tmvr-1989-chap-5::Rule 185::part3of6"
+    ],
+    [
+     "TG-GC-002",
+     "tmvr-1989-chap-5::Rule 185::part4of6"
+    ],
+    [
+     "TG-GC-002",
+     "tmvr-1989-chap-5::Rule 185::part5of6"
+    ],
+    [
+     "TG-GC-002",
+     "tmvr-1989-chap-5::Rule 185::part6of6"
+    ]
+   ],
+   "proposed": []
+  }
+ },
+ "dry_run_with_candidate_refs": {
+  "proposed_benchmark+proposed_csv+candidate_refs": "ok, 0 errors",
+  "proposed_expected_chunks_unresolved_vs_candidate": []
+ },
+ "proposed_file_hashes": {
+  "proposed_benchmark": "f186027c9f2e73ae2311d7259e72c059b09e770541e682ea1fbd6eece0d98106",
+  "proposed_csv": "577485e4c03020eb8c45b227c94ee16a42ea17de582b3f07b1a428f9b9dcceb8"
+ },
+ "tests_that_must_change_with_application": [
+  "tests/test_review_import.py:59 hardcodes 586 references (candidate has 590)",
+  "tests/test_review_import.py:60 hardcodes 572 answer-eligible (candidate has 576)",
+  "tests/test_review_import.py:78 requires every benchmark chunk to resolve; TG-GC-002's part*of6 do not resolve against the candidate until P6 is applied"
+ ]
+}

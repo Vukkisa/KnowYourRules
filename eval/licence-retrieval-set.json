@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "name": "Driving-licence retrieval set (Stage 4D)",
+  "labelling": "Labels were written by Claude from the stored text of tmvr-1989-chap-2 Rules 3-8, 14-18 and neighbouring rules. They are NOT human-reviewed and are separate from eval/telangana-retrieval-benchmark.json, which this set does not modify. 'must_include' means the provision states the answer the question asks for. 'related' means a provision on the same topic that would be acceptable as supporting evidence. 'must_exclude' means retrieving it would be misleading for that question. LIC-011 has no must_include because the retrieval benchmark (TG-PQ-002) accepts any of Rules 14, 16, 17 and 18 for this question.",
+  "finding": "The stored Telangana corpus has no provision that lists the requirements for getting a driving licence (those are in the Central Motor Vehicles Rules, which are not stored). Rule 6 'Lincensing authority may make enquiries' (sic, as in the source) states only what the licensing authority may check on receiving an application.",
+  "cases": [
+    {
+      "id": "LIC-001",
+      "kind": "rule6_answers",
+      "question": "What happens after I submit a driving licence application in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 6"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5",
+        "tmvr-1989-chap-2::Rule 7",
+        "tmvr-1989-chap-2::Rule 8"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-002",
+      "kind": "rule6_answers",
+      "question": "Can the licensing authority make enquiries about my identity when I apply for a driving licence in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 6"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-003",
+      "kind": "rule6_answers",
+      "question": "What enquiries can the licensing authority make on receiving an application for a driving licence in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 6"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-004",
+      "kind": "rule6_answers",
+      "question": "Can my driving licence application be refused if I am disqualified from holding a licence in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 6"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5",
+        "tmvr-1989-chap-2::Rule 10"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-005",
+      "kind": "rule6_answers",
+      "question": "What does the licensing authority check when someone applies to drive a transport vehicle in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 6"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5",
+        "tmvr-1989-chap-2::Rule 4"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-006",
+      "kind": "rule6_answers",
+      "question": "What does Rule 6 of the Telangana Motor Vehicles Rules say?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 6"
+      ],
+      "related": [],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-007",
+      "kind": "corpus_gap",
+      "question": "What are the requirements for getting a driving licence in Telangana?",
+      "must_include": [],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5",
+        "tmvr-1989-chap-2::Rule 6",
+        "tmvr-1989-chap-2::Rule 7",
+        "tmvr-1989-chap-2::Rule 8"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-008",
+      "kind": "corpus_gap",
+      "question": "How do I apply for a driving licence in Telangana?",
+      "must_include": [],
+      "related": [
+        "tmvr-1989-chap-2::Rule 5",
+        "tmvr-1989-chap-2::Rule 6",
+        "tmvr-1989-chap-2::Rule 7",
+        "tmvr-1989-chap-2::Rule 8"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-009",
+      "kind": "corpus_gap",
+      "question": "How do I apply for a learner's licence in Telangana?",
+      "must_include": [],
+      "related": [
+        "tmvr-1989-chap-2::Rule 6",
+        "tmvr-1989-chap-2::Rule 7",
+        "tmvr-1989-chap-2::Rule 8",
+        "tmvr-1989-chap-2::Rule 24"
+      ],
+      "must_exclude": []
+    },
+    {
+      "id": "LIC-010",
+      "kind": "unrelated_licence",
+      "question": "How much does a duplicate driving licence cost in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 18"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 14",
+        "tmvr-1989-chap-2::Rule 16",
+        "tmvr-1989-chap-2::Rule 17",
+        "tmvr-1989-chap-2::Rule 20",
+        "tmvtr-1963::Rule 11"
+      ],
+      "must_exclude": [
+        "tmvr-1989-chap-2::Rule 6"
+      ]
+    },
+    {
+      "id": "LIC-011",
+      "kind": "unrelated_licence",
+      "question": "I lost my driving licence. How do I get a duplicate?",
+      "must_include": [],
+      "related": [
+        "tmvr-1989-chap-2::Rule 14",
+        "tmvr-1989-chap-2::Rule 15",
+        "tmvr-1989-chap-2::Rule 16",
+        "tmvr-1989-chap-2::Rule 17",
+        "tmvr-1989-chap-2::Rule 18",
+        "tmvr-1989-chap-2::Rule 19",
+        "tmvr-1989-chap-2::Rule 20",
+        "tmvtr-1963::Rule 11"
+      ],
+      "must_exclude": [
+        "tmvr-1989-chap-2::Rule 6"
+      ]
+    },
+    {
+      "id": "LIC-012",
+      "kind": "unrelated_licence",
+      "question": "What education do I need to get a conductor's licence?",
+      "must_include": [
+        "tmvr-1989-chap-3::Rule 54"
+      ],
+      "related": [],
+      "must_exclude": [
+        "tmvr-1989-chap-2::Rule 6"
+      ]
+    },
+    {
+      "id": "LIC-013",
+      "kind": "unrelated_licence",
+      "question": "Who issues medical certificates for drivers in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 43"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 44"
+      ],
+      "must_exclude": [
+        "tmvr-1989-chap-2::Rule 6"
+      ]
+    },
+    {
+      "id": "LIC-014",
+      "kind": "unrelated_licence",
+      "question": "What does Rule 37 say about the driver's badge?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 37"
+      ],
+      "related": [],
+      "must_exclude": [
+        "tmvr-1989-chap-2::Rule 6"
+      ]
+    },
+    {
+      "id": "LIC-015",
+      "kind": "unrelated_licence",
+      "question": "What happens if my driving licence is surrendered in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 25"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 22"
+      ],
+      "must_exclude": [
+        "tmvr-1989-chap-2::Rule 6"
+      ]
+    },
+    {
+      "id": "LIC-016",
+      "kind": "unrelated_licence",
+      "question": "Who conducts the driving test in Telangana?",
+      "must_include": [
+        "tmvr-1989-chap-2::Rule 7"
+      ],
+      "related": [
+        "tmvr-1989-chap-2::Rule 8"
+      ],
+      "must_exclude": []
+    }
+  ]
+}

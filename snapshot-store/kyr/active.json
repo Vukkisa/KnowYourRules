@@ -1,0 +1,13 @@
+{
+ "manifest_key": "manifests/20261117T123454Z-a5d03a2afe.json",
+ "manifest_sha256": "e10ae7c6307885a1fbb0e8b872eae263c77f754f95885deb3022b604e9836697",
+ "previous": {
+  "manifest_key": "manifests/20261117T122418Z-7dd4be7f0d.json",
+  "manifest_sha256": "307c3ef3cb6a528dd61f422be7fcd6b34ea524a99051cdbafba84f8690fbf449",
+  "version": "20261117T122418Z-7dd4be7f0d"
+ },
+ "schema_version": 1,
+ "updated_at": "2026-11-17T12:34:56Z",
+ "updated_by": "claude-code (operator-requested, project-owner instruction 2026-11-17)",
+ "version": "20261117T123454Z-a5d03a2afe"
+}

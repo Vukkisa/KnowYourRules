@@ -1,30 +1,20 @@
-"""Offline tests for backend/rag_profiles.py and the profile handling in build_index.py.
+"""Offline tests for backend/rag_profiles.py.
 
-No Ollama, no network; build tests use a temporary Chroma directory and fake embeddings, and the real
-index is never opened.
+No Ollama, no network. The profile handling of the index build is tested in test_tg_ingest.py
+(backend/build_telangana_index.py); the retired multi-state builder's tests are in archive/legacy-multistate-builder/.
 """
 
-import io
-import os
 import sys
-import tempfile
 import unittest
-from contextlib import redirect_stdout
 from pathlib import Path
-from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "eval"))
 
-import chromadb  # noqa: E402
-from chromadb.api.client import SharedSystemClient  # noqa: E402
-from langchain_chroma import Chroma  # noqa: E402
 from langchain_core.documents import Document  # noqa: E402
-from langchain_core.embeddings import DeterministicFakeEmbedding  # noqa: E402
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # noqa: E402
 
-import backend.build_index as bi  # noqa: E402
 from backend import rag_profiles as rp  # noqa: E402
 import rag_bench as rb  # noqa: E402
 
@@ -133,73 +123,6 @@ class ChunkingTests(unittest.TestCase):
             self.assertEqual(len(hits), 1, c.page_content[:60])
             covered |= hits
         self.assertEqual(len(covered), sum(len(d["spans"]) for d in docs))
-
-
-class BuildProfileTests(unittest.TestCase):
-    def setUp(self):
-        for patcher in (mock.patch.dict(os.environ, {"ANONYMIZED_TELEMETRY": "False"}),
-                        mock.patch.object(bi, "RETRY_DELAY", 0)):
-            patcher.start()
-            self.addCleanup(patcher.stop)
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.addCleanup(SharedSystemClient.clear_system_cache)
-        root = Path(self.tmp.name)
-        self.corpus, self.db = root / "corpus", root / "db"
-        (self.corpus / "state").mkdir(parents=True)
-        (self.corpus / "state" / "central.pdf").write_text(SECTIONED)
-        self.files = [("state/central.pdf", "Central")]
-        self.client = chromadb.PersistentClient(path=str(self.db))
-        self.client.create_collection(bi.COLLECTION).add(
-            ids=["old-1"], embeddings=[[0.1] * 16], documents=["old"], metadatas=[{"state": "Central", "source_file": "old.pdf"}])
-
-    def build(self, env_profile=None):
-        class Loader:
-            def __init__(self, path, **kwargs):
-                self.path = path
-
-            def load(self):
-                return [Document(page_content=Path(self.path).read_text(), metadata={"source": self.path})]
-
-        env = {} if env_profile is None else {"RAG_PROFILE": env_profile}
-        out = io.StringIO()
-        with mock.patch.dict(os.environ, env), redirect_stdout(out):
-            if env_profile is None:
-                os.environ.pop("RAG_PROFILE", None)
-            rc = bi.main(self.corpus, self.db, self.files, loader_cls=Loader, embeddings=DeterministicFakeEmbedding(size=16))
-        return rc, out.getvalue()
-
-    def live_profile(self):
-        store = Chroma(client=self.client, collection_name=bi.COLLECTION, embedding_function=DeterministicFakeEmbedding(size=16))
-        return rp.profile_of_index(store).name
-
-    def test_default_build_records_structured_profile_after_swap(self):
-        rc, out = self.build()
-        self.assertEqual(rc, 0, out)
-        self.assertIn("Retrieval profile: structured", out)
-        self.assertEqual(self.live_profile(), "structured")
-        metas = self.client.get_collection(bi.COLLECTION).get(include=["metadatas"])["metadatas"]
-        self.assertTrue(all(m["chunking"] == "structure" and m["state"] == "Central" for m in metas))
-
-    def test_rollback_build_records_baseline(self):
-        rc, out = self.build("baseline")
-        self.assertEqual(rc, 0, out)
-        self.assertEqual(self.live_profile(), "baseline")
-        metas = self.client.get_collection(bi.COLLECTION).get(include=["metadatas"])["metadatas"]
-        self.assertTrue(all("chunking" not in m for m in metas))
-
-    def test_unknown_profile_fails_and_keeps_live(self):
-        rc, out = self.build("experimental")
-        self.assertEqual(rc, 1)
-        self.assertIn("unknown RAG_PROFILE", out)
-        self.assertEqual(self.client.get_collection(bi.COLLECTION).get()["ids"], ["old-1"])
-
-    def test_verify_rejects_staging_without_profile_record(self):
-        self.client.create_collection(bi.STAGING).add(
-            ids=["s"], embeddings=[[0.1] * 16], documents=["x"], metadatas=[{"state": "Central", "source_file": "x.pdf"}])
-        splits = [Document(page_content="x", metadata={"state": "Central", "source_file": "x.pdf"})]
-        with self.assertRaisesRegex(bi.BuildError, "does not record rag_profile"):
-            bi.verify_staging(self.client, splits, rp.PROFILES["structured"])
 
 
 if __name__ == "__main__":

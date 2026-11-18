@@ -28,7 +28,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BENCHMARK = BASE_DIR / "eval" / "telangana-retrieval-benchmark.json"
 TEMPLATE = BASE_DIR / "eval" / "telangana-retrieval-review.csv"
 REFERENCES = BASE_DIR / "eval" / "telangana-chunk-references.json"
-PREVIEW_DB = BASE_DIR / "chroma_telangana_preview"
 COLLECTION = "telangana-traffic-rules"
 
 LEGAL_STATUS = ("NOT LEGAL APPROVAL. Human benchmark review records whether retrieval labels are right. It does "
@@ -73,7 +72,7 @@ def review_ref(meta, text_hash: str) -> str:
     return f"{chunk_id(meta)}@{meta['location']}|text:{text_hash[:12]}"
 
 
-def build_references(db_dir=PREVIEW_DB) -> dict:
+def build_references(db_dir) -> dict:
     """Metadata-only snapshot of the preview index (no legal text). Reads Chroma; writes nothing to it."""
     import chromadb
     got = chromadb.PersistentClient(str(db_dir)).get_collection(COLLECTION).get(include=["documents", "metadatas"])
@@ -364,7 +363,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest="cmd", required=True)
     b = sp.add_parser("build-refs", help="snapshot stable chunk references from the preview index (read-only)")
-    b.add_argument("--db-dir", default=PREVIEW_DB)
+    b.add_argument("--db-dir", required=True, help="index directory to snapshot (no default)")
     b.add_argument("--out", default=REFERENCES)
     v = sp.add_parser("validate", help="validate completed reviewer CSVs")
     v.add_argument("csv", nargs="+")
