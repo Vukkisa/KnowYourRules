@@ -277,7 +277,7 @@ class GenerationChainUnchangedTests(unittest.TestCase):
             raise AssertionError("no provider may be called by a configuration test")
         orch = providers.ProviderOrchestrator.from_settings(providers.ProviderSettings.from_env(GOOD), http=no_network)
         st = orch.status()
-        self.assertEqual(st["order"], ["groq", "gemini", "ollama"])
+        self.assertEqual(st["order"], ["groq", "cerebras", "gemini", "ollama"])
         by = {p["name"]: p for p in st["providers"]}
         self.assertTrue(by["groq"]["enabled"] and by["gemini"]["enabled"])
         self.assertFalse(by["ollama"]["enabled"])

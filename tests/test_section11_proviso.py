@@ -173,5 +173,12 @@ class ModelThatFollowsThePromptPasses(unittest.TestCase):
         self.assertEqual(r.kind, "rejected")
 
 
+class CompleteAnswerRule(unittest.TestCase):
+    def test_prompt_asks_for_every_step_condition_and_limit_across_sub_sections(self):
+        from backend import grounded_answer as ga
+        for part in ["Give the complete answer from the passages", "in\n   every sub-section", "later sub-section that adds a condition or proviso"]:
+            self.assertIn(part, ga.ANSWER_INSTRUCTIONS)
+
+
 if __name__ == "__main__":
     unittest.main()

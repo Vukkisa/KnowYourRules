@@ -932,6 +932,15 @@ class SnapshotManager:
     def _remove_stale_runs(self):
         """Free the space held by extraction directories of earlier processes. /tmp on Vercel is small (about 525 MB, 405 MB of it
         dependencies), and each leftover run holds ~27 MB, so a few of them make the next restore fail with ENOSPC."""
+        # A private index copy (kyr-snap-peek-*, ~13 MB) that an earlier process left behind when it was stopped mid-read.
+        # One that is more than two minutes old cannot belong to a read in progress.
+        try:
+            for p in Path(tempfile.gettempdir()).glob("kyr-snap-peek-*"):
+                if p.is_dir() and time.time() - p.stat().st_mtime > 120:
+                    shutil.rmtree(p, ignore_errors=True)
+                    log.info("removed a stale snapshot index copy left by an earlier process: %s", p.name)
+        except OSError:
+            pass
         root = self.work / "run"
         if not root.is_dir():
             return

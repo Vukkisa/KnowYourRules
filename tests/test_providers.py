@@ -44,6 +44,8 @@ class FakeResponse:
 def provider_of(url):
     if "api.groq.com" in url:
         return "groq"
+    if "api.cerebras.ai" in url:
+        return "cerebras"
     if "generativelanguage.googleapis.com" in url:
         return "gemini"
     return "ollama"
@@ -109,7 +111,7 @@ def unavailable(status=503):
 
 
 def settings(**kw):
-    base = dict(groq_api_key=GROQ_KEY, gemini_api_key=GEMINI_KEY, max_retries=1, retry_backoff_seconds=0.5,
+    base = dict(groq_api_key=GROQ_KEY, gemini_api_key=GEMINI_KEY, cerebras_enabled=False, max_retries=1, retry_backoff_seconds=0.5,
                 max_retry_wait_seconds=5, validation_fallbacks=1)
     base.update(kw)
     return providers.ProviderSettings(**base)
@@ -173,6 +175,35 @@ class ProviderUnitTests(unittest.TestCase):
         self.assertEqual(http.names(), ["groq", "gemini"])  # a daily quota is not retried
         self.assertEqual(s.fallback_reasons, ["groq: quota_exhausted"])
         self.assertEqual(o.sleeps, [])
+
+    def test_cerebras_follows_groq_quota_and_precedes_gemini(self):
+        http = FakeHTTP(groq=[groq_429()], cerebras=[groq_ok(VALID)])
+        o = providers.ProviderOrchestrator.from_settings(
+            settings(cerebras_enabled=True, cerebras_api_key="test-cerebras-key-SECRET-3333"), http=http,
+            sleep=lambda x: None)
+        s = o.session()
+        self.assertEqual(s.generate("PROMPT", None), VALID)
+        self.assertEqual(http.names(), ["groq", "cerebras"])
+        self.assertEqual(s.fallback_reasons, ["groq: quota_exhausted"])
+        self.assertEqual(s.summary()["provider"], "cerebras")
+        self.assertEqual(http.calls[1]["url"], "https://api.cerebras.ai/v1/chat/completions")
+        self.assertEqual(http.calls[1]["body"]["model"], "gpt-oss-120b")
+        self.assertNotIn("test-cerebras-key-SECRET-3333", json.dumps(s.summary()))
+
+    def test_cerebras_quota_falls_through_to_gemini(self):
+        http = FakeHTTP(groq=[groq_429()], cerebras=[groq_429()], gemini=[gemini_ok(VALID)])
+        o = providers.ProviderOrchestrator.from_settings(
+            settings(cerebras_enabled=True, cerebras_api_key="k-cerebras"), http=http, sleep=lambda x: None)
+        s = o.session()
+        self.assertEqual(s.generate("PROMPT", None), VALID)
+        self.assertEqual(http.names(), ["groq", "cerebras", "gemini"])
+
+    def test_cerebras_without_a_key_is_never_called(self):
+        http = FakeHTTP(groq=[groq_429()], gemini=[gemini_ok(VALID)])
+        o = providers.ProviderOrchestrator.from_settings(settings(cerebras_enabled=True), http=http,
+                                                         sleep=lambda x: None)
+        o.session().generate("PROMPT", None)
+        self.assertNotIn("cerebras", http.names())
 
     def test_3_groq_unavailable_retried_once_then_gemini_succeeds(self):
         http = FakeHTTP(groq=[unavailable(503)], gemini=[gemini_ok(VALID)])
@@ -422,7 +453,7 @@ class ProviderUnitTests(unittest.TestCase):
                               [repr(p) for p in o.providers]], default=str)
         for secret in SECRETS:
             self.assertNotIn(secret, exposed)
-        self.assertEqual([p["configured"] for p in o.status()["providers"]], [True, True, True])
+        self.assertEqual([p["configured"] for p in o.status()["providers"]], [True, False, True, True])
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -560,7 +591,7 @@ class ProviderServerTests(ts.Base):
         self.approve(http)
         self.ask()
         status = self.client.get("/status").json()["providers"]
-        self.assertEqual(status["order"], ["groq", "gemini", "ollama"])
+        self.assertEqual(status["order"], ["groq", "cerebras", "gemini", "ollama"])
         self.assertTrue(status["available"])
         by_name = {p["name"]: p for p in status["providers"]}
         self.assertEqual((by_name["groq"]["failures"], by_name["groq"]["last_failure"]), (1, "quota_exhausted"))

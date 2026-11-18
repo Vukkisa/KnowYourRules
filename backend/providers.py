@@ -1,4 +1,4 @@
-"""Model providers for grounded answers: Groq (primary) -> Gemini (secondary) -> Ollama (local fallback).
+"""Model providers for grounded answers: Groq (primary) -> Cerebras -> Gemini -> Ollama (local fallback).
 
 Scope: transport only. A provider turns the prompt built by grounded_answer.build_prompt() into raw model text.
 It never sees retrieval, never edits evidence and never judges legal validity: every response, from whichever
@@ -97,6 +97,9 @@ class ProviderSettings:
     groq_enabled: bool = True
     groq_api_key: str = field(default="", repr=False)
     groq_model: str = "openai/gpt-oss-120b"
+    cerebras_enabled: bool = True
+    cerebras_api_key: str = field(default="", repr=False)
+    cerebras_model: str = "gpt-oss-120b"
     gemini_enabled: bool = True
     gemini_api_key: str = field(default="", repr=False)
     gemini_model: str = "gemini-2.5-flash"
@@ -112,6 +115,7 @@ class ProviderSettings:
     validation_fallbacks: int = 1
     # Structured output (Stage 3B): the provider enforces the response shape; the validator still checks all of it.
     groq_structured: bool = True        # response_format json_schema (strict)
+    cerebras_structured: bool = True    # response_format json_schema (strict)
     gemini_structured: bool = True      # generationConfig.responseJsonSchema
     ollama_format: str = "shapes"       # shapes | schema | json
 
@@ -123,6 +127,9 @@ class ProviderSettings:
             groq_enabled=_flag(env, "GROQ_ENABLED", d.groq_enabled),
             groq_api_key=_secret(env, "GROQ_API_KEY"),
             groq_model=env.get("GROQ_MODEL", "").strip() or d.groq_model,
+            cerebras_enabled=_flag(env, "CEREBRAS_ENABLED", d.cerebras_enabled),
+            cerebras_api_key=_secret(env, "CEREBRAS_API_KEY"),
+            cerebras_model=env.get("CEREBRAS_MODEL", "").strip() or d.cerebras_model,
             gemini_enabled=_flag(env, "GEMINI_ENABLED", d.gemini_enabled),
             gemini_api_key=_secret(env, "GEMINI_API_KEY"),
             gemini_model=env.get("GEMINI_MODEL", "").strip() or d.gemini_model,
@@ -137,6 +144,7 @@ class ProviderSettings:
             max_output_tokens=_num(env, "PROVIDER_MAX_OUTPUT_TOKENS", d.max_output_tokens, 256, 32768, int),
             validation_fallbacks=_num(env, "PROVIDER_VALIDATION_FALLBACKS", d.validation_fallbacks, 0, 2, int),
             groq_structured=_flag(env, "GROQ_STRUCTURED_OUTPUT", d.groq_structured),
+            cerebras_structured=_flag(env, "CEREBRAS_STRUCTURED_OUTPUT", d.cerebras_structured),
             gemini_structured=_flag(env, "GEMINI_STRUCTURED_OUTPUT", d.gemini_structured),
             ollama_format=(env.get("OLLAMA_FORMAT", "").strip().lower()
                            if env.get("OLLAMA_FORMAT", "").strip().lower() in ("shapes", "schema", "json")
@@ -334,6 +342,15 @@ class GroqProvider(Provider):
                        reasoning=details.get("reasoning_tokens"))
 
 
+class CerebrasProvider(GroqProvider):
+    """Cerebras Inference: the same OpenAI-compatible chat completions API and the same model family as Groq, so the
+    prompt, response shape and 429 handling are shared. Skipped when no key is configured."""
+
+    name = "cerebras"
+    URL = "https://api.cerebras.ai/v1/chat/completions"
+    _DAILY = re.compile(r"per day|daily|\((?:rpd|tpd|asd)\)|quota", re.I)
+
+
 class GeminiProvider(Provider):
     """Gemini generateContent. The key goes in the x-goog-api-key header, never in the URL. 429
     RESOURCE_EXHAUSTED carries QuotaFailure details: a per-day quota id means the free-tier quota is used up."""
@@ -479,6 +496,8 @@ class ProviderOrchestrator:
     def from_settings(cls, s: ProviderSettings, http=None, **kw) -> "ProviderOrchestrator":
         return cls([GroqProvider(s.groq_api_key, s.groq_model, s.timeout_seconds, s.max_output_tokens,
                                  s.groq_enabled, http, s.groq_structured),
+                    CerebrasProvider(s.cerebras_api_key, s.cerebras_model, s.timeout_seconds, s.max_output_tokens,
+                                     s.cerebras_enabled, http, s.cerebras_structured),
                     GeminiProvider(s.gemini_api_key, s.gemini_model, s.timeout_seconds, s.max_output_tokens,
                                    s.gemini_enabled, http, s.gemini_structured),
                     OllamaProvider(s.ollama_base_url, s.ollama_model, s.ollama_timeout_seconds, s.max_output_tokens,

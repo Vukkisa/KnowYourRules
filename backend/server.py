@@ -1133,6 +1133,7 @@ def _retrieve(question: str, offence_date) -> tuple:
             # Stage 4D: a keyword-only match must not push out one of the vector search's own best chunks.
             top = hybrid_retrieval.protect_vector_leaders(top, unique, vector_docs, VECTOR_PROTECT, RETRIEVE_K)
         top = LEXICAL_INDEX.spread_named_chapters(question, top)  # reorders the same chunks, never changes them
+    top = hybrid_retrieval.promote_age_limit(question, top)  # reorders the same chunks, never adds or removes one
     return [with_text_status(d) for d in top], routing
 
 

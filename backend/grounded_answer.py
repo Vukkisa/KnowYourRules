@@ -184,6 +184,12 @@ Rules:
    that qualifies the sentence named in "qualifies": whenever one of your claims restates that sentence, add the
    proviso as the very next claim, copying its words, with the same evidence ID. Never leave a listed proviso out of
    an answer that states its sentence; before you answer, check each claim you wrote against the list.
+   Give the complete answer from the passages: when a question asks how to do something or what age, period or limit
+   applies, include every sentence of the cited section that states a step, condition, limit or exception for it, in
+   every sub-section, not only the first sentence that matches. For "how can I add a class to my licence", state
+   sub-section (1) and also the later sub-section that adds a condition or proviso to it; for a minimum age, state the
+   general age limit with its proviso, the sentence that makes it a condition of the licence, and any age rule for the
+   class asked about, each as its own claim.
    Use "interpretation" only when a point needs more than one sentence. Answer with the
    passages that bear on what was asked; do not add a closing summary, a conclusion ("Based on these provisions ...")
    or a claim about a different class, document or procedure than the one asked about.

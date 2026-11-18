@@ -168,6 +168,22 @@ class LoadTests(Fixture):
         self.assertFalse(stale.exists())
         self.assertTrue((st.db_dir / "chroma.sqlite3").is_file())
 
+    def test_an_old_private_index_copy_is_removed_and_a_fresh_one_is_kept(self):
+        import tempfile, time
+        self.publish()
+        old = Path(tempfile.mkdtemp(prefix="kyr-snap-peek-"))
+        fresh = Path(tempfile.mkdtemp(prefix="kyr-snap-peek-"))
+        try:
+            (old / "x.bin").write_bytes(b"x" * 1024)
+            os.utime(old, (time.time() - 600, time.time() - 600))
+            st = self.manager().activate()
+            self.assertTrue(st.ready, st.problems)
+            self.assertFalse(old.exists())
+            self.assertTrue(fresh.exists())
+        finally:
+            shutil.rmtree(old, ignore_errors=True)
+            shutil.rmtree(fresh, ignore_errors=True)
+
     def test_a_restore_never_removes_the_extraction_this_process_is_serving(self):
         self.publish()
         first = self.manager().activate()

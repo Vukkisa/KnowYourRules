@@ -314,3 +314,17 @@ def reciprocal_rank_fusion(ranked_lists, k=RRF_K) -> list:
             first.setdefault(key, doc)
     order = sorted(first, key=lambda key: -score[key])  # sorted() is stable: ties keep insertion order
     return [first[key] for key in order]
+
+
+# An age question is answered first by the section whose heading is "Age limit ...": narrower passages that mention an age
+# for one class (for example the learner's licence rule for a motor cycle without gear) rank above it by similarity and
+# the model then answers from them alone. This only reorders the chunks already retrieved; it adds and removes nothing.
+_AGE_QUESTION = re.compile(r"\b(?:age|ages|aged|old)\b|\bhow\s+old\b|\bunder\s*age\b|\bminor", re.I)
+_AGE_HEADING = re.compile(r"^\s*age\s+limits?\b", re.I)
+
+
+def promote_age_limit(question: str, docs: list) -> list:
+    if not _AGE_QUESTION.search(question or ""):
+        return list(docs)
+    first = [d for d in docs if _AGE_HEADING.match(str((getattr(d, "metadata", None) or {}).get("provision_heading") or ""))]
+    return first + [d for d in docs if not any(d is f for f in first)] if first else list(docs)
