@@ -1,0 +1,825 @@
+{
+ "status": "UNVERIFIED - for review only, not indexed",
+ "fetched": "2026-11-18",
+ "sources": {
+  "mv-act-rules": "https://echallan.tspolice.gov.in/htp/mv-act-rules.html",
+  "mvact": "https://echallan.tspolice.gov.in/htp/mvact.html"
+ },
+ "note": "Page itself says penalties are indicative and subject to amendment. Columns: offence, section, amount text as printed.",
+ "rows": {
+  "mv-act-rules": [
+   [
+    "Driving during disqualification period 182 MV Act",
+    "S 182(1)",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "Minor driving the vehicle under the age of 18 years",
+    "S 181 of M.V.Act",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "Not Transfer of Ownership",
+    "S 50",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Out Side/Other district vehicle",
+    "S 179(1)",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "Vehicle Check Report",
+    "S 130/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Violation of LL conditions (LL holder not accompanied by a valid DL person)",
+    "S 177(1)",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Violation of LL conditions (LL holder not following traffic rules)",
+    "S 177(1)",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Violation of LL conditions (Without L board)",
+    "S 177(1)",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "W/o Badge",
+    "S 181",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "W/o Documents",
+    "S 130/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "W/o Driving License",
+    "S 181/177",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "W/o Insurance",
+    "S 196/177",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "W/o Police Registration (Auto)",
+    "TS MVR 269/177, S 76 CP Act",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "W/o Police Registration (Cab)",
+    "TS MVR 270/177, S 76 CP Act",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "W/o Registration/Permit",
+    "S 192 (1) /177",
+    "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-"
+   ],
+   [
+    "W/o carrying Driving License",
+    "S 130/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Allowing unauthorized person to drive",
+    "S 180/177",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Bus stopping at middle of the road",
+    "S 184",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Cell Phone Driving",
+    "S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Dangerous Driving L and O",
+    "S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Driving vehicle in unsafe condition",
+    "S 190(2)/177",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Drunken Driving",
+    "S 185(a)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Erratic Braking",
+    "24 RRR/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Extra Projection on back side",
+    "S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Extra Projection on either side",
+    "S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Extra Projection on top",
+    "S 422/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Heavy and Slow vehicles Driving on right lane",
+    "4(5) MVDR/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "High Beam Light",
+    "106 CMVR/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Multi Toned Horn / Air Horn",
+    "119(2) CMVR / 177, 190(2) MV Act",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Not tying the helmet properly/Not putting the strap",
+    "S 129/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Not wearing helmet by pillion rider",
+    "S 129/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Overloading in goods vehicles",
+    "S 422/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Siren",
+    "119(2)CMVR/190(2)MVA",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Sudden turns without indication",
+    "S 121/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Using loud speakers",
+    "119(2)/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Violation of sign board",
+    "S 119/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Wearing improper/Half/Non-standard helmet",
+    "S 129/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Without Helmet/Not wearing helmet by rider",
+    "S 129/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Without Mirror/Improper use of rear view mirrors",
+    "S 177(14)",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Without head lights in night time",
+    "CR 105/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Lane/line Crossing",
+    "177 (18)",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Stop Line Crossing",
+    "S 177 (18)",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Erased/Irregular Number Plate",
+    "S. 80(A) T.S.M.V.R., 50 & 51 C.M.V.R. r/w Sec. 177 M.V. Act",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Fancy/Irregular Number Plate",
+    "S 80(A) TSMVR, 50, 51 CMVR r/w 177 MV Act",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Improper/Irregular Number Plate",
+    "S 80(A) APMVR, 50, 51 CMVR r/w 177 MV Act",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Tampered/Irregular Number Plate",
+    "S 80(A) APMVR, 50, 51 CMVR r/w 177 MV Act",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "W/o Number Plate",
+    "S 80(A)/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Disobedience of orders",
+    "S 179(1)",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "N/S Signal by the police",
+    "S 132/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Refusal to give information",
+    "S 179(2)",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "Wilfully withholds the vehicle information",
+    "S 179(2)",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "Disobeying Traffic Signal/ No entry/No right/No U Turn",
+    "S 177(11)",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No Entry",
+    "S 119/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "No Right/Left Turn/U Turn",
+    "S 119/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No entry for Bus",
+    "S 119/177,184,179",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-"
+   ],
+   [
+    "No entry for DCM",
+    "S 119/177,179",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹600/- ; Truck/HMV: ₹600/-"
+   ],
+   [
+    "No entry for Lorry/Tractor/Heavy Vehicle",
+    "S 119/177,184,179",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-"
+   ],
+   [
+    "Restriction on plying of vehicles",
+    "S 119/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Signal Jumping",
+    "R 436/177, S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Using prohibited routes",
+    "S 119/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Violation of one way rule",
+    "S 119/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Dangerous Driving",
+    "S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Dangerous zig-zag / reckless driving",
+    "S 177(18)",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Failure to give right of way",
+    "11RRR/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Over speeding/ Dangerous Driving",
+    "S 184",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Overtaking From Left",
+    "CR 15(G)/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Racing and Trail of speed",
+    "S 189",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+   ],
+   [
+    "41(i) C.P. Act - Towing charges of the vehicle",
+    "41(i) C.P. Act",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Temporarily vehicle taken into safe custody",
+    "S 207",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Causing of Noise Pollution using Beacon Light",
+    "S 190(2)",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Emitting sound pollution using SILENCER",
+    "CMVR 120 r/w 190(2)",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "W/o PUC/Smoke Pollution",
+    "S 190(2)",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Carrying Goods dangerously",
+    "S 190(2)/177",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Cause an obstruction to pedestrian walkway",
+    "S 122/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Causing obstruction to free flow of traffic at free left",
+    "S 201 r/w 190(2)",
+    "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Dazzling Light",
+    "TSMV 430/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Foot Board Offenders",
+    "S 123/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Tinted glass/Black Film",
+    "MV Rule 100, S 177/179(1) MV Act",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Writings on the vehicle",
+    "S 50 of the M.V. Rules /177, 179 MV Act",
+    "2 Wheeler: ₹700/- ; 3 Wheeler: ₹700/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹700/-"
+   ],
+   [
+    "Auto Refusal",
+    "S 178(III)/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Auto without meter",
+    "S 179/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Auto/Cab Extra Demand",
+    "S 177(5)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Carrying passengers in HTV/LGV",
+    "S 177(8)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Extra Passengers (Limit: 3)",
+    "S 177(6)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Extra School Children (Limit: 6)",
+    "TSMVR 389 (A)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Harassment/Misbehaviour by Auto/Taxi driver",
+    "S 177(3)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Meter Violation",
+    "TS MVR 371/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Permitting Boarding",
+    "S 123/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Piloting with Driver",
+    "S 125/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Rear-side transparent sheet blocked on auto",
+    "CMV Rule 100",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Refusal to Ply",
+    "S 178",
+    "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Roof Travelling",
+    "R 36(VIII)/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Triple Riding, Dangerous Driving",
+    "S 128/177, 184",
+    "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "W/o Seat Belt",
+    "S 138(III)/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "W/o Uniform",
+    "S 177(4)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Wrong Side Driving (Dangerous Driving) - 2 or 3 Wheeler",
+    "S 119/177,184",
+    "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Wrong Side Driving (Dangerous Driving) - 4 Wheeler and above",
+    "S 119/177,179,184",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,700/- ; Lorry/DCM: ₹1,700/- ; Truck/HMV: ₹1,700/-"
+   ],
+   [
+    "Bus Bay Parking",
+    "S 122/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No Stopping OR Standing",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No parking at Bars/Restaurants",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No parking at Commercial Centers",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No parking at function halls",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "No parking in front of entry/exit gate",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Parking on service roads",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Parking or Wait near Bus stop",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Stopping on the carriage way",
+    "S 122/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-"
+   ],
+   [
+    "Unauthorized parking by Sand/Brick/Metal Lorries",
+    "S 122/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Unauthorized parking by School/College buses",
+    "S 122/177",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ],
+   [
+    "Wheel Clamp for wrong parking",
+    "U/S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Wrong Parking in the carriage way",
+    "S 122/177",
+    "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+   ],
+   [
+    "Wrong or Unauthorized Parking/Obstruction of carriageway",
+    "S 190(2)",
+    "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+   ],
+   [
+    "Wrong/Unauthorized Parking",
+    "S 122/177",
+    "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+   ]
+  ],
+  "mvact": [
+   [
+    "To drive a vehicle without license.",
+    "M.V.Act. 181",
+    "Rs. 500/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Driving a vehicle without registration",
+    "M.V.Act.192 (1)",
+    "Rs. 2000/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Driving a vehicle without permit",
+    "M.V.Act. 192 (A)",
+    "Court or RTA."
+   ],
+   [
+    "Driving a vehicle without insurance",
+    "M.V.Act.196",
+    "Rs. 1000/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Driving vehicle at less than prescribed age",
+    "M.V.Act.181",
+    "Rs. 500/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Violation of No entry",
+    "Sec 177 of M.V.Act.",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Violation of One way",
+    "Sec 177 of M.V.Act.",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Violation of U turn",
+    "Sec 177 of M.V.Act.",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Offences pertaining to Violation of prohibited area",
+    "Sec 177 of M.V.Act.",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Violation of Rules duly promulgated",
+    "Sec 177 of M.V.Act.",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "To drive a vehicle dangerously at high speed, rash & negligent driving.",
+    "M.V.Act 184 (b)",
+    "Rs. 1000/- for two, three, four & Six wheelers."
+   ],
+   [
+    "To drive a vehicle dangerously posing a threat to lives of other people.",
+    "M.V.Act 184 (b)",
+    "Rs. 1000/- for two, three, four & Six wheelers."
+   ],
+   [
+    "To drive a vehicle dangerously posing a threat to lives of other people.",
+    "279 IPC",
+    "Court."
+   ],
+   [
+    "To travel on footboard.",
+    "M.V.Act 123(ii)",
+    "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-"
+   ],
+   [
+    "Vehicle driven by mentally and physicall challenged people.",
+    "M.V.Act 186",
+    "Rs. 200/-"
+   ],
+   [
+    "To run away after committing an accident",
+    "M.V.Act 187",
+    "Court"
+   ],
+   [
+    "To drive and use an unsafe vehicle",
+    "M.V.Act 190(i)",
+    "Court."
+   ],
+   [
+    "To pose a hazard to traffic by using dilapidated vehicles.",
+    "41(i) Hyderabad City Police Act",
+    "Traffic crane lifting charges for two/three wheelers Rs. 150/-, four wheeler Rs. 200/- and Six wheelers Rs. 300/- to 600/-"
+   ],
+   [
+    "Regarding wearing of helmet",
+    "M.V.Act 129/177",
+    "Rs. 200/-"
+   ],
+   [
+    "To drive overweight vehicle",
+    "M.V.Act. 194",
+    "Collecting by RTA@ Rs. 1000/- per ton or court."
+   ],
+   [
+    "To take away vehicle without permission",
+    "M.V.Act 197",
+    "RTO takes action on permit condition (check report)"
+   ],
+   [
+    "Unauthorized interference regarding motor vehicle",
+    "M.V.Act 198",
+    "Rs. 100/- by RTA."
+   ],
+   [
+    "To allow/permit an unauthorized person to drive a vehicle",
+    "M.V.Act 180",
+    "Rs. 1000/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Wrong side Driving",
+    "M.V.Act 119/177",
+    "Rs. 1100/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Triple Riding on Motor Cycle/ Bike",
+    "M.V.Act 128/177, 184",
+    "Rs. 1200/- ."
+   ],
+   [
+    "Violation of stop line",
+    "Sec 177 of M.V.Act",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Violation of lane",
+    "Sec 177 of M.V.Act",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Irregular Number plate",
+    "Sec 80(a) of M.V.Act",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Disobeying traffic Police Officer in Uniform",
+    "Sec 132 of M.V.Act",
+    "Rs. 200/- for two, three, four & Six wheelers"
+   ],
+   [
+    "Violation of Signal Jumping",
+    "Sec 184 of M.V.Act",
+    "Rs. 1000/- for two/three wheelers and four/six wheelers"
+   ],
+   [
+    "General Provision for punishment of offences ; (Ref: GO Ms No.108 dtd 18.8.11)",
+    "Sec 177 of M.V.Act",
+    "Rs. 100 to Rs. 200/- for two/three wheelers. ; Rs. 200/- for four/six wheelers."
+   ],
+   [
+    "Violation of Non-Stopping on Police Signal",
+    "Sec 177 of M.V.Act",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Using mobile while driving a vehicle",
+    "M.V.Act 184(a)",
+    "Rs. 1000/- for any vehicle."
+   ],
+   [
+    "Drive vehicle after consuming intoxicants/subtances ; (narco-drugs) etc.",
+    "M.V.Act 185",
+    "Court."
+   ],
+   [
+    "To commit offences pertaining to licences.",
+    "M.V.Act 182",
+    "Court."
+   ],
+   [
+    "Punishment imposed for committing offence related to accident",
+    "M.V.Act 187",
+    "Court."
+   ],
+   [
+    "Over Speeding",
+    "M.V.Act 183, 184",
+    "Rs. 1400/- for any vehicle."
+   ],
+   [
+    "Dangerous Driving to accident.",
+    "M.V.Act 184",
+    "Rs. 1000/- for any vehicle."
+   ],
+   [
+    "Two wheeler",
+    "Sec 41(i) C.P.Act",
+    "Rs. 150/-"
+   ],
+   [
+    "Car, jeep, taxi, Auto, Rickshaw",
+    "Sec 41(i) C.P.Act",
+    "Rs. 200/-"
+   ],
+   [
+    "Light Motor vehicle",
+    "Sec 41(i) C.P.Act",
+    "Rs. 300/-"
+   ],
+   [
+    "Heavy Motor Vehicles",
+    "Sec 41(i) C.P.Act",
+    "Rs. 600/-"
+   ],
+   [
+    "Without PUC certificate",
+    "Sec 190(i)",
+    "Rs. 1000/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Overloading of goods vehicles.",
+    "R.422(i)",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Carrying goods in a dangerous or hazardous manner.",
+    "R.422(ii)",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Playing in “NO ENTRY” Time",
+    "Sec 199/177 M.V.Act",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Carrying persons dangerously or carrying persons in goods vehicles",
+    "R. 36(vii)/S 177",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Overloading of Autos with school children",
+    "R 32(iii)/S 177",
+    "Rs. 100 to 200/-"
+   ],
+   [
+    "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+    "M.V.Act 122, 177",
+    "Rs. 200/- for two, three, four & Six wheelers."
+   ],
+   [
+    "Illegal parking on public road at No Parking Boards",
+    "M.V.Act 122, 177",
+    "Rs. 1000/- for two, three, four & Six wheelers."
+   ]
+  ]
+ }
+}

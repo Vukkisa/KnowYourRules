@@ -390,6 +390,10 @@ class ServerRegistryLifecycleTests(unittest.TestCase):
         self.assertEqual(client.get("/status").json()["approval"], "not_required")
 
 
+def srv_short(w):
+    return ts.srv.short_status(w)
+
+
 class WarningPropagationTests(ts.Base):
     """Through retrieval, grounded context, citations, the API response and (statically) the frontend."""
 
@@ -439,7 +443,12 @@ class WarningPropagationTests(ts.Base):
         [w] = r["source_warnings"]
         self.assertEqual((w["status"], w["provision_id"], w["citations"]), ("known_amendments_unresolved", "Rule 5", [1]))
         self.assertEqual(w["decision_refs"], ["LD-001", "LD-002"])
-        self.assertIn("Source status:\n- " + w["text"] + " [1]", r["response"])
+        # the answer shows the caveat once, in a few words, on the source's own line; the full fixed template
+        # stays in source_warnings
+        self.assertIn(srv_short(w), r["response"])
+        self.assertEqual(r["response"].count(srv_short(w)), 1)
+        self.assertNotIn("**Source status**", r["response"])
+        self.assertIn("cannot confirm the current law", w["text"])
         [src] = r["sources"]
         self.assertEqual((src["verified"], src["text_status"]), (True, "known_amendments_unresolved"))
 
@@ -466,7 +475,8 @@ class WarningPropagationTests(ts.Base):
         self.assertEqual(r["kind"], "answer")
         [w] = r["source_warnings"]       # never promoted to a clean "verified" label by the registry alone
         self.assertEqual(w["status"], ss.UNCONFIRMED_CURRENT)
-        self.assertIn("Source status:", r["response"])
+        self.assertIn(srv_short(w), r["response"])
+        self.assertIn("currency is not confirmed", r["response"])
         self.assertEqual(r["sources"][0]["text_status"], ss.UNCONFIRMED_CURRENT)
 
     def test_legacy_dev_answers_carry_warnings_and_old_fields(self):
@@ -475,7 +485,7 @@ class WarningPropagationTests(ts.Base):
         for key in ("response", "kind", "sources", "kb_approved"):
             self.assertIn(key, r)
         self.assertEqual([w["status"] for w in r["source_warnings"]], [ss.UNRECORDED])
-        self.assertIn("Source status:", r["response"])
+        self.assertIn("**Source status**", r["response"])
 
     def test_non_answers_have_empty_warnings(self):
         r = self.post("What is the fine for no helmet?").json()
@@ -512,7 +522,8 @@ class WarningPropagationTests(ts.Base):
         self.assertEqual([(w["status"], w["provision_id"], w["citations"]) for w in r["source_warnings"]],
                          [("known_amendments_unresolved", "Rule 5", [1]), ("unverified_snapshot", None, [2])])
         for w in r["source_warnings"]:
-            self.assertIn(w["text"], r["response"])
+            self.assertIn(srv_short(w), r["response"])
+            self.assertTrue(w["text"])  # the full fixed template is still returned for every warning
         [src] = r["sources"]  # one source, shown with its most cautious status in this answer
         self.assertEqual((src["verified"], src["text_status"]), (True, "known_amendments_unresolved"))
 
@@ -523,8 +534,7 @@ class WarningPropagationTests(ts.Base):
         self.assertEqual(r["kind"], "answer")
         [w] = r["source_warnings"]
         self.assertEqual((w["status"], w["citations"]), ("unverified_snapshot", [1, 2]))
-        self.assertEqual(r["response"].count(w["text"]), 1)
-        self.assertIn(w["text"] + " [1] [2]", r["response"])
+        self.assertEqual(r["response"].count(srv_short(w)), 1)  # one status line for both chunks, not one per citation
 
     def test_generator_failure_returns_no_legal_text(self):
         self.approve(self.snapshot_with_override())

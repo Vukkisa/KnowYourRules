@@ -157,7 +157,8 @@ class ProviderSettings:
 # validator re-checks everything. Field order puts the decision first and "answer" last, so a model writes its
 # claims before the answer string that must repeat them.
 # ---------------------------------------------------------------------------------------------------
-_FIELDS = ("evidence_sufficiency", "refusal_reason", "clarification_question", "claims", "citations", "answer")
+_FIELDS = ("evidence_sufficiency", "refusal_reason", "clarification_question", "claims", "citations", "summary",
+           "answer")
 
 
 def _answer_schema(eid: dict) -> dict:
@@ -171,6 +172,10 @@ def _answer_schema(eid: dict) -> dict:
         "clarification_question": {"type": ["string", "null"]},
         "claims": {"type": "array", "items": claim},
         "citations": {"type": "array", "items": eid},
+        "summary": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["text", "evidence_ids", "quotes"],
+            "properties": {"text": {"type": "string"}, "evidence_ids": {"type": "array", "items": eid},
+                           "quotes": {"type": "array", "items": {"type": "string"}}}}},
         "answer": {"type": "string"}}}
 
 

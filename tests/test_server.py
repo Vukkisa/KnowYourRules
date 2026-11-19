@@ -81,7 +81,7 @@ DEFAULT_TEST_ENV = {"TG_LEGACY_DEV_ANSWERS": "1", "TG_ENVIRONMENT": "development
                     "TG_RATE_LIMIT_REQUESTS": "1000",
                     # Stage 25: never the real registry in tests; absent = every source warns "status not recorded"
                     "TG_SOURCE_STATUS_FILE": str(Path(__file__).resolve().parent / "no-source-status.json")}
-STATUS_NOT_RECORDED = "\n\nSource status:\n"  # Stage 25: fixed-template warnings follow the answer text
+STATUS_NOT_RECORDED = "\n\n**Source status**\n"  # Stage 25: fixed-template warnings follow the answer text
 
 
 def without_text_status(docs):
@@ -815,7 +815,7 @@ class ResponseShapeTests(Base):
         self.assertEqual(r["sources"][0], {"title": "The Telangana Motor Vehicles Rules, 1989", "instrument": "Rules",
                                            "verified": True, "file": TG_RULES_FILE, "sha256": TG_RULES_SHA,
                                            # Stage 25: approval ("verified") never implies a text status
-                                           "text_status": "status_not_recorded"})
+                                           "text_status": "status_not_recorded", "jurisdiction": None, "url": None})
         self.assertIn("Source: The Telangana Motor Vehicles Rules, 1989 (Rules)", prompt)
         self.assertIn("Unverified source", prompt)  # the second, unlisted file
 
@@ -1196,7 +1196,7 @@ class GroundedAnswerIntegrationTests(Base):
         r = self.ask()
         self.assertEqual(r["kind"], "answer")
         self.assertTrue(r["response"].startswith(self.CLAIM + " [1]"))
-        self.assertIn("[1] Synthetic Motor Rules, Rule 5 (chap-2.htm#5)", r["response"])
+        self.assertIn("- [1] **Telangana** · Synthetic Motor Rules – Rule 5", r["response"])
         self.assertNotIn("E1", r["response"])
         self.assertEqual(len(self.mock.calls), 1)
         self.assertEqual(self.model_calls, [])

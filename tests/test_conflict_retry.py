@@ -142,7 +142,7 @@ class ConflictRetryAdversarialTests(unittest.TestCase):
                 "model_response": ONE_SIDED, "retry_response": CONFLICT, "expected_outcome": "conflict"}
         row = aq.run_case(server, case, passages)
         self.assertEqual((row["outcome"], row["generator_calls"]), ("conflict", 2))
-        self.assertIn("Cited:", row["displayed"])
+        self.assertIn("**Sources**", row["displayed"])
         self.assertEqual(calls["groq"], 0)
         vague = dict(case, question="and on rural roads?")
         row = aq.run_case(server, vague, passages)

@@ -85,6 +85,8 @@
   .source svg{ color:var(--muted); }
   .source .title{ font-weight:600; }
   .source .meta{ color:var(--muted); }
+  .source .link{ color:var(--accent-text); font-weight:500; text-decoration:none; }
+  .source .link:hover{ text-decoration:underline; }
   .source .view{ margin-left:auto; font-weight:500; color:var(--accent-text); }
   .source .view:hover{ opacity:.75; }
   .passage{ margin-bottom:16px; }
@@ -282,7 +284,7 @@
   }
 
   const KIND_LABELS = {
-    answer: 'Answer', restricted: 'Restricted', out_of_scope: 'Outside Telangana',
+    answer: 'Answer', website_amount: 'Website amount (not verified)', restricted: 'Restricted', out_of_scope: 'Outside Telangana',
     unavailable: 'Knowledge base unavailable', no_support: 'Not found',
     missing_provision: 'Not in sources', clarification: 'Clarify', conflict: 'Conflicting sources', development: 'Development output (unverified)', error: 'Error',
     connection: 'Connection problem'
@@ -333,19 +335,29 @@
   // A source row is one document. Its files are counted when it is stored as several (one per chapter).
   function sourceMeta(s){
     const n = (s.files || []).length;
-    if(!s.verified) return 'Unverified · ' + (n > 1 ? n + ' files' : s.file);
-    return (s.instrument || 'Verified') + (n > 1 ? ' · ' + n + ' files' : '');
+    const law = s.jurisdiction ? s.jurisdiction + ' · ' : '';
+    if(!s.verified) return law + 'Unverified' + (n > 1 ? ' · ' + n + ' files' : '');
+    return law + (s.instrument || 'Verified') + (n > 1 ? ' · ' + n + ' files' : '');
   }
 
   // Sources are built with textContent only - file names come from the index, never as HTML.
-  function sourcesBox(sources){
+  // compact: the answer's own Sources section already names each source, its link and its status, so each row here
+  // is only the way into the cited text (no file names, no repeated status).
+  function sourcesBox(sources, compact){
     const list = el('ul', 'sources');
     list.setAttribute('aria-label', 'Sources');
     for(const s of sources){
       const li = el('li');
       const row = el('div', 'source');
-      row.append(icon('doc'), el('span', 'title', s.title));
-      row.append(el('span', 'meta', sourceMeta(s)));
+      const labels = (s.passages || []).map((p) => p.label).filter(Boolean).slice(0, 2).join(', ');
+      row.append(icon('doc'), el('span', 'title', compact && !s.verified && labels ? labels : s.title));
+      if(!compact) row.append(el('span', 'meta', sourceMeta(s)));
+      // The document's own web page, when its record has one; opened in a new tab, plain http(s) only.
+      if(!compact && typeof s.url === 'string' && /^https?:\/\//.test(s.url)){
+        const link = el('a', 'link', 'Official page');
+        link.href = s.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+        row.append(link);
+      }
       let line = null;
       if(s.text_status && s.text_status !== 'verified_current'){
         line = el('div', 'status');
@@ -362,7 +374,7 @@
         row.append(view);
       }
       li.append(row);
-      if(line) li.append(line);
+      if(line && !compact) li.append(line);
       list.appendChild(li);
     }
     return list;
@@ -422,7 +434,7 @@
     const answer = el('div', 'answer-text');
     setAnswerText(answer, text);
     body.append(answer);
-    if(sources && sources.length) body.appendChild(sourcesBox(sources));
+    if(sources && sources.length) body.appendChild(sourcesBox(sources, text.includes('**Sources**')));
     if(kind === 'answer'){
       const actions = el('div', 'actions');
       actions.append(copyButton(text));

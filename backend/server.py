@@ -35,7 +35,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
 
-from backend import (answer_cache, api_protection, chat_guards, document_identity, document_lifecycle, embedding_provider, exact_vector,
+from backend import (answer_cache, api_protection, chat_guards, document_identity, document_lifecycle, echallan_fines, embedding_provider, exact_vector,
                      grounded_answer, hybrid_retrieval, index_snapshot, legal_approval, provision_validity_runtime, providers, rag_profiles,
                      release_gates, runtime_config, source_status)
 from backend import offence_date as offence_routing
@@ -680,6 +680,17 @@ def source_passage(doc, cited: bool = False) -> dict:
             "location": m.get("location") or None}
 
 
+def source_jurisdiction(metadata) -> str | None:
+    value = str(metadata.get("jurisdiction") or "").strip()
+    return value if value in ("Central", "Telangana") else None
+
+
+def source_link(metadata) -> str | None:
+    """The document's own source_url from the manifest, only when it is a plain http(s) link."""
+    url = str(metadata.get("source_url") or "").strip()
+    return url if re.match(r"^https?://[^\s<>\"]+$", url) else None
+
+
 def source_entries(docs, cited: bool = False) -> list[dict]:
     """Distinct source documents of the given chunks, for the UI, in retrieval order, each with its passages.
     Pass cited=True only for the chunks a validated grounded answer cites.
@@ -702,7 +713,8 @@ def source_entries(docs, cited: bool = False) -> list[dict]:
         if key not in by_key:
             by_key[key] = {"title": title or "Unverified source", "instrument": instrument,
                            "verified": h in SOURCES, "file": source_file, "sha256": h, "document_id": doc_id,
-                           "files": [], "passages": []}
+                           "files": [], "passages": [], "jurisdiction": source_jurisdiction(d.metadata),
+                           "url": source_link(d.metadata)}
             entries.append(by_key[key])
         file_ref = {"file": source_file, "sha256": h, "manifest_id": d.metadata.get("manifest_id") or None}
         if file_ref not in by_key[key]["files"]:
@@ -734,13 +746,74 @@ def source_warnings(docs, citation_numbers=None) -> list[dict]:
     return source_status.collect_warnings(SOURCE_STATUS, docs, citation_numbers, trust_verified=False)
 
 
+SOURCES_HEADING = "**Sources**"
+
+# One short line per text-status. The full fixed templates (backend/source_status.py) stay in the response's
+# "source_warnings" and in the source dialog; this is the same caveat in a few words, shown once per source.
+SHORT_STATUS = {
+    "official_text_commencement_unconfirmed": "Official text · latest amendments not fully confirmed",
+    "unverified_snapshot": "Unofficial web copy of unknown date · may not include later amendments",
+    "known_amendments_unresolved": "Older unofficial copy · later amendments exist but are not resolved, "
+                                   "so current law is not confirmed",
+    source_status.UNRECORDED: "Legal status not recorded",
+    source_status.UNCONFIRMED_CURRENT: "Recorded as current · not covered by a legal approval, so currency is not confirmed",
+}
+_JURISDICTION_IN_TITLE = re.compile(r"\s*\((?:Central|Telangana)(?:\s+Act)?\)", re.IGNORECASE)
+
+
+def short_status(warning: dict) -> str:
+    text = SHORT_STATUS.get(warning.get("status"), "Legal status not confirmed")
+    related = warning.get("related_instruments") or []
+    if warning.get("status") == "known_amendments_unresolved" and related:
+        text = f"Older unofficial copy · amended by {' and '.join(related)}; current wording not established"
+    return text
+
+
+def source_title(e, approved: str | None) -> str:
+    """A readable name: the approved title (or the document's own title) up to its first ' - ' subtitle, without the
+    '(Central)' tag that the Central/Telangana label already says."""
+    title = (approved or e.document_title or e.document_id).split(" - ")[0]
+    title = _JURISDICTION_IN_TITLE.sub("", title).strip() or e.document_id
+    if e.document_number and e.document_number not in title:
+        title += f" ({e.document_number})"
+    return title
+
+
+def sources_block(cited, cited_docs, warnings=()) -> str:
+    """The Sources section under an answer: one line per cited source, numbered like the [n] markers, with its
+    Central/Telangana label, the exact provision and a link to the document's own page. Each source's text status is
+    stated once, in a few words (or once for all when they are identical). File paths stay in "View source"."""
+    entries = []
+    for n, e in enumerate(cited, 1):
+        meta = cited_docs[n - 1].metadata if n <= len(cited_docs) else {}
+        approved = SOURCES.get(chunk_hash(meta), (None, None))[0]
+        label = f"[{n}] "
+        if e.jurisdiction:
+            label += f"**{e.jurisdiction}** · "
+        label += f"{source_title(e, approved)} – {e.provision_id}"
+        url = source_link(meta)
+        if url:
+            label += f" · [View official source]({url})"
+        statuses = []
+        for w in warnings:
+            if n in w.get("citations", ()) and short_status(w) not in statuses:
+                statuses.append(short_status(w))
+        entries.append((label, "; ".join(statuses)))
+    shared = {st for _, st in entries}
+    if len(entries) > 1 and len(shared) == 1 and "" not in shared:
+        lines = [f"- {label}" for label, _ in entries] + ["", f"_{entries[0][1]}_"]
+    else:
+        lines = [f"- {label}" + (f"  \n  _{st}_" if st else "") for label, st in entries]
+    return f"\n\n{SOURCES_HEADING}\n" + "\n".join(lines)
+
+
 def with_status_block(text: str, warnings: list[dict]) -> str:
     """Fixed-template warnings appended to the answer text, so every client (old or new) shows them."""
     if not warnings:
         return text
     lines = [f"- {w['text']}" + ("".join(f" [{n}]" for n in w["citations"]) if w.get("numbered") else "")
              for w in warnings]
-    return text + "\n\nSource status:\n" + "\n".join(lines)
+    return text + "\n\n**Source status**\n" + "\n".join(lines)
 
 
 def format_docs(docs):
@@ -1000,8 +1073,9 @@ RETRIEVE_K = 6
 VECTOR_PROTECT = hybrid_retrieval.parse_vector_protect(os.environ.get("RAG_VECTOR_PROTECT", "3"), RETRIEVE_K)
 
 NO_SUPPORT_MESSAGE = (
-    "I couldn't find sufficiently relevant information in the Telangana documents I have, so I won't "
-    "guess. Try rephrasing your question, or check the official Telangana Transport Department sources."
+    "**I can't confirm this from the Telangana documents I have, so I won't guess.**\n\n"
+    "- Try rephrasing, and name the rule, document or vehicle type if you can.\n"
+    "- Or check the official Telangana Transport Department sources."
 )
 UNAVAILABLE_MESSAGE = (
     "The Telangana knowledge base isn't loaded yet, so I can't answer questions right now. The official "
@@ -1386,9 +1460,9 @@ def cache_replay(question: str, entry, docs):
 
 def cached_response(question: str, text: str, cited, cited_docs) -> dict:
     """Same assembly as a fresh answer: backend-built Cited block, live sources, live source warnings."""
-    text += "\n\nCited:\n" + "\n".join(f"[{n}] {grounded_answer.citation_label(e)}" for n, e in enumerate(cited, 1))
     warnings = [dict(w, numbered=True) for w in source_warnings(cited_docs, list(range(1, len(cited_docs) + 1)))]
-    return {"kind": "answer", "answer": with_status_block(text, warnings), "sources": source_entries(cited_docs, cited=True),
+    text += sources_block(cited, cited_docs, warnings)
+    return {"kind": "answer", "answer": text, "sources": source_entries(cited_docs, cited=True),
             "question": question, "source_warnings": [{k: v for k, v in w.items() if k != "numbered"} for w in warnings]}
 
 
@@ -1563,15 +1637,12 @@ def grounded_answer_question(question: str, history: list[dict], session_id: str
         return finish({"kind": "unavailable", "answer": PROVIDERS_UNAVAILABLE_MESSAGE, "sources": [],
                        "question": question})
     text = result.text if kind != "no_support" else NO_SUPPORT_MESSAGE
-    if kind in ("answer", "conflict"):  # [n] markers refer to these backend-built labels, never model-written ones
-        text += "\n\nCited:\n" + "\n".join(f"[{n}] {grounded_answer.citation_label(e)}"
-                                         for n, e in enumerate(result.cited, 1))
     sources = source_entries(result.cited_docs, cited=True) if kind in ("answer", "conflict") else []
     warnings = []
-    if kind in ("answer", "conflict"):
+    if kind in ("answer", "conflict"):  # [n] markers refer to these backend-built labels, never model-written ones
         warnings = [dict(w, numbered=True) for w in
                     source_warnings(result.cited_docs, list(range(1, len(result.cited_docs) + 1)))]
-        text = with_status_block(text, warnings)
+        text += sources_block(result.cited, result.cited_docs, warnings)
     out = {"kind": kind, "answer": text, "sources": sources, "question": question,
            "source_warnings": [{k: v for k, v in w.items() if k != "numbered"} for w in warnings]}
     if offence_date is not None:
@@ -1710,6 +1781,8 @@ class Source(BaseModel):
     files: list[SourceFile] = []
     text_status: str | None = None  # Stage 25: registry text status; independent of "verified" (approval)
     passages: list[SourcePassage] = []  # the chunks this answer used from the source, for "View source"
+    jurisdiction: str | None = None  # "Central" or "Telangana", from the document's own record
+    url: str | None = None  # the document's own source_url (http/https only), shown as a link
 
 
 class SourceWarning(BaseModel):
@@ -1726,7 +1799,7 @@ class SourceWarning(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
-    kind: str  # answer | conflict | development | no_support | restricted | out_of_scope | unavailable | missing_provision | clarification
+    kind: str  # answer | website_amount | conflict | development | no_support | restricted | out_of_scope | unavailable | missing_provision | clarification
     sources: list[Source] = []
     kb_approved: bool
     source_warnings: list[SourceWarning] = []
@@ -1784,6 +1857,18 @@ def chat(req: ChatRequest):
         session["last_locked"] = True  # a short follow-up ("and for a bike?") to a compounding turn stays locked
         text = PENALTY_LOCKED_MESSAGE if guard.kind == "restricted" else guard.text  # one message for the penalty family
         return reply(guard.kind, text, temporal=temporal)
+    # Secondary source: amounts the Telangana Police e-Challan website displays. A deterministic table lookup (no model, no
+    # retrieval), labelled as website-displayed and unverified, with both tables shown when they disagree. It is not a legal
+    # source and never feeds the grounded-answer path, whose penalty lock below is unchanged. It needs no index.
+    fine_match = echallan_fines.find(message)
+    if fine_match.kind == "answer":
+        text = echallan_fines.render(fine_match)
+        if offence_date is not None:
+            text += ("\n\nYou gave an offence date. These website tables do not say which date their figures apply to, so I can't "
+                     "say what applied on that date.")
+        return reply("website_amount", text, sources=echallan_fines.sources(fine_match), temporal=temporal)
+    if fine_match.kind == "clarify":
+        return reply("clarification", echallan_fines.render_clarification(fine_match), temporal=temporal)
     # Both lock checks run before any model call (including the contextual rewrite). The Telangana fine gate is
     # locked in code, so this holds whatever TG_PENALTY_ANSWERS or the approval record says.
     if not release_gates.gate_open(gates, release_gates.TG_FINE):
@@ -1932,6 +2017,7 @@ def status():
         "cors": {"origins_configured": len(CORS_ORIGINS), "problems": CORS_PROBLEMS},
         "protection": PROTECTION.public(),      # limits and counts only: no proxy addresses, no client data
         "source_status": {"state": SOURCE_STATUS.state, **source_status.summarize(source_status_diagnostics())},
+        "echallan_fines": echallan_fines.status(),   # secondary source: website-displayed amounts, not independently verified
     }
 
 

@@ -467,7 +467,7 @@ class ServerIntegrationTests(ServerBase):
         self.use_chain()
         r = self.ask()
         self.assertEqual(r["kind"], "answer", r)
-        self.assertIn("Cited:", r["response"])
+        self.assertIn("**Sources**", r["response"])
         self.assertIn("Rule 5", r["response"])
         passage = r["sources"][0]["passages"][0]
         self.assertEqual((passage["provision_id"], passage["sha256"], passage["manifest_id"], passage["cited"]),
@@ -481,7 +481,7 @@ class ServerIntegrationTests(ServerBase):
         r = self.ask()
         self.assertEqual(r["kind"], "no_support", r)
         self.assertEqual(r["sources"], [])
-        self.assertNotIn("Cited:", r["response"])
+        self.assertNotIn("**Sources**", r["response"])
 
     def test_an_expired_or_unverified_provision_is_never_served(self):
         for name, led in {"lapsed freshness": ledger(end=("cv", 29000601)), "unverified end": ledger(end=("u", None)),
@@ -553,7 +553,7 @@ class ServerIntegrationTests(ServerBase):
             r = self.ask()
         self.assertEqual(r["kind"], "no_support", r)
         self.assertEqual(r["sources"], [])
-        self.assertNotIn("Cited:", r["response"])
+        self.assertNotIn("**Sources**", r["response"])
         self.assertNotIn(self.CLAIM, r["response"])
 
     def test_a_cached_answer_whose_citation_does_not_map_is_not_replayed(self):
@@ -614,7 +614,7 @@ class EndToEndTests(ServerBase):
         self.use_chain()
         r = self.ask()
         self.assertEqual(r["kind"], "answer", r)
-        self.assertIn("[1] Synthetic Motor Rules, Rule 5 (chap-2.htm#5)", r["response"])
+        self.assertIn("- [1] **Telangana** · Synthetic Motor Rules – Rule 5", r["response"])
         src = r["sources"][0]
         self.assertEqual((src["title"], src["verified"], src["sha256"], src["files"][0]["manifest_id"]),
                          ("Synthetic Motor Rules", True, SHA, MID))
@@ -634,7 +634,7 @@ class EndToEndTests(ServerBase):
             "refusal_reason": "the passage does not answer this", "clarification_question": None})))
         r = self.ask(sid="insufficient")
         self.assertEqual((r["kind"], r["sources"]), ("no_support", []))
-        self.assertNotIn("Cited:", r["response"])
+        self.assertNotIn("**Sources**", r["response"])
 
     # 4: pending / unapproved sources are excluded
     def test_pending_and_unapproved_sources_are_excluded(self):
@@ -673,7 +673,7 @@ class EndToEndTests(ServerBase):
             with self.subTest(q):
                 r = self.ask(q, sid=q[:10])
                 self.assertNotEqual(r["kind"], "answer", r)
-                self.assertNotIn("Cited:", r["response"])
+                self.assertNotIn("**Sources**", r["response"])
         self.assertEqual(self.log_calls, [])
 
     # 7: both cache paths keep every check
@@ -704,7 +704,7 @@ class EndToEndTests(ServerBase):
         hit = self.ask(paraphrase, sid="s2")
         self.assertEqual(hit["kind"], "answer", hit)
         self.assertEqual((cache.stats["hit_semantic"], len(self.mock.calls)), (1, calls))
-        self.assertIn("[1] Synthetic Motor Rules, Rule 5 (chap-2.htm#5)", hit["response"])      # citations rebuilt from the live chunk
+        self.assertIn("- [1] **Telangana** · Synthetic Motor Rules – Rule 5", hit["response"])      # citations rebuilt from the live chunk
         self.swap_ledger(ledger(end=("u", None)))                                              # the chunk is removed before the cache is consulted
         gone = self.ask("Tell me how to apply for a learner's licence", sid="s3")
         self.assertNotEqual(gone["kind"], "answer", gone)

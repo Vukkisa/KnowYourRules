@@ -12,3 +12,13 @@ function renderAssistantMarkdown(text){
   if (!window.marked || !window.DOMPurify || !DOMPurify.isSupported) return null;
   return DOMPurify.sanitize(marked.parse(text), { USE_PROFILES: { html: true }, FORBID_TAGS: FORBIDDEN_TAGS });
 }
+
+// Links in an answer (the "View official source" links) open in a new tab and never hand the page to the target.
+if (window.DOMPurify && DOMPurify.addHook) {
+  DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+    if (node.tagName === 'A' && node.getAttribute('href')) {
+      node.setAttribute('target', '_blank');
+      node.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+}

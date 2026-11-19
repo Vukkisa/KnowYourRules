@@ -1,0 +1,2433 @@
+{
+ "kind": "secondary_source_website_amounts",
+ "amount_label": "Amount displayed on the Telangana Police e-Challan website.",
+ "disclaimer": "These are indicative figures published on the Telangana Police website and may be subject to amendments. Please check the official e-Challan portal for the latest amount.",
+ "status": "Not independently verified. Not a statutory fine and not a Telangana compounding amount.",
+ "provenance": {
+  "retrieved": "2026-11-18",
+  "tables": {
+   "mv-act-rules": {
+    "url": "https://echallan.tspolice.gov.in/htp/mv-act-rules.html",
+    "label": "MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)",
+    "page_sha256": "0abc1007014bf47579a2f3cc3afee90c0796393459197cc8dbf4e9f248d8f14b",
+    "entries": 112
+   },
+   "mvact": {
+    "url": "https://echallan.tspolice.gov.in/htp/mvact.html",
+    "label": "Motor Vehicles Act & Traffic Rules (plain table)",
+    "page_sha256": "19aa3418702da97c964aa2726bdb49cb926f27c1a8ad9796d4b088daf51912c1",
+    "entries": 50
+   }
+  },
+  "scraped_file": "research/echallan-fines-unverified.json",
+  "scraped_file_sha256": "ad78bc11ea98b3cd24af22ae12659711648b6fc724acf714eed7b27450bd30ac",
+  "audit_json": "research/echallan-fines-audit.json",
+  "audit_json_sha256": "42c5efac38a01895e7b75cf6813f895072ace408408ef0b4a7f16aaa927226a4",
+  "audit_md": "research/echallan-fines-audit.md",
+  "audit_md_sha256": "db328dad5f5741b8a08c76e46451071d1acfe43aa402b76c7014ae4685966443",
+  "rows_sha256": "42917208e10f6a7c990c948309475b385ffff2d573da7ab90a63bd34d1d36299",
+  "entry_count": 162
+ },
+ "entries": [
+  {
+   "id": "W000",
+   "table": "mv-act-rules",
+   "offence": "Driving during disqualification period 182 MV Act",
+   "section": "S 182(1)",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "182"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W001",
+   "table": "mv-act-rules",
+   "offence": "Minor driving the vehicle under the age of 18 years",
+   "section": "S 181 of M.V.Act",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "181"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Driving vehicle at less than prescribed age"
+    }
+   ]
+  },
+  {
+   "id": "W002",
+   "table": "mv-act-rules",
+   "offence": "Not Transfer of Ownership",
+   "section": "S 50",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "50"
+   ],
+   "audit_class": "MATCH",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W003",
+   "table": "mv-act-rules",
+   "offence": "Out Side/Other district vehicle",
+   "section": "S 179(1)",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "179"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W004",
+   "table": "mv-act-rules",
+   "offence": "Vehicle Check Report",
+   "section": "S 130/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "130",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W005",
+   "table": "mv-act-rules",
+   "offence": "Violation of LL conditions (LL holder not accompanied by a valid DL person)",
+   "section": "S 177(1)",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W006",
+   "table": "mv-act-rules",
+   "offence": "Violation of LL conditions (LL holder not following traffic rules)",
+   "section": "S 177(1)",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W007",
+   "table": "mv-act-rules",
+   "offence": "Violation of LL conditions (Without L board)",
+   "section": "S 177(1)",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W008",
+   "table": "mv-act-rules",
+   "offence": "W/o Badge",
+   "section": "S 181",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "181"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W009",
+   "table": "mv-act-rules",
+   "offence": "W/o Documents",
+   "section": "S 130/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "130",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W010",
+   "table": "mv-act-rules",
+   "offence": "W/o Driving License",
+   "section": "S 181/177",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "177",
+    "181"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "To drive a vehicle without license."
+    }
+   ]
+  },
+  {
+   "id": "W011",
+   "table": "mv-act-rules",
+   "offence": "W/o Insurance",
+   "section": "S 196/177",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "177",
+    "196"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Driving a vehicle without insurance"
+    }
+   ]
+  },
+  {
+   "id": "W012",
+   "table": "mv-act-rules",
+   "offence": "W/o Police Registration (Auto)",
+   "section": "TS MVR 269/177, S 76 CP Act",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W013",
+   "table": "mv-act-rules",
+   "offence": "W/o Police Registration (Cab)",
+   "section": "TS MVR 270/177, S 76 CP Act",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W014",
+   "table": "mv-act-rules",
+   "offence": "W/o Registration/Permit",
+   "section": "S 192 (1) /177",
+   "amount_displayed": "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-",
+   "act_sections": [
+    "177",
+    "192"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Driving a vehicle without registration"
+    }
+   ]
+  },
+  {
+   "id": "W015",
+   "table": "mv-act-rules",
+   "offence": "W/o carrying Driving License",
+   "section": "S 130/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "130",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W016",
+   "table": "mv-act-rules",
+   "offence": "Allowing unauthorized person to drive",
+   "section": "S 180/177",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "177",
+    "180"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "To allow/permit an unauthorized person to drive a vehicle"
+    }
+   ]
+  },
+  {
+   "id": "W017",
+   "table": "mv-act-rules",
+   "offence": "Bus stopping at middle of the road",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W018",
+   "table": "mv-act-rules",
+   "offence": "Cell Phone Driving",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Using mobile while driving a vehicle"
+    }
+   ]
+  },
+  {
+   "id": "W019",
+   "table": "mv-act-rules",
+   "offence": "Dangerous Driving L and O",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W020",
+   "table": "mv-act-rules",
+   "offence": "Driving vehicle in unsafe condition",
+   "section": "S 190(2)/177",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "177",
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "To drive and use an unsafe vehicle"
+    }
+   ]
+  },
+  {
+   "id": "W021",
+   "table": "mv-act-rules",
+   "offence": "Drunken Driving",
+   "section": "S 185(a)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "185"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Drive vehicle after consuming intoxicants/subtances ; (narco-drugs) etc."
+    }
+   ]
+  },
+  {
+   "id": "W022",
+   "table": "mv-act-rules",
+   "offence": "Erratic Braking",
+   "section": "24 RRR/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W023",
+   "table": "mv-act-rules",
+   "offence": "Extra Projection on back side",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W024",
+   "table": "mv-act-rules",
+   "offence": "Extra Projection on either side",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W025",
+   "table": "mv-act-rules",
+   "offence": "Extra Projection on top",
+   "section": "S 422/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177",
+    "422"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W026",
+   "table": "mv-act-rules",
+   "offence": "Heavy and Slow vehicles Driving on right lane",
+   "section": "4(5) MVDR/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W027",
+   "table": "mv-act-rules",
+   "offence": "High Beam Light",
+   "section": "106 CMVR/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W028",
+   "table": "mv-act-rules",
+   "offence": "Multi Toned Horn / Air Horn",
+   "section": "119(2) CMVR / 177, 190(2) MV Act",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "177",
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W029",
+   "table": "mv-act-rules",
+   "offence": "Not tying the helmet properly/Not putting the strap",
+   "section": "S 129/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "129",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W030",
+   "table": "mv-act-rules",
+   "offence": "Not wearing helmet by pillion rider",
+   "section": "S 129/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "129",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W031",
+   "table": "mv-act-rules",
+   "offence": "Overloading in goods vehicles",
+   "section": "S 422/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177",
+    "422"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Overloading of goods vehicles."
+    }
+   ]
+  },
+  {
+   "id": "W032",
+   "table": "mv-act-rules",
+   "offence": "Siren",
+   "section": "119(2)CMVR/190(2)MVA",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W033",
+   "table": "mv-act-rules",
+   "offence": "Sudden turns without indication",
+   "section": "S 121/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "121",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W034",
+   "table": "mv-act-rules",
+   "offence": "Using loud speakers",
+   "section": "119(2)/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W035",
+   "table": "mv-act-rules",
+   "offence": "Violation of sign board",
+   "section": "S 119/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W036",
+   "table": "mv-act-rules",
+   "offence": "Wearing improper/Half/Non-standard helmet",
+   "section": "S 129/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "129",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W037",
+   "table": "mv-act-rules",
+   "offence": "Without Helmet/Not wearing helmet by rider",
+   "section": "S 129/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "129",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Regarding wearing of helmet"
+    }
+   ]
+  },
+  {
+   "id": "W038",
+   "table": "mv-act-rules",
+   "offence": "Without Mirror/Improper use of rear view mirrors",
+   "section": "S 177(14)",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "14",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W039",
+   "table": "mv-act-rules",
+   "offence": "Without head lights in night time",
+   "section": "CR 105/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W040",
+   "table": "mv-act-rules",
+   "offence": "Lane/line Crossing",
+   "section": "177 (18)",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "18",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Violation of lane"
+    }
+   ]
+  },
+  {
+   "id": "W041",
+   "table": "mv-act-rules",
+   "offence": "Stop Line Crossing",
+   "section": "S 177 (18)",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "18",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Violation of stop line"
+    }
+   ]
+  },
+  {
+   "id": "W042",
+   "table": "mv-act-rules",
+   "offence": "Erased/Irregular Number Plate",
+   "section": "S. 80(A) T.S.M.V.R., 50 & 51 C.M.V.R. r/w Sec. 177 M.V. Act",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "50",
+    "51",
+    "80",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W043",
+   "table": "mv-act-rules",
+   "offence": "Fancy/Irregular Number Plate",
+   "section": "S 80(A) TSMVR, 50, 51 CMVR r/w 177 MV Act",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "50",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W044",
+   "table": "mv-act-rules",
+   "offence": "Improper/Irregular Number Plate",
+   "section": "S 80(A) APMVR, 50, 51 CMVR r/w 177 MV Act",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "50",
+    "177"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W045",
+   "table": "mv-act-rules",
+   "offence": "Tampered/Irregular Number Plate",
+   "section": "S 80(A) APMVR, 50, 51 CMVR r/w 177 MV Act",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "50",
+    "177"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W046",
+   "table": "mv-act-rules",
+   "offence": "W/o Number Plate",
+   "section": "S 80(A)/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "80",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Irregular Number plate"
+    }
+   ]
+  },
+  {
+   "id": "W047",
+   "table": "mv-act-rules",
+   "offence": "Disobedience of orders",
+   "section": "S 179(1)",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "179"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W048",
+   "table": "mv-act-rules",
+   "offence": "N/S Signal by the police",
+   "section": "S 132/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "132",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Disobeying traffic Police Officer in Uniform"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Violation of Non-Stopping on Police Signal"
+    }
+   ]
+  },
+  {
+   "id": "W049",
+   "table": "mv-act-rules",
+   "offence": "Refusal to give information",
+   "section": "S 179(2)",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "179"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W050",
+   "table": "mv-act-rules",
+   "offence": "Wilfully withholds the vehicle information",
+   "section": "S 179(2)",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "179"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W051",
+   "table": "mv-act-rules",
+   "offence": "Disobeying Traffic Signal/ No entry/No right/No U Turn",
+   "section": "S 177(11)",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "11",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W052",
+   "table": "mv-act-rules",
+   "offence": "No Entry",
+   "section": "S 119/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of No entry"
+    }
+   ]
+  },
+  {
+   "id": "W053",
+   "table": "mv-act-rules",
+   "offence": "No Right/Left Turn/U Turn",
+   "section": "S 119/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of U turn"
+    }
+   ]
+  },
+  {
+   "id": "W054",
+   "table": "mv-act-rules",
+   "offence": "No entry for Bus",
+   "section": "S 119/177,184,179",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-",
+   "act_sections": [
+    "119",
+    "177",
+    "179",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W055",
+   "table": "mv-act-rules",
+   "offence": "No entry for DCM",
+   "section": "S 119/177,179",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹600/- ; Truck/HMV: ₹600/-",
+   "act_sections": [
+    "119",
+    "177",
+    "179"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W056",
+   "table": "mv-act-rules",
+   "offence": "No entry for Lorry/Tractor/Heavy Vehicle",
+   "section": "S 119/177,184,179",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-",
+   "act_sections": [
+    "119",
+    "177",
+    "179",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W057",
+   "table": "mv-act-rules",
+   "offence": "Restriction on plying of vehicles",
+   "section": "S 119/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W058",
+   "table": "mv-act-rules",
+   "offence": "Signal Jumping",
+   "section": "R 436/177, S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "177",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Violation of Signal Jumping"
+    }
+   ]
+  },
+  {
+   "id": "W059",
+   "table": "mv-act-rules",
+   "offence": "Using prohibited routes",
+   "section": "S 119/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Offences pertaining to Violation of prohibited area"
+    }
+   ]
+  },
+  {
+   "id": "W060",
+   "table": "mv-act-rules",
+   "offence": "Violation of one way rule",
+   "section": "S 119/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of One way"
+    }
+   ]
+  },
+  {
+   "id": "W061",
+   "table": "mv-act-rules",
+   "offence": "Dangerous Driving",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "To drive a vehicle dangerously at high speed, rash & negligent driving."
+    }
+   ]
+  },
+  {
+   "id": "W062",
+   "table": "mv-act-rules",
+   "offence": "Dangerous zig-zag / reckless driving",
+   "section": "S 177(18)",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "18",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W063",
+   "table": "mv-act-rules",
+   "offence": "Failure to give right of way",
+   "section": "11RRR/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W064",
+   "table": "mv-act-rules",
+   "offence": "Over speeding/ Dangerous Driving",
+   "section": "S 184",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Over Speeding"
+    }
+   ]
+  },
+  {
+   "id": "W065",
+   "table": "mv-act-rules",
+   "offence": "Overtaking From Left",
+   "section": "CR 15(G)/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W066",
+   "table": "mv-act-rules",
+   "offence": "Racing and Trail of speed",
+   "section": "S 189",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "act_sections": [
+    "189"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W067",
+   "table": "mv-act-rules",
+   "offence": "41(i) C.P. Act - Towing charges of the vehicle",
+   "section": "41(i) C.P. Act",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Two wheeler"
+    },
+    {
+     "status": "AGREE",
+     "other": "Car, jeep, taxi, Auto, Rickshaw"
+    }
+   ]
+  },
+  {
+   "id": "W068",
+   "table": "mv-act-rules",
+   "offence": "Temporarily vehicle taken into safe custody",
+   "section": "S 207",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "207"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W069",
+   "table": "mv-act-rules",
+   "offence": "Causing of Noise Pollution using Beacon Light",
+   "section": "S 190(2)",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W070",
+   "table": "mv-act-rules",
+   "offence": "Emitting sound pollution using SILENCER",
+   "section": "CMVR 120 r/w 190(2)",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W071",
+   "table": "mv-act-rules",
+   "offence": "W/o PUC/Smoke Pollution",
+   "section": "S 190(2)",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Without PUC certificate"
+    }
+   ]
+  },
+  {
+   "id": "W072",
+   "table": "mv-act-rules",
+   "offence": "Carrying Goods dangerously",
+   "section": "S 190(2)/177",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "177",
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Carrying goods in a dangerous or hazardous manner."
+    }
+   ]
+  },
+  {
+   "id": "W073",
+   "table": "mv-act-rules",
+   "offence": "Cause an obstruction to pedestrian walkway",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W074",
+   "table": "mv-act-rules",
+   "offence": "Causing obstruction to free flow of traffic at free left",
+   "section": "S 201 r/w 190(2)",
+   "amount_displayed": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "190",
+    "201"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W075",
+   "table": "mv-act-rules",
+   "offence": "Dazzling Light",
+   "section": "TSMV 430/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W076",
+   "table": "mv-act-rules",
+   "offence": "Foot Board Offenders",
+   "section": "S 123/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "123",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "To travel on footboard."
+    }
+   ]
+  },
+  {
+   "id": "W077",
+   "table": "mv-act-rules",
+   "offence": "Tinted glass/Black Film",
+   "section": "MV Rule 100, S 177/179(1) MV Act",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "100",
+    "177",
+    "179"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W078",
+   "table": "mv-act-rules",
+   "offence": "Writings on the vehicle",
+   "section": "S 50 of the M.V. Rules /177, 179 MV Act",
+   "amount_displayed": "2 Wheeler: ₹700/- ; 3 Wheeler: ₹700/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹700/-",
+   "act_sections": [
+    "177",
+    "179"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W079",
+   "table": "mv-act-rules",
+   "offence": "Auto Refusal",
+   "section": "S 178(III)/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177",
+    "178"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W080",
+   "table": "mv-act-rules",
+   "offence": "Auto without meter",
+   "section": "S 179/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177",
+    "179"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W081",
+   "table": "mv-act-rules",
+   "offence": "Auto/Cab Extra Demand",
+   "section": "S 177(5)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W082",
+   "table": "mv-act-rules",
+   "offence": "Carrying passengers in HTV/LGV",
+   "section": "S 177(8)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W083",
+   "table": "mv-act-rules",
+   "offence": "Extra Passengers (Limit: 3)",
+   "section": "S 177(6)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W084",
+   "table": "mv-act-rules",
+   "offence": "Extra School Children (Limit: 6)",
+   "section": "TSMVR 389 (A)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W085",
+   "table": "mv-act-rules",
+   "offence": "Harassment/Misbehaviour by Auto/Taxi driver",
+   "section": "S 177(3)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W086",
+   "table": "mv-act-rules",
+   "offence": "Meter Violation",
+   "section": "TS MVR 371/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W087",
+   "table": "mv-act-rules",
+   "offence": "Permitting Boarding",
+   "section": "S 123/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "123",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W088",
+   "table": "mv-act-rules",
+   "offence": "Piloting with Driver",
+   "section": "S 125/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "125",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W089",
+   "table": "mv-act-rules",
+   "offence": "Rear-side transparent sheet blocked on auto",
+   "section": "CMV Rule 100",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "100"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W090",
+   "table": "mv-act-rules",
+   "offence": "Refusal to Ply",
+   "section": "S 178",
+   "amount_displayed": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "178"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W091",
+   "table": "mv-act-rules",
+   "offence": "Roof Travelling",
+   "section": "R 36(VIII)/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Carrying persons dangerously or carrying persons in goods vehicles"
+    }
+   ]
+  },
+  {
+   "id": "W092",
+   "table": "mv-act-rules",
+   "offence": "Triple Riding, Dangerous Driving",
+   "section": "S 128/177, 184",
+   "amount_displayed": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "128",
+    "177",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Triple Riding on Motor Cycle/ Bike"
+    }
+   ]
+  },
+  {
+   "id": "W093",
+   "table": "mv-act-rules",
+   "offence": "W/o Seat Belt",
+   "section": "S 138(III)/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "138",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W094",
+   "table": "mv-act-rules",
+   "offence": "W/o Uniform",
+   "section": "S 177(4)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W095",
+   "table": "mv-act-rules",
+   "offence": "Wrong Side Driving (Dangerous Driving) - 2 or 3 Wheeler",
+   "section": "S 119/177,184",
+   "amount_displayed": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "119",
+    "177",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Wrong side Driving"
+    }
+   ]
+  },
+  {
+   "id": "W096",
+   "table": "mv-act-rules",
+   "offence": "Wrong Side Driving (Dangerous Driving) - 4 Wheeler and above",
+   "section": "S 119/177,179,184",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,700/- ; Lorry/DCM: ₹1,700/- ; Truck/HMV: ₹1,700/-",
+   "act_sections": [
+    "119",
+    "177",
+    "179",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W097",
+   "table": "mv-act-rules",
+   "offence": "Bus Bay Parking",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W098",
+   "table": "mv-act-rules",
+   "offence": "No Stopping OR Standing",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Parking of vehicles in such a manner which may pose a risk to other vehicles"
+    }
+   ]
+  },
+  {
+   "id": "W099",
+   "table": "mv-act-rules",
+   "offence": "No parking at Bars/Restaurants",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W100",
+   "table": "mv-act-rules",
+   "offence": "No parking at Commercial Centers",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W101",
+   "table": "mv-act-rules",
+   "offence": "No parking at function halls",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W102",
+   "table": "mv-act-rules",
+   "offence": "No parking in front of entry/exit gate",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W103",
+   "table": "mv-act-rules",
+   "offence": "Parking on service roads",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W104",
+   "table": "mv-act-rules",
+   "offence": "Parking or Wait near Bus stop",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W105",
+   "table": "mv-act-rules",
+   "offence": "Stopping on the carriage way",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Parking of vehicles in such a manner which may pose a risk to other vehicles"
+    }
+   ]
+  },
+  {
+   "id": "W106",
+   "table": "mv-act-rules",
+   "offence": "Unauthorized parking by Sand/Brick/Metal Lorries",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W107",
+   "table": "mv-act-rules",
+   "offence": "Unauthorized parking by School/College buses",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W108",
+   "table": "mv-act-rules",
+   "offence": "Wheel Clamp for wrong parking",
+   "section": "U/S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W109",
+   "table": "mv-act-rules",
+   "offence": "Wrong Parking in the carriage way",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards"
+    }
+   ]
+  },
+  {
+   "id": "W110",
+   "table": "mv-act-rules",
+   "offence": "Wrong or Unauthorized Parking/Obstruction of carriageway",
+   "section": "S 190(2)",
+   "amount_displayed": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "W111",
+   "table": "mv-act-rules",
+   "offence": "Wrong/Unauthorized Parking",
+   "section": "S 122/177",
+   "amount_displayed": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P000",
+   "table": "mvact",
+   "offence": "To drive a vehicle without license.",
+   "section": "M.V.Act. 181",
+   "amount_displayed": "Rs. 500/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "181"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "W/o Driving License"
+    }
+   ]
+  },
+  {
+   "id": "P001",
+   "table": "mvact",
+   "offence": "Driving a vehicle without registration",
+   "section": "M.V.Act.192 (1)",
+   "amount_displayed": "Rs. 2000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "192"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "W/o Registration/Permit"
+    }
+   ]
+  },
+  {
+   "id": "P002",
+   "table": "mvact",
+   "offence": "Driving a vehicle without permit",
+   "section": "M.V.Act. 192 (A)",
+   "amount_displayed": "Court or RTA.",
+   "act_sections": [
+    "192"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P003",
+   "table": "mvact",
+   "offence": "Driving a vehicle without insurance",
+   "section": "M.V.Act.196",
+   "amount_displayed": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "196"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "W/o Insurance"
+    }
+   ]
+  },
+  {
+   "id": "P004",
+   "table": "mvact",
+   "offence": "Driving vehicle at less than prescribed age",
+   "section": "M.V.Act.181",
+   "amount_displayed": "Rs. 500/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "181"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Minor driving the vehicle under the age of 18 years"
+    }
+   ]
+  },
+  {
+   "id": "P005",
+   "table": "mvact",
+   "offence": "Violation of No entry",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "No Entry"
+    }
+   ]
+  },
+  {
+   "id": "P006",
+   "table": "mvact",
+   "offence": "Violation of One way",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of one way rule"
+    }
+   ]
+  },
+  {
+   "id": "P007",
+   "table": "mvact",
+   "offence": "Violation of U turn",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "No Right/Left Turn/U Turn"
+    }
+   ]
+  },
+  {
+   "id": "P008",
+   "table": "mvact",
+   "offence": "Offences pertaining to Violation of prohibited area",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Using prohibited routes"
+    }
+   ]
+  },
+  {
+   "id": "P009",
+   "table": "mvact",
+   "offence": "Violation of Rules duly promulgated",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P010",
+   "table": "mvact",
+   "offence": "To drive a vehicle dangerously at high speed, rash & negligent driving.",
+   "section": "M.V.Act 184 (b)",
+   "amount_displayed": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Dangerous Driving"
+    }
+   ]
+  },
+  {
+   "id": "P011",
+   "table": "mvact",
+   "offence": "To drive a vehicle dangerously posing a threat to lives of other people.",
+   "section": "M.V.Act 184 (b)",
+   "amount_displayed": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P012",
+   "table": "mvact",
+   "offence": "To drive a vehicle dangerously posing a threat to lives of other people.",
+   "section": "279 IPC",
+   "amount_displayed": "Court.",
+   "act_sections": [],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P013",
+   "table": "mvact",
+   "offence": "To travel on footboard.",
+   "section": "M.V.Act 123(ii)",
+   "amount_displayed": "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-",
+   "act_sections": [
+    "123"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Foot Board Offenders"
+    }
+   ]
+  },
+  {
+   "id": "P014",
+   "table": "mvact",
+   "offence": "Vehicle driven by mentally and physicall challenged people.",
+   "section": "M.V.Act 186",
+   "amount_displayed": "Rs. 200/-",
+   "act_sections": [
+    "186"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P015",
+   "table": "mvact",
+   "offence": "To run away after committing an accident",
+   "section": "M.V.Act 187",
+   "amount_displayed": "Court",
+   "act_sections": [
+    "187"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P016",
+   "table": "mvact",
+   "offence": "To drive and use an unsafe vehicle",
+   "section": "M.V.Act 190(i)",
+   "amount_displayed": "Court.",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Driving vehicle in unsafe condition"
+    }
+   ]
+  },
+  {
+   "id": "P017",
+   "table": "mvact",
+   "offence": "To pose a hazard to traffic by using dilapidated vehicles.",
+   "section": "41(i) Hyderabad City Police Act",
+   "amount_displayed": "Traffic crane lifting charges for two/three wheelers Rs. 150/-, four wheeler Rs. 200/- and Six wheelers Rs. 300/- to 600/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P018",
+   "table": "mvact",
+   "offence": "Regarding wearing of helmet",
+   "section": "M.V.Act 129/177",
+   "amount_displayed": "Rs. 200/-",
+   "act_sections": [
+    "129",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Without Helmet/Not wearing helmet by rider"
+    }
+   ]
+  },
+  {
+   "id": "P019",
+   "table": "mvact",
+   "offence": "To drive overweight vehicle",
+   "section": "M.V.Act. 194",
+   "amount_displayed": "Collecting by RTA@ Rs. 1000/- per ton or court.",
+   "act_sections": [
+    "194"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P020",
+   "table": "mvact",
+   "offence": "To take away vehicle without permission",
+   "section": "M.V.Act 197",
+   "amount_displayed": "RTO takes action on permit condition (check report)",
+   "act_sections": [
+    "197"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P021",
+   "table": "mvact",
+   "offence": "Unauthorized interference regarding motor vehicle",
+   "section": "M.V.Act 198",
+   "amount_displayed": "Rs. 100/- by RTA.",
+   "act_sections": [
+    "198"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P022",
+   "table": "mvact",
+   "offence": "To allow/permit an unauthorized person to drive a vehicle",
+   "section": "M.V.Act 180",
+   "amount_displayed": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "180"
+   ],
+   "audit_class": "POSSIBLY OUTDATED",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Allowing unauthorized person to drive"
+    }
+   ]
+  },
+  {
+   "id": "P023",
+   "table": "mvact",
+   "offence": "Wrong side Driving",
+   "section": "M.V.Act 119/177",
+   "amount_displayed": "Rs. 1100/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "119",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Wrong Side Driving (Dangerous Driving) - 2 or 3 Wheeler"
+    }
+   ]
+  },
+  {
+   "id": "P024",
+   "table": "mvact",
+   "offence": "Triple Riding on Motor Cycle/ Bike",
+   "section": "M.V.Act 128/177, 184",
+   "amount_displayed": "Rs. 1200/- .",
+   "act_sections": [
+    "128",
+    "177",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Triple Riding, Dangerous Driving"
+    }
+   ]
+  },
+  {
+   "id": "P025",
+   "table": "mvact",
+   "offence": "Violation of stop line",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Stop Line Crossing"
+    }
+   ]
+  },
+  {
+   "id": "P026",
+   "table": "mvact",
+   "offence": "Violation of lane",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Lane/line Crossing"
+    }
+   ]
+  },
+  {
+   "id": "P027",
+   "table": "mvact",
+   "offence": "Irregular Number plate",
+   "section": "Sec 80(a) of M.V.Act",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "80"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "W/o Number Plate"
+    }
+   ]
+  },
+  {
+   "id": "P028",
+   "table": "mvact",
+   "offence": "Disobeying traffic Police Officer in Uniform",
+   "section": "Sec 132 of M.V.Act",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers",
+   "act_sections": [
+    "132"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "N/S Signal by the police"
+    }
+   ]
+  },
+  {
+   "id": "P029",
+   "table": "mvact",
+   "offence": "Violation of Signal Jumping",
+   "section": "Sec 184 of M.V.Act",
+   "amount_displayed": "Rs. 1000/- for two/three wheelers and four/six wheelers",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Signal Jumping"
+    }
+   ]
+  },
+  {
+   "id": "P030",
+   "table": "mvact",
+   "offence": "General Provision for punishment of offences ; (Ref: GO Ms No.108 dtd 18.8.11)",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed": "Rs. 100 to Rs. 200/- for two/three wheelers. ; Rs. 200/- for four/six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P031",
+   "table": "mvact",
+   "offence": "Violation of Non-Stopping on Police Signal",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "N/S Signal by the police"
+    }
+   ]
+  },
+  {
+   "id": "P032",
+   "table": "mvact",
+   "offence": "Using mobile while driving a vehicle",
+   "section": "M.V.Act 184(a)",
+   "amount_displayed": "Rs. 1000/- for any vehicle.",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Cell Phone Driving"
+    }
+   ]
+  },
+  {
+   "id": "P033",
+   "table": "mvact",
+   "offence": "Drive vehicle after consuming intoxicants/subtances ; (narco-drugs) etc.",
+   "section": "M.V.Act 185",
+   "amount_displayed": "Court.",
+   "act_sections": [
+    "185"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "Drunken Driving"
+    }
+   ]
+  },
+  {
+   "id": "P034",
+   "table": "mvact",
+   "offence": "To commit offences pertaining to licences.",
+   "section": "M.V.Act 182",
+   "amount_displayed": "Court.",
+   "act_sections": [
+    "182"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P035",
+   "table": "mvact",
+   "offence": "Punishment imposed for committing offence related to accident",
+   "section": "M.V.Act 187",
+   "amount_displayed": "Court.",
+   "act_sections": [
+    "187"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P036",
+   "table": "mvact",
+   "offence": "Over Speeding",
+   "section": "M.V.Act 183, 184",
+   "amount_displayed": "Rs. 1400/- for any vehicle.",
+   "act_sections": [
+    "183",
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Over speeding/ Dangerous Driving"
+    }
+   ]
+  },
+  {
+   "id": "P037",
+   "table": "mvact",
+   "offence": "Dangerous Driving to accident.",
+   "section": "M.V.Act 184",
+   "amount_displayed": "Rs. 1000/- for any vehicle.",
+   "act_sections": [
+    "184"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P038",
+   "table": "mvact",
+   "offence": "Two wheeler",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed": "Rs. 150/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "41(i) C.P. Act - Towing charges of the vehicle"
+    }
+   ]
+  },
+  {
+   "id": "P039",
+   "table": "mvact",
+   "offence": "Car, jeep, taxi, Auto, Rickshaw",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed": "Rs. 200/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "41(i) C.P. Act - Towing charges of the vehicle"
+    }
+   ]
+  },
+  {
+   "id": "P040",
+   "table": "mvact",
+   "offence": "Light Motor vehicle",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed": "Rs. 300/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P041",
+   "table": "mvact",
+   "offence": "Heavy Motor Vehicles",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed": "Rs. 600/-",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P042",
+   "table": "mvact",
+   "offence": "Without PUC certificate",
+   "section": "Sec 190(i)",
+   "amount_displayed": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "190"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "AGREE",
+     "other": "W/o PUC/Smoke Pollution"
+    }
+   ]
+  },
+  {
+   "id": "P043",
+   "table": "mvact",
+   "offence": "Overloading of goods vehicles.",
+   "section": "R.422(i)",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Overloading in goods vehicles"
+    }
+   ]
+  },
+  {
+   "id": "P044",
+   "table": "mvact",
+   "offence": "Carrying goods in a dangerous or hazardous manner.",
+   "section": "R.422(ii)",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Carrying Goods dangerously"
+    }
+   ]
+  },
+  {
+   "id": "P045",
+   "table": "mvact",
+   "offence": "Playing in “NO ENTRY” Time",
+   "section": "Sec 199/177 M.V.Act",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177",
+    "199"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P046",
+   "table": "mvact",
+   "offence": "Carrying persons dangerously or carrying persons in goods vehicles",
+   "section": "R. 36(vii)/S 177",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "Roof Travelling"
+    }
+   ]
+  },
+  {
+   "id": "P047",
+   "table": "mvact",
+   "offence": "Overloading of Autos with school children",
+   "section": "R 32(iii)/S 177",
+   "amount_displayed": "Rs. 100 to 200/-",
+   "act_sections": [
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": []
+  },
+  {
+   "id": "P048",
+   "table": "mvact",
+   "offence": "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+   "section": "M.V.Act 122, 177",
+   "amount_displayed": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "No Stopping OR Standing"
+    },
+    {
+     "status": "AGREE",
+     "other": "Stopping on the carriage way"
+    }
+   ]
+  },
+  {
+   "id": "P049",
+   "table": "mvact",
+   "offence": "Illegal parking on public road at No Parking Boards",
+   "section": "M.V.Act 122, 177",
+   "amount_displayed": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_sections": [
+    "122",
+    "177"
+   ],
+   "audit_class": "NOT VERIFIABLE",
+   "other_table_pairs": [
+    {
+     "status": "DIFFER",
+     "other": "No parking at Bars/Restaurants"
+    },
+    {
+     "status": "DIFFER",
+     "other": "No parking at Commercial Centers"
+    },
+    {
+     "status": "DIFFER",
+     "other": "No parking at function halls"
+    },
+    {
+     "status": "DIFFER",
+     "other": "No parking in front of entry/exit gate"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Parking on service roads"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Parking or Wait near Bus stop"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Wheel Clamp for wrong parking"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Wrong Parking in the carriage way"
+    }
+   ]
+  }
+ ]
+}

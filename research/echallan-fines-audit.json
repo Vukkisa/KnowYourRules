@@ -1,0 +1,3440 @@
+{
+ "audit_of": "research/echallan-fines-unverified.json",
+ "source_sha256": "ad78bc11ea98b3cd24af22ae12659711648b6fc724acf714eed7b27450bd30ac",
+ "generated": "2026-11-18",
+ "totals": {
+  "NOT VERIFIABLE": 143,
+  "POSSIBLY OUTDATED": 18,
+  "MATCH": 1
+ },
+ "cross_table_totals": {
+  "AGREE": 16,
+  "DIFFER": 24
+ },
+ "entries": [
+  {
+   "id": "W000",
+   "table": "mv-act-rules",
+   "offence": "Driving during disqualification period 182 MV Act",
+   "section": "S 182(1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W001",
+   "table": "mv-act-rules",
+   "offence": "Minor driving the vehicle under the age of 18 years",
+   "section": "S 181 of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": "Rs. 500/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.181: Rs 500 before Act 32 of 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Driving vehicle at less than prescribed age",
+     "other_amount": "Rs. 500/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W002",
+   "table": "mv-act-rules",
+   "offence": "Not Transfer of Ownership",
+   "section": "S 50",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine).",
+   "classification": "MATCH",
+   "classification_basis": "KB",
+   "explanation": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine). Displayed Rs 100 is within that cap. This confirms the cap only; it does not make Rs 100 a current Telangana challan/compounding amount.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "yes (cap only)",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W003",
+   "table": "mv-act-rules",
+   "offence": "Out Side/Other district vehicle",
+   "section": "S 179(1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.179: Rs 500 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W004",
+   "table": "mv-act-rules",
+   "offence": "Vehicle Check Report",
+   "section": "S 130/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.130(1) duty to produce licence/registration is present; the penalty (s.177/ s.177 read with 130) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W005",
+   "table": "mv-act-rules",
+   "offence": "Violation of LL conditions (LL holder not accompanied by a valid DL person)",
+   "section": "S 177(1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W006",
+   "table": "mv-act-rules",
+   "offence": "Violation of LL conditions (LL holder not following traffic rules)",
+   "section": "S 177(1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W007",
+   "table": "mv-act-rules",
+   "offence": "Violation of LL conditions (Without L board)",
+   "section": "S 177(1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W008",
+   "table": "mv-act-rules",
+   "offence": "W/o Badge",
+   "section": "S 181",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.181: Rs 500 before Act 32 of 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W009",
+   "table": "mv-act-rules",
+   "offence": "W/o Documents",
+   "section": "S 130/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.130(1) duty to produce licence/registration is present; the penalty (s.177/ s.177 read with 130) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W010",
+   "table": "mv-act-rules",
+   "offence": "W/o Driving License",
+   "section": "S 181/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": "Rs. 500/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.181: Rs 500 before Act 32 of 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "To drive a vehicle without license.",
+     "other_amount": "Rs. 500/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W011",
+   "table": "mv-act-rules",
+   "offence": "W/o Insurance",
+   "section": "S 196/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 1,000 equals the pre-2019 maximum I recall for this section (s.196: Rs 1,000 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Driving a vehicle without insurance",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W012",
+   "table": "mv-act-rules",
+   "offence": "W/o Police Registration (Auto)",
+   "section": "TS MVR 269/177, S 76 CP Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W013",
+   "table": "mv-act-rules",
+   "offence": "W/o Police Registration (Cab)",
+   "section": "TS MVR 270/177, S 76 CP Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W014",
+   "table": "mv-act-rules",
+   "offence": "W/o Registration/Permit",
+   "section": "S 192 (1) /177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-",
+   "amount_displayed_plain_table": "Rs. 2000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Driving a vehicle without registration",
+     "other_amount": "Rs. 2000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-"
+  },
+  {
+   "id": "W015",
+   "table": "mv-act-rules",
+   "offence": "W/o carrying Driving License",
+   "section": "S 130/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.130(1) duty to produce licence/registration is present; the penalty (s.177/ s.177 read with 130) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W016",
+   "table": "mv-act-rules",
+   "offence": "Allowing unauthorized person to drive",
+   "section": "S 180/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 1,000 equals the pre-2019 maximum I recall for this section (s.180: Rs 1,000 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "To allow/permit an unauthorized person to drive a vehicle",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W017",
+   "table": "mv-act-rules",
+   "offence": "Bus stopping at middle of the road",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W018",
+   "table": "mv-act-rules",
+   "offence": "Cell Phone Driving",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for any vehicle.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Using mobile while driving a vehicle",
+     "other_amount": "Rs. 1000/- for any vehicle."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W019",
+   "table": "mv-act-rules",
+   "offence": "Dangerous Driving L and O",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W020",
+   "table": "mv-act-rules",
+   "offence": "Driving vehicle in unsafe condition",
+   "section": "S 190(2)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "To drive and use an unsafe vehicle",
+     "other_amount": "Court."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W021",
+   "table": "mv-act-rules",
+   "offence": "Drunken Driving",
+   "section": "S 185(a)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Drive vehicle after consuming intoxicants/subtances ; (narco-drugs) etc.",
+     "other_amount": "Court."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W022",
+   "table": "mv-act-rules",
+   "offence": "Erratic Braking",
+   "section": "24 RRR/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W023",
+   "table": "mv-act-rules",
+   "offence": "Extra Projection on back side",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W024",
+   "table": "mv-act-rules",
+   "offence": "Extra Projection on either side",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W025",
+   "table": "mv-act-rules",
+   "offence": "Extra Projection on top",
+   "section": "S 422/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W026",
+   "table": "mv-act-rules",
+   "offence": "Heavy and Slow vehicles Driving on right lane",
+   "section": "4(5) MVDR/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W027",
+   "table": "mv-act-rules",
+   "offence": "High Beam Light",
+   "section": "106 CMVR/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W028",
+   "table": "mv-act-rules",
+   "offence": "Multi Toned Horn / Air Horn",
+   "section": "119(2) CMVR / 177, 190(2) MV Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W029",
+   "table": "mv-act-rules",
+   "offence": "Not tying the helmet properly/Not putting the strap",
+   "section": "S 129/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.129 is present as a heading only in the extract ('Wearing of protective headgear', body not captured); the penalty (s.194D) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W030",
+   "table": "mv-act-rules",
+   "offence": "Not wearing helmet by pillion rider",
+   "section": "S 129/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.129 is present as a heading only in the extract ('Wearing of protective headgear', body not captured); the penalty (s.194D) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W031",
+   "table": "mv-act-rules",
+   "offence": "Overloading in goods vehicles",
+   "section": "S 422/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Overloading of goods vehicles.",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W032",
+   "table": "mv-act-rules",
+   "offence": "Siren",
+   "section": "119(2)CMVR/190(2)MVA",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W033",
+   "table": "mv-act-rules",
+   "offence": "Sudden turns without indication",
+   "section": "S 121/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W034",
+   "table": "mv-act-rules",
+   "offence": "Using loud speakers",
+   "section": "119(2)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W035",
+   "table": "mv-act-rules",
+   "offence": "Violation of sign board",
+   "section": "S 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W036",
+   "table": "mv-act-rules",
+   "offence": "Wearing improper/Half/Non-standard helmet",
+   "section": "S 129/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.129 is present as a heading only in the extract ('Wearing of protective headgear', body not captured); the penalty (s.194D) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W037",
+   "table": "mv-act-rules",
+   "offence": "Without Helmet/Not wearing helmet by rider",
+   "section": "S 129/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 200/-",
+   "act_evidence": "s.129 is present as a heading only in the extract ('Wearing of protective headgear', body not captured); the penalty (s.194D) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Regarding wearing of helmet",
+     "other_amount": "Rs. 200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W038",
+   "table": "mv-act-rules",
+   "offence": "Without Mirror/Improper use of rear view mirrors",
+   "section": "S 177(14)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W039",
+   "table": "mv-act-rules",
+   "offence": "Without head lights in night time",
+   "section": "CR 105/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W040",
+   "table": "mv-act-rules",
+   "offence": "Lane/line Crossing",
+   "section": "177 (18)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Violation of lane",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W041",
+   "table": "mv-act-rules",
+   "offence": "Stop Line Crossing",
+   "section": "S 177 (18)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Violation of stop line",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W042",
+   "table": "mv-act-rules",
+   "offence": "Erased/Irregular Number Plate",
+   "section": "S. 80(A) T.S.M.V.R., 50 & 51 C.M.V.R. r/w Sec. 177 M.V. Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W043",
+   "table": "mv-act-rules",
+   "offence": "Fancy/Irregular Number Plate",
+   "section": "S 80(A) TSMVR, 50, 51 CMVR r/w 177 MV Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W044",
+   "table": "mv-act-rules",
+   "offence": "Improper/Irregular Number Plate",
+   "section": "S 80(A) APMVR, 50, 51 CMVR r/w 177 MV Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "KB-internal",
+   "explanation": "Cites the Andhra Pradesh Motor Vehicles Rules (APMVR); sibling entries cite TSMVR, and the repo's ingestion report says AP-era orders' applicability to Telangana is not established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W045",
+   "table": "mv-act-rules",
+   "offence": "Tampered/Irregular Number Plate",
+   "section": "S 80(A) APMVR, 50, 51 CMVR r/w 177 MV Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "KB-internal",
+   "explanation": "Cites the Andhra Pradesh Motor Vehicles Rules (APMVR); sibling entries cite TSMVR, and the repo's ingestion report says AP-era orders' applicability to Telangana is not established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W046",
+   "table": "mv-act-rules",
+   "offence": "W/o Number Plate",
+   "section": "S 80(A)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Irregular Number plate",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W047",
+   "table": "mv-act-rules",
+   "offence": "Disobedience of orders",
+   "section": "S 179(1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.179: Rs 500 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W048",
+   "table": "mv-act-rules",
+   "offence": "N/S Signal by the police",
+   "section": "S 132/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers; Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Disobeying traffic Police Officer in Uniform",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Violation of Non-Stopping on Police Signal",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W049",
+   "table": "mv-act-rules",
+   "offence": "Refusal to give information",
+   "section": "S 179(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.179: Rs 500 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W050",
+   "table": "mv-act-rules",
+   "offence": "Wilfully withholds the vehicle information",
+   "section": "S 179(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.179: Rs 500 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W051",
+   "table": "mv-act-rules",
+   "offence": "Disobeying Traffic Signal/ No entry/No right/No U Turn",
+   "section": "S 177(11)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W052",
+   "table": "mv-act-rules",
+   "offence": "No Entry",
+   "section": "S 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of No entry",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W053",
+   "table": "mv-act-rules",
+   "offence": "No Right/Left Turn/U Turn",
+   "section": "S 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of U turn",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W054",
+   "table": "mv-act-rules",
+   "offence": "No entry for Bus",
+   "section": "S 119/177,184,179",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-"
+  },
+  {
+   "id": "W055",
+   "table": "mv-act-rules",
+   "offence": "No entry for DCM",
+   "section": "S 119/177,179",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹600/- ; Truck/HMV: ₹600/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹600/- ; Truck/HMV: ₹600/-"
+  },
+  {
+   "id": "W056",
+   "table": "mv-act-rules",
+   "offence": "No entry for Lorry/Tractor/Heavy Vehicle",
+   "section": "S 119/177,184,179",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,600/- ; Lorry/DCM: ₹1,600/- ; Truck/HMV: ₹1,600/-"
+  },
+  {
+   "id": "W057",
+   "table": "mv-act-rules",
+   "offence": "Restriction on plying of vehicles",
+   "section": "S 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W058",
+   "table": "mv-act-rules",
+   "offence": "Signal Jumping",
+   "section": "R 436/177, S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two/three wheelers and four/six wheelers",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Violation of Signal Jumping",
+     "other_amount": "Rs. 1000/- for two/three wheelers and four/six wheelers"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W059",
+   "table": "mv-act-rules",
+   "offence": "Using prohibited routes",
+   "section": "S 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Offences pertaining to Violation of prohibited area",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W060",
+   "table": "mv-act-rules",
+   "offence": "Violation of one way rule",
+   "section": "S 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of One way",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W061",
+   "table": "mv-act-rules",
+   "offence": "Dangerous Driving",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "To drive a vehicle dangerously at high speed, rash & negligent driving.",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W062",
+   "table": "mv-act-rules",
+   "offence": "Dangerous zig-zag / reckless driving",
+   "section": "S 177(18)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W063",
+   "table": "mv-act-rules",
+   "offence": "Failure to give right of way",
+   "section": "11RRR/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W064",
+   "table": "mv-act-rules",
+   "offence": "Over speeding/ Dangerous Driving",
+   "section": "S 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1400/- for any vehicle.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Over Speeding",
+     "other_amount": "Rs. 1400/- for any vehicle."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W065",
+   "table": "mv-act-rules",
+   "offence": "Overtaking From Left",
+   "section": "CR 15(G)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W066",
+   "table": "mv-act-rules",
+   "offence": "Racing and Trail of speed",
+   "section": "S 189",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+  },
+  {
+   "id": "W067",
+   "table": "mv-act-rules",
+   "offence": "41(i) C.P. Act - Towing charges of the vehicle",
+   "section": "41(i) C.P. Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 150/-; Rs. 200/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Two wheeler",
+     "other_amount": "Rs. 150/-"
+    },
+    {
+     "status": "AGREE",
+     "other": "Car, jeep, taxi, Auto, Rickshaw",
+     "other_amount": "Rs. 200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W068",
+   "table": "mv-act-rules",
+   "offence": "Temporarily vehicle taken into safe custody",
+   "section": "S 207",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W069",
+   "table": "mv-act-rules",
+   "offence": "Causing of Noise Pollution using Beacon Light",
+   "section": "S 190(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W070",
+   "table": "mv-act-rules",
+   "offence": "Emitting sound pollution using SILENCER",
+   "section": "CMVR 120 r/w 190(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W071",
+   "table": "mv-act-rules",
+   "offence": "W/o PUC/Smoke Pollution",
+   "section": "S 190(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Without PUC certificate",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W072",
+   "table": "mv-act-rules",
+   "offence": "Carrying Goods dangerously",
+   "section": "S 190(2)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Carrying goods in a dangerous or hazardous manner.",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W073",
+   "table": "mv-act-rules",
+   "offence": "Cause an obstruction to pedestrian walkway",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W074",
+   "table": "mv-act-rules",
+   "offence": "Causing obstruction to free flow of traffic at free left",
+   "section": "S 201 r/w 190(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W075",
+   "table": "mv-act-rules",
+   "offence": "Dazzling Light",
+   "section": "TSMV 430/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W076",
+   "table": "mv-act-rules",
+   "offence": "Foot Board Offenders",
+   "section": "S 123/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "To travel on footboard.",
+     "other_amount": "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W077",
+   "table": "mv-act-rules",
+   "offence": "Tinted glass/Black Film",
+   "section": "MV Rule 100, S 177/179(1) MV Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W078",
+   "table": "mv-act-rules",
+   "offence": "Writings on the vehicle",
+   "section": "S 50 of the M.V. Rules /177, 179 MV Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹700/- ; 3 Wheeler: ₹700/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹700/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "s.50(3): registering authority may require, in lieu of action under s.177, 'such amount not exceeding one hundred rupees' (statutory cap, not a challan fine).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹700/- ; 3 Wheeler: ₹700/- ; 4 Wheeler: ₹700/- ; Lorry/DCM: ₹700/- ; Truck/HMV: ₹700/-"
+  },
+  {
+   "id": "W079",
+   "table": "mv-act-rules",
+   "offence": "Auto Refusal",
+   "section": "S 178(III)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W080",
+   "table": "mv-act-rules",
+   "offence": "Auto without meter",
+   "section": "S 179/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.179: Rs 500 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W081",
+   "table": "mv-act-rules",
+   "offence": "Auto/Cab Extra Demand",
+   "section": "S 177(5)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W082",
+   "table": "mv-act-rules",
+   "offence": "Carrying passengers in HTV/LGV",
+   "section": "S 177(8)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W083",
+   "table": "mv-act-rules",
+   "offence": "Extra Passengers (Limit: 3)",
+   "section": "S 177(6)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W084",
+   "table": "mv-act-rules",
+   "offence": "Extra School Children (Limit: 6)",
+   "section": "TSMVR 389 (A)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W085",
+   "table": "mv-act-rules",
+   "offence": "Harassment/Misbehaviour by Auto/Taxi driver",
+   "section": "S 177(3)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W086",
+   "table": "mv-act-rules",
+   "offence": "Meter Violation",
+   "section": "TS MVR 371/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W087",
+   "table": "mv-act-rules",
+   "offence": "Permitting Boarding",
+   "section": "S 123/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W088",
+   "table": "mv-act-rules",
+   "offence": "Piloting with Driver",
+   "section": "S 125/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W089",
+   "table": "mv-act-rules",
+   "offence": "Rear-side transparent sheet blocked on auto",
+   "section": "CMV Rule 100",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W090",
+   "table": "mv-act-rules",
+   "offence": "Refusal to Ply",
+   "section": "S 178",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W091",
+   "table": "mv-act-rules",
+   "offence": "Roof Travelling",
+   "section": "R 36(VIII)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Carrying persons dangerously or carrying persons in goods vehicles",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W092",
+   "table": "mv-act-rules",
+   "offence": "Triple Riding, Dangerous Driving",
+   "section": "S 128/177, 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 1200/- .",
+   "act_evidence": "s.128(1) (one pillion on a two-wheeler) is present; the penalty (s.194C) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Triple Riding on Motor Cycle/ Bike",
+     "other_amount": "Rs. 1200/- ."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W093",
+   "table": "mv-act-rules",
+   "offence": "W/o Seat Belt",
+   "section": "S 138(III)/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W094",
+   "table": "mv-act-rules",
+   "offence": "W/o Uniform",
+   "section": "S 177(4)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W095",
+   "table": "mv-act-rules",
+   "offence": "Wrong Side Driving (Dangerous Driving) - 2 or 3 Wheeler",
+   "section": "S 119/177,184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 1100/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Wrong side Driving",
+     "other_amount": "Rs. 1100/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W096",
+   "table": "mv-act-rules",
+   "offence": "Wrong Side Driving (Dangerous Driving) - 4 Wheeler and above",
+   "section": "S 119/177,179,184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,700/- ; Lorry/DCM: ₹1,700/- ; Truck/HMV: ₹1,700/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,700/- ; Lorry/DCM: ₹1,700/- ; Truck/HMV: ₹1,700/-"
+  },
+  {
+   "id": "W097",
+   "table": "mv-act-rules",
+   "offence": "Bus Bay Parking",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W098",
+   "table": "mv-act-rules",
+   "offence": "No Stopping OR Standing",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W099",
+   "table": "mv-act-rules",
+   "offence": "No parking at Bars/Restaurants",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W100",
+   "table": "mv-act-rules",
+   "offence": "No parking at Commercial Centers",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W101",
+   "table": "mv-act-rules",
+   "offence": "No parking at function halls",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W102",
+   "table": "mv-act-rules",
+   "offence": "No parking in front of entry/exit gate",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W103",
+   "table": "mv-act-rules",
+   "offence": "Parking on service roads",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W104",
+   "table": "mv-act-rules",
+   "offence": "Parking or Wait near Bus stop",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W105",
+   "table": "mv-act-rules",
+   "offence": "Stopping on the carriage way",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+     "other_amount": "Rs. 200/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-"
+  },
+  {
+   "id": "W106",
+   "table": "mv-act-rules",
+   "offence": "Unauthorized parking by Sand/Brick/Metal Lorries",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W107",
+   "table": "mv-act-rules",
+   "offence": "Unauthorized parking by School/College buses",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "W108",
+   "table": "mv-act-rules",
+   "offence": "Wheel Clamp for wrong parking",
+   "section": "U/S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W109",
+   "table": "mv-act-rules",
+   "offence": "Wrong Parking in the carriage way",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Illegal parking on public road at No Parking Boards",
+     "other_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+  },
+  {
+   "id": "W110",
+   "table": "mv-act-rules",
+   "offence": "Wrong or Unauthorized Parking/Obstruction of carriageway",
+   "section": "S 190(2)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+  },
+  {
+   "id": "W111",
+   "table": "mv-act-rules",
+   "offence": "Wrong/Unauthorized Parking",
+   "section": "S 122/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": null,
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+  },
+  {
+   "id": "P000",
+   "table": "mvact",
+   "offence": "To drive a vehicle without license.",
+   "section": "M.V.Act. 181",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": "Rs. 500/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.181: Rs 500 before Act 32 of 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "W/o Driving License",
+     "other_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 500/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P001",
+   "table": "mvact",
+   "offence": "Driving a vehicle without registration",
+   "section": "M.V.Act.192 (1)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-",
+   "amount_displayed_plain_table": "Rs. 2000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 2,000 equals the pre-2019 maximum I recall for this section (s.192(1): Rs 2,000 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "W/o Registration/Permit",
+     "other_amount": "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 2000/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P002",
+   "table": "mvact",
+   "offence": "Driving a vehicle without permit",
+   "section": "M.V.Act. 192 (A)",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Court or RTA.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court or RTA."
+  },
+  {
+   "id": "P003",
+   "table": "mvact",
+   "offence": "Driving a vehicle without insurance",
+   "section": "M.V.Act.196",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 1,000 equals the pre-2019 maximum I recall for this section (s.196: Rs 1,000 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "W/o Insurance",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P004",
+   "table": "mvact",
+   "offence": "Driving vehicle at less than prescribed age",
+   "section": "M.V.Act.181",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "amount_displayed_plain_table": "Rs. 500/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 500 equals the pre-2019 maximum I recall for this section (s.181: Rs 500 before Act 32 of 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Minor driving the vehicle under the age of 18 years",
+     "other_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 500/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P005",
+   "table": "mvact",
+   "offence": "Violation of No entry",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "No Entry",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P006",
+   "table": "mvact",
+   "offence": "Violation of One way",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Violation of one way rule",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P007",
+   "table": "mvact",
+   "offence": "Violation of U turn",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "No Right/Left Turn/U Turn",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P008",
+   "table": "mvact",
+   "offence": "Offences pertaining to Violation of prohibited area",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Using prohibited routes",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P009",
+   "table": "mvact",
+   "offence": "Violation of Rules duly promulgated",
+   "section": "Sec 177 of M.V.Act.",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P010",
+   "table": "mvact",
+   "offence": "To drive a vehicle dangerously at high speed, rash & negligent driving.",
+   "section": "M.V.Act 184 (b)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Dangerous Driving",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P011",
+   "table": "mvact",
+   "offence": "To drive a vehicle dangerously posing a threat to lives of other people.",
+   "section": "M.V.Act 184 (b)",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P012",
+   "table": "mvact",
+   "offence": "To drive a vehicle dangerously posing a threat to lives of other people.",
+   "section": "279 IPC",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Cites the Indian Penal Code s.279; recollection (not in KB): IPC was replaced by the Bharatiya Nyaya Sanhita from 1 July 2024.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court."
+  },
+  {
+   "id": "P013",
+   "table": "mvact",
+   "offence": "To travel on footboard.",
+   "section": "M.V.Act 123(ii)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Foot Board Offenders",
+     "other_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-"
+  },
+  {
+   "id": "P014",
+   "table": "mvact",
+   "offence": "Vehicle driven by mentally and physicall challenged people.",
+   "section": "M.V.Act 186",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 200/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/-"
+  },
+  {
+   "id": "P015",
+   "table": "mvact",
+   "offence": "To run away after committing an accident",
+   "section": "M.V.Act 187",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Court",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court"
+  },
+  {
+   "id": "P016",
+   "table": "mvact",
+   "offence": "To drive and use an unsafe vehicle",
+   "section": "M.V.Act 190(i)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Driving vehicle in unsafe condition",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court."
+  },
+  {
+   "id": "P017",
+   "table": "mvact",
+   "offence": "To pose a hazard to traffic by using dilapidated vehicles.",
+   "section": "41(i) Hyderabad City Police Act",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Traffic crane lifting charges for two/three wheelers Rs. 150/-, four wheeler Rs. 200/- and Six wheelers Rs. 300/- to 600/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Traffic crane lifting charges for two/three wheelers Rs. 150/-, four wheeler Rs. 200/- and Six wheelers Rs. 300/- to 600/-"
+  },
+  {
+   "id": "P018",
+   "table": "mvact",
+   "offence": "Regarding wearing of helmet",
+   "section": "M.V.Act 129/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 200/-",
+   "act_evidence": "s.129 is present as a heading only in the extract ('Wearing of protective headgear', body not captured); the penalty (s.194D) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Without Helmet/Not wearing helmet by rider",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/-"
+  },
+  {
+   "id": "P019",
+   "table": "mvact",
+   "offence": "To drive overweight vehicle",
+   "section": "M.V.Act. 194",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Collecting by RTA@ Rs. 1000/- per ton or court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Collecting by RTA@ Rs. 1000/- per ton or court."
+  },
+  {
+   "id": "P020",
+   "table": "mvact",
+   "offence": "To take away vehicle without permission",
+   "section": "M.V.Act 197",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "RTO takes action on permit condition (check report)",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "RTO takes action on permit condition (check report)"
+  },
+  {
+   "id": "P021",
+   "table": "mvact",
+   "offence": "Unauthorized interference regarding motor vehicle",
+   "section": "M.V.Act 198",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 100/- by RTA.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 100/- by RTA."
+  },
+  {
+   "id": "P022",
+   "table": "mvact",
+   "offence": "To allow/permit an unauthorized person to drive a vehicle",
+   "section": "M.V.Act 180",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "POSSIBLY OUTDATED",
+   "classification_basis": "external",
+   "explanation": "Displayed Rs 1,000 equals the pre-2019 maximum I recall for this section (s.180: Rs 1,000 before 2019); NOT in the KB, must be checked against the official text.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Allowing unauthorized person to drive",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P023",
+   "table": "mvact",
+   "offence": "Wrong side Driving",
+   "section": "M.V.Act 119/177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 1100/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Wrong Side Driving (Dangerous Driving) - 2 or 3 Wheeler",
+     "other_amount": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1100/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P024",
+   "table": "mvact",
+   "offence": "Triple Riding on Motor Cycle/ Bike",
+   "section": "M.V.Act 128/177, 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Rs. 1200/- .",
+   "act_evidence": "s.128(1) (one pillion on a two-wheeler) is present; the penalty (s.194C) is NOT in the KB.",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Triple Riding, Dangerous Driving",
+     "other_amount": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1200/- ."
+  },
+  {
+   "id": "P025",
+   "table": "mvact",
+   "offence": "Violation of stop line",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Stop Line Crossing",
+     "other_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P026",
+   "table": "mvact",
+   "offence": "Violation of lane",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Lane/line Crossing",
+     "other_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P027",
+   "table": "mvact",
+   "offence": "Irregular Number plate",
+   "section": "Sec 80(a) of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "W/o Number Plate",
+     "other_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P028",
+   "table": "mvact",
+   "offence": "Disobeying traffic Police Officer in Uniform",
+   "section": "Sec 132 of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "N/S Signal by the police",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers"
+  },
+  {
+   "id": "P029",
+   "table": "mvact",
+   "offence": "Violation of Signal Jumping",
+   "section": "Sec 184 of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two/three wheelers and four/six wheelers",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Signal Jumping",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two/three wheelers and four/six wheelers"
+  },
+  {
+   "id": "P030",
+   "table": "mvact",
+   "offence": "General Provision for punishment of offences ; (Ref: GO Ms No.108 dtd 18.8.11)",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 100 to Rs. 200/- for two/three wheelers. ; Rs. 200/- for four/six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 100 to Rs. 200/- for two/three wheelers. ; Rs. 200/- for four/six wheelers."
+  },
+  {
+   "id": "P031",
+   "table": "mvact",
+   "offence": "Violation of Non-Stopping on Police Signal",
+   "section": "Sec 177 of M.V.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "N/S Signal by the police",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P032",
+   "table": "mvact",
+   "offence": "Using mobile while driving a vehicle",
+   "section": "M.V.Act 184(a)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for any vehicle.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Cell Phone Driving",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for any vehicle."
+  },
+  {
+   "id": "P033",
+   "table": "mvact",
+   "offence": "Drive vehicle after consuming intoxicants/subtances ; (narco-drugs) etc.",
+   "section": "M.V.Act 185",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "Drunken Driving",
+     "other_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court."
+  },
+  {
+   "id": "P034",
+   "table": "mvact",
+   "offence": "To commit offences pertaining to licences.",
+   "section": "M.V.Act 182",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court."
+  },
+  {
+   "id": "P035",
+   "table": "mvact",
+   "offence": "Punishment imposed for committing offence related to accident",
+   "section": "M.V.Act 187",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Court.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Court."
+  },
+  {
+   "id": "P036",
+   "table": "mvact",
+   "offence": "Over Speeding",
+   "section": "M.V.Act 183, 184",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1400/- for any vehicle.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Over speeding/ Dangerous Driving",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1400/- for any vehicle."
+  },
+  {
+   "id": "P037",
+   "table": "mvact",
+   "offence": "Dangerous Driving to accident.",
+   "section": "M.V.Act 184",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 1000/- for any vehicle.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for any vehicle."
+  },
+  {
+   "id": "P038",
+   "table": "mvact",
+   "offence": "Two wheeler",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 150/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "41(i) C.P. Act - Towing charges of the vehicle",
+     "other_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 150/-"
+  },
+  {
+   "id": "P039",
+   "table": "mvact",
+   "offence": "Car, jeep, taxi, Auto, Rickshaw",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 200/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "41(i) C.P. Act - Towing charges of the vehicle",
+     "other_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/-"
+  },
+  {
+   "id": "P040",
+   "table": "mvact",
+   "offence": "Light Motor vehicle",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 300/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 300/-"
+  },
+  {
+   "id": "P041",
+   "table": "mvact",
+   "offence": "Heavy Motor Vehicles",
+   "section": "Sec 41(i) C.P.Act",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 600/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The substantive duty is in the KB but the penalty/amount section is not, so the amount cannot be established.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 600/-"
+  },
+  {
+   "id": "P042",
+   "table": "mvact",
+   "offence": "Without PUC certificate",
+   "section": "Sec 190(i)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "AGREE",
+     "other": "W/o PUC/Smoke Pollution",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P043",
+   "table": "mvact",
+   "offence": "Overloading of goods vehicles.",
+   "section": "R.422(i)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Overloading in goods vehicles",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P044",
+   "table": "mvact",
+   "offence": "Carrying goods in a dangerous or hazardous manner.",
+   "section": "R.422(ii)",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Carrying Goods dangerously",
+     "other_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P045",
+   "table": "mvact",
+   "offence": "Playing in “NO ENTRY” Time",
+   "section": "Sec 199/177 M.V.Act",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P046",
+   "table": "mvact",
+   "offence": "Carrying persons dangerously or carrying persons in goods vehicles",
+   "section": "R. 36(vii)/S 177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "Roof Travelling",
+     "other_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P047",
+   "table": "mvact",
+   "offence": "Overloading of Autos with school children",
+   "section": "R 32(iii)/S 177",
+   "amount_displayed_wheel_wise": null,
+   "amount_displayed_plain_table": "Rs. 100 to 200/-",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 100 to 200/-"
+  },
+  {
+   "id": "P048",
+   "table": "mvact",
+   "offence": "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+   "section": "M.V.Act 122, 177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-",
+   "amount_displayed_plain_table": "Rs. 200/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "No Stopping OR Standing",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "AGREE",
+     "other": "Stopping on the carriage way",
+     "other_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 200/- for two, three, four & Six wheelers."
+  },
+  {
+   "id": "P049",
+   "table": "mvact",
+   "offence": "Illegal parking on public road at No Parking Boards",
+   "section": "M.V.Act 122, 177",
+   "amount_displayed_wheel_wise": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-; 2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "amount_displayed_plain_table": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "act_evidence": "The Act section cited is not in the KB extract (Chapter XIII, ss.177-199 and ss.119-125/132 are absent).",
+   "classification": "NOT VERIFIABLE",
+   "classification_basis": "KB",
+   "explanation": "The cited section/rule or the amount's source (penalty chapter, s.200 compounding schedule, state rules) is not in the KB.",
+   "cross_table": [
+    {
+     "status": "DIFFER",
+     "other": "No parking at Bars/Restaurants",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "No parking at Commercial Centers",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "No parking at function halls",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "No parking in front of entry/exit gate",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Parking on service roads",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Parking or Wait near Bus stop",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Wheel Clamp for wrong parking",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    },
+    {
+     "status": "DIFFER",
+     "other": "Wrong Parking in the carriage way",
+     "other_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-"
+    }
+   ],
+   "statutory_fine_in_kb": "not in KB",
+   "telangana_compounding_in_kb": "not in KB",
+   "website_amount": "Rs. 1000/- for two, three, four & Six wheelers."
+  }
+ ],
+ "cross_table_pairs": [
+  {
+   "wheel_idx": 10,
+   "plain_idx": 0,
+   "offence_wheel": "W/o Driving License",
+   "offence_plain": "To drive a vehicle without license.",
+   "wheel_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "plain_amount": "Rs. 500/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 1,
+   "plain_idx": 4,
+   "offence_wheel": "Minor driving the vehicle under the age of 18 years",
+   "offence_plain": "Driving vehicle at less than prescribed age",
+   "wheel_amount": "2 Wheeler: ₹500/- ; 3 Wheeler: ₹500/- ; 4 Wheeler: ₹500/- ; Lorry/DCM: ₹500/- ; Truck/HMV: ₹500/-",
+   "plain_amount": "Rs. 500/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 14,
+   "plain_idx": 1,
+   "offence_wheel": "W/o Registration/Permit",
+   "offence_plain": "Driving a vehicle without registration",
+   "wheel_amount": "2 Wheeler: ₹2,000/- ; 3 Wheeler: ₹2,000/- ; 4 Wheeler: ₹2,000/- ; Lorry/DCM: ₹2,000/- ; Truck/HMV: ₹5,000/-",
+   "plain_amount": "Rs. 2000/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 11,
+   "plain_idx": 3,
+   "offence_wheel": "W/o Insurance",
+   "offence_plain": "Driving a vehicle without insurance",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 16,
+   "plain_idx": 22,
+   "offence_wheel": "Allowing unauthorized person to drive",
+   "offence_plain": "To allow/permit an unauthorized person to drive a vehicle",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 52,
+   "plain_idx": 5,
+   "offence_wheel": "No Entry",
+   "offence_plain": "Violation of No entry",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 60,
+   "plain_idx": 6,
+   "offence_wheel": "Violation of one way rule",
+   "offence_plain": "Violation of One way",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 53,
+   "plain_idx": 7,
+   "offence_wheel": "No Right/Left Turn/U Turn",
+   "offence_plain": "Violation of U turn",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 59,
+   "plain_idx": 8,
+   "offence_wheel": "Using prohibited routes",
+   "offence_plain": "Offences pertaining to Violation of prohibited area",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 61,
+   "plain_idx": 10,
+   "offence_wheel": "Dangerous Driving",
+   "offence_plain": "To drive a vehicle dangerously at high speed, rash & negligent driving.",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 37,
+   "plain_idx": 18,
+   "offence_wheel": "Without Helmet/Not wearing helmet by rider",
+   "offence_plain": "Regarding wearing of helmet",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "plain_amount": "Rs. 200/-",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 20,
+   "plain_idx": 16,
+   "offence_wheel": "Driving vehicle in unsafe condition",
+   "offence_plain": "To drive and use an unsafe vehicle",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Court.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 31,
+   "plain_idx": 43,
+   "offence_wheel": "Overloading in goods vehicles",
+   "offence_plain": "Overloading of goods vehicles.",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 72,
+   "plain_idx": 44,
+   "offence_wheel": "Carrying Goods dangerously",
+   "offence_plain": "Carrying goods in a dangerous or hazardous manner.",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 95,
+   "plain_idx": 23,
+   "offence_wheel": "Wrong Side Driving (Dangerous Driving) - 2 or 3 Wheeler",
+   "offence_plain": "Wrong side Driving",
+   "wheel_amount": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹1,200/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "plain_amount": "Rs. 1100/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 92,
+   "plain_idx": 24,
+   "offence_wheel": "Triple Riding, Dangerous Driving",
+   "offence_plain": "Triple Riding on Motor Cycle/ Bike",
+   "wheel_amount": "2 Wheeler: ₹1,200/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "plain_amount": "Rs. 1200/- .",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 41,
+   "plain_idx": 25,
+   "offence_wheel": "Stop Line Crossing",
+   "offence_plain": "Violation of stop line",
+   "wheel_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 40,
+   "plain_idx": 26,
+   "offence_wheel": "Lane/line Crossing",
+   "offence_plain": "Violation of lane",
+   "wheel_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 46,
+   "plain_idx": 27,
+   "offence_wheel": "W/o Number Plate",
+   "offence_plain": "Irregular Number plate",
+   "wheel_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹200/- ; Truck/HMV: ₹200/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 48,
+   "plain_idx": 28,
+   "offence_wheel": "N/S Signal by the police",
+   "offence_plain": "Disobeying traffic Police Officer in Uniform",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 48,
+   "plain_idx": 31,
+   "offence_wheel": "N/S Signal by the police",
+   "offence_plain": "Violation of Non-Stopping on Police Signal",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 58,
+   "plain_idx": 29,
+   "offence_wheel": "Signal Jumping",
+   "offence_plain": "Violation of Signal Jumping",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1000/- for two/three wheelers and four/six wheelers",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 18,
+   "plain_idx": 32,
+   "offence_wheel": "Cell Phone Driving",
+   "offence_plain": "Using mobile while driving a vehicle",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1000/- for any vehicle.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 67,
+   "plain_idx": 38,
+   "offence_wheel": "41(i) C.P. Act - Towing charges of the vehicle",
+   "offence_plain": "Two wheeler",
+   "wheel_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 150/-",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 67,
+   "plain_idx": 39,
+   "offence_wheel": "41(i) C.P. Act - Towing charges of the vehicle",
+   "offence_plain": "Car, jeep, taxi, Auto, Rickshaw",
+   "wheel_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹600/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 200/-",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 71,
+   "plain_idx": 42,
+   "offence_wheel": "W/o PUC/Smoke Pollution",
+   "offence_plain": "Without PUC certificate",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 98,
+   "plain_idx": 48,
+   "offence_wheel": "No Stopping OR Standing",
+   "offence_plain": "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 105,
+   "plain_idx": 48,
+   "offence_wheel": "Stopping on the carriage way",
+   "offence_plain": "Parking of vehicles in such a manner which may pose a risk to other vehicles",
+   "wheel_amount": "2 Wheeler: ₹200/- ; 3 Wheeler: ₹200/- ; 4 Wheeler: ₹200/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹200/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 64,
+   "plain_idx": 36,
+   "offence_wheel": "Over speeding/ Dangerous Driving",
+   "offence_plain": "Over Speeding",
+   "wheel_amount": "2 Wheeler: ₹1,000/- ; 3 Wheeler: ₹1,000/- ; 4 Wheeler: ₹1,000/- ; Lorry/DCM: ₹1,000/- ; Truck/HMV: ₹1,000/-",
+   "plain_amount": "Rs. 1400/- for any vehicle.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 91,
+   "plain_idx": 46,
+   "offence_wheel": "Roof Travelling",
+   "offence_plain": "Carrying persons dangerously or carrying persons in goods vehicles",
+   "wheel_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 200/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 76,
+   "plain_idx": 13,
+   "offence_wheel": "Foot Board Offenders",
+   "offence_plain": "To travel on footboard.",
+   "wheel_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "plain_amount": "RTC Mobile Court OR RTA, fine from Rs. 50/- to Rs. 200/-",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 21,
+   "plain_idx": 33,
+   "offence_wheel": "Drunken Driving",
+   "offence_plain": "Drive vehicle after consuming intoxicants/subtances ; (narco-drugs) etc.",
+   "wheel_amount": "2 Wheeler: ₹0/- ; 3 Wheeler: ₹0/- ; 4 Wheeler: ₹0/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹0/-",
+   "plain_amount": "Court.",
+   "status": "AGREE"
+  },
+  {
+   "wheel_idx": 99,
+   "plain_idx": 49,
+   "offence_wheel": "No parking at Bars/Restaurants",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 100,
+   "plain_idx": 49,
+   "offence_wheel": "No parking at Commercial Centers",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 101,
+   "plain_idx": 49,
+   "offence_wheel": "No parking at function halls",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 102,
+   "plain_idx": 49,
+   "offence_wheel": "No parking in front of entry/exit gate",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 103,
+   "plain_idx": 49,
+   "offence_wheel": "Parking on service roads",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹0/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 104,
+   "plain_idx": 49,
+   "offence_wheel": "Parking or Wait near Bus stop",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 108,
+   "plain_idx": 49,
+   "offence_wheel": "Wheel Clamp for wrong parking",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  },
+  {
+   "wheel_idx": 109,
+   "plain_idx": 49,
+   "offence_wheel": "Wrong Parking in the carriage way",
+   "offence_plain": "Illegal parking on public road at No Parking Boards",
+   "wheel_amount": "2 Wheeler: ₹100/- ; 3 Wheeler: ₹100/- ; 4 Wheeler: ₹100/- ; Lorry/DCM: ₹100/- ; Truck/HMV: ₹100/-",
+   "plain_amount": "Rs. 1000/- for two, three, four & Six wheelers.",
+   "status": "DIFFER"
+  }
+ ]
+}
