@@ -853,6 +853,23 @@ PENALTY_LOCKED_MESSAGE = (
     "Rachakonda traffic police e-challan portals."
 )
 
+# Penalty / fine lookup is English-only. A penalty question written in Telugu or Hindi is refused with this notice instead of the
+# generic lock text; nothing is translated and no amount is given. The penalty lock itself is unchanged.
+ENGLISH_ONLY_PENALTY_MESSAGE = (
+    "**Fine and penalty lookup currently works for English questions only.**\n\n"
+    "I can't translate legal penalties or guess amounts from a question in Telugu or Hindi. "
+    "Please ask in English, for example “fine for no helmet”, and I'll show what the Telangana Police e-Challan website displays.\n\n"
+    "For current amounts, check the official Telangana Transport Department or Hyderabad / Cyberabad / "
+    "Rachakonda traffic police e-challan portals."
+)
+_INDIC_LETTER = re.compile(r"[\u0900-\u097F\u0C00-\u0C7F]")  # Devanagari (Hindi) and Telugu
+
+
+def is_non_english_penalty_question(text: str) -> bool:
+    indic = len(_INDIC_LETTER.findall(text))
+    return indic > len(re.findall(r"[A-Za-z]", text)) and penalty_lock_reason(text) is not None  # mostly Indic script; an English question with a stray word is unaffected
+
+
 _I = re.IGNORECASE
 
 # Always penalty intent on their own (Latin script). Covers common misspellings and romanised
@@ -970,11 +987,25 @@ def _normalise(text: str) -> str:
     return re.sub(r"\s+", " ", unicodedata.normalize("NFKC", text or "")).strip()
 
 
+# "seized" in a question or sentence about WHICH DOCUMENT TO SHOW when a licence has been seized ("what do I show instead?", "produce a receipt in
+# lieu") describes a situation, not a penalty. Only the participle is set aside, and only beside that document wording; "seize", "seizure",
+# "impound" and "confiscate" stay locked, and anything else in the text (fined, penalty, consequences ...) is still checked in full.
+SEIZED_PARTICIPLE = re.compile(r"\b(?:seized|seiz(?:ing))\b", _I)
+DOCUMENT_IN_PLACE = re.compile(
+    r"\bwhat\s+(?:do|should|can|must)\s+i\s+(?:show|produce|carry|use|display|present)\b"
+    r"|\b(?:show|produce|carry|display|present)\b.{0,25}\binstead\b|\binstead\b.{0,30}\b(?:show|produce|carry|display)\b"
+    r"|\bin\s+lieu\b|\breceipt\b|\backnowledg(?:e)?ment\b",
+    _I | re.DOTALL,
+)
+
+
 def penalty_lock_reason(text: str) -> str | None:
     """Reason code if the text asks about penalties / enforcement, else None. Never calls the model."""
     t = _normalise(text)
     if not t:
         return None
+    if SEIZED_PARTICIPLE.search(t) and DOCUMENT_IN_PLACE.search(t):
+        t = SEIZED_PARTICIPLE.sub(" ", t)
     if any(term in t for term in PENALTY_NATIVE):
         return "native_term"
     if any(w in t for w in NATIVE_AMOUNT_OR_CONSEQUENCE) and any(w in t for w in NATIVE_VIOLATION):
@@ -1024,9 +1055,17 @@ FOLLOW_UP_START = re.compile(
 )
 FOLLOW_UP_REFERENCE = re.compile(r"\b(?:this|that|it|same|those|them|these|there|then|again|too|also|instead)\b", _I)
 FOLLOW_UP_MAX_WORDS = 4
+FOLLOW_UP_PRONOUN = re.compile(r"\b(?:this|that|it|same|those|them|these|there)\b", _I)
+EXPLETIVE_THERE = re.compile(r"\b(?:is|are|was|were|will)\s+there\b|\bthere\s+(?:is|are|was|were|must|should|any)\b", _I)  # "is there a rule ...": not a reference
+SAME_AS = re.compile(r"\bthe\s+same\s+(?:\w+\s+){0,2}?as\b", _I)  # "valid for the same time as a private car licence": a comparison, not a reference
+FOLLOW_UP_SELF_CONTAINED_WORDS = 8
 
 
 DUMMY_IT = re.compile(r"\bis\s+it\s+(?:mandatory|compulsory|necessary|required|possible|needed)\s+to\b", _I)
+# "it" that points back to a noun phrase in the SAME sentence ("my driving licence after it has expired") needs no earlier turn. It needs a
+# determiner-led noun phrase before a conjunction; "what about it?", "is it allowed after it expires?" still count as follow-ups.
+SELF_CONTAINED_IT = re.compile(
+    r"\b(?:my|the|a|an|our|your)\s+(?:[\w'-]+\s+){1,4}?(?:after|before|when|once|since|because|while|until|unless|if)\s+it\b", _I)
 PROCEDURAL_TOPIC = re.compile(
     r"\b(?:rc|licen[cs]e|learner'?s?|registration|register|transfer|ownership|documents?|form|rto|apply|application"
     r"|renew\w*|duplicate|address|tax|process|procedure|eligibility|age)\b",
@@ -1037,7 +1076,12 @@ PROCEDURAL_TOPIC = re.compile(
 def is_vague_follow_up(text: str) -> bool:
     t = _normalise(text)
     words = t.split()
-    if FOLLOW_UP_START.search(t) or FOLLOW_UP_REFERENCE.search(DUMMY_IT.sub(" ", t)):
+    own = SAME_AS.sub(" ", EXPLETIVE_THERE.sub(" ", SELF_CONTAINED_IT.sub(lambda m: m.group(0)[:-2], DUMMY_IT.sub(" ", t))))  # SELF_CONTAINED_IT: drop only that "it"
+    if FOLLOW_UP_PRONOUN.search(own):
+        return True  # a pronoun with nothing in the message to point at needs the earlier turn, however long the message is
+    if len(words) >= FOLLOW_UP_SELF_CONTAINED_WORDS:
+        return False  # a long message with no such pronoun carries its own subject ("If my licence is seized ..., what do I show instead?")
+    if FOLLOW_UP_START.search(t) or FOLLOW_UP_REFERENCE.search(own):
         return True
     if len(words) <= FOLLOW_UP_MAX_WORDS:
         # "RC transfer process" stands on its own; "for a bike?" and "cars?" do not.
@@ -1837,6 +1881,11 @@ def chat(req: ChatRequest):
         session["last_locked"] = True
         return reply("restricted", PENALTY_LOCKED_MESSAGE)
 
+    if is_non_english_penalty_question(message):
+        log_lock("message", "non_english_penalty", req.session_id, message)
+        session["last_locked"] = True  # the lock stays on for a short follow-up, exactly as for any other penalty question
+        return reply("restricted", ENGLISH_ONLY_PENALTY_MESSAGE)
+
     places = other_places(message)
     if places:
         return reply("out_of_scope", OUT_OF_SCOPE_MESSAGE.format(places=", ".join(places)))
@@ -1861,7 +1910,7 @@ def chat(req: ChatRequest):
     # retrieval), labelled as website-displayed and unverified, with both tables shown when they disagree. It is not a legal
     # source and never feeds the grounded-answer path, whose penalty lock below is unchanged. It needs no index.
     fine_match = echallan_fines.find(message)
-    if fine_match.kind == "answer":
+    if fine_match.kind in ("answer", "multi"):
         text = echallan_fines.render(fine_match)
         if offence_date is not None:
             text += ("\n\nYou gave an offence date. These website tables do not say which date their figures apply to, so I can't "

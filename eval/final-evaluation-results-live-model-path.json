@@ -1,0 +1,696 @@
+{
+ "mode": "live",
+ "base_url": "https://knowyourrules-api.vercel.app",
+ "when": "2026-11-25T12:42:51+0530",
+ "summary": {
+  "incorrect_refusal_reasons": {
+   "no_support": 12,
+   "penalty_lock": 1,
+   "follow_up_mode": 1,
+   "legal_review_gate": 1,
+   "clarification": 2
+  },
+  "total_in_dataset": 120,
+  "evaluated": 34,
+  "outcomes": {
+   "incorrect_refusal": 17,
+   "correct_answer": 8,
+   "unchecked_answer": 1,
+   "not_evaluated": 1,
+   "correct_refusal": 7,
+   "correct_clarification": 1
+  },
+  "flags": {
+   "no_evidence_defined": 1
+  },
+  "by_category": {
+   "Exceptions and special conditions": {
+    "incorrect_refusal": 6,
+    "correct_answer": 3,
+    "unchecked_answer": 1
+   },
+   "Licence, insurance, registration and documents": {
+    "correct_answer": 4,
+    "incorrect_refusal": 5,
+    "not_evaluated": 1
+   },
+   "Procedural questions: challans, disputes, suspension, seizure and court": {
+    "correct_refusal": 3,
+    "incorrect_refusal": 1
+   },
+   "Hypothetical and scenario-based questions": {
+    "correct_clarification": 1
+   },
+   "Multiple legal sections and complicated situations": {
+    "incorrect_refusal": 5,
+    "correct_answer": 1
+   },
+   "Out-of-scope, other-state and unrelated questions": {
+    "correct_refusal": 2
+   },
+   "Multilingual and mixed-language questions": {
+    "correct_refusal": 2
+   }
+  },
+  "needs_human_ids": [
+   "EX01",
+   "EX02",
+   "EX03",
+   "EX05",
+   "EX10",
+   "DOC01",
+   "DOC02",
+   "DOC04",
+   "DOC06",
+   "PR01",
+   "PR02",
+   "LS03",
+   "LS09",
+   "LS10",
+   "ML07",
+   "ML08"
+  ]
+ },
+ "results": [
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX01",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "EX02",
+   "response_excerpt": "Every person, above **four years of age**, driving or riding or being carried on a motorcycle of any class or description shall, while in a public place, wear protective headgear conforming to such standards as may be prescribed by the Central Government: [1]  - Provided that the provisions of this ",
+   "sources_cited": [
+    "Section 129"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "EX03",
+   "response_excerpt": "No driver of a two-wheeled motorcycle shall carry more than one person in addition to himself on the motorcycle and no such person shall be carried otherwise than sitting on a proper seat securely fixed to the motorcycle behind the driver’s seat with appropriate safety measures. [1]  **Sources** - [",
+   "sources_cited": [
+    "Section 128"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX04",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [
+    "no_evidence_defined"
+   ],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "unchecked_answer",
+   "id": "EX05",
+   "response_excerpt": "Every person, above **four years of age**, driving or riding or being carried on a motorcycle of any class or description shall, while in a public place, wear protective headgear conforming to such standards as may be prescribed by the Central Government: [1]  - Provided that the provisions of this ",
+   "sources_cited": [
+    "Section 129"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "incorrect_refusal",
+   "id": "EX06",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "follow_up_mode",
+   "outcome": "incorrect_refusal",
+   "id": "EX08",
+   "response_excerpt": "Please ask your full question on its own (for example, name the rule, vehicle or document) - I don't rewrite follow-up questions in this mode.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX09",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "EX10",
+   "response_excerpt": "The driver of a vehicle designated by the State Government for emergency services under sub-rule (4) of rule 108 of the Central Motor Vehicles Rules, 1989 including a vehicle used as ambulance or for fire-fighting or for salvage purposes or a police vehicle, shall operate the multi-toned horn (siren",
+   "sources_cited": [
+    "Regulation 27"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 2
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC01",
+   "response_excerpt": "No learner’s licence or driving licence shall be issued to any person to drive a vehicle of the class to which he has made an application unless he is eligible to drive that class of vehicle under this section. [1]  - No person under the age of **eighteen years** shall drive a motor vehicle in any p",
+   "sources_cited": [
+    "Section 4",
+    "Section 7"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC02",
+   "response_excerpt": "A learner’s licence issued under this Act shall, subject to the other provisions of this Act, be effective for a period of **six months** from the date of issue of the licence. [1]  **Sources** - [1] **Central** · Motor Vehicles Act, 1988 (Act No. 59 of 1988) – Section 14 · [View official source](ht",
+   "sources_cited": [
+    "Section 14"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC03",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC04",
+   "response_excerpt": "No person shall use, except as a passenger, or cause or allow any other person to use, a motor vehicle in a public place, unless there is in force, in relation to the use of the vehicle by that person or that other person, as the case may be, a policy of insurance complying with the requirements of ",
+   "sources_cited": [
+    "Rule 451",
+    "Rule 452",
+    "Section 146"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC05",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC06",
+   "response_excerpt": "On receipt of an application under Rule 53 of the Central Motor Vehicle Rules, 1989 with prescribed fee the registering authority shall cause necessary enquiries to be made as to the reasons for loss, genuineness of the application, verification of signatures of the applicant with reference to the r",
+   "sources_cited": [
+    "Rule 120",
+    "Rule 99"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC08",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "not_evaluated",
+   "kind": "unavailable",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "unavailable",
+   "outcome": "not_evaluated",
+   "id": "DOC09",
+   "response_excerpt": "The answer service is temporarily unavailable, so I can't answer from the Telangana documents right now. Please try again later, or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC10",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR01",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR02",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR03",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "PR08",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "correct_clarification",
+   "id": "HY08",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “To drive a vehicle without license.”; “W/o Driving License”; “W/o carrying Driving License”? Please name the offence (and the vehicle type) and",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "legal_review_gate",
+   "outcome": "incorrect_refusal",
+   "id": "LS02",
+   "response_excerpt": "**This part isn't available yet: explanations of the Central Motor Vehicles Act.**  It has not been released after legal review, so I haven't answered it and nothing here states the law on it. You can still ask what the Telangana documents I have say about a rule or procedure, or check the official ",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 2
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "LS03",
+   "response_excerpt": "No person under the age of **eighteen years** shall drive a motor vehicle in any public place: [1]  - Provided that a motor cycle with engine capacity not exceeding 50cc may be driven in a public place by a person after attaining the age of **sixteen years**. [1] - No learner’s licence or driving li",
+   "sources_cited": [
+    "Section 4",
+    "Section 7"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "LS06",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "LS07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "incorrect_refusal",
+   "id": "LS09",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “Driving a vehicle without insurance”; “W/o Insurance”? Please name the offence (and the vehicle type) and I'll show the amount the website disp",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "incorrect_refusal",
+   "id": "LS10",
+   "response_excerpt": "I couldn't find Section 112 in the two Telangana Police e-Challan tables, so I have no website amount for it. Tell me the offence in words (for example “no parking” or “no helmet”).",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "OOS02",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "OOS03",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "ML07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "ML08",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  }
+ ]
+}
