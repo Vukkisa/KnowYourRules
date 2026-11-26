@@ -56,7 +56,8 @@ PRODUCTION_HOSTS = frozenset({
     "knowyourrules-9v7zzhhky-jayanths-projects-93d42e21.vercel.app",
     "knowyourrules-gtpqhsrvw-jayanths-projects-93d42e21.vercel.app",
     "knowyourrules-i6i84nr1i-jayanths-projects-93d42e21.vercel.app",  # a Production deployment (target production), though no longer aliased
-    "knowyourrules-qre3ptwty-jayanths-projects-93d42e21.vercel.app",  # the current Production deployment (corpus bundled)
+    "knowyourrules-qre3ptwty-jayanths-projects-93d42e21.vercel.app",  # the previous Production deployment (corpus bundled)
+    "knowyourrules-1tiag7mnw-jayanths-projects-93d42e21.vercel.app",  # the current Production deployment (token-budget fix)
 })
 _TEAM = "jayanths-projects-93d42e21"
 # Only two shapes are accepted: a deployment URL (`knowyourrules-<9 chars>-<team>.vercel.app`) or a branch alias

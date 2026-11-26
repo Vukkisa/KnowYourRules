@@ -111,7 +111,11 @@ class ProviderSettings:
     max_retries: int = 1
     retry_backoff_seconds: float = 0.5
     max_retry_wait_seconds: float = 5.0
-    max_output_tokens: int = 4096
+    # The reasoning models (gpt-oss on Groq/Cerebras, Gemini 2.5) count their reasoning inside this limit. In the Preview evaluation five answers
+    # were cut off mid-JSON (Cerebras stopped at exactly 4096 with ~3,000 reasoning tokens; Gemini spent ~3,930 on thinking and had ~70-150 left),
+    # and each was then rejected as "malformed JSON". The limit is only spent when the model uses it.
+    max_output_tokens: int = 8192
+    gemini_thinking_budget: int = 2048  # Gemini 2.5 only: caps its thinking so a call stays well inside the provider timeout and leaves room for the JSON
     validation_fallbacks: int = 1
     # Structured output (Stage 3B): the provider enforces the response shape; the validator still checks all of it.
     groq_structured: bool = True        # response_format json_schema (strict)
@@ -142,6 +146,7 @@ class ProviderSettings:
             retry_backoff_seconds=_num(env, "PROVIDER_RETRY_BACKOFF_SECONDS", d.retry_backoff_seconds, 0, 10),
             max_retry_wait_seconds=_num(env, "PROVIDER_MAX_RETRY_WAIT_SECONDS", d.max_retry_wait_seconds, 0, 30),
             max_output_tokens=_num(env, "PROVIDER_MAX_OUTPUT_TOKENS", d.max_output_tokens, 256, 32768, int),
+            gemini_thinking_budget=_num(env, "GEMINI_THINKING_BUDGET", d.gemini_thinking_budget, 0, 24576, int),  # 0 = the model's own default
             validation_fallbacks=_num(env, "PROVIDER_VALIDATION_FALLBACKS", d.validation_fallbacks, 0, 2, int),
             groq_structured=_flag(env, "GROQ_STRUCTURED_OUTPUT", d.groq_structured),
             cerebras_structured=_flag(env, "CEREBRAS_STRUCTURED_OUTPUT", d.cerebras_structured),
@@ -293,6 +298,12 @@ class Provider:
         return text, usage
 
 
+def _first_choice(data: dict) -> dict:
+    choices = data.get("choices")
+    first = choices[0] if isinstance(choices, list) and choices else None
+    return first if isinstance(first, dict) else {}
+
+
 def _tokens(input_, output, total=None, **extra) -> dict | None:
     if input_ is None and output is None and total is None:
         return None
@@ -343,8 +354,9 @@ class GroqProvider(Provider):
     def usage(self, data):
         u = data.get("usage") or {}
         details = u.get("completion_tokens_details") or {}
+        extra = {"truncated": True} if _first_choice(data).get("finish_reason") == "length" else {}  # the limit cut the answer off: logged, not hidden
         return _tokens(u.get("prompt_tokens"), u.get("completion_tokens"), u.get("total_tokens"),
-                       reasoning=details.get("reasoning_tokens"))
+                       reasoning=details.get("reasoning_tokens"), **extra)
 
 
 class CerebrasProvider(GroqProvider):
@@ -366,9 +378,9 @@ class GeminiProvider(Provider):
                                 "IMAGE_SAFETY"})
 
     def __init__(self, api_key: str, model: str, timeout: float, max_output_tokens: int, enabled=True, http=None,
-                 structured: bool = True):
+                 structured: bool = True, thinking_budget: int = 0):
         super().__init__(model, timeout, max_output_tokens, enabled, http)
-        self._key, self.structured = api_key, structured
+        self._key, self.structured, self.thinking_budget = api_key, structured, thinking_budget
 
     def configured(self):
         return bool(self._key and self.model)
@@ -377,6 +389,8 @@ class GeminiProvider(Provider):
         config = {"temperature": 0, "maxOutputTokens": self.max_output_tokens, "responseMimeType": "application/json"}
         if self.structured:
             config["responseJsonSchema"] = ANSWER_SCHEMA
+        if self.thinking_budget and "2.5" in self.model:  # only the 2.5 family takes a thinking budget; other models reject the field
+            config["thinkingConfig"] = {"thinkingBudget": self.thinking_budget}
         return (self.URL.format(model=self.model), {"x-goog-api-key": self._key, "Content-Type": "application/json"},
                 {"contents": [{"role": "user", "parts": [{"text": prompt}]}], "generationConfig": config})
 
@@ -426,8 +440,10 @@ class GeminiProvider(Provider):
 
     def usage(self, data):
         u = data.get("usageMetadata") or {}
+        first = (data.get("candidates") or [{}])[0]
+        extra = {"truncated": True} if isinstance(first, dict) and first.get("finishReason") == "MAX_TOKENS" else {}
         return _tokens(u.get("promptTokenCount"), u.get("candidatesTokenCount"), u.get("totalTokenCount"),
-                       reasoning=u.get("thoughtsTokenCount"))
+                       reasoning=u.get("thoughtsTokenCount"), **extra)
 
 
 class OllamaProvider(Provider):
@@ -504,7 +520,7 @@ class ProviderOrchestrator:
                     CerebrasProvider(s.cerebras_api_key, s.cerebras_model, s.timeout_seconds, s.max_output_tokens,
                                      s.cerebras_enabled, http, s.cerebras_structured),
                     GeminiProvider(s.gemini_api_key, s.gemini_model, s.timeout_seconds, s.max_output_tokens,
-                                   s.gemini_enabled, http, s.gemini_structured),
+                                   s.gemini_enabled, http, s.gemini_structured, s.gemini_thinking_budget),
                     OllamaProvider(s.ollama_base_url, s.ollama_model, s.ollama_timeout_seconds, s.max_output_tokens,
                                    s.ollama_enabled, http, s.ollama_format)], s, **kw)
 

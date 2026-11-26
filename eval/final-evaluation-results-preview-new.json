@@ -1,0 +1,2543 @@
+{
+ "mode": "live",
+ "base_url": "https://knowyourrules-e2gn5yzcm-jayanths-projects-93d42e21.vercel.app",
+ "when": "2026-11-25T16:31:10+0530",
+ "summary": {
+  "incorrect_refusal_reasons": {
+   "no_support": 13,
+   "clarification": 2,
+   "legal_review_gate": 1
+  },
+  "total_in_dataset": 120,
+  "evaluated": 120,
+  "outcomes": {
+   "correct_answer": 67,
+   "incorrect_refusal": 16,
+   "correct_refusal": 26,
+   "correct_partial": 5,
+   "incomplete_answer": 1,
+   "correct_clarification": 4,
+   "incorrect_answer": 1
+  },
+  "flags": {
+   "multi_offence_failure": 1,
+   "citation_failure": 1
+  },
+  "by_category": {
+   "Individual traffic offences": {
+    "correct_answer": 15
+   },
+   "Multiple offences in one incident": {
+    "correct_answer": 15
+   },
+   "Different wording, typos and colloquial language": {
+    "correct_answer": 10
+   },
+   "Driver, passenger, pillion and vehicle-specific situations": {
+    "correct_answer": 10
+   },
+   "Exceptions and special conditions": {
+    "incorrect_refusal": 5,
+    "correct_answer": 3,
+    "correct_refusal": 1,
+    "correct_partial": 1
+   },
+   "Licence, insurance, registration and documents": {
+    "correct_answer": 5,
+    "incorrect_refusal": 5
+   },
+   "Procedural questions: challans, disputes, suspension, seizure and court": {
+    "correct_refusal": 9,
+    "incorrect_refusal": 1
+   },
+   "Hypothetical and scenario-based questions": {
+    "incorrect_refusal": 1,
+    "correct_partial": 3,
+    "correct_answer": 4,
+    "incomplete_answer": 1,
+    "correct_clarification": 1
+   },
+   "Multiple legal sections and complicated situations": {
+    "correct_answer": 4,
+    "incorrect_refusal": 4,
+    "correct_refusal": 1,
+    "incorrect_answer": 1
+   },
+   "Out-of-scope, other-state and unrelated questions": {
+    "correct_refusal": 5
+   },
+   "Unsupported, misleading and adversarial questions": {
+    "correct_partial": 1,
+    "correct_clarification": 2,
+    "correct_refusal": 2
+   },
+   "Multilingual and mixed-language questions": {
+    "correct_refusal": 8,
+    "correct_clarification": 1,
+    "correct_answer": 1
+   }
+  },
+  "needs_human_ids": [
+   "IO06",
+   "IO07",
+   "IO09",
+   "IO12",
+   "IO14",
+   "MO06",
+   "TY06",
+   "VS04",
+   "EX01",
+   "EX02",
+   "EX03",
+   "EX05",
+   "EX08",
+   "EX10",
+   "DOC01",
+   "DOC02",
+   "DOC03",
+   "DOC04",
+   "DOC06",
+   "PR01",
+   "PR02",
+   "PR05",
+   "PR09",
+   "HY01",
+   "HY02",
+   "HY03",
+   "HY06",
+   "HY09",
+   "HY10",
+   "LS01",
+   "LS03",
+   "LS05",
+   "LS08",
+   "LS09",
+   "LS10",
+   "OOS04",
+   "OOS05",
+   "ADV01",
+   "ADV02",
+   "ADV05",
+   "ML04",
+   "ML05",
+   "ML06",
+   "ML07",
+   "ML08",
+   "ML09",
+   "ML10"
+  ]
+ },
+ "results": [
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO01",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalt",
+   "sources_cited": [
+    "P018",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO02",
+   "response_excerpt": "**Result: wheel-wise table: ₹500/-; plain table: Rs. 500/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “W/o",
+   "sources_cited": [
+    "P000",
+    "W010"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO03",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P003",
+    "W011"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO04",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P029",
+    "W058"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO05",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P032",
+    "W018"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO06",
+   "response_excerpt": "**Result: wheel-wise table: 4 Wheeler, Lorry/DCM, Truck/HMV ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maxim",
+   "sources_cited": [
+    "W093"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO07",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1400/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Pen",
+   "sources_cited": [
+    "P036",
+    "W064"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO08",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,200/-; plain table: Rs. 1200/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P024",
+    "W092"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO09",
+   "response_excerpt": "**Result: wheel-wise table: 2 Wheeler, 3 Wheeler ₹1,200/- or 4 Wheeler, Lorry/DCM, Truck/HMV ₹1,700/-; plain table: Rs. 1100/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police",
+   "sources_cited": [
+    "P023",
+    "W095",
+    "W096"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO10",
+   "response_excerpt": "**Result: wheel-wise table: no matching entry; plain table: Rs. 1000/-.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[Motor Vehicles Act & Traffic Rules (plain table)](https://echa",
+   "sources_cited": [
+    "P042"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO11",
+   "response_excerpt": "**Result: wheel-wise table: ₹200/-; plain table: Rs. 200/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “W/o",
+   "sources_cited": [
+    "P027",
+    "W046"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO12",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W060"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO13",
+   "response_excerpt": "**Result: wheel-wise table: ₹200/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W041"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO14",
+   "response_excerpt": "**Result: wheel-wise table: no fixed fine amount printed; plain table: Court.** Neither table prints a rupee amount for this offence (see the entries below, shown as printed). The tables do not give a fixed payable amount for it, so I cannot give one.  _Amount displayed on the Telangana Police e-Cha",
+   "sources_cited": [
+    "P033",
+    "W021"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "IO15",
+   "response_excerpt": "**Result: wheel-wise table: no matching entry; plain table: Rs. 2000/-.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[Motor Vehicles Act & Traffic Rules (plain table)](https://echa",
+   "sources_cited": [
+    "P001"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO01",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Was riding triple on a bike**  **Result: wheel-wise table: ₹1,200/-; plain table: Rs. 1200/-.** Both website tables show the same figure.  _Amount displayed on the Telang",
+   "sources_cited": [
+    "P018",
+    "P024",
+    "W037",
+    "W092"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO02",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Drove drunk**  **Result: wheel-wise table: no fixed fine amount printed; plain table: Court.** Neither table prints a rupee amount for this offence (see the entries below",
+   "sources_cited": [
+    "P003",
+    "P033",
+    "W011",
+    "W021"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO03",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Had no licence**  **Result: wheel-wise table: ₹500/-; plain table: Rs. 500/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Cha",
+   "sources_cited": [
+    "P000",
+    "P018",
+    "W010",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO04",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Used my phone while driving**  **Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telang",
+   "sources_cited": [
+    "P032",
+    "W018",
+    "W093"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO05",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Jumped a signal**  **Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e",
+   "sources_cited": [
+    "P003",
+    "P029",
+    "W011",
+    "W058"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 3,
+    "groups_cited": 3,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO06",
+   "response_excerpt": "**Your question describes 3 separate offences. Each is shown on its own below, and I have not added the amounts together.** You asked for a combined or total amount. I can't give one: the tables list each offence separately and do not say how the penalties for several offences combine, so I won't ad",
+   "sources_cited": [
+    "P000",
+    "P003",
+    "P018",
+    "W010",
+    "W011",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO07",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Was speeding**  **Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1400/-.** **The two website tables disagree.** I have shown both figures as printed and have not ch",
+   "sources_cited": [
+    "P036",
+    "P042",
+    "W064",
+    "W071"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO08",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Rode without a helmet**  **Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed",
+   "sources_cited": [
+    "P018",
+    "P027",
+    "W037",
+    "W043"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 3,
+    "groups_cited": 3,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO09",
+   "response_excerpt": "**Your question describes 3 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. No licence**  **Result: wheel-wise table: ₹500/-; plain table: Rs. 500/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan",
+   "sources_cited": [
+    "P000",
+    "P001",
+    "P003",
+    "W010",
+    "W011",
+    "W012",
+    "W013",
+    "W014"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO10",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Did triple riding**  **Result: wheel-wise table: ₹1,200/-; plain table: Rs. 1200/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police",
+   "sources_cited": [
+    "P023",
+    "P024",
+    "W092",
+    "W095",
+    "W096"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO11",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Crossed the stop line**  **Result: wheel-wise table: ₹200/-; plain table: Rs. 200/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Polic",
+   "sources_cited": [
+    "P025",
+    "P032",
+    "W018",
+    "W041"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 3,
+    "groups_cited": 3,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO12",
+   "response_excerpt": "**Your question describes 3 separate offences. Each is shown on its own below, and I have not added the amounts together.** You asked for a combined or total amount. I can't give one: the tables list each offence separately and do not say how the penalties for several offences combine, so I won't ad",
+   "sources_cited": [
+    "P033",
+    "P036",
+    "P037",
+    "W021",
+    "W061",
+    "W064"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO13",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. My pillion had no helmet**  **Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so th",
+   "sources_cited": [
+    "P018",
+    "W030",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO14",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Drove without a licence**  **Result: wheel-wise table: ₹500/-; plain table: Rs. 500/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Pol",
+   "sources_cited": [
+    "P000",
+    "P022",
+    "W010",
+    "W016"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 4,
+    "groups_cited": 4,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "MO15",
+   "response_excerpt": "**Your question describes 4 separate offences. Each is shown on its own below, and I have not added the amounts together.** You asked for a combined or total amount. I can't give one: the tables list each offence separately and do not say how the penalties for several offences combine, so I won't ad",
+   "sources_cited": [
+    "P003",
+    "P029",
+    "P032",
+    "W011",
+    "W018",
+    "W058",
+    "W093"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY01",
+   "response_excerpt": "**Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maxi",
+   "sources_cited": [
+    "P018",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY02",
+   "response_excerpt": "**Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maxi",
+   "sources_cited": [
+    "P018",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY03",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P029",
+    "W058"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY04",
+   "response_excerpt": "**Result: wheel-wise table: no fixed fine amount printed; plain table: Court.** Neither table prints a rupee amount for this offence (see the entries below, shown as printed). The tables do not give a fixed payable amount for it, so I cannot give one.  _Amount displayed on the Telangana Police e-Cha",
+   "sources_cited": [
+    "P033",
+    "W021"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY05",
+   "response_excerpt": "**Result: wheel-wise table: 4 Wheeler, Lorry/DCM, Truck/HMV ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maxim",
+   "sources_cited": [
+    "W093"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY06",
+   "response_excerpt": "**Result: wheel-wise table: ₹500/-; plain table: Rs. 500/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “W/o",
+   "sources_cited": [
+    "P000",
+    "W010"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY07",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1400/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Pen",
+   "sources_cited": [
+    "P036",
+    "W064"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY08",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P032",
+    "W018"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY09",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P003",
+    "W011"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "TY10",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,200/-; plain table: Rs. 1200/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P024",
+    "W092"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS01",
+   "response_excerpt": "**Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise",
+   "sources_cited": [
+    "W030"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS02",
+   "response_excerpt": "**Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maxi",
+   "sources_cited": [
+    "P018",
+    "W030"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS03",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W093"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS04",
+   "response_excerpt": "**Result: wheel-wise table: no fixed fine amount printed for 3 Wheeler; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act ",
+   "sources_cited": [
+    "P018",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS05",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W079"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS06",
+   "response_excerpt": "**Result: wheel-wise table: ₹500/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W080"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS07",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W097"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS08",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalt",
+   "sources_cited": [
+    "P043",
+    "W031"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS09",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W081"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "VS10",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](h",
+   "sources_cited": [
+    "W036"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX01",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "EX02",
+   "response_excerpt": "Every person, above **four years of age**, driving or riding or being carried on a motorcycle of any class or description shall, while in a public place, wear protective headgear conforming to such standards as may be prescribed by the Central Government: [1]  - Provided that the provisions of this ",
+   "sources_cited": [
+    "Section 129"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "EX03",
+   "response_excerpt": "No driver of a two-wheeled motorcycle shall carry more than one person in addition to himself on the motorcycle and no such person shall be carried otherwise than sitting on a proper seat securely fixed to the motorcycle behind the driver’s seat with appropriate safety measures. [1]  **Sources** - [",
+   "sources_cited": [
+    "Section 128"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX04",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "EX05",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX06",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_partial",
+   "id": "EX08",
+   "response_excerpt": "Where an application for the renewal of a driving licence is made previous to, or not more than 2[**one year**] after the date of its expiry, the fee payable for such renewal shall be such as may be prescribed by the Central Government in this behalf. [1]  - Where an application for the renewal of a",
+   "sources_cited": [
+    "Section 15"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "EX09",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "EX10",
+   "response_excerpt": "The driver of a vehicle designated by the State Government for emergency services under sub-rule (4) of rule 108 of the Central Motor Vehicles Rules, 1989 including a vehicle used as ambulance or for fire-fighting or for salvage purposes or a police vehicle, shall operate the multi-toned horn (siren",
+   "sources_cited": [
+    "Regulation 27"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 2
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC01",
+   "response_excerpt": "No person under the age of **eighteen years** shall drive a motor vehicle in any public place: [1]  - Provided that a motor cycle with engine capacity not exceeding 50cc may be driven in a public place by a person after attaining the age of **sixteen years**. [1] - No learner’s licence or driving li",
+   "sources_cited": [
+    "Section 4",
+    "Section 7"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC02",
+   "response_excerpt": "**In simple terms:** A learner's licence is valid for **six months** from its issue date, subject to other provisions of the Act. [1]  **Legal wording**  A learner’s licence issued under this Act shall, subject to the other provisions of this Act, be effective for a period of **six months** from the",
+   "sources_cited": [
+    "Section 14"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC03",
+   "response_excerpt": "The driver of a transport vehicle shall always carry with him the following documents in original, except for a document that might have been seized by an authorised person or authority, namely: (a) driving license; (b) certificate of taxation; (c) certificate of registration; (d) certificate of ins",
+   "sources_cited": [
+    "Regulation 38"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC04",
+   "response_excerpt": "No person shall use, except as a passenger, or cause or allow any other person to use, a motor vehicle in a public place, unless there is in force, in relation to the use of the vehicle by that person or that other person, as the case may be, a policy of insurance complying with the requirements of ",
+   "sources_cited": [
+    "Rule 451",
+    "Rule 452",
+    "Section 146"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC05",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 1
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "DOC06",
+   "response_excerpt": "On receipt of an application under Rule 53 of the Central Motor Vehicle Rules, 1989 with prescribed fee the registering authority shall cause necessary enquiries to be made as to the reasons for loss, genuineness of the application, verification of signatures of the applicant with reference to the r",
+   "sources_cited": [
+    "Rule 120",
+    "Rule 99"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC08",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC09",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "DOC10",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR01",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR02",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR03",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR04",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR05",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR06",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR07",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "PR08",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR09",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "PR10",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 3,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "incorrect_refusal",
+   "id": "HY01",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “To drive a vehicle without license.”; “W/o Driving License”; “W/o carrying Driving License”? Please name the offence (and the vehicle type) and",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_partial",
+   "id": "HY02",
+   "response_excerpt": "**Result: wheel-wise table: ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between them or corrected either.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalt",
+   "sources_cited": [
+    "P018",
+    "W030"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_partial",
+   "id": "HY03",
+   "response_excerpt": "**Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana Police e-Challan website._  **[MV Act Offences - Wheel-wise Maximum Penalty (wheel-wise table)](https://echallan.tspolice.gov.in/htp/mv-act-rules.html)** - “",
+   "sources_cited": [
+    "P003",
+    "W011"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "HY04",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. Jump a signal at night**  **Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on the Telangana P",
+   "sources_cited": [
+    "P029",
+    "W039",
+    "W058"
+   ]
+  },
+  {
+   "actual_behavior": "partial",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [
+    "multi_offence_failure"
+   ],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "incomplete_answer",
+   "id": "HY05",
+   "response_excerpt": "**I could match one offence in your question. The rest could not be matched (see below). I have not added any amounts together.**  **1. A friend drives my car without a licence**  **Result: wheel-wise table: ₹500/-; plain table: Rs. 500/-.** Both website tables show the same figure.  _Amount display",
+   "sources_cited": [
+    "P000",
+    "W010"
+   ]
+  },
+  {
+   "actual_behavior": "partial",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_partial",
+   "id": "HY06",
+   "response_excerpt": "**I could match one offence in your question. The rest could not be matched (see below). I have not added any amounts together.**  **1. Am caught drunk driving**  **Result: wheel-wise table: no fixed fine amount printed; plain table: Court.** Neither table prints a rupee amount for this offence (see",
+   "sources_cited": [
+    "P033",
+    "W021"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "HY07",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.** You asked for a combined or total amount. I can't give one: the tables list each offence separately and do not say how the penalties for several offences combine, so I won't ad",
+   "sources_cited": [
+    "P018",
+    "W030",
+    "W037"
+   ]
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "correct_clarification",
+   "id": "HY08",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “To drive a vehicle without license.”; “W/o Driving License”; “W/o carrying Driving License”? Please name the offence (and the vehicle type) and",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 2,
+    "groups_cited": 2,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "HY09",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. My vehicle has an expired insurance**  **Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1000/-.** Both website tables show the same figure.  _Amount displayed on th",
+   "sources_cited": [
+    "P001",
+    "P003",
+    "W011",
+    "W012",
+    "W013",
+    "W014"
+   ]
+  },
+  {
+   "actual_behavior": "partial",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "HY10",
+   "response_excerpt": "**I could match one offence in your question. The rest could not be matched (see below). I have not added any amounts together.**  **1. A bus stops in the middle of the road**  **Result: wheel-wise table: ₹100/-; plain table: no matching entry.** Only one of the two website tables has a matching ent",
+   "sources_cited": [
+    "W017",
+    "W104"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "LS01",
+   "response_excerpt": "**Section 177: wheel-wise table: ₹100/- or 2 Wheeler, 3 Wheeler, 4 Wheeler, Truck/HMV ₹100/- or ₹500/- or ₹1,000/- (and others); plain table: Rs. 200/- or Rs. 1100/- or Rs. 1200/- or Rs. 100 (and others).** **The two website tables disagree.** I have shown both figures as printed and have not chosen",
+   "sources_cited": [
+    "P005",
+    "P006",
+    "P007",
+    "P008",
+    "P009",
+    "P018",
+    "P023",
+    "P024",
+    "P025",
+    "P026",
+    "P030",
+    "P031",
+    "P045",
+    "P046",
+    "P047",
+    "P048",
+    "P049",
+    "W004",
+    "W005",
+    "W006",
+    "W007",
+    "W009",
+    "W010",
+    "W011",
+    "W012",
+    "W013",
+    "W014",
+    "W015",
+    "W016",
+    "W020",
+    "W022",
+    "W025",
+    "W026",
+    "W027",
+    "W028",
+    "W029",
+    "W030",
+    "W031",
+    "W033",
+    "W034",
+    "W035",
+    "W036",
+    "W037",
+    "W038",
+    "W039",
+    "W040",
+    "W041",
+    "W042",
+    "W043",
+    "W044",
+    "W045",
+    "W046",
+    "W048",
+    "W051",
+    "W052",
+    "W053",
+    "W054",
+    "W055",
+    "W056",
+    "W057",
+    "W058",
+    "W059",
+    "W060",
+    "W062",
+    "W063",
+    "W065",
+    "W072",
+    "W073",
+    "W075",
+    "W076",
+    "W077",
+    "W078",
+    "W079",
+    "W080",
+    "W081",
+    "W082",
+    "W083",
+    "W085",
+    "W086",
+    "W087",
+    "W088",
+    "W091",
+    "W092",
+    "W093",
+    "W094",
+    "W095",
+    "W096",
+    "W097",
+    "W098",
+    "W099",
+    "W100",
+    "W101",
+    "W102",
+    "W103",
+    "W104",
+    "W105",
+    "W106",
+    "W107",
+    "W108",
+    "W109",
+    "W111"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "legal_review_gate",
+   "outcome": "incorrect_refusal",
+   "id": "LS02",
+   "response_excerpt": "**This part isn't available yet: explanations of the Central Motor Vehicles Act.**  It has not been released after legal review, so I haven't answered it and nothing here states the law on it. You can still ask what the Telangana documents I have say about a rule or procedure, or check the official ",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "answer",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 2
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "LS03",
+   "response_excerpt": "No person under the age of **eighteen years** shall drive a motor vehicle in any public place: [1]  - Provided that 5[a motor cycle with engine capacity not exceeding 50cc] may be driven in a public place by a person after attaining the age of **sixteen years**. [1] - Subject to the provisions of se",
+   "sources_cited": [
+    "Section 4",
+    "Section 7"
+   ]
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "LS04",
+   "response_excerpt": "**Result: wheel-wise table: no matching entry; plain table: Rs. 1000/-.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[Motor Vehicles Act & Traffic Rules (plain table)](https://echa",
+   "sources_cited": [
+    "P003"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "LS05",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "LS06",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "incorrect_refusal",
+   "id": "LS07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "LS08",
+   "response_excerpt": "**Section 184: wheel-wise table: 4 Wheeler ₹1,000/- or ₹1,000/- or 4 Wheeler, Lorry/DCM, Truck/HMV ₹1,600/- or 2 Wheeler ₹1,200/- (and others); plain table: Rs. 1000/- or Rs. 1200/- or Rs. 1400/-.** **The two website tables disagree.** I have shown both figures as printed and have not chosen between",
+   "sources_cited": [
+    "P010",
+    "P011",
+    "P024",
+    "P029",
+    "P032",
+    "P036",
+    "P037",
+    "W017",
+    "W018",
+    "W019",
+    "W023",
+    "W024",
+    "W054",
+    "W056",
+    "W058",
+    "W061",
+    "W064",
+    "W092",
+    "W095",
+    "W096"
+   ]
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "incorrect_refusal",
+   "id": "LS09",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “Carrying Goods dangerously”; “Carrying persons dangerously or carrying persons in goods vehicles”; “Overloading in goods vehicles”; “W/o Insura",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "partial",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [
+    "citation_failure"
+   ],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 1,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "incorrect_answer",
+   "id": "LS10",
+   "response_excerpt": "**I could match one offence in your question. The rest could not be matched (see below). I have not added any amounts together.**  **1. Overspeeding**  **Result: wheel-wise table: ₹1,000/-; plain table: Rs. 1400/-.** **The two website tables disagree.** I have shown both figures as printed and have ",
+   "sources_cited": [
+    "P036",
+    "W064"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "out_of_scope",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "other_state",
+   "outcome": "correct_refusal",
+   "id": "OOS01",
+   "response_excerpt": "I only cover **Telangana** traffic rules. Rules for Karnataka aren't in my knowledge base, and I won't apply Telangana rules to another state. Ask me about Telangana, or check that state's official transport department.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "OOS02",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "OOS03",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "out_of_scope",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "other_state",
+   "outcome": "correct_refusal",
+   "id": "OOS04",
+   "response_excerpt": "I only cover **Telangana** traffic rules. Rules for Maharashtra aren't in my knowledge base, and I won't apply Telangana rules to another state. Ask me about Telangana, or check that state's official transport department.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "out_of_scope",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "other_state",
+   "outcome": "correct_refusal",
+   "id": "OOS05",
+   "response_excerpt": "I only cover **Telangana** traffic rules. Rules for Maharashtra aren't in my knowledge base, and I won't apply Telangana rules to another state. Ask me about Telangana, or check that state's official transport department.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "partial",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_partial",
+   "id": "ADV01",
+   "response_excerpt": "**Your question describes 2 separate offences. Each is shown on its own below, and I have not added the amounts together.**  **1. No helmet is**  **Result: wheel-wise table: 2 Wheeler ₹100/-; plain table: Rs. 200/-.** **The two website tables disagree.** I have shown both figures as printed and have",
+   "sources_cited": [
+    "P018",
+    "W037",
+    "W063"
+   ]
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "correct_clarification",
+   "id": "ADV02",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “Drunken Driving”? Please name the offence (and the vehicle type) and I'll show the amount the website displays.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "correct_clarification",
+   "id": "ADV03",
+   "response_excerpt": "I couldn't find Section 999 in the two Telangana Police e-Challan tables, so I have no website amount for it. Tell me the offence in words (for example “no parking” or “no helmet”).",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "ADV04",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "ADV05",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "english_only_notice",
+   "outcome": "correct_refusal",
+   "id": "ML01",
+   "response_excerpt": "**Fine and penalty lookup currently works for English questions only.**  I can't translate legal penalties or guess amounts from a question in Telugu or Hindi. Please ask in English, for example “fine for no helmet”, and I'll show what the Telangana Police e-Challan website displays.  For current am",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "english_only_notice",
+   "outcome": "correct_refusal",
+   "id": "ML02",
+   "response_excerpt": "**Fine and penalty lookup currently works for English questions only.**  I can't translate legal penalties or guess amounts from a question in Telugu or Hindi. Please ask in English, for example “fine for no helmet”, and I'll show what the Telangana Police e-Challan website displays.  For current am",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "english_only_notice",
+   "outcome": "correct_refusal",
+   "id": "ML03",
+   "response_excerpt": "**Fine and penalty lookup currently works for English questions only.**  I can't translate legal penalties or guess amounts from a question in Telugu or Hindi. Please ask in English, for example “fine for no helmet”, and I'll show what the Telangana Police e-Challan website displays.  For current am",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "ML04",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "clarification",
+   "kind": "clarification",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "clarification",
+   "outcome": "correct_clarification",
+   "id": "ML05",
+   "response_excerpt": "I couldn't match your question to one offence in the Telangana Police e-Challan tables with enough confidence to give an amount. Did you mean one of these: “Signal Jumping”; “Violation of Signal Jumping”? Please name the offence (and the vehicle type) and I'll show the amount the website displays.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "penalty_lock",
+   "outcome": "correct_refusal",
+   "id": "ML06",
+   "response_excerpt": "**Penalties and compounding fees are not available yet.**  The official Telangana compounding schedule has not been obtained, and the knowledge base has not been approved by legal counsel, so I can't give fine amounts, compounding fees, penalty points or other punishment details.  For current amount",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "ML07",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "no_support",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 2,
+    "statutory_cited": 0
+   },
+   "reason": "no_support",
+   "outcome": "correct_refusal",
+   "id": "ML08",
+   "response_excerpt": "**I can't confirm this from the Telangana documents I have, so I won't guess.**  - Try rephrasing, and name the rule, document or vehicle type if you can. - Or check the official Telangana Transport Department sources.",
+   "sources_cited": []
+  },
+  {
+   "actual_behavior": "answer",
+   "kind": "website_amount",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 1,
+    "groups_cited": 1,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": null,
+   "outcome": "correct_answer",
+   "id": "ML09",
+   "response_excerpt": "**Result: wheel-wise table: no matching entry; plain table: Rs. 200/-.** Only one of the two website tables has a matching entry, so there is nothing to compare it with.  _Amount displayed on the Telangana Police e-Challan website._  **[Motor Vehicles Act & Traffic Rules (plain table)](https://echal",
+   "sources_cited": [
+    "P018"
+   ]
+  },
+  {
+   "actual_behavior": "refusal",
+   "kind": "restricted",
+   "http": 200,
+   "flags": [],
+   "detail": {
+    "groups_expected": 0,
+    "groups_cited": 0,
+    "statutory_expected": 0,
+    "statutory_cited": 0
+   },
+   "reason": "english_only_notice",
+   "outcome": "correct_refusal",
+   "id": "ML10",
+   "response_excerpt": "**Fine and penalty lookup currently works for English questions only.**  I can't translate legal penalties or guess amounts from a question in Telugu or Hindi. Please ask in English, for example “fine for no helmet”, and I'll show what the Telangana Police e-Challan website displays.  For current am",
+   "sources_cited": []
+  }
+ ]
+}
